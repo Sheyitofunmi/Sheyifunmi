@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio</title>
+    <meta name="description" content="Professional portfolio showcasing my work and projects">
+    <meta name="keywords" content="portfolio, web development, projects, skills">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+    <header id="header">
+        <div class="container">
+            <div class="logo">
+                <h1>Portfolio</h1>
+            </div>
+            <nav id="navigation">
+                <ul>
+                    <li><a href="#hero">Home</a></li>
+                    <li><a href="#portfolio">Work</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    
+    <main id="main-content">
+        <section id="hero" class="section hero-section">
+            <div class="container">
+                <div class="hero-content">
+                    <h1 class="hero-title">Welcome to My Portfolio</h1>
+                    <p class="hero-subtitle">Showcasing creative work and professional projects</p>
+                    <a href="#portfolio" class="btn btn-primary">View My Work</a>
+                </div>
+            </div>
+        </section>
+        
+        <section id="portfolio" class="section">
+            <!-- Portfolio items from WordPress -->
+        </section>
+        
+        <section id="about" class="section">
+            <!-- About content from WordPress -->
+        </section>
+        
+        <section id="contact" class="section">
+            <!-- Contact form -->
+        </section>
+    </main>
+    
+    <footer id="footer">
+        <div class="container">
+            <p>&copy; 2025 Portfolio. All rights reserved.</p>
+        </div>
+    </footer>
+    
+    <!-- Loading indicator -->
+    <div id="loading" class="loading-overlay hidden">
+        <div class="loading-spinner"></div>
+        <p>Loading...</p>
+    </div>
+    
+    <!-- Scripts -->
+    <script src="js/api.js"></script>
+    <script src="js/components/header.js"></script>
+    <script src="js/components/portfolio.js"></script>
+    <script src="js/components/about.js"></script>
+    <script src="js/components/contact.js"></script>
+    <script src="js/utils/helpers.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
