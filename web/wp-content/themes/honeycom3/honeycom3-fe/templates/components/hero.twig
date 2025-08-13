@@ -1,0 +1,141 @@
+{% extends '@hc/scaffolding/section.twig' %}
+
+{% block section_content %}
+	{% block hero %}
+		<div class="hero">
+			{% block hero_image %}
+				{% if image or image_data %}
+					<figure class="hero-image">
+						{# Minimum image size: 1080px X 1920px #}
+						{% include '@hc/partials/image.twig' with { 'imgheight': '1080', 'imgwidth': '1920' } %}
+						{% block caption %}
+							{% if caption %}<figcaption>{{ caption }}</figcaption>{% endif %}
+						{% endblock caption %}
+					</figure>
+				{% endif %}
+			{% endblock hero_image %}
+
+			{% block hero_info %}
+				<header class="hero-info">
+					{% block hero_inner %}
+						{% if hero_title or hero_summary %}
+							<div class="hero-inner">
+								{% block hero_type %}
+									{% if hero_type %}
+										<p class="hero_type"><a href="{{ hero_type_path }}">{{ hero_type }}</a></p>
+									{% endif %}
+								{% endblock hero_type %}
+
+								{% block hero_title %}
+									{% if hero_title %}
+										{% if body_class == 'home' %}
+											<p class="hero-title" role="heading" aria-level="1">{{ hero_title }}</p>
+										{% else %}
+											<h1 class="hero-title">{{ hero_title }}</h1>
+										{% endif %}
+									{% endif %}
+								{% endblock hero_title %}
+
+								{% block hero_summary %}
+									{% if hero_summary %}
+										<div class="hero-summary">
+											{% if hero_summary_is_wysiwyg_text %}
+												{{ hero_summary }}
+											{% else %}
+												<p>{{ hero_summary|raw }}</p>
+											{% endif %}
+										</div>
+									{% endif %}
+								{% endblock hero_summary %}
+
+								{% block post_meta %}
+									{% if hero_metas %}
+										<ul class="hero-meta">
+											{% for hero_meta in hero_metas %}
+												{% if hero_meta.info and hero_meta.path %}
+													<li class="hero-meta-block"><span>{{ hero_meta.title }} </span><a href="{{ hero_meta.path }}">{{ hero_meta.info|raw }}</a></li>
+												{% else %}
+													<li class="hero-meta-block"><span>{{ hero_meta.title }} </span>{{ hero_meta.info|raw }}</li>
+												{% endif %}
+											{% endfor %}
+											{% if tags %}
+												{% include '@hc/partials/tags.twig' with tags %}
+											{% endif %}
+										</ul>
+									{% endif %}
+									{% if not image and download_path %}
+										<a href="{{ download_path }}" class="download-button">{{ download_copy }}</a>
+									{% endif %}
+									{% if date %}
+										<p class="hero-date">Published: <span class="hero-date"><time datetime="{{ date|date("Y-m-d") }}">{{ date|date("d/m/Y") }}</time></span></p>
+									{% endif %}
+									  {% if startdate or startTime %}
+											<div class="hero-date">
+												<span>Date{% if enddate %}s{% endif %}: </span><time datetime="{{ startdate|date("Y-m-d") }}"> {{ startdate|date("j M") }}</time>
+												{% if enddate %} - <time datetime="{{ enddate|date("Y-m-d") }}"> {{ enddate|date("j M Y") }}</time>{% endif %}
+											</div>
+											{% if startTime %}
+												<div class="hero-time">
+													<span>Time: </span>{% if startTime %} {{ startTime|date('H:i') }}{% if endTime %} - {{ endTime|date('H:i') }}{% endif %}{% endif %}
+												</div>
+											{% endif %}
+										{% endif %}
+										{% if smartDate %}
+											<div class="hero-date">
+												<span>Date: </span> {{ smartDate}}
+											</div>
+										{% endif %}
+										{% if hero_role %}<p class="hero-role">{{ hero_role }}</p>{% endif %}
+										{% if location %}<div class="hero-location"><span>Location: </span>{{ location }}</div>{% endif %}
+										{% if age %}<div class="hero-age"><span>Suggested for: </span>{{ age }}</div>{% endif %}
+										{% if price %}<div class="hero-price"><span>Price: </span>{{ price }}</div>{% endif %}
+										{% if additional_info %}<div class="hero-additional-info">{{ additional_info }}</div>{% endif %}
+										{% block tags %}
+											{% if hero_tags %}
+												{% set tags = hero_tags %}
+												{% include '@hc/partials/tags.twig' with tags %}
+											{% endif %}
+										{% endblock tags %}
+								{% endblock post_meta %}
+
+								{% if hero_socials %}
+									<ul class="hero-socials">
+										{% for hero_social in hero_socials %}
+											<li class="hero-socials-block">
+												<a href="{{ hero_social.path }}" class="{{ hero_social.selector }} nav-item-link" aria-label="Share on {{ hero_social.selector }} (opens in a new window)" target="_blank">
+													<svg aria-hidden="true" class="icon"><use xlink:href="{{ assets_dir }}/svg/icons.svg#{{ hero_social.selector }}"/>{{ hero_social.selector|capitalize }}</svg>
+													<span class="visually-hidden">Share on {{ hero_social.selector }} (opens in a new window)</span>
+												</a>
+											</li>
+										{% endfor %}
+									</ul>
+								{% endif %}
+
+								{% block hero_cta %}
+									{% if hero_buttons %}
+										<div class="hero-button-outer">
+											{% for hero_button in hero_buttons %}
+												<a href="{{ hero_button.path }}"{% if hero_button.path_target %} target="{{ hero_button.path_target}}"{% endif %} class="button">{{ hero_button.title }}</a>
+											{% endfor %}
+										</div>
+									{% elseif link_copy and link_path %}
+										<a href="{{ link_path }}"{% if link_target %} target="{{ link_target }}"{% endif %} class="button {{ link_class }}">{{ link_copy }}</a>
+									{% endif %}
+								{% endblock hero_cta %}
+							</div>
+						{% endif %}
+					{% endblock hero_inner %}
+				</header>
+			{% endblock hero_info %}
+		</div>
+	{% endblock hero %}
+{% endblock section_content %}
+
+{# Include like so:
+{% include '@hc/components/hero.twig' with {
+'section_class': 'hero-outer full solid',
+'image': '/assets/images/holder-1920x1080.png',
+'hero_title': 'Hero component',
+'hero_summary': 'Use this to add a more impactful title area at the top of your pagebuilder page. It will utilise the existing Page title & summary.'
+} %}
+#}

@@ -1,0 +1,16 @@
+{% extends '@hc/scaffolding/section.twig' %}
+
+{% block section_content %}
+	{% include '@hc/partials/cta-item.twig' %}
+{% endblock section_content %}
+
+{# Include like so:
+{% include '@hc/components/cta.twig' with {
+'section_class': 'cta-outer',
+'image': '/assets/images/holder-1920x1080.png',
+'cta_title': 'Call to action',
+'cta_summary': 'Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Aenean lacinia bibendum nulla sed consectetur.',
+'button': 'Button'
+} 
+%}
+#}

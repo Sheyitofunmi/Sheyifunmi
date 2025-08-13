@@ -1,0 +1,86 @@
+<article>
+	{% block card %}
+		<div class="card{% if card.class %} {{ card.class }}{% endif %}{% if not card.image and not card.image_data %} no-image{% endif %}">
+
+			{% block card_image %}
+				{% if card.image or card.image_data %}
+					<div class="card-image">
+						{% if card.featured %}<p class="card-featured">Featured</p>{% endif %}
+						{# Minimum image size: 530px X 920px #}
+						{% set image = card.image %}
+						{% set image_data = card.image_data %}
+						{% if image or image_data %}
+							{% include '@hc/partials/image.twig' with { 'imgheight': '530', 'imgwidth': '920' } %}
+						{% endif %}
+					</div>
+				{% endif %}
+			{% endblock card_image %}
+
+			{% block card_wrap %}
+				<div class="card-wrap">
+					<div class="card-wrap-inner">
+						{% if card.label %}
+						<span class="metalabel"><a href="{{ card.label_path }}">{{ card.label }}</a></span>
+						{% endif %}
+
+						{% block card_header %}
+							<header class="card-header">
+								{% if card.title and card.button and card.path %}
+									<h2 class="card-header-title">{{ card.title }}</h2>
+								{% elseif card.title and card.path and not card.button %}
+									<h2 class="card-header-title"><a href="{{ card.path }}" class="card-link">{{ card.title }}</a></h2>
+								{% else %}
+									<h2 class="card-header-title">{{ card.title }}</h2>
+								{% endif %}
+								{% if card.date %}
+									{% block card_meta %}
+										<span class="card-header-date"><time datetime="{{ card.date|date("Y-m-d") }}">{{ card.date|date("jS F Y") }}</time></span>
+									{% endblock card_meta %}
+								{% endif %}
+								{% if card.smartDate %}
+									<span class="card-header-date">{{ card.smartDate }}</span>
+								{% endif %}
+								{% if card.author %}
+									<span class="card-author">{{ card.author }}</span>
+								{% endif %}
+								{% if card.startdate or card.startTime %}
+									<div class="card-header-date">
+										<time datetime="{{ card.startdate|date("Y-m-d") }}"> {{ card.startdate|date("j M") }}</time>
+										{% if card.enddate %} - <time datetime="{{ card.enddate|date("Y-m-d") }}"> {{ card.enddate|date("j M Y") }}</time>{% endif %}
+										{% if card.startTime %} {{ card.startTime|date('H:i') }}{% if card.endTime %} - {{ card.endTime|date('H:i') }}{% endif %}{% endif %}
+									</div>
+								{% endif %}
+								{% if card.location %}<div class="card-location">{{ card.location }}</div>{% endif %}
+								{% if card.price %}<div class="card-price">{{ card.price }}</div>{% endif %}
+							</header>
+						{% endblock card_header %}
+
+						{% block card_summary %}
+							{% if card.summary %}
+							<div class="card-summary">
+								<p>{{ card.summary }}</p>
+							</div>
+							{% endif %}
+						{% endblock card_summary %}
+
+						{% block tags %}
+							{% if card.tags %}
+								{% set tags = card.tags %}
+								{% include '@hc/partials/tags.twig' with tags %}
+							{% endif %}
+						{% endblock tags %}
+
+						{% block card_button %}
+							{% if card.button %}
+								<div class="card-button-outer">
+									<a href="{{ card.path }}" class="card-link button" aria-label="Read {{ card.title }}"{% if link_target %} target="{{ link_target }}"{% endif %}>{{ card.button }}</a>
+								</div>
+							{% endif %}
+						{% endblock card_button %}
+
+					</div>
+				</div>
+			{% endblock card_wrap %}
+		</div>
+	{% endblock card %}
+</article>

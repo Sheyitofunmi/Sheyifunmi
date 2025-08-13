@@ -1,0 +1,151 @@
+{% extends '@hc/scaffolding/base.twig' %}
+
+{% set nav_section = 'Post' %}
+{% set body_class = "single-post" %}
+
+{% block main %}
+	{% block hero_component %}
+		{% include '@hc/components/hero.twig' with {
+			'section_class': 'hero-outer author-profile',
+			'image': '/assets/images/avatar-holder.png',
+			'hero_title': 'Person name',
+			'hero_role': 'Role',
+			'hero_socials': [
+				{ 'selector': 'twitter', 'path': '#' },
+				{ 'selector': 'linkedin', 'path': '#' },
+				{ 'selector': 'link', 'path': '#' }
+			]
+		} %}
+	{% endblock hero_component %}
+
+	{% block breadcrumb_center %}
+		<div class="center">
+			{% include '@hc/partials/breadcrumbs.twig' with {
+					'subnav': [
+					{ 'text': 'Curabitur', 'url': '#', 'active_trail': 'true', 'submenu': [
+
+						{ 'text': 'Parent page', 'url': '#', 'active': 'false', 'active_trail': 'true', 'submenu': [
+
+							{ 'text': 'Grandchild page', 'url': '#', 'active': 'false', 'active_trail': 'true', 'submenu': [
+
+								{ 'text': 'Great grandchild page', 'url': '#', 'active': 'true' }
+							]},
+						]},
+					]}
+					]
+				}
+			%}
+		</div>
+	{% endblock breadcrumb_center %}
+
+
+	{% block main_content %}
+		<div class="main-section single" id="content">
+
+			{% include '@hc/components/wysiwyg.twig' with {
+					'section_class': 'wysiwyg-outer center',
+					'post_summary': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis eros leo, fermentum sit amet iaculis non, finibus nec lectus. Duis vel sapien ullamcorper turpis fermentum lacinia sit amet ut eros.',
+					'wysiwyg_content': '<h2>Main WYSIWYG</h2><p>Lorem ipsum dolor sit amet consectetur. Ornare odio vestibulum aliquam amet purus vitae ac a ullamcorper. Viverra viverra quisque velit sit neque diam. Viverra sed nec at praesent odio mauris sit scelerisque. Massa bibendum sit pellentesque enim cursus tortor sagittis. Integer nisl sit cursus vel. Tellus at velit nec mi praesent morbi arcu arcu faucibus. Nec tincidunt laoreet volutpat sagittis feugiat nunc enim natoque.</p><p>Parturient nunc suscipit malesuada scelerisque morbi in elit at commodo. Lectus nulla blandit vel mattis hac eget consectetur ac. Et molestie amet ipsum nullam varius id et arcu id. Augue a sed vitae nunc vivamus laoreet pulvinar scelerisque. Sit quis fermentum eget nunc morbi euismod.</p><p>Nisl mauris quam arcu iaculis varius. Suscipit amet ut non nunc. A neque eu aliquet fusce porta. Pretium est pellentesque porttitor morbi. Eget ut pulvinar orci sapien amet malesuada quis quis amet. Id nunc tempus amet turpis elit sodales ut vel sit. Pharetra ac turpis volutpat et condimentum purus aliquam amet. Blandit pharetra sodales ut phasellus lectus risus at. Posuere convallis pretium tincidunt sed sed donec purus sit.</p>',
+				}
+			%}
+
+			{% include '@hc/components/cards.twig' with {
+				'section_class': 'cards-outer feat-content cards-slider',
+				'cards_slider': true,
+				'title': 'Feature content from the author',
+				'cards': [
+					{
+						'path': '/page-builder',
+						'title': 'Nullam congue tempor faucibus',
+						'summary': 'Nullam id dolor id nibh ultricies vehicula ut id elit. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.',
+						'date': 'today',
+						'label': 'News Type label',
+						'label_path': '/listing',
+					},
+					{
+						'path': '/page-builder',
+						'title': 'Maecenas sed diam risus varius blandit sit amet',
+						'summary': 'Maecenas faucibus mollis interdum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Maecenas sed diam eget risus varius.',
+						'date': 'today',
+						'label': 'News Type label',
+						'label_path': '/listing',
+					},
+					{
+						'path': '/page-builder',
+						'title': 'Cras justo odio dapibus ac facilisis in',
+						'summary': 'Maecenas faucibus mollis interdum. Nulla vitae elit libero, a pharetra augue. Nullam quis risus eget urna mollis ornare vel eu leo. Aenean eu leo quam.',
+						'date': 'today',
+						'label': 'News Type label',
+						'label_path': '/listing',
+					},
+					{
+						'path': '/page-builder',
+						'title': 'Nullam congue tempor faucibus',
+						'summary': 'Nullam id dolor id nibh ultricies vehicula ut id elit. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.',
+						'date': 'today',
+						'label': 'News Type label',
+						'label_path': '/listing',
+					},
+					{
+						'path': '/page-builder',
+						'title': 'Maecenas sed diam risus varius blandit sit amet',
+						'summary': 'Maecenas faucibus mollis interdum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Maecenas sed diam eget risus varius.',
+						'date': 'today',
+						'label': 'News Type label',
+						'label_path': '/listing',
+					},
+					{
+						'path': '/page-builder',
+						'title': 'Cras justo odio dapibus ac facilisis in',
+						'summary': 'Maecenas faucibus mollis interdum. Nulla vitae elit libero, a pharetra augue. Nullam quis risus eget urna mollis ornare vel eu leo. Aenean eu leo quam.',
+						'date': 'today',
+						'label': 'News Type label',
+						'label_path': '/listing',
+					}
+				]}
+			%}
+
+			{% include '@hc/components/pullquote.twig' with {
+				'section_class': 'pullquote-outer inline center',
+				'blockquote': 'Pullquote component add a quote mi tempus imperdiet nulla malesuada pellentesque elit eget egestas sed sed risus pretium quam',
+				'attribution': 'With citation lorem ipsum, Dolor sit amet',
+			} %}
+
+			{% include '@hc/components/media-section.twig' with {
+				'section_class': 'media-block-outer inline center',
+				'image': '/assets/images/holder-530x920.png',
+				'caption': 'Inline image component',
+			} %}
+
+			{% include '@hc/components/cards.twig' with {
+				'section_class': 'cards-outer secondary mob-slider',
+				'title': 'Feature promo component',
+				'summary': 'Use this component to create rows of three promos specifically to present subpage or related content.',
+				'header_link': 'Button',
+				'header_link_path': '#',
+				'cards': [
+					{
+						'path': '/page-builder',
+						'image': '/assets/images/holder-530x920.png',
+						'title': 'Nullam congue tempor faucibus',
+						'summary': 'Nullam id dolor id nibh ultricies vehicula ut id elit. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.',
+					},
+					{
+						'path': '/page-builder',
+						'image': '/assets/images/holder-530x920.png',
+						'title': 'Maecenas sed diam risus varius blandit sit amet',
+						'summary': 'Maecenas faucibus mollis interdum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Maecenas sed diam eget risus varius.',
+					},
+					{
+						'path': '/page-builder',
+						'image': '/assets/images/holder-530x920.png',
+						'title': 'Cras justo odio dapibus ac facilisis in',
+						'summary': 'Maecenas faucibus mollis interdum. Nulla vitae elit libero, a pharetra augue. Nullam quis risus eget urna mollis ornare vel eu leo. Aenean eu leo quam.',
+					}
+				]}
+			%}
+
+		</div>
+	{% endblock main_content %}
+
+{% endblock main %}

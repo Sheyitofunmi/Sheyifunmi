@@ -1,0 +1,11 @@
+{% if fields.alignment == 'full-width' %}
+	{% set fields = fields|merge({'alignment_classes': fields.alignment_classes ~ ' left'} ) %}
+{% endif %}
+
+{% include '@hc/components/wysiwyg.twig' with {
+		'section_id': fields.anchor_id|e('esc_html'),
+		'section_class': 'wysiwyg-outer ' ~ fields.background_colour|get_background_class_name ~ ' ' ~ fields.alignment_classes,
+		'wysiwyg_content': fields.content,
+		'subnav': false,
+	}
+%}

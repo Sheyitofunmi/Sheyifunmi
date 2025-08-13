@@ -1,0 +1,303 @@
+/* ++++++++++++++++++++++++
++++ LAYOUT: MEDIA BLOCK +++
+++++++++++++++++++++++++ */
+
+.media-block {
+	@extend %flex;
+	background-color: $primary;
+	border-radius: $corner;
+	box-shadow: 0px 0px 30px rgba($black, 0.2);
+	min-height: 420px;
+
+	&-outer {
+		+ .media-block-outer {
+			padding-top: 0;
+		}
+
+		// Image will bleed to end with content holding container
+		&.break-container {
+			padding: 0;
+			.container {
+				@extend %container-reset;
+
+				.media-block {
+					min-height: auto;
+
+					&-element {
+						img {
+							position: relative;
+						}
+					}
+				}
+				.media-block-info {
+					padding: 0;
+
+					.media-block-content {
+						padding: $gap * 2 $gap * 1.5;
+
+						@include break(tablet) {
+							padding: $gap * 3;
+						}
+						@include break(medium) {
+							margin: 0 auto 0 0;
+							padding: $gap * 4 $gap * 6 $gap * 4 $gap * 3;
+							width: 40rem;
+						}
+					}
+				}
+			}
+			+ .media-block-outer {
+				@include break(small) {
+					padding-top: $gap * 2;
+				}
+				@include break(medium) {
+					padding-top: $gap * 3;
+				}
+			}
+		}
+		&.inline {
+			.media-block {
+				background-color: transparent;
+				border-radius: 0;
+				box-shadow: none;
+				min-height: auto;
+
+				@include break(medium) {
+					margin: 0 0 0 auto;
+					width: 66.66%;
+				}
+
+				&-element {
+					@include flexbox(100%);
+					border-radius: 0;
+
+					img {
+						aspect-ratio: initial;
+						height: auto;
+						object-fit: initial;
+						position: relative;
+					}
+					.video-outer {
+						display: block;
+						padding-bottom: 56.25%; /* 16:9 */
+						height: 0;
+						position: relative;
+
+						iframe {
+							height: 100%;
+							left: 0;
+							position: absolute;
+							top: 0;
+							width: 100%;
+						}
+					}
+				}
+				&-caption {
+					background-color: $grey95;
+					display: inline-block;
+					font-size: 0.9em !important;
+					margin-top: 0 !important;
+					overflow-wrap: break-word;
+					padding: $gap / 2 $gap;
+					word-wrap: break-word;
+					margin: 0;
+				}
+			}
+			&.secondary {
+				.media-block-caption {
+					background-color: $black;
+					color: $white;
+				}
+			}
+		}
+		&.right {
+			.media-block {
+				@include break(medium) {
+					flex-flow: row-reverse nowrap;
+				}
+				&-element {
+					@include break(medium) {
+						border-radius: 0 $corner $corner 0;
+					}
+				}
+			}
+		}
+			&.secondary {
+				.media-block {
+				background: $white;
+
+				&.image-only {
+					background-color: transparent;
+				}
+
+				&-info {
+					color: $black;
+				}
+				}
+			.media-block-caption {
+				color: $black;
+			}
+			}
+			&.video {
+				.media-block {
+					min-height: auto;
+
+					&-element {
+						@include flexbox(100%);
+					overflow: hidden;
+
+					@include break(medium) {
+							@include flexbox(50%);
+					}
+
+					.video-outer {
+						display: block;
+						padding-bottom: 56.25%; /* 16:9 */
+						height: 0;
+						position: relative;
+
+						iframe {
+							height: 100%;
+							left: 0;
+							position: absolute;
+							top: 0;
+							width: 100%;
+						}
+						}
+					}
+					&-info {
+						@include break(medium) {
+							@include flexbox(50%);
+						}
+						padding: 3rem;
+					}
+				}
+			}
+	}
+
+	&.image-only {
+		background-color: transparent;
+		box-shadow: none;
+		min-height: auto;
+
+		.media-block-element {
+			@include flexbox(100%);
+
+			img {
+				aspect-ratio: initial;
+				height: auto;
+				object-fit: initial;
+				position: relative;
+			}
+		}
+	}
+
+		&-element, &-info {
+			margin: 0;
+		}
+		&-info {
+			@extend %flex;
+		align-items: center;
+			color: $white;
+			padding: $gap * 1.5;
+
+			@include break(small) {
+				padding: $gap * 3;
+			}
+
+			@include break(medium) {
+				@include flexbox(50%);
+				padding: $gap * 3;
+			}
+			@include break(large) {
+				padding: $gap * 4 $gap * 3;
+			}
+
+			.button {
+				font-size: 1.2em;
+				margin-top: 2rem;
+
+			&-outer {
+				@extend %flex;
+				align-items: center;
+				gap: $gap;
+				margin-top: $gap * 1.5;
+
+				.button {
+					margin: 0;
+
+					+ p {
+						margin: 0;
+						padding-bottom: 0;
+					}
+				}
+			}
+			}
+			.transcript-outer {
+				margin-top: $gap / 1.5;
+			}
+		}
+		&-content {
+			p {
+				padding-bottom: $gap;
+
+				a {
+					@extend %text-hover;
+					text-decoration: underline;
+				}
+			}
+		}
+	&-caption {
+		background-color: $white;
+		padding: $gap / 2 $gap;
+		position: absolute;
+	}
+		&-element {
+		@include flexbox(100%);
+			border-radius: $corner $corner 0 0;
+			overflow: hidden;
+			position: relative;
+
+			@include break(medium) {
+				@include flexbox(50%);
+			border-radius: $corner 0 0 $corner;
+			}
+
+			&-play {
+				@extend .button;
+				@include centerer(true, true);
+				background-color: $red;
+				display: inline-block;
+				width: auto;
+				z-index: 2;
+			}
+
+			img {
+						@include object-fit(16/9, 100%);
+
+						@include break(medium) {
+							border-radius: 0;
+						}
+
+						.no-objectfit & {
+								width: auto;
+						}
+			}
+		}
+		&-title {
+			font-size: 1.4em;
+			padding-bottom: $gap / 1.5;
+
+			@include break(tablet) {
+				font-size: 2em;
+			}
+		}
+}
+
+.mfp-close {
+	@extend %transition;
+	&:hover {
+		color: $red;
+		text-decoration: none;
+	}
+}

@@ -1,0 +1,19 @@
+{
+	"name": "acf/form",
+	"title": "Form",
+	"description": "A form block.",
+	"style": [ "fb-gutenberg-form" ],
+	"category": "embed",
+	"icon": "forms",
+	"keywords": ["form", "gravityforms"],
+	"acf": {
+		"mode": "edit",
+		"renderCallback": "fb_gutenberg_render_callback",
+		"blockVersion": 2
+	},
+	"supports": {
+		"anchor": true,
+		"align": false,
+		"mode": false
+	}
+}

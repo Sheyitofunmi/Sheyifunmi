@@ -1,0 +1,90 @@
+/* ++++++++++++++++++++
++++ LAYOUT: ARTICLE +++
+++++++++++++++++++++ */
+
+// Article represents the part of a page that includes posted content including title and summary. Displaying as an inline-block allows the article to center nicely with or without a sidebar present.
+
+.article {
+    margin-top: 0;
+    padding: $gap * 2 $gap 0;
+    position: relative;
+    width: 100%;
+
+    @include break(small) {
+	    padding: $gap * 2 $gap;
+    }
+
+    &-header {
+        &-summary {
+            p {
+                font: $light 1.33em/1.5 $font-header;
+            }
+        }
+    }
+
+    &-footer {
+        border-top: $line solid $grey80;
+        margin-top: $gap * 2;
+        padding-top: $gap;
+    }
+
+    @include break(small) {
+        padding: 0;
+    }
+
+    @include break(medium) {
+	    @include flexbox(66.66%);
+		padding-right: $gap * 6;
+    }
+
+
+    //Inline components
+
+	> * + * { margin: $gap * 2 0 0 }
+
+	.gallery {
+		&-thumb {
+			padding: 0;
+		}
+		.slick-slide {
+			* {
+				height: 100%;
+			}
+		}
+		.slick-dotted {
+			&.slick-slider {
+				margin-bottom: 60px;
+			}
+
+		}
+		.slick-prev {
+			@include break(tablet) {
+				left: -$gap;
+			}
+		}
+
+		.slick-next {
+			@include break(tablet) {
+				right: -$gap;
+			}
+		}
+	}
+
+	.profile {
+		margin: $gap * 2 (-$gap * 1.5);
+
+		@include break(medium) {
+			margin: $gap * 2 (-$gap * 2);
+		}
+		&-element {
+			margin: $gap * 1.5 0;
+
+			@include break(large) {
+				@include flexbox(33.33%);
+			}
+			&:nth-child(n+4), &:nth-child(n+5) {
+				margin: $gap * 1.5 0;
+			}
+		}
+	}
+}

@@ -1,0 +1,72 @@
+{% block sidebar %}
+
+	{% set subnav_has_items_to_display = false %}
+	{% if subnav %}
+		{% for nav in subnav %}
+			{% if nav and nav.submenu and nav.active_trail %}
+				{% set subnav_has_items_to_display = true %}
+			{% endif %}
+		{% endfor %}
+	{% endif %}
+
+
+	{% if subnav_has_items_to_display or metadata %}
+		<aside class="sidebar-outer{% if hide_subnav_for_mobile %} hide-for-mob{% endif %}">
+			<div class="sidebar">
+			{% block subnav_block %}
+					<div class="sidebar-block">
+
+						{% if subnav_title %}<h2 class="sidebar-title">{{ subnav_title }}</h2>{% endif %}
+						<button for="sidebar-open" id="sidebar-show-button" class="sidebar-show-button accordion-trigger" aria-controls="sidebar">
+							<h2 class="sidebar-meta-title">{% if metadata %}View info{% else %}{{ subnav_title }}{% endif %}</h2>
+							<span class="visually-hidden">Show sidebar</span>
+						</button>
+
+						<div class="sidebar-inner" id="sidebar">
+							{% if subnav is defined %}
+								{% block sidebar_nav %}
+									<nav class="sidebar-nav">
+										<ul class="sidebar-nav-list" role="tablist">
+											{% for nav in subnav %}
+												{% if nav.active_trail == 'true' %}
+													{% for nav2 in nav.submenu %}
+													<li class="sidebar-nav-item{% if nav2.active == 'true' or nav2.active_trail == true %} current{% endif %}" role="tab">
+														<a href="{{ nav2.url }}" class="sidebar-nav-item-link subnav_element{% if nav2.active == 'true' %} current{% endif %}">{{ nav2.text }}</a>
+														{% if nav2.active_trail == 'true' %}
+														<ul class="sidebar-nav-list sub-list" aria-label="{{ nav2.text }} submenu" role="tablist">
+															{% for nav3 in nav2.submenu %}
+															<li class="sidebar-nav-item{% if nav3.active == 'true' or nav3.active_trail == true %} current{% endif %}" role="tab">
+																<a href="{{ nav3.url }}" class="sidebar-nav-item-link{% if nav3.active == 'true' %} current{% endif %}">{{ nav3.text }}</a>
+																{% if nav3.active_trail == 'true' %}
+																	<ul class="sidebar-nav-list sub-list" aria-label="{{ nav3.text }} submenu" role="tablist">
+																		{% for nav4 in nav3.submenu %}
+																		<li class="sidebar-nav-item{% if nav4.active == 'true' or nav4.active_trail == true %} current{% endif %}" role="tab">
+																			<a href="{{ nav4.url }}" class="sidebar-nav-item-link{% if nav4.active == 'true' %} current{% endif %}">{{ nav4.text }}</a>
+																		</li>
+																		{% endfor %}
+																	</ul>
+																{% endif %}
+															</li>
+															{% endfor %}
+														</ul>
+														{% endif %}
+													</li>
+													{% endfor %}
+												{% endif %}
+											{% endfor %}
+										</ul>
+									</nav>
+								{% endblock sidebar_nav %}
+							{% endif %}
+							{% block sidebar_meta_block %}
+								{% if metadata %}
+									{% include '@hc/partials/meta-item.twig' %}
+								{% endif %}
+							{% endblock sidebar_meta_block %}
+						</div>
+					</div>
+			{% endblock subnav_block %}
+			</div>
+		</aside>
+	{% endif %}
+{% endblock sidebar %}

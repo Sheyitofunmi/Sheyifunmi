@@ -1,0 +1,76 @@
+{% extends "@wp/scaffolding/site-setup.twig" %}
+{%- block htmlPage -%}
+
+<!doctype html>
+<html lang="en">
+	<head>
+		{% block head %}
+
+			<link rel="preconnect" href="https://ajax.googleapis.com/" crossorigin>
+			<link rel="dns-prefetch" href="https://ajax.googleapis.com/">
+
+			<meta charset="utf-8">
+			<meta http-equiv="x-ua-compatible" content="ie=edge">
+			<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+			<meta name="HandheldFriendly" content="True">
+
+			{{ webfont_preloads }}
+
+			<title>{{ wp_title }}</title>
+
+			{# Apple iOS #}
+			<meta name="apple-mobile-web-app-capable" content="yes">
+			<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+			<meta name="apple-mobile-web-app-title" content="{{ meta_sitename }}">
+			<link rel="apple-touch-icon" sizes="180x180" href="{{ assets_dir }}/images/apple-touch-icon.png">
+
+			{# Google Android #}
+			<meta name="mobile-web-app-capable" content="yes">
+			<meta name="theme-color" content="{{ meta_color }}">
+
+			{# Favicons #}
+			<link rel="icon" type="image/png" href="{{ assets_dir }}/images/favicon-32x32.png" sizes="32x32">
+			<link rel="icon" type="image/png" href="{{ assets_dir }}/images/favicon-16x16.png" sizes="16x16">
+			<link rel="icon" type="image/svg+xml" href="{{ assets_dir }}/images/favicon.svg" sizes="any">
+			<link rel="mask-icon" href="{{ assets_dir }}/images/safari-pinned-tab.svg" color="{{ meta_color }}">
+			<link rel="alternate icon" href="{{ assets_dir }}/images/favicon.ico">
+			<meta name="msapplication-config" content="{{ assets_dir }}/images/browserconfig.xml">
+			<link rel="manifest" href="{{ assets_dir }}/images/manifest.webmanifest">
+			{{ function('wp_head') }}
+		{% endblock head %}
+	</head>
+
+	<body{% if body_class or hc3_fe_body_class %} class="{{ body_class }} {{ hc3_fe_body_class }}"{% endif %}>
+
+	  <a class="skip-link" href="#main" tabindex="0">Skip to content</a>
+
+	  {% block alert_bar %}
+			{% include '@hc/components/alert.twig' %}
+		{% endblock alert_bar %}
+
+	  {% include '@hc/scaffolding/header.twig' %}
+
+		<main id="main" class="main">
+
+			{# Main content #}
+			{% block main %}{% endblock main %}
+
+		</main>
+
+		{% include '@hc/scaffolding/footer.twig'  %}
+		{{ function('wp_footer') }}
+
+		{# Site scripts are for sitewide assets, use scripts_page if only loading in individual page or module #}
+		{% block scripts_site %}
+			{% block js_assets %}
+			{% endblock js_assets %}
+
+			<script type="text/javascript"></script>
+
+		{% endblock scripts_site %}
+
+		{# These scripts are for when you need something for a specific page but don't want every other page to load it #}
+		{% block scripts_page %}{% endblock %}
+	</body>
+</html>
+{%- endblock htmlPage -%}

@@ -1,0 +1,51 @@
+{% embed '@hc/search.twig' %}
+	{% block hero_component %}
+		{% include '@hc/components/hero.twig' with {
+			'section_class': 'hero-outer full',
+			'hero_title': 'Search',
+			'hero_summary': options.search_results_page.hero_summary|nl2br,
+		} %}
+	{% endblock %}
+
+	{% block breadcrumb %}
+	{% endblock breadcrumb %}
+
+	{% block filter_block %}
+		<div class="filter-outer">
+			<form method="get" class="filter">
+				<div class="filter-block">
+					<label for="filter-keywords">Keywords</label>
+					<input type="text" name="s" id="filter-keywords" class="filter-field" placeholder="Start typing here" value="{{ s_keyword|e('esc_html') }}">
+				</div>
+
+				<div class="filter-block">
+					<input type="submit" value="Search" id="filter-submit" class="filter-submit">
+				</div>
+			</form>
+		</div>
+	{% endblock filter_block %}
+
+	{% block search_results %}
+        {% if feed %}
+            {% include '@hc/partials/feed.twig' with {
+                'section_class': 'search-listing',
+                'feed': feed
+            } %}
+        {% else %}
+            <section class="search-listing section">
+                <div class="container">
+                    <div class="no-search-results">{{ options.search_results_page.no_results_message }}</div>
+                </div>
+            </section>
+        {% endif %}
+	{% endblock %}
+
+	{% block main_footer %}
+		<footer class="main-footer section pagination-outer">
+			<div class="container">
+				{% include '@wp/partials/pagination-wp.twig' %}
+			</div>
+		</footer>
+	{% endblock %}
+
+{% endembed %}

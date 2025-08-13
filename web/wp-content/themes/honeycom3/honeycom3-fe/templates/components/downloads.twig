@@ -1,0 +1,40 @@
+{% extends '@hc/scaffolding/section.twig' %}
+
+{% block section_content %}
+	<div class="container">
+		{% include '@hc/partials/download-item.twig'  %}
+	</div>
+{% endblock section_content %}
+
+{# Include like so:
+{% include '@hc/components/downloads.twig' with { 
+'section_class': 'download-outer',
+'title': 'Download component',
+'summary': 'The Client can create a list of downloadable files',
+'downloads': [
+	{
+		'type': 'pdf',
+		'link': 'This is a PDF download',
+	},
+	{
+		'link': 'This is a other file download',
+	},
+	{
+		'type': 'doc',
+		'link': 'This is a DOC download',
+	},
+	{
+		'type': 'ppt',
+		'link': 'This is a PPT download',
+	},
+	{
+		'type': 'xls',
+		'link': 'This is a XLS download',
+	},
+	{
+		'type': 'zip',
+		'link': 'This is a ZIP download',
+	}
+] }    
+%}
+#}

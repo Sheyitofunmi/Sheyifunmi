@@ -1,0 +1,61 @@
+{% block cta %}
+	<div class="cta{% if image or image_id or image_data %} with-image{% endif %}">
+		<div class="cta-inline">
+			{% block cta_image %}
+				{% if image or image_id or image_data %}
+			    	<div class="cta-image">
+			    		{# Minimum image size: 1080px X 1920px #}
+						{% if image or image_data %}
+							{% include '@hc/partials/image.twig' with { 'imgheight': '1080', 'imgwidth': '1920' } %}
+						{% endif %}
+						{% if image_caption %}
+							{% block image_caption %}
+						    	<p class="cta-caption">{{ image_caption }}</p>
+					    	{% endblock image_caption %}
+				    	{% endif %}
+			    	</div>
+				{% endif %}
+	    	{% endblock cta_image %}
+
+			{% block cta_inner %}
+				<div class="cta-info">
+					{% if cta_title %}
+						<div class="cta-inner">
+
+							{% block cta_title %}
+							{% if cta_title %}
+						    		<h2 class="cta-title">{{ cta_title }}</h2>
+								{% endif %}
+				    		{% endblock cta_title %}
+
+
+							{% block cta_summary %}
+								{% if cta_summary %}
+						    		<div class="cta-summary">
+						        		<p>{{ cta_summary }}</p>
+						    		</div>
+								{% endif %}
+				    		{% endblock cta_summary %}
+
+
+							{% block cta_button %}
+								{% if cta_buttons %}
+									<div class="cta-button-outer">
+										{% for cta_button in cta_buttons %}
+											<a href="{{ cta_button.path }}"{% if cta_button.path_target %} target="{{ cta_button.path_target}}"{% endif %} class="button">{{ cta_button.title }}</a>
+										{% endfor %}
+									</div>
+								{% elseif button %}
+									<div class="cta-button-outer">
+										<a href="{{ path }}"{% if path_target %} target="{{ path_target}}"{% endif %} class="button">{{ button }}</a>
+									</div>
+								{% endif %}
+							{% endblock cta_button %}
+
+						</div>
+					{% endif %}
+				</div>
+			{% endblock cta_inner %}
+		</div>
+	</div>
+{% endblock cta %}

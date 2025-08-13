@@ -1,0 +1,15 @@
+{# Override twig files like so:
+
+{% extends '@default/scaffolding/header.twig' %}
+
+{% block header %}
+	{{ parent() }} {# Inherit contents of the parent block using parent  #}
+
+	{# Override blocks like so: #}
+	{% block nav %}
+		<h5>OVERRIDE CONTENT HERE</h5>
+	{% endblock nav %}
+
+{% endblock header %}
+
+#}

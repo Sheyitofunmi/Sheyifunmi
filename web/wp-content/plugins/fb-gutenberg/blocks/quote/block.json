@@ -1,0 +1,19 @@
+{
+	"name": "acf/quote",
+	"title": "Quote",
+	"description": "A quote block.",
+	"style": [ "fb-gutenberg-quote" ],
+	"category": "formatting",
+	"icon": "editor-quote",
+	"keywords": ["quote"],
+	"acf": {
+		"mode": "auto",
+		"renderCallback": "fb_gutenberg_render_callback",
+		"blockVersion": 2
+	},
+	"supports": {
+		"align": false,
+		"anchor": true,
+		"mode": false
+	}
+}

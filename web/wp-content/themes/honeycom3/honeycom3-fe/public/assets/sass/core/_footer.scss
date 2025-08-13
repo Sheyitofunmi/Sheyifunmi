@@ -1,0 +1,202 @@
+/* +++++++++++++++++++
++++ LAYOUT: FOOTER +++
++++++++++++++++++++ */
+
+// Layout of the site footer
+
+.footer {
+	background-color: $secondary;
+	color: $white;
+    margin-top: 0;
+    padding-bottom: 0;
+    padding-top: $gap * 2.5;
+    z-index: map-get($zindex, footer);
+
+    &-header {
+	    @extend %flex;
+	    align-items: center;
+	    border-bottom: solid 1px $white;
+	    justify-content: space-between;
+	    margin-bottom: $gap * 2;
+	    padding-bottom: $gap * 2;
+	}
+
+    &-logo {
+        display: block;
+        margin: $gap auto;
+        width: 50%;
+
+        @include break(small) {
+	        display: inline-block;
+	        margin: 0;
+	        width: 150px;
+        }
+
+        img {
+        	width: auto;
+        }
+
+    }
+
+    &-nav {
+	    &:first-child {
+		    border-top: 0;
+		    margin-left: 0;
+		    padding-top: 0;
+	    }
+	    &:nth-child(3) {
+		    @include break(small) {
+		    	margin-left: 0;
+		    }
+		    @include break(medium) {
+		    	margin-left: 2%;
+		    }
+	    }
+
+	    &-outer {
+			@extend %flex;
+	    }
+
+	    &.social {
+		    @include flexbox(100%);
+            margin: 0;
+			text-align: center;
+
+            @include break(small) {
+	            @include flexbox(auto);
+	            text-align: left;
+            }
+	    }
+
+        &-item {
+            margin-top: 0;
+
+            .footer-nav-item-title {
+	            font-size: 1em;
+	            padding-bottom: $gap;
+            }
+
+            .nav-item-link {
+	            font-size: 0.9em;
+	            margin: 0;
+	            padding: 0 0 $gap / 2 0;
+
+	            &:hover {
+		            color: $primary;
+	            }
+            }
+
+            &.social {
+	            display: inline-block;
+	            margin-right: $gap / 1.5;
+	            text-align: center;
+
+	            &:last-child {
+		            margin-right: 0;
+	            }
+
+	            .nav-item-link {
+					@extend %transition;
+					background-color: $white;
+					border-radius: 100%;
+					display: inline-block;
+					height: 29px;
+		            padding: 0;
+					position: relative;
+					width: 29px;
+
+					&:hover {
+						background-color: $secondary;
+						.icon {
+							color: $white;
+						}
+					}
+
+					&.instagram, &.youtube {
+						.icon {
+							padding: 2px;
+						}
+					}
+					&.twitter {
+						.icon {
+							padding: 4px;
+						}
+					}
+
+					.icon {
+						@include centerer(true, true);
+						color: $primary;
+						margin: 0;
+					}
+	            }
+            }
+        }
+    }
+
+    p {
+		font-size: 0.9em;
+    }
+
+    &-details, &-nav {
+	    @include flexbox(100%);
+	    border-top: solid 1px $white;
+	    padding-top: $gap * 1.5;
+	    margin-bottom: $gap;
+
+	    @include break(small) {
+		    @include flexbox(48%);
+		    border-top: 0;
+    	    margin-left: 4%;
+    	    padding-top: 0;
+	    }
+
+	    @include break(medium) {
+			@include flexbox(16.22%);
+			margin-left: 2%;
+	    }
+    }
+
+	&-details {
+		margin-right: 0;
+
+        .footer-nav-item-title {
+            font-size: 1em;
+            padding-bottom: $gap;
+        }
+        p {
+	        padding-bottom: $gap;
+
+	        a {
+		        &:hover {
+			        color: $primary;
+		        }
+	        }
+        }
+	}
+
+	&-credits {
+		background-color: $primary;
+		color: $white;
+		padding: $gap * 1.5 0;
+
+		@include break(tablet) {
+			margin-top: $gap * 3;
+		}
+
+		.container {
+			@extend %flex;
+			align-items: center;
+		}
+
+		p {
+			&:first-child {
+				margin-left: 0;
+			}
+		}
+		&-logo {
+			margin: 0;
+			width: 160px;
+		}
+	}
+
+}

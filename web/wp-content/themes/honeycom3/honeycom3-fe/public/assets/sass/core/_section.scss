@@ -1,0 +1,197 @@
+/* ++++++++++++++++++++
++++ LAYOUT: SECTION +++
+++++++++++++++++++++ */
+
+// A section is a grouping of content, typically with a header, possibly with a footer. A '.section' with a '.container' results in a consistent paddings, margins and max-width for content while allowing for full width background colors on the section and centred background colors on the container.
+
+.section {
+    @extend %section;
+
+    &.secondary {
+		background: $secondary;
+		color: $white;
+
+		.section-header, .section-footer {
+			.button {
+				@extend .button-secondary;
+			}
+		}
+
+	}
+
+    &.secondary {
+        .section-header, .section-footer, .main-header {
+            color: $white;
+        }
+        &.wysiwyg, &.statistic-outer, &.download-outer, &.pullquote-outer, &.profile-outer {
+            color: $white;
+        }
+    }
+
+    &.subnav {
+	    background: $white;
+    }
+	&.inline {
+		@include flexbox(100%);
+		margin: $gap * 2 0 $gap * 2 auto;
+		padding: 0;
+
+		&:first-of-type {
+			margin-top: 0;
+		}
+		&:last-child {
+			margin-bottom: $gap * 3;
+		}
+
+		.section-header {
+			margin-bottom: 0;
+			text-align: left;
+
+			&-inner {
+				@include break(medium) {
+					margin: 0 0 0 auto;
+					width: 66.66%;
+				}
+			}
+
+			&-title {
+				padding-bottom: $gap / 2;
+			}
+			&-summary {
+				margin: 0;
+				padding-bottom: $gap;
+			}
+			&.header-button {
+				.section-header-inner {
+					margin: 0 0 0 auto;
+
+					.section-header-title, .section-header-summary {
+						@include break(medium) {
+							margin: 0;
+							position: relative;
+							width: 76%;
+							z-index: 2;
+						}
+					}
+				}
+				.section-header-link {
+					margin-bottom: $gap * 2;
+
+					@include break(medium) {
+						margin-bottom: 0;
+						position: absolute;
+						right: $gap * 2;
+					}
+				}
+			}
+		}
+
+		+ .section:not(.inline) {
+			margin-top: $gap * 2;
+			@include break(medium) {
+				margin-top: $gap * 3;
+			}
+		}
+		&.center {
+			.container, .cta, .cta.with-image {
+				div, ul {
+					margin: 0 auto;
+				}
+				.download-block, .section-header-summary {
+					margin: 0;
+				}
+				.slick-list {
+					margin: 1rem -1rem;
+				}
+				.info-overview-content {
+					margin: 0 0 0 auto;
+				}
+			}
+		}
+		&.secondary {
+			background-color: transparent;
+		}
+	}
+
+    &-header {
+		@extend %flex;
+		align-items: flex-start;
+	    margin: 0 auto 0;
+        text-align: center;
+
+        @include break(small) {
+            margin: 0 auto $gap * 2;
+        }
+
+		&-inner {
+			margin: 0;
+			width: 100%;
+
+			@include break(medium) {
+				margin: 0 auto;
+				width: 66.66%;
+			}
+
+			+ .button {
+				margin: $gap 0 0 0;
+				@include break(medium) {
+					margin: $gap 0 0 auto;
+				}
+			}
+		}
+
+        &-title {
+	        + .section-header-summary {
+		        padding-top: $gap / 1.5;
+	        }
+        }
+
+        &-summary {
+	        font-size: 1rem;
+            padding-bottom: $gap;
+
+            @include break(small) {
+	            font-size: 1.125rem;
+            }
+
+            @include break(medium) {
+            	padding: 0 0 $gap;
+            	width: $half-column;
+            }
+
+			p + p {
+				padding-top: $gap / 1.5;
+			}
+        }
+		&-link {
+			margin: 0 auto 0 0;
+			@include break(medium) {
+				margin: 0 0 0 auto;
+			}
+		}
+		&.header-button {
+			.section-header-inner {
+				margin: 0 auto 0 0;
+				text-align: left;
+
+				.section-header-summary {
+					margin: 0 auto 0 0;
+				}
+			}
+		}
+    }
+
+    &-footer {
+        @extend %container;
+        margin-top: $gap;
+        text-align: center;
+
+        @include break(small) {
+	        margin-top: $gap * 2;
+        }
+    }
+}
+
+.container {
+    @extend %container;
+}

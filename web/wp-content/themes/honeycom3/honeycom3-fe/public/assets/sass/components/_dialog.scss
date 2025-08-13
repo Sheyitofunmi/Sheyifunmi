@@ -1,0 +1,50 @@
+/* +++++++++++++++++++++++++
++++ LAYOUT: DIALOG POPUP +++
++++++++++++++++++++++++++ */
+
+.modal {
+	@include centerer(true, true);
+	border: 0;
+	border-radius: $corner;
+	box-shadow: $shadow;
+	padding: $gap $gap * 1.5 $gap * 1.5;
+	position: fixed;
+	margin: 0;
+	overflow: visible;
+	width: 90%;
+
+	@include break(tablet) {
+		max-width: 45rem;
+	}
+
+	&::backdrop {
+		background-color: rgba($black, .6);
+		-webkit-backdrop-filter: blur(4px);
+		backdrop-filter: blur(4px);
+	}
+
+	&-title {
+		margin: 0;
+	}
+
+	.close-button {
+		@include close('white');
+		@extend %transition;
+		background-color: $black;
+		background-position: center;
+		background-repeat: no-repeat;
+		background-size: 16px;
+		border-radius: 100%;
+		box-shadow: $shadow;
+		cursor: pointer;
+		height: 40px;
+		position: absolute;
+		right: -$gap;
+		top: -$gap;
+		width: 40px;
+
+		&:hover {
+			background-color: $secondary;
+		}
+	}
+}

@@ -1,0 +1,128 @@
+{% extends '@hc/scaffolding/base.twig' %}
+
+	{% set body_class = body_class ~ ' page-builder impact-template' %}
+
+	{% set alert = true %}
+	{% set alert_copy = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua enim ad minim veniam, quis nostrud exercitation ullamco' %}
+	{% set alert_link_text = 'Alert Button' %}
+
+		{% block main %}
+
+		{% include '@hc/components/donate.twig' with {
+			'section_class': 'donate-outer secondary',
+			'image':'/assets/images/holder-1920x1080.png',
+			'title':'Donate today',
+			'summary': 'Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Aenean lacinia bibendum nulla sed consectetur.',
+			'buttons': [
+				{ 'title': 'Make a one off donation', 'path': '#' },
+				{ 'title': 'Set up a regular gift', 'path': '#' },
+			],
+		}%}
+
+		{% block breadcrumb %}
+			{% include '@hc/partials/breadcrumbs.twig' with {
+					'subnav': [
+					{ 'text': 'Curabitur', 'url': '#', 'active_trail': 'true', 'submenu': [
+
+						{ 'text': 'Parent page', 'url': '#', 'active': 'false', 'active_trail': 'true', 'submenu': [
+
+							{ 'text': 'Grandchild page', 'url': '#', 'active': 'false', 'active_trail': 'true', 'submenu': [
+
+								{ 'text': 'Great grandchild page', 'url': '#', 'active': 'true' }
+							]},
+						]},
+					]}
+					]
+				}
+			%}
+		{% endblock breadcrumb %}
+
+		{% block main_content %}
+				<div class="main-section" id="content">
+
+				{% if side_share %}
+					{% include '@hc/partials/main-share.twig' with {
+						'share': true,
+						'shares': [
+							{
+								'path': '#',
+								'selector': 'twitter',
+								'title': 'Twitter',
+							},
+							{
+								'path': '#',
+								'selector': 'facebook',
+								'title': 'Facebook',
+							},
+							{
+								'path': '#',
+								'selector': 'instagram',
+								'title': 'Instagram',
+							},
+							{
+								'path': '#',
+								'selector': 'linkedin',
+								'title': 'LinkedIn',
+							},
+							{
+								'path': '#',
+								'selector': 'tiktok',
+								'title': 'Tiktok',
+							},
+							{
+								'path': '#',
+								'selector': 'link',
+								'title': 'Link',
+							},
+							{
+								'path': '#',
+								'selector': 'email',
+								'title': 'Email',
+							},
+							]}
+					%}
+				{% endif %}
+
+					{% include '@hc/components/wysiwyg.twig' with {
+							'section_class': 'wysiwyg-outer',
+							'wysiwyg_content_test': true,
+							'subnav_title': 'Page builder',
+						}
+					%}
+
+					{% include '@hc/components/cards.twig' with {
+						'section_class': 'cards-outer secondary',
+						'title': 'Feature promo component',
+						'summary': 'Use this component to create rows of three promos specifically to present subpage or related content.',
+						'link': 'View all',
+						'link_path': '#',
+						'cards': [
+							{
+								'path': '/page-builder',
+								'image': '/assets/images/holder-530x920.png',
+								'title': 'Nullam congue tempor faucibus',
+								'summary': 'Nullam id dolor id nibh ultricies vehicula ut id elit. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.',
+								'button': 'Button',
+							},
+							{
+								'path': '/page-builder',
+								'image': '/assets/images/holder-530x920.png',
+								'title': 'Maecenas sed diam risus varius blandit sit amet',
+								'summary': 'Maecenas faucibus mollis interdum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Maecenas sed diam eget risus varius.',
+								'button': 'Button',
+							},
+							{
+								'path': '/page-builder',
+								'image': '/assets/images/holder-530x920.png',
+								'title': 'Cras justo odio dapibus ac facilisis in',
+								'summary': 'Maecenas faucibus mollis interdum. Nulla vitae elit libero, a pharetra augue. Nullam quis risus eget urna mollis ornare vel eu leo. Aenean eu leo quam.',
+								'button': 'Button',
+							}
+						]}
+					%}
+
+		</div>
+
+				{% endblock main_content %}
+
+		{% endblock main %}

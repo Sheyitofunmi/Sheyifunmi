@@ -1,0 +1,130 @@
+{% extends function('function_exists', 'get_permalink') ? '@wp/scaffolding/base.twig' : '@hc/scaffolding/base.twig' %}
+
+	{% set nav_section = 'Post' %}
+	{% set hc3_fe_body_class = "single-post" %}
+
+    {% block main %}
+		{% block hero_component %}
+			{% include '@hc/components/hero.twig' with {
+				'section_class': 'hero-outer',
+				'image': '/assets/images/holder-1920x1080.png',
+				'hero_title': 'Events single',
+				'hero_summary': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis eros leo, fermentum sit amet iaculis non, finibus nec lectus. Duis vel sapien ullamcorper turpis fermentum lacinia sit amet ut eros.',
+				'startdate': 'yesterday',
+				'enddate': 'tomorrow',
+				'startTime': '9AM',
+				'endTime': '6PM',
+				'location': 'Sevenoaks Wildlife Reserve',
+				'accessible': 'false',
+				'age': '0-5 | 5-10',
+				'price': 'Adult £20 |  Children under 15 FREE',
+				'link_copy': 'Book this event',
+				'link_path': '/',
+			} %}
+		{% endblock hero_component %}
+
+		{% block breadcrumb %}
+			{% include '@hc/partials/breadcrumbs.twig' with {
+					'subnav': [
+					{ 'text': 'Curabitur', 'url': '#', 'active_trail': 'true', 'submenu': [
+
+						{ 'text': 'Parent page', 'url': '#', 'active': 'false', 'active_trail': 'true', 'submenu': [
+
+							{ 'text': 'Grandchild page', 'url': '#', 'active': 'false', 'active_trail': 'true', 'submenu': [
+
+								{ 'text': 'Great grandchild page', 'url': '#', 'active': 'true' }
+							]},
+						]},
+					]}
+					]
+				}
+			%}
+		{% endblock breadcrumb %}
+
+		{% block main_content %}
+        	<div class="main-section single" id="content">
+
+				{% if side_share %}
+					{% include '@hc/partials/main-share.twig' with {
+						'share': true,
+						'shares': [
+							{
+								'path': '#',
+								'selector': 'twitter',
+								'title': 'Twitter',
+							},
+							{
+								'path': '#',
+								'selector': 'facebook',
+								'title': 'Facebook',
+							},
+							{
+								'path': '#',
+								'selector': 'instagram',
+								'title': 'Instagram',
+							},
+							{
+								'path': '#',
+								'selector': 'linkedin',
+								'title': 'LinkedIn',
+							},
+							{
+								'path': '#',
+								'selector': 'tiktok',
+								'title': 'Tiktok',
+							},
+							{
+								'path': '#',
+								'selector': 'link',
+								'title': 'Link',
+							},
+							{
+								'path': '#',
+								'selector': 'email',
+								'title': 'Email',
+							},
+							]}
+					%}
+				{% endif %}
+
+				{% include '@hc/components/wysiwyg.twig' with {
+						'section_class': 'wysiwyg-outer with-sidebar',
+						'post_summary': '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis eros leo, fermentum sit amet iaculis non, finibus nec lectus. Duis vel sapien ullamcorper turpis fermentum lacinia sit amet ut eros. Augue mauris augue neque gravida in fermentum et sollicitudin. In ornare quam viverra orci sagittis eu volutpat odio facilisis.</p><p>Augue mauris augue neque gravida in fermentum et sollicitudin. In ornare quam viverra orci sagittis eu volutpat odio facilisis. Mauris augue neque gravida in fermentum et sollicitudin ac. Dignissim diam quis enim lobortis. Sem viverra aliquet eget sit amet tellus.</p>',
+						'wysiwyg_content': '<h3>Eats / Did you know? / Other info</h3>
+						<p>Augue mauris augue neque gravida in fermentum et sollicitudin. In ornare quam viverra orci sagittis eu volutpat odio facilisis. Mauris augue neque gravida in fermentum et sollicitudin ac. Dignissim diam quis enim lobortis. Sem viverra aliquet eget sit amet tellus. Eros donec ac odio tempor orci dapibus ultrices in. Maecenas pharetra convallis posuere morbi leo urna molestie at. At elementum eu facilisis sed odio morbi quis commodo.</p><p>Augue mauris augue neque gravida in fermentum et sollicitudin. In ornare quam viverra orci sagittis eu volutpat odio facilisis. Mauris augue neque gravida in fermentum et sollicitudin ac. Dignissim diam quis enim lobortis. Sem viverra aliquet eget sit amet tellus. Eros donec ac odio tempor orci dapibus ultrices in. Maecenas pharetra convallis posuere morbi leo urna molestie at. At elementum eu facilisis sed odio morbi quis commodo.</p><p>Augue mauris augue neque gravida in fermentum et sollicitudin. In ornare quam viverra orci sagittis eu volutpat odio facilisis. Mauris augue neque gravida in fermentum et sollicitudin ac. Dignissim diam quis enim lobortis. Sem viverra aliquet eget sit amet tellus. Eros donec ac odio tempor orci dapibus ultrices in. Maecenas pharetra convallis posuere morbi leo urna molestie at. At elementum eu facilisis sed odio morbi quis commodo.</p>',
+						'metadata': true,
+						'facility_accordion': true,
+						'accordions': [
+							{
+								'type': 'map-details',
+								'title': 'How to get there',
+								'subtitle': 'Address',
+								'summary': 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+								'map_embed': '<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d39936.348740454196!2d0.1442519709253318!3d51.27391787062476!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47d8ad4c5d5bdfc1%3A0x2c9c51426386fe62!2sSevenoaks!5e0!3m2!1sen!2suk!4v1698417760402!5m2!1sen!2suk" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>',
+								'map_path': 'https://maps.app.goo.gl/vVeEBvzCJJYawSX57',
+								'what3words_path': 'https://what3words.com/gloves.flight.dangerously',
+								'what3words': '///gloves.flight.dangerously',
+							},
+							{
+								'type': 'stations',
+								'title': 'Nearby stations',
+								'accordion_list_items': [
+								{ 'title': 'Name of the station', 'distance': '0.2' },
+								{ 'title': 'Name of the station', 'distance': '0.2' },
+								{ 'title': 'Name of the station', 'distance': '0.2' },
+								{ 'title': 'Name of the station', 'distance': '0.2' }
+						  	]
+							},
+							{
+								'type': 'directions',
+								'title': 'Directions',
+								'summary': 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+							},
+						]
+					}
+				%}
+
+        	</div>
+		{% endblock main_content %}
+
+    {% endblock main %}

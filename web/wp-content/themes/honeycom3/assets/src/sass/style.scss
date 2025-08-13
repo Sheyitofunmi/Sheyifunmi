@@ -1,0 +1,99 @@
+/* ++++++++++
++++ STYLE +++
+++++++++++ */
+
+/* +++++++++
+
+This is the import file for all of the honeycom3-fe styles. If you want to override some styles,
+you will need to comment out the honeycom3-fe import, add an import to your override (which should
+be located in the assets/src/sass folder) and then copy over the contents of the old file as a starting point.
+
+This ensures that any variables and placeholder rules are carried over, so the sass compiler won't fail.
+
+To add new components, simply tack them onto the end of the list of components with the import pointing at your
+new component which should be in the assets/src/sass folder (it can be in a sub folder called components if you
+want, but make sure that the import path includes this folder).
+
++++++++ */
+
+//  reset
+@import '../../../honeycom3-fe/public/assets/sass/_reset';
+
+// library style sheets
+@import '../../css/lightgallery.min';
+@import '../../../honeycom3-fe/public/assets/css/lightgallery.min';
+@import '../../../honeycom3-fe/public/assets/css/lightslider.min';
+@import '../../../honeycom3-fe/public/assets/css/magnific-popup-min';
+
+// helpers
+@import '../../../honeycom3-fe/public/assets/sass/helpers/mixins';
+@import '../../../honeycom3-fe/public/assets/sass/helpers/colors';
+@import '../../../honeycom3-fe/public/assets/sass/helpers/settings';
+@import '../../../honeycom3-fe/public/assets/sass/helpers/animation';
+@import '../../../honeycom3-fe/public/assets/sass/helpers/webfonts';
+@import '../../../honeycom3-fe/public/assets/sass/helpers/typography';
+@import '../../../honeycom3-fe/public/assets/sass/helpers/buttons';
+@import '../../../honeycom3-fe/public/assets/sass/helpers/forms';
+@import '../../../honeycom3-fe/public/assets/sass/helpers/icons';
+@import '../../../honeycom3-fe/public/assets/sass/helpers/svg';
+
+// core
+@import '../../../honeycom3-fe/public/assets/sass/core/article';
+@import '../../../honeycom3-fe/public/assets/sass/core/cms';
+@import '../../../honeycom3-fe/public/assets/sass/core/content';
+@import '../../../honeycom3-fe/public/assets/sass/core/general';
+@import '../../../honeycom3-fe/public/assets/sass/core/footer';
+@import '../../../honeycom3-fe/public/assets/sass/core/header';
+@import '../../../honeycom3-fe/public/assets/sass/core/main';
+@import '../../../honeycom3-fe/public/assets/sass/core/responsive-nav';
+@import '../../../honeycom3-fe/public/assets/sass/core/search';
+@import '../../../honeycom3-fe/public/assets/sass/core/section';
+@import '../../../honeycom3-fe/public/assets/sass/core/sidebar';
+
+// components
+@import '../../../honeycom3-fe/public/assets/sass/components/accordion';
+@import '../../../honeycom3-fe/public/assets/sass/components/cards';
+@import '../../../honeycom3-fe/public/assets/sass/components/cta';
+@import '../../../honeycom3-fe/public/assets/sass/components/downloads';
+@import '../../../honeycom3-fe/public/assets/sass/components/embed';
+@import '../../../honeycom3-fe/public/assets/sass/components/feed';
+@import '../../../honeycom3-fe/public/assets/sass/components/filters';
+@import '../../../honeycom3-fe/public/assets/sass/components/form';
+@import '../../../honeycom3-fe/public/assets/sass/components/gallery';
+@import '../../../honeycom3-fe/public/assets/sass/components/hero';
+@import '../../../honeycom3-fe/public/assets/sass/components/info-overview';
+@import '../../../honeycom3-fe/public/assets/sass/components/media-block';
+@import '../../../honeycom3-fe/public/assets/sass/components/metadata';
+@import '../../../honeycom3-fe/public/assets/sass/components/pagination';
+@import '../../../honeycom3-fe/public/assets/sass/components/page-nav';
+@import '../../../honeycom3-fe/public/assets/sass/components/profile';
+@import '../../../honeycom3-fe/public/assets/sass/components/pullquote';
+@import '../../../honeycom3-fe/public/assets/sass/components/self-select';
+@import '../../../honeycom3-fe/public/assets/sass/components/share';
+@import '../../../honeycom3-fe/public/assets/sass/components/slick';
+@import '../../../honeycom3-fe/public/assets/sass/components/statistics';
+@import '../../../honeycom3-fe/public/assets/sass/components/wysiwyg-gallery';
+@import '../../../honeycom3-fe/public/assets/sass/components/wysiwyg';
+@import '../../../honeycom3-fe/public/assets/sass/components/breadcrumbs';
+@import '../../../honeycom3-fe/public/assets/sass/components/donate';
+@import '../../../honeycom3-fe/public/assets/sass/components/impact-slide';
+// @import '../../../honeycom3-fe/public/assets/sass/components/comments';
+// @import '../../../honeycom3-fe/public/assets/sass/components/woo';
+
+// Additional components(Not in sprint 1)
+
+@import '../../../honeycom3-fe/public/assets/sass/components/alert';
+@import '../../../honeycom3-fe/public/assets/sass/components/fixed-header';
+@import '../../../honeycom3-fe/public/assets/sass/components/impact';
+@import '../../../honeycom3-fe/public/assets/sass/components/tabs';
+@import '../../../honeycom3-fe/public/assets/sass/components/donate-adv';
+@import '../../../honeycom3-fe/public/assets/sass/components/logos';
+@import '../../../honeycom3-fe/public/assets/sass/components/timeline';
+
+
+
+
+@import '../../../honeycom3-fe/public/assets/sass/templates/home';
+@import '../../../honeycom3-fe/public/assets/sass/templates/single';
+@import '../../../honeycom3-fe/public/assets/sass/templates/listing';
+@import '../../../honeycom3-fe/public/assets/sass/templates/impact';

@@ -1,0 +1,28 @@
+{% extends '@hc/scaffolding/section.twig' %}
+
+{% block section_content %}
+	<div class="container">
+		{% block form %}
+			<div class="form-inner">
+				{{ form|raw }}
+
+				{% if cms == 'wordpress' %}
+					{% include '@hc/partials/wordpress/gravity-test.twig' %}
+				{% elseif cms == 'drupal' %}
+					{% include '@hc/partials/drupal/webform-test.twig' %}
+				{% endif %}
+			</div>
+		{% endblock form %}
+	</div>
+{% endblock section_content %}
+
+{# Include like so:
+{%
+  include '@hc/components/form.twig' with {
+    'section_class': 'form-outer',
+    'title': 'Contact us',
+    'summary': 'A form component',
+    'form': form_object
+  }
+%}
+#}

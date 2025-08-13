@@ -1,0 +1,23 @@
+<nav role="navigation" aria-label="Pagination Navigation">
+	<ul class="pagination">
+		{% if pagination.prev %}
+			<li class="pagination_block prev">
+				<a href="{{ pagination.prev.link }}" class="pagination_element prev">Prev</a>
+			</li>
+		{% endif %}
+
+		{% if pagination.pages %}
+			{% for page in pagination.pages %}
+				<li class="pagination_block numeral">
+					<a href="{{ page.link }}" class="pagination_element numeral {% if pagination.current ==  page.title %}current{% endif %}">{{ page.title }}</a>
+				</li>
+			{% endfor %}
+		{% endif %}
+
+		{% if pagination.next %}
+			<li class="pagination_block next">
+				<a href="{{ pagination.next.link }}" class="pagination_element next">Next</a>
+			</li>
+		{% endif %}
+	</ul>
+</nav>

@@ -1,0 +1,13 @@
+{% if 'double' == fields.column_layout %}
+	{% set layout = 'two-col' %}
+{% endif %}
+
+{% include '@hc/components/accordion.twig' with {
+	'section_id': fields.anchor_id|e('esc_html'),
+	'section_class': 'accordion-outer ' ~ fields.background_colour|get_background_class_name ~ ' ' ~ layout ~ ' ' ~ fields.alignment_classes,
+	'twocol_accordion': layout == 'two-col' ? true : false,
+	'title': fields.title|e('esc_html'),
+	'summary': fields.summary|nl2br,
+	'accordions': layout == 'two-col' ? false : twiggified_data,
+	'accordion_cols': layout == 'two-col' ? twiggified_data : false,
+}%}

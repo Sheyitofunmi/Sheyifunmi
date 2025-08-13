@@ -1,0 +1,38 @@
+{% extends '@hc/scaffolding/section.twig' %}
+
+{% block section_header %}{% endblock section_header %}
+{% block section_footer %}{% endblock section_footer %}
+
+{% block section_content %}
+
+	{% block donate_image_full %}
+		{# for full width component only #}
+		{% if ( image or image_data ) and 'full-width' in section_class %}
+			<div class="donate-image-full">
+				{% include '@hc/partials/image.twig' with { 'imgheight': '1080', 'imgwidth': '1920' } %}
+			</div>
+		{% endif %}
+	{% endblock %}
+
+	{% block donate_info %}
+		{# for both inline and full width version of the component #}
+		<div class="container">
+				<div class="donate{% if not image and not image_data %} no-img{% endif %}">
+				{% if (image or image_data) %}
+					<div class="donate-image">
+						{% include '@hc/partials/image.twig' with { 'imgheight': '1080', 'imgwidth': '1920' } %}
+					</div>
+				{% endif %}
+				<div class="donate-info">
+					<h2 class="donate-info-title">{{ title }}</h2>
+					{% if summary %}<p class="donate-info-summary">{{ summary }}</p>{% endif %}
+					<div class="donate-info-buttons">
+						{% for button in buttons %}
+							<a {% if button.target %}target="{{ button.target }}"{% endif %} href="{{ button.path }}" class="button">{{ button.title }}</a>
+						{% endfor %}
+					</div>
+				</div>
+			</div>
+		</div>
+	{% endblock %}
+{% endblock section_content %}

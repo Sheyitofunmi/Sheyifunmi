@@ -1,0 +1,65 @@
+/* ++++++++++++++++++++
++++ LAYOUT: WYSIWYG +++
+++++++++++++++++++++ */
+
+.wysiwyg {
+	&-outer {
+		&.inline {
+			&.secondary {
+				.content-outer {
+					background-color: $secondary;
+					padding: $gap * 1.5;
+
+					@include break(medium) {
+						padding: $gap * 2;
+					}
+					.button {
+						@extend .button-secondary;
+					}
+				}
+			}
+		}
+		+ .inline {
+			margin-top: 0;
+		}
+		.container {
+			@extend %flex;
+			align-items: flex-start;
+		}
+		.content-outer {
+			@include break(medium) {
+				margin: 0 auto;
+				width: 66.66%;
+			}
+		}
+		&.inline {
+			.content-outer {
+				margin: 0 0 0 auto;
+			}
+		}
+		&.left {
+			.content-outer {
+				margin: 0 auto 0 0;
+			}
+		}
+		&.center {
+			.content-outer, .wysiwyg-form {
+				margin: 0 auto;
+			}
+		}
+		&.with-sidebar {
+			padding-bottom: $gap * 2;
+
+			.content-outer {
+				@include break(medium) {
+					margin: 0 0 0 auto;
+					padding-right: $gap * 3.5;
+					width: 66.66%;
+				}
+				@include break(xlarge) {
+					padding-right: 0;
+				}
+			}
+		}
+	}
+}

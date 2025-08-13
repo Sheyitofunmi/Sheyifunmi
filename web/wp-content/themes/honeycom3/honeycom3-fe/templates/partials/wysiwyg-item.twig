@@ -1,0 +1,77 @@
+{% block wysiwyg %}
+	<div class="content-outer">
+
+		{% if wysiwyg_content or embed_content %}
+				<div class="content">
+					{% if post_summary %}<div class="post-summary">{{ post_summary|raw }}</div>{% endif %}
+
+					{% if headlines %}
+						<ul class="headlines-list">
+							{% for headline in headlines %}
+								<li class="headlines-list-block">{{ headline.title }}</li>
+							{% endfor %}
+						</ul>
+					{% endif %}
+
+					{% block wysiwyg_content %} {{ wysiwyg_content|raw }} {% endblock wysiwyg_content %}
+					{% block embed_content %}{% endblock embed_content %}
+				</div>
+
+			{% elseif wysiwyg_content_test == 'true' %}
+				<div class="content">
+					{% if post_summary %}<p class="post-summary">{{ post_summary }}</p>{% endif %}
+
+					{% if headlines %}
+						<ul class="headlines-list">
+							{% for headline in headlines %}
+								<li class="headlines-list-block">{{ headline.title }}</li>
+							{% endfor %}
+						</ul>
+					{% endif %}
+					{% include '@hc/partials/content.twig' %}
+				</div>
+		{% endif %}
+
+		{% if facility_accordion %}
+			{% include '@hc/components/facility-accordion.twig' with {
+				'section_class': 'facility-accordion-outer',
+				'accordions': [
+					{
+						'type': 'features',
+						'title': 'More about the location',
+						'accordion_list_items': [
+				  		{ 'title': 'Level access to the main areas' },
+				  		{ 'title': 'On street parking at church' },
+				  		{ 'title': 'Parking within 250m' },
+				  		{ 'title': 'Accessible toilets nearby' },
+				  		{ 'title': 'Dog friendly' },
+				  		{ 'title': 'Walkers & cyclists welcome' },
+				  		{ 'title': 'Space to secure your bike' }
+						],
+						'subtitle': 'More about this facility',
+						'summary': 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+					},
+					{
+						'type': 'accessibilty',
+						'title': 'Accessibilty',
+			  		'accessible': 'false',
+			  		'summary': 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+					},
+				] }
+			%}
+		{% elseif facilities %}
+		  {% include '@hc/components/facility-accordion.twig' with {
+					'section_class': 'facility-accordion-outer',
+					'accordions': facilities,
+		  } %}
+		{% endif %}
+
+		{% if wysiwyg_form %}
+			<div class="wysiwyg-form">
+					{{ wysiwyg_form|raw }}
+			</div>
+		{% endif %}
+
+	</div>
+
+{% endblock wysiwyg %}

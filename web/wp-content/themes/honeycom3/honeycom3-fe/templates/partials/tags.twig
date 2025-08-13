@@ -1,0 +1,11 @@
+<ul class="tags clearfix">
+    {% for tag in tags %}
+        <li class="metatag">
+			{% if tag.path %}
+            	<a href="{{ tag.path }}" class="metatag-link">{{ tag.title }}</a>
+			{% else %}
+				<span class="metatag">{{ tag.title }}</span>
+			{% endif %}
+        </li>
+    {% endfor %}
+</ul>

@@ -1,0 +1,128 @@
+.donate {
+	@extend %flex;
+	background-color: $white;
+	border-radius: $corner;
+	box-shadow: 0 0 12px 0 rgba($black, 0.1);
+	flex-direction: column-reverse;
+
+	@include break(tablet) {
+		flex-direction: row-reverse;
+	}
+
+	&.no-img {
+		@include break(medium) {
+			width: 66.66%;
+		}
+	}
+
+	&-outer {
+		position: relative;
+
+		&.inline {
+			overflow: visible;
+			.donate {
+				@include break(medium) {
+					margin: 0 0 0 auto;
+					width: 66.66%;
+				}
+			}
+			.donate {
+				background-color: $secondary;
+
+				&-info-title, &-info-summary {
+					color: $white;
+				}
+				.button {
+					@extend .button-secondary;
+				}
+			}
+		}
+
+		&.full-width {
+			padding: 0;
+
+			.donate {
+				background-color: rgba($white, 0.8);
+				border-radius: 0 0 $corner $corner;
+				margin: 0 auto 12rem;
+				width: 90%;
+
+				@include break(small) {
+					border-radius: $corner;
+					margin: $gap * 8 auto;
+					width: 80%;
+				}
+
+				@include break(medium) {
+					width: 40rem;
+				}
+
+				&-info {
+					@include flexbox(100%);
+				}
+
+				&-image {
+					display: none;
+				}
+			}
+		}
+	}
+
+	&-info {
+		color: $black;
+		padding: $gap * 1.5;
+		text-align: center;
+
+		&-summary {
+			padding: $gap 0 $gap * 1.5;
+		}
+		&-buttons {
+			@extend %flex;
+			flex: 1 auto;
+			gap: $gap;
+
+			.button {
+				flex-grow: 1;
+				margin: 0;
+			}
+		}
+	}
+
+	&-image {
+		@include flexbox(100%);
+		margin: 0;
+
+		@include break(tablet) {
+			@include flexbox(50%);
+		}
+
+		img {
+			@include object-fit(16/9, 100%);
+		}
+
+		+ .donate-info {
+			@include flexbox(100%);
+			align-self: center;
+			margin: 0;
+			padding: $gap * 2;
+			text-align: left;
+
+			@include break(tablet) {
+				@include flexbox(50%);
+				padding: $gap * 3;
+			}
+		}
+
+		&-full {
+			height: 100%;
+			left: 0;
+			position: absolute;
+			top: 0;
+			width: 100%;
+
+			img {
+				@include object-fit(16/9, 100%);
+			}
+		}
+	}
+}

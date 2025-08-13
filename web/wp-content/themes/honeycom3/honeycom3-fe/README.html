@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<head>
+	<meta charset="utf-8"/>
+</head>
+<body>
+
+<h1>Honeycomb framework design sub repo</h1>
+
+<p>Honeycomb is the starting point for website builds</p>
+
+<h2>Setup a new project</h2>
+
+<p>Get the developer to create the project repo in Bitbucket</p>
+
+<pre><code>
+git clone git@bitbucket.org:fatbeehive/[project-repo].git
+cd to honeycomb subrepo
+run 'make init' (this will pull down dependencies and run gulp)
+change the gulp.js proxy
+run 'gulp dev'
+</code></pre>
+
+<p><strong>Gulp tasks</strong></p>
+
+<p>In the honeycomb repo run 'gulp dev' to watch sass/js/image amends and open the local server with auto browser reload</p>
+
+<p><strong>gulp.js</strong></p>
+
+<p>Change proxy to the address you create in MAMP</p>
+<pre><code>proxy: "your.apache.vhost.url"</code></pre>
+
+<p>Ignoring files</p>
+
+<p>Example below for js that needs overwriting the base js file needs to be ignored in the gulp task add as below:</p>
+
+<pre><code>return src([paths.base_js, paths.new_js, `!${dir.src.honeycomb}/js/[file-name].js`])</code></pre>
+
+<h2>Setup an existing project</h2>
+
+<pre><code>
+git clone git@bitbucket.org:fatbeehive/[project-repo].git
+cd to honeycomb subrepo
+run 'make install' (this will pull down dependencies)
+change the gulp.js proxy and add ignores for the js amended in src/js
+run 'gulp dev'
+</code></pre>
+
+<p>Create the meta images using the Design systems/Meta images template in FIGMA and create the favicon using a generator then overwrite the images in the src/images</p>
+
+<p>Change name and theme colour in images/manifest.webmanifest</p>
+
+<h2>Overwriting SASS</h2>
+
+<p>Copy the scss file you want to overwrite from the honeycomb directory to the 'assets/src/sass' folder in the theme</p>
+
+<p>Comment out the base scss file in style.scss and add the new</p>
+
+<pre><code>@import '../../../assets/src/sass/[folder-name]/[file-name]';</code></pre>
+
+<h2>Overriding twig templates</h2>
+
+<p>Create a same named twig file in the same sub folder in the overrides folder</p>
+
+<p>{% extends %} will extend the existing honeycomb file</p>
+
+<p>{% block header %} will override the existing honeycomb block</p>
+
+<p>Putting {{ parent() }} in the block will extend the existing code in the honeycomb block</p>
+
+<p>Below uses the header.twig as an example</p>
+
+<pre><code>
+{% extends '@default/scaffolding/header.twig' %}
+
+{% block header %}
+
+{# Override blocks like so: #}
+{% block nav %}
+
+{# override content here #}
+
+{% endblock nav %}
+
+{# Pull in existing code like so: #}
+{% block links %}
+
+{{ parent() }}
+
+{% endblock links %}
+
+{% endblock header %}
+</code></pre>
+
+<h2>Adding twig files</h2>
+
+<p>To add a new template or component file create the file in the correct overrides folder, for templates add the directory to the '$routes = array' in index.php</p>
+
+<pre><code>
+'/new-file' => 'foldername/template-address',
+</code></pre>
+
+<h2>Components</h2>
+
+<p>Inline components live inside the 'article' on the page-builder template below the 'content' div. They include the partial rather than the component so its not rendered in a 'section' like the full width components</p>
+
+<ul>
+	<li><strong>Pullquote</strong> - Image, blockquote and cite</li>
+	<li><strong>Media block</strong> - Image with caption</li>
+</ul>
+
+<p>All full width components live inside the {% block components_content %} and have a white background by default and the background colour can be changed to a light background with the section_class 'light' and a dark background with the section_class 'dark'</p>
+
+<p>Full width component also includes the section partial where you can add a section_class, title, summary and link</p>
+
+<ul>
+	<li><strong>Hero</strong> - Large image with title and summary</li>
+	<li><strong>WYSIWYG</strong> - full wysiwyg controls for the client along with blockquote and media inline blocks</li>
+	<li><strong>Media block</strong> - Image with title, summary and button (aligned left by default or right when you add the section_class 'right')</li>
+	<li><strong>Featured promos</strong> - These are built using the cards component, by default styled for 3,2 or 1 column add class 'two-col', 'three-col' or 'four-col' for locked column amounts</li>
+	<li><strong>CTA (Call To Action)</strong> - Image, title, summary, button. Add the section_class 'full-width-image' for a full width image and 'site-width-image' for a site width image</li>
+	<li><strong>Donate</strong> - Background image with currency, value and description</li>
+	<li><strong>Accordion</strong> - Title and description(wysiwyg)</li>
+	<li><strong>Pullquote</strong> - Image, blockquote and cite</li>
+	<li><strong>Statistics</strong> - Stat value with title and summary</li>
+	<li><strong>Embed</strong> - A simple layout component that is used to add external iFrames</li>
+</ul>
+
+<h2>Glossary</h2>
+
+<ol>
+<li><strong>main</strong>: should be present on every page between the global header and footer</li>
+<li><strong>article</strong>: written content eg. a basic page or news article</li>
+<li><strong>content</strong>: this class should <em>only go around a WYSIWYG</em> as it sets basic styles for all text-level elements</li>
+<li><strong>section</strong>: is a grouping of content and should always have a header. the class &#8216;.section&#8217; is full width with top and bottom padding and should be used for background colors</li>
+<li><strong>container</strong>: The class &#8216;.container&#8217; has left and right padding and a maximum width of &#8216;$page-width&#8217;. It works well within a &#8216;.section&#8217; to give consistent sizing and padding</li>
+<li><strong>listing</strong>: is the basic listing of content such as news posts, more scannable and content heavy than cards</li>
+<li><strong>listing-cards</strong>: is the basic listing of content such as news posts using the cards layout</li>
+<li><strong>single</strong>: layout for a news/events post and includes metadata in the sidebar</li>
+<li><strong>card</strong>: cards are more visually interesting and content-light than a standard listing page</li>
+<li><strong>page builder</strong>: has the main wysiwyg and sidenav then the full width components below</li>
+<li><strong>sidebar</strong>: represents content that is tangentially related to the content nearby, such as tags and subnavigation. within the {% block page %} the sidebar is optional and if included will trigger a two column layout</li>
+
+</ol>
+
+<h2>Adding project repo to demo server:</h2>
+
+<p>Create folder on demo server that has the same name as the theme folder</p>
+
+<p><strong>Pull repo into folder:</strong></p>
+
+<pre><code>git clone git@bitbucket.org:fatbeehive/[project-name] —recursive</code></pre>
+
+<p>CD to honeycomb and run:</p>
+
+<p>Make install (so gulp processes won’t run)</p>
+
+<p>Wordpress site: [project-name].wp.demo2.fatbeehive.com</p>
+
+<p>Drupal site: [project-name].dru.demo2.fatbeehive.com</p>
+
+</body>
+</html>
+

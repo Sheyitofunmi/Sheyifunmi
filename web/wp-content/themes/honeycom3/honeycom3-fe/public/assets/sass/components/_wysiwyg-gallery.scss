@@ -1,0 +1,41 @@
+.content{
+    .gallery{
+        display:flex;
+        flex-wrap:wrap;
+        flex-direction:row;
+        margin-left:-5px;
+        margin-right:-5px;
+
+        &-item{
+            margin:0 !important;
+            float: left;
+            text-align: center;
+            width: 33.33%;
+        }
+
+        &-icon{
+            height:1px;
+            padding-bottom:100%;
+            overflow:hidden;
+            position:relative;
+            border:solid 5px transparent;
+
+            a{
+                position:absolute;
+                top:0;
+                left:0;
+                height:100%;
+                width:100%;
+                cursor:zoom-in;
+
+                img{
+                    object-fit: cover;
+                    height:100%;
+                    width:100%;
+                    font-family: 'object-fit: cover;';
+                }
+            }
+        }
+
+    }
+}

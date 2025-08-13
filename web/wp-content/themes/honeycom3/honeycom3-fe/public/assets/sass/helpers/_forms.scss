@@ -1,0 +1,174 @@
+//++++++++++++++++++++++
+//+++ HELPERS: FORMS +++
+//++++++++++++++++++++++
+
+%form-input {
+    @extend %transition;
+    color: $grey20;
+    border-radius: $corner;
+    border: $line solid $grey80;
+    font: $normal 1em/1.5 $font-body;
+    height: 2.5rem;
+    padding: 0 $gap;
+    width: 100%;
+
+    &:disabled {
+        background: $grey90;
+    }
+}
+
+form {
+    font: 1rem $font-body;
+
+    p { font: 1em $font-body; }
+}
+
+input,
+textarea,
+select {
+    @extend %form-input;
+}
+
+[type="text"],
+[type="number"],
+[type="date"],
+[type="datetime"],
+[type="datetime-local"],
+[type="month"],
+[type="week"],
+[type="time"],
+[type="search"],
+[type="tel"],
+[type="url"],
+[type="email"],
+[list],
+textarea,
+select {
+    background: $white;
+    outline: none;
+
+    &:focus {
+        border-color: $primary;
+    }
+
+	&::-webkit-input-placeholder {
+	  color: $grey50;
+	  opacity: 1;
+	}
+	&::-moz-placeholder {
+	  color: $grey50;
+	  opacity: 1;
+	}
+	&:-ms-input-placeholder {
+	  color: $grey50;
+	  opacity: 1;
+	}
+	&:-moz-placeholder { /* Firefox 18- */
+	  color: $grey50;
+	  opacity: 1;
+	}
+}
+
+textarea {
+    resize: vertical;
+    padding: $gap / 2 $gap;
+    height: auto;
+    min-height: $gap * 8;
+}
+
+[type="reset"],
+[type="submit"] {
+    @extend .button;
+    -webkit-appearance: none;
+    border: none;
+    cursor: pointer;
+}
+button {
+    border: 0;
+    cursor: pointer;
+
+    &:hover {
+        color: $primary;
+        text-decoration: underline;
+    }
+}
+
+[type="color"],
+[type="file"] {
+    border: none;
+    line-height: 1;
+    padding: 0;
+}
+
+[type="file"] {
+    height: auto;
+}
+select {
+	appearance: none;
+	-moz-appearance: none;
+	-webkit-appearance: none;
+	background-image: url("data:image/svg+xml,%3Csvg width='28' height='15' viewBox='0 0 28 15' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0.999999 0.999999L14 14L27 1' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E%0A");
+	background-position: right $gap center;
+	background-repeat: no-repeat;
+	background-size: 20px;
+	border: solid 1px $grey80;
+
+	&::-ms-expand {
+	    display: none;
+	}
+}
+
+label {
+    font: $normal 1em/1.5 $font-body;
+    display: block;
+
+    & + input,
+    & + textarea,
+	& + div,
+    & + select { margin-top: $gap / 4; }
+}
+
+legend {
+    width: 100%;
+}
+
+[type="checkbox"],
+[type="radio"] {
+    float: left;
+    height: $gap * 1.5;
+    margin-right: $gap / 2;
+    width: auto;
+
+    & + label {
+        display: inline;
+        font-style: normal;
+    }
+}
+
+// Chosen styling
+
+.chosen-container {
+    margin-top: $gap / 4;
+    width: 100% !important;
+
+    .chosen-single {
+        background: $white !important;
+        height: 2.5rem !important;
+        padding-left: $gap;
+
+        span {
+            color: $grey20 !important;
+            font-size: 1rem;
+            line-height: 39px;
+        }
+        div {
+            b {
+                background-image: url('../images/select-arrow.svg') !important;
+                background-position: center !important;
+                background-size: 25px !important;
+                margin-left: -20px;
+                width: 25px !important;
+            }
+        }
+    }
+}

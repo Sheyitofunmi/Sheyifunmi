@@ -1,0 +1,16 @@
+{% for item in gallery %}
+	{% block gallery_item %}
+		{% set image = item.imagethumb %}
+		<div class="gallery-item" data-thumb="{{ item.image }}" data-src="{{ item.image }}" data-sub-html="{% if item.source %}{{ item.source }} | {% endif %}{{ item.caption }}">
+			{% block gallery_thumb %}
+				<figure class="gallery-thumb">
+					<a href="{{ item.image }}">
+						{% set alt = item.caption %}
+						{% include '@hc/partials/image.twig' with { 'imgheight': '530', 'imgwidth': '920' } %}
+					</a>
+					{% if item.caption %}<span class="gallery-thumb-caption">{{ item.caption }}</span>{% endif %}
+				</figure>
+			{% endblock gallery_thumb %}
+		</div>
+	{% endblock gallery_item %}
+{% endfor %}

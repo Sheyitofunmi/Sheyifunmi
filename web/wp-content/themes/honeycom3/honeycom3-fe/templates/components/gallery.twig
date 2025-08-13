@@ -1,0 +1,66 @@
+{% extends '@hc/scaffolding/section.twig' %}
+
+{% block section_content %}
+	<div class="container">
+		{# <div class="gallery-slider-arrows">
+			  <a class="gallery-prev-arrow slick-arrow"><span class="visually-hidden">Prev</span></a>
+			  <a class="gallery-next-arrow slick-arrow"><span class="visually-hidden">Next</span></a>
+		</div> #}
+		{% block gallery %}
+			<div class="gallery gallery-slide">
+				{% include '@hc/partials/gallery-item.twig' %}
+			</div>
+		{% endblock gallery %}
+	</div>
+{% endblock section_content %}
+
+
+{# Include like so:
+{% include '@hc/components/gallery.twig' with {
+'title': 'Gallery component',
+'summary': 'The Client can create a gallery of images, presented as a row of four thumbnails with left/right arrow to see more. Maximum of 8 images. Click on a thumbnail to view a larger photo with an optional caption.',
+'section_class': 'gallery-outer light',
+'gallery': [
+	{
+		'image': '/assets/images/image-square-1.jpg',
+		'imagethumb': '/assets/images/image-square-1.jpg',
+		'caption' : 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.',
+	},
+	{
+		'image': '/assets/images/image-square-2.jpg',
+		'imagethumb': '/assets/images/image-square-1.jpg',
+		'caption' : 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.',
+	},
+	{
+		'image': '/assets/images/image-square-3.jpg',
+		'imagethumb': '/assets/images/image-square-1.jpg',
+		'caption' : 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.',
+	},
+	{
+		'image': '/assets/images/image-square-4.jpg',
+		'imagethumb': '/assets/images/image-square-1.jpg',
+		'caption' : 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.',
+	},
+	{
+		'image': '/assets/images/image-square-5.jpg',
+		'imagethumb': '/assets/images/image-square-1.jpg',
+		'caption' : 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.',
+	},
+	{
+		'image': '/assets/images/image-square-6.jpg',
+		'imagethumb': '/assets/images/image-square-1.jpg',
+		'caption' : 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.',
+	},
+	{
+		'image': '/assets/images/image-square-1.jpg',
+		'imagethumb': '/assets/images/image-square-1.jpg',
+		'caption' : 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.',
+	},
+	{
+		'image': '/assets/images/image-square-2.jpg',
+		'imagethumb': '/assets/images/image-square-1.jpg',
+		'caption' : 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.',
+	}
+]}
+%}
+#}

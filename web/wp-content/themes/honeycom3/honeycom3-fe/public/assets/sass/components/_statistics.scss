@@ -1,0 +1,135 @@
+/* +++++++++++++++++++++++
++++ LAYOUT: STATISTICS +++
++++++++++++++++++++++++ */
+
+.statistic {
+	@extend %flex;
+	gap: $gap * 1.5 3%;
+	justify-content: center;
+	padding: 0 $gap * 2;
+    text-align: center;
+
+    @include break(large) {
+	    padding: 0;
+    }
+
+	&-outer {
+		&.inline {
+			background-color: transparent;
+
+			.statistic {
+				@include break(medium) {
+					margin: 0 0 0 auto;
+					width: 66.66%;
+				}
+
+				&-item {
+					@include flexbox(100%);
+					text-align: left;
+					margin: 0 0 $gap * 2;
+
+					@include break(tablet) {
+						@include flexbox(48%);
+					}
+				}
+				&-value {
+					&:after {
+						background-image: url("data:image/svg+xml,%3Csvg width='201' height='8' viewBox='0 0 201 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M2.28696 2.99983C60.5055 3.22305 125.389 2.94476 200.059 4.36131M1 4.86377C74.4596 3.6105 146.349 4.51521 201 4.52985' stroke='%23035AA1' stroke-width='5'/%3E%3C/svg%3E%0A");
+						background-size: 100%;
+					}
+				}
+			}
+			&.secondary {
+				.section-header {
+					&-inner {
+						background-color: $secondary;
+						border-radius: 0 $corner 0 0;
+						padding: $gap * 2 $gap * 2 0;
+					}
+					.section-header-link {
+						background-color: $grey95;
+						margin: 0;
+						padding: 0 $gap * 2;
+						width: 100%;
+
+						@include break(medium) {
+							background-color: transparent;
+							padding: 0;
+							right: $gap * 4;
+							top: $gap * 2;
+							width: auto;
+						}
+					}
+					&.center {
+						.section-header {
+							&.header-button {
+								.section-header-link {
+									@include break(medium) {
+										width: 62.66%;
+									}
+								}
+							}
+						}
+					}
+				}
+				.statistic {
+					background-color: $secondary;
+					border-radius: 0 0 $corner 0;
+					padding: $gap * 2;
+				}
+			}
+		}
+	}
+
+    &-item {
+    	@include flexbox(100%);
+
+    	@include break(tablet) {
+	    	@include flexbox(48%);
+    	}
+
+    	@include break(medium) {
+	    	@include flexbox(48%);
+
+			@include break(large) {
+				@include flexbox(22.75%);
+			}
+
+		    &:first-child:nth-last-child(2), &:first-child:nth-last-child(2) ~ .statistic-item {
+	            @include flexbox(48%);
+		    }
+		    &:first-child:nth-last-child(3), &:first-child:nth-last-child(3) ~ .statistic-item {
+	            @include flexbox(31.33%);
+		    }
+    	}
+    }
+
+    &-icon {
+        font-size: 2rem;
+    }
+
+	&-prefix, &-suffix {
+		font-size: 4rem;
+		font-weight: $bold;
+	}
+
+    &-value {
+	    display: inline-block;
+	    text-align: center;
+
+        &-number {
+          font-size: 4rem;
+		  font-weight: $bold;
+        }
+    }
+    &-title {
+		font-size: 1.6rem;
+		padding: 0 0 $gap;
+		position: relative;
+    }
+	&-source {
+		font-size: 0.9rem;
+		padding: $gap 0 0;
+		position: relative;
+	}
+}

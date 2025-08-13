@@ -1,0 +1,8 @@
+{% include '@hc/components/profile.twig' with {
+	'section_id': fields.anchor_id|e('esc_html'),
+	'section_class': 'profile-outer ' ~ fields.background_colour|get_background_class_name  ~ ' ' ~ fields.alignment_classes,
+	'title': fields.title|e('esc_html'),
+	'summary': fields.summary|nl2br,
+	'profiles': twiggified_data
+	}
+%}

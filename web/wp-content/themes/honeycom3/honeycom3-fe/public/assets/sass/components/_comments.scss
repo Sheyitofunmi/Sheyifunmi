@@ -1,0 +1,194 @@
+/* ++++++++++++++++++++
++++ LAYOUT: CONTENT +++
+++++++++++++++++++++ */
+
+// Comments
+%comments {
+    @extend %container;
+    max-width: $two-thirds-column;
+
+    &-title {
+        background: $grey95;
+        color: $grey60;
+        font: $bold 1.2em/1.2 $font-header;
+        padding: 1rem;
+        text-transform: uppercase;
+    }
+}
+
+%comment {
+    border-bottom: $line solid $grey90;
+    margin-bottom: $gap * 1.5;
+    padding-bottom: $gap * 1.5;
+    position: relative;
+
+    &-metadata {
+        @extend .clearfix;
+
+        a {
+            @extend %text-hover;
+        }
+
+        &-name {
+            color: $grey30;
+            font-weight: $bold;
+        }
+
+        &-image {
+            border-radius: 100%;
+            float: left;
+            height: $gap * 3;
+            margin-right: $gap / 2;
+            width: $gap * 3;
+        }
+
+        &-details {
+            font-size: 0.9em;
+            margin-top: $gap / 2;
+        }
+    }
+
+    &-content {
+        margin-top: $gap;
+    }
+
+    &-link {
+        @extend .clearfix;
+        @extend %font-meta;
+        font-size: 0.9em;
+        margin-top: 0;
+        position: absolute;
+        right: 0;
+        text-align: right;
+        top: 0;
+
+        li {
+            float: right;
+            margin-left: $gap / 2;
+        }
+
+        a {
+            @extend %text-hover;
+        }
+    }
+
+    &-reply {
+        margin-left: $gap * 2;
+    }
+}
+
+%permalink {
+    color: $grey60;
+    float: left;
+    font-size: 1rem;
+    height: 1.5rem;
+    margin-right: 0.5rem;
+    overflow: hidden;
+    text-align: center;
+    width: 1rem;
+}
+
+@if $wordpress {
+    .comments-area {
+        @extend %comments;
+
+        .comments-title {
+            @extend %comments-title;
+        }
+
+        .comment-reply-title {
+            @extend %comments-title;
+        }
+
+        .comment {
+            &-body {
+                @extend %comment;
+            }
+
+            .avatar {
+                @extend %comment-metadata-image;
+            }
+
+            &-meta {
+                @extend %comment-metadata;
+
+                .fn {
+                    @extend %comment-metadata-name;
+                }
+            }
+
+            &-metadata {
+                @extend %comment-metadata-details;
+            }
+
+            &-content {
+                @extend .content;
+                @extend %comment-content;
+            }
+
+            .reply {
+                @extend %comment-link;
+            }
+        }
+
+        .children {
+            @extend %comment-reply;
+        }
+    }
+}
+
+@if $drupal {
+    .comment-wrapper {
+        @extend %comments;
+
+        .title {
+            @extend %comments-title;
+        }
+
+        .comment {
+            @extend %comment;
+        }
+
+        .submitted {
+            @extend %comment-metadata;
+
+            .username {
+                @extend %comment-metadata-name;
+            }
+        }
+
+        .content {
+            @extend %comment-content;
+        }
+
+        .links {
+            @extend %comment-link;
+        }
+
+        .permalink {
+            @extend %permalink;
+        }
+
+        .filter-help {
+            margin-top: 0;
+
+            a {
+                @extend %text-hover;
+            }
+        }
+
+        .filter-guidelines {
+            display: none;
+        }
+
+        .form-actions {
+		    @extend .clearfix;
+		    margin-top: 0;
+		
+		    & > * {
+		        float: left;
+		        margin: $gap $gap 0 0;
+		    }
+        }
+    }
+}

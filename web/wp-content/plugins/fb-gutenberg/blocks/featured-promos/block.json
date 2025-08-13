@@ -1,0 +1,19 @@
+{
+	"name": "acf/featured-promos",
+	"title": "Featured promos",
+	"description": "A featured promos block.",
+	"style": [ "fb-gutenberg-featured-promos" ],
+	"category": "formatting",
+	"icon": "list-view",
+	"keywords": ["featured promos"],
+	"acf": {
+		"mode": "auto",
+		"renderCallback": "fb_gutenberg_render_callback",
+		"blockVersion": 2
+	},
+	"supports": {
+		"align": false,
+		"anchor": true,
+		"mode": false
+	}
+}

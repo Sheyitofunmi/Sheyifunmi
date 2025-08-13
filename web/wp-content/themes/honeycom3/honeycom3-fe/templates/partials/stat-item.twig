@@ -1,0 +1,45 @@
+{% block statistic %}
+	<ul class="statistic"{% if count_up %} id="countup"{% endif %}>
+		{% for stat in statistics %}
+			{% block stat_item %}
+				<li class="statistic-item"{% if count_up %} id="myTargetElement{{ random(1000, 9999) }}"{% endif %}>
+					<div class="statistic-item-wrapper">
+							{% block stat_value %}
+								{% if stat.value or stat.value is same as(0) or stat.value is same as('0') %}
+									<div class="statistic-value">
+										{% if stat.value_prefix %}<span class="statistic-prefix">{{ stat.value_prefix }}</span>{% endif %}
+											{% if count_up %}
+												<span class="statistic-value-number counter" data-value="{{ stat.value }}">0</span>
+											{% else %}
+												<span class="statistic-value-number">{{ stat.value }}</span>
+											{% endif %}
+										{% if stat.value_suffix %}<span class="statistic-suffix">{{ stat.value_suffix }}</span>{% endif %}
+									</div>
+								{% endif %}
+							{% endblock stat_value %}
+
+						{% if stat.title %}
+							{% block stat_title %}<h3 class="statistic-title">{{ stat.title }}</h3>{% endblock stat_title %}
+						{% endif %}
+
+						{% if stat.summary %}
+							{% block stat_summary %}<div class="statistic-summary"><p>{{ stat.summary }}</p></div>{% endblock stat_summary %}
+						{% endif %}
+
+						{% if stat.source %}
+							{% block stat_source %}<div class="statistic-source"><p>{{ stat.source }}</p></div>{% endblock stat_source %}
+						{% elseif stat.source_link %}
+							{% block stat_source_link %}
+								<div class="statistic-source">
+									<p>
+										<a href="{{ stat.source_link.path }}">{{ stat.source_link.title }}</a>
+									</p>
+								</div>
+							{% endblock stat_source_link %}
+						{% endif %}
+					</div>
+				</li>
+			{% endblock stat_item %}
+		{% endfor %}
+	</ul>
+{% endblock statistic %}

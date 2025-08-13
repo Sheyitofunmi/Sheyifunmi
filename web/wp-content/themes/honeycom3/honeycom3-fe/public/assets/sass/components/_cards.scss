@@ -1,0 +1,438 @@
+/* ++++++++++++++++++
++++ LAYOUT: CARDS +++
+++++++++++++++++++ */
+
+// Cards are more visually interesting and content-light than a standard listing page.
+
+.cards {
+    @extend %flex;
+	gap: $gap * 1.5 3%;
+	margin: $gap * 2 0;
+	position: relative;
+	width: 100%;
+
+	@include break(small) {
+		margin: 0;
+	}
+
+	> * {
+		@extend %flex;
+		@include flexbox(100%);
+		margin: 0;
+
+		&:first-child:nth-last-child(1), &:first-child:nth-last-child(1) ~ article {
+			@include break(tablet) {
+				@include flexbox(48.5%);
+				margin-left: auto;
+				margin-right: auto;
+			}
+		}
+
+		&:first-child:nth-last-child(2), &:first-child:nth-last-child(2) ~ article {
+			@include break(tablet) {
+				@include flexbox(48.5%);
+
+				.card {
+					margin: 0;
+				}
+			}
+		}
+
+		&:first-child:nth-last-child(3), &:first-child:nth-last-child(3) ~ article {
+			&:nth-child(3) {
+				@include flexbox(100%);
+
+				@include break(medium) {
+					@include flexbox(31.33%);
+				}
+				.card {
+					align-content: flex-start;
+					grid-template-rows: 1fr auto;
+
+					@include break(tablet) {
+						align-content: center;
+						grid-template-columns: repeat(2, 1fr);
+						grid-template-rows: 1fr;
+					}
+					@include break(medium) {
+						align-content: flex-start;
+						grid-template-columns: none;
+						grid-template-rows: auto auto;
+					}
+
+					&-image {
+						@include break(tablet) {
+							height: 100%;
+						}
+						@include break(medium) {
+							height: auto;
+						}
+					}
+				}
+			}
+		}
+	}
+
+	@include break(tablet) {
+		> * {
+			@include flexbox(48.5%);
+		}
+	}
+
+	@include break(medium) {
+		> * {
+			@include flexbox(31.33%);
+		}
+	}
+
+    &-outer {
+		&.inline {
+			overflow: visible;
+			.cards {
+				@include break(medium) {
+					margin: 0 0 0 auto;
+					width: 66.66%;
+				}
+				> * {
+					@include flexbox(100%);
+
+					@include break(tablet) {
+						@include flexbox(48.5%);
+					}
+					&:first-child:nth-last-child(3), &:first-child:nth-last-child(3) ~ article {
+						@include flexbox(100%);
+						@include break(tablet) {
+							@include flexbox(48.5%);
+						}
+					}
+				}
+			}
+
+			&.secondary {
+				background-color: transparent;
+
+				.section-header {
+					color: $black;
+				}
+
+				.card {
+					background-color: $secondary;
+
+					&.hovered {
+						background-color: $primary;
+					}
+
+					.card-header-title, .card-summary {
+						color: $white;
+					}
+				}
+			}
+		}
+		&.cards-slider {
+			.section-header {
+				+ .container {
+					max-width: 82rem;
+					padding: 0 $gap / 1.5;
+				}
+			}
+			.cards {
+				display: block;
+
+				.slick {
+					&-list {
+						margin: 0;
+						max-width: 100%;
+						width: 100%;
+					}
+					&-track {
+						flex-wrap: nowrap;
+						margin: $gap * 2 0;
+					}
+					&-slide {
+						div {
+							&:first-child {
+								height: 100%;
+							}
+						}
+						article {
+							@extend %flex;
+							display: flex !important;
+							height: 100%;
+						}
+						.card {
+							background-color: $grey90;
+							box-shadow: none;
+							margin: 0 $gap;
+						}
+					}
+				}
+				&-slider-arrows {
+					@include centerer(true, true);
+					padding: 0 $gap;
+					width: 100%;
+					z-index: 999;
+
+					.slick-arrow {
+						left: $gap / 1.5;
+
+						@include break(large) {
+							left: $gap / 2;
+						}
+
+						&.next-arrow {
+							left: auto;
+							right: $gap / 1.5;
+
+							@include break(large) {
+								right: $gap / 2;
+							}
+
+							&:before {
+								transform: translate(-50%, -50%) scaleX(1);
+							}
+						}
+					}
+				}
+			}
+			&.secondary {
+				.cards {
+					.slick {
+						&-slide {
+							.card {
+								background-color: $white;
+							}
+						}
+					}
+				}
+			}
+		}
+		&.mob-slider {
+			.cards {
+				display: block;
+
+				@include break(small) {
+					display: flex;
+				}
+
+				.slick {
+					&-list {
+						max-width: 100%;
+					}
+					&-track {
+						flex-wrap: nowrap;
+					}
+					&-slide {
+						.card {
+							background-color: transparent;
+							margin: 0;
+
+							&-wrap {
+								background-color: $grey95;
+							}
+						}
+					}
+				}
+			}
+		}
+		&.signpost {
+			.container {
+				z-index: 2;
+			}
+
+			.cards {
+				> * {
+					@include flexbox(100%);
+
+					@include break(tablet) {
+						@include flexbox(48.5%);
+					}
+					@include break(tablet) {
+						@include flexbox(22.73%);
+					}
+					.card {
+						box-shadow: none;
+						padding: 0;
+
+						&-wrap-inner {
+							padding: 0;
+						}
+					}
+				}
+			}
+			&.secondary {
+				.card {
+					background-color: transparent;
+
+					&-wrap-inner {
+						color: $white;
+					}
+					&.hovered {
+						.card-link {
+							color: $white;
+							text-decoration: underline;
+						}
+					}
+				}
+			}
+		}
+		&.resource-listing {
+			.cards {
+				> * {
+					@include flexbox(100%);
+					border: 0;
+
+					@include break(tablet) {
+						@include flexbox(48.5%);
+					}
+
+					.card {
+						align-items: flex-start;
+						box-shadow: none;
+						display: grid;
+						grid-template-columns: 80px 1fr;
+						grid-template-rows: 1fr;
+						justify-content: space-between;
+
+						@include break(small) {
+							grid-template-columns: 120px 1fr;
+						}
+
+						@include break(medium) {
+							grid-template-columns: 190px 1fr;
+						}
+
+						&.no-image {
+							grid-template-columns: 1fr;
+						}
+
+						&-image {
+							@extend %flex;
+							aspect-ratio: initial;
+							background-color: $grey40;
+							border-radius: $corner;
+							box-shadow: $shadow;
+
+							img {
+								aspect-ratio: initial;
+								padding: 5px;
+								height: auto;
+								object-fit: contain;
+								transform: none;
+
+								@include break(small) {
+									padding: $gap / 1.5;
+								}
+
+								@include break(medium) {
+									padding: $gap;
+								}
+							}
+						}
+						&-wrap {
+							padding: 0 0 0 $gap * 1.5;
+
+							&-inner {
+								padding: 0;
+							}
+						}
+					}
+				}
+			}
+		}
+    }
+}
+
+.card {
+	@extend %card;
+	@extend %transition;
+	align-content: flex-start;
+	background-color: $white;
+	box-shadow: 0 0 15px 0 rgba($black, .25);
+	display: grid;
+	grid-template-rows: auto 1fr;
+	overflow: hidden;
+	padding: $gap / 2;
+	width: 100%;
+
+	&.hovered {
+		box-shadow: 0 0 25px 0 rgba($black, .45);
+
+		.card-image {
+			img {
+				transform: scale(1.1);
+			}
+		}
+
+		.card-header-title {
+			border-bottom-color: $black;
+			color: $primary;
+		}
+	}
+
+	&.no-image {
+		grid-template-columns: 1fr;
+	}
+
+    &-image {
+        border-radius: $corner $corner 0 0;
+        display: block;
+        margin: 0;
+		overflow: hidden;
+        position: relative;
+        width: 100%;
+
+	    img {
+			@extend %transition;
+			@include object-fit(4/3, 100%);
+	    }
+		.card-featured {
+			background-color: $primary;
+			color: $white;
+			font-size: 0.9rem;
+			font-weight: $bold;
+			left: 0;
+			padding: $gap / 2.5 $gap / 1.5;
+			position: absolute;
+			top: $gap * 1.5;
+			z-index: 5;
+		}
+    }
+
+    &-wrap {
+        margin: 0;
+
+        &-inner {
+			color: $black;
+	        padding: $gap * 2;
+        }
+    }
+
+    &-header {
+        margin-top: 0;
+
+        + .card-summary {
+	        margin-top: $gap / 2;
+        }
+
+        &-title {
+	        font-size: 1.6rem;
+			word-break: break-word;
+        }
+
+        &-date {
+            display: block;
+            margin-top: $gap / 2;
+        }
+    }
+	&-location, &-price {
+		margin-top: $gap / 2;
+	}
+	&-summary {
+		word-break: break-word;
+	}
+    &-button {
+	    &-outer {
+		    margin-top: $gap;
+	    }
+    }
+}

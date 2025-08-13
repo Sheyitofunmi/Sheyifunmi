@@ -1,0 +1,119 @@
+# This file describes an application. You can have multiple applications
+# in the same project.
+
+# The name of this app. Must be unique within a project.
+name: 'hc3'
+
+# The runtime the application uses.
+type: "php:8.1"
+
+# Configuration of the build of the application.
+build:
+  flavor: composer
+
+# The hooks executed at various points in the lifecycle of the application.
+hooks:
+    # The build hook runs after Composer to finish preparing up your code.
+    build: |
+        set -e
+        curl -sS https://platform.sh/cli/installer | php
+    deploy: |
+      set -e
+      cd web
+      wp acf sync
+
+# The relationships of the application with services or other applications.
+# The left-hand side is the name of the relationship as it will be exposed
+# to the application in the PLATFORM_RELATIONSHIPS variable. The right-hand
+# side is in the form `<service name>:<endpoint name>`.
+relationships:
+  database: "db:mysql"
+
+# The configuration of app when it is exposed to the web.
+web:
+  locations:
+    "/":
+      # The public directory of the app, relative to its root.
+      root: "web"
+      # The front-controller script to send non-static requests to.
+      passthru: "/index.php"
+      # Wordpress has multiple roots (wp-admin) so the following is required
+      index:
+        - "index.php"
+      # The number of seconds whitelisted (static) content should be cached.
+      expires: 31556952
+      scripts: true
+      allow: true
+      rules:
+        ^/composer\.json:
+          allow: false
+        ^/license\.txt$:
+          allow: false
+        ^/readme\.html$:
+          allow: false
+    "/wp-content/cache":
+      root: "web/wp-content/cache"
+      scripts: false
+      allow: false
+    "/wp-content/uploads":
+      root: "web/wp-content/uploads"
+      scripts: false
+      allow: true
+      passthru: "/index.php"
+      expires: 31556952
+    "/wp-content/webp-express":
+      root: "web/wp-content/webp-express"
+      scripts: false
+      allow: true
+      passthru: "/index.php"
+      expires: 31556952
+    "/wp-content/uploads/gravity_forms":
+      root: "web/wp-content/uploads/gravity_forms"
+      scripts: false
+      allow: false
+
+# The size of the persistent disk of the application (in MB).
+disk: 2040
+
+dependencies:
+  php:
+    composer/composer: "^2"
+    wp-cli/wp-cli-bundle: "^2.1"
+    psy/psysh: "^0.8.4"
+
+# The mounts that will be performed when the package is deployed.
+mounts:
+  "web/wp-content/cache":
+    source: local
+    source_path: "cache"
+  "web/wp-content/uploads":
+    source: local
+    source_path: "uploads"
+  "web/wp-content/webp-express":
+    source: local
+    source_path: "webp"
+  "web/wp-content/languages":
+    source: local
+    source_path: "languages"
+  "web/wp-content/plugins/fb-wp-hc3-theme-settings/vendor/timber/timber/cache":
+    source: local
+    source_path: "twig-cache"
+  "web/wp-content/wflogs":
+    source: local
+    source_path: "wflogs"
+  "web/wp-content/w3tc-config":
+    source: local
+    source_path: "w3tc"
+  '/tmp':
+    source: local
+    source_path: 'tmp'
+  '/.wp-cli':
+    source: local
+    source_path: 'wpcli'
+
+# The configuration of scheduled execution.
+crons:
+    wpcron:
+      # Wp Cron
+      spec: '*/5 * * * *'
+      cmd: 'cd web ; wp cron event run --due-now'

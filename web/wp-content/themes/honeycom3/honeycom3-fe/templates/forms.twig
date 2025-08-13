@@ -1,0 +1,23 @@
+{% extends '@hc/scaffolding/base.twig' %}
+
+	{% set nav_section = 'Forms' %}
+
+	{% set nav_section = 'Forms' %}
+
+    {% set main_title = "Forms" %}
+    {% set main_summary = "Example of form elements" %}
+
+    {% block main %}
+    
+		{% block main_content %}
+	        <div class="main-section" id="content">
+	        	<div class="container">
+					{% block forms %}
+						{% include '@hc/partials/form.twig' %}
+					{% endblock %}
+	        	</div>
+	        </div>
+	    {% endblock %}
+	    
+    {% endblock main %}
+

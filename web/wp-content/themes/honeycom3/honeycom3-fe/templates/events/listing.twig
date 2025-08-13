@@ -1,0 +1,331 @@
+{% extends function('function_exists', 'get_permalink') ? '@wp/scaffolding/base.twig' : '@hc/scaffolding/base.twig' %}
+
+    {% block main %}
+
+		{% block hero_component %}
+			{% include '@hc/components/hero.twig' with {
+				'section_class': 'hero-outer full',
+				'hero_title': 'Events listing with filters',
+				'hero_summary': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis eros leo, fermentum sit amet iaculis non, finibus nec lectus. Duis vel sapien ullamcorper turpis fermentum lacinia sit amet ut eros.',
+			} %}
+		{% endblock %}
+
+		{% block breadcrumb %}
+			{% include '@hc/partials/breadcrumbs.twig' with {
+					'subnav': [
+					{ 'text': 'Curabitur', 'url': '#', 'active_trail': 'true', 'submenu': [
+
+						{ 'text': 'Parent page', 'url': '#', 'active': 'false', 'active_trail': 'true', 'submenu': [
+
+							{ 'text': 'Grandchild page', 'url': '#', 'active': 'false', 'active_trail': 'true', 'submenu': [
+
+								{ 'text': 'Great grandchild page', 'url': '#', 'active': 'true' }
+							]},
+						]},
+					]}
+					]
+				}
+			%}
+		{% endblock breadcrumb %}
+
+		{% block main_content %}
+			<div class="main-section" id="content">
+
+					{% block featured_listing %}
+						{% include '@hc/components/cards.twig' with {
+							'section_class': 'cards-outer featured-listing',
+							'cards': [
+								{
+									'path': '/events-single',
+									'accessible': 'true',
+									'image': '/assets/images/holder-530x920.png',
+									'imgheight': '530',
+									'imgwidth': '920',
+									'title': 'Event title',
+									'startdate': 'yesterday',
+									'enddate': 'tomorrow',
+									'startTime': '9AM',
+									'endTime': '6PM',
+									'location': '10a Lant Street,London, SE1 1QR',
+									'summary': 'Maecenas faucibus mollis interdum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Maecenas sed diam eget risus varius.',
+									'price': '£20/adult, children FREE',
+									'age_friendly': 'true',
+								},
+								{
+									'path': '/events-single',
+									'online_only': 'true',
+									'accessible': 'partial',
+									'image': '/assets/images/holder-530x920.png',
+									'imgheight': '530',
+									'imgwidth': '920',
+									'title': 'Event title',
+									'startdate': 'yesterday',
+									'enddate': 'tomorrow',
+									'startTime': '9AM',
+									'endTime': '6PM',
+									'location': '10a Lant Street,London, SE1 1QR',
+									'summary': 'Maecenas faucibus mollis interdum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Maecenas sed diam eget risus varius.',
+									'price': '£20/adult, children FREE',
+									'age_friendly': 'true',
+								},
+								{
+									'path': '/events-single',
+									'accessible': 'false',
+									'image': '/assets/images/holder-530x920.png',
+									'imgheight': '530',
+									'imgwidth': '920',
+									'title': 'Event title',
+									'startdate': 'yesterday',
+									'enddate': 'tomorrow',
+									'startTime': '9AM',
+									'endTime': '6PM',
+									'location': '10a Lant Street,London, SE1 1QR',
+									'summary': 'Maecenas faucibus mollis interdum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Maecenas sed diam eget risus varius.',
+									'price': '£20/adult, children FREE',
+									'age_friendly': 'true',
+								}
+							]}
+						%}
+					{% endblock featured_listing %}
+
+					{% block filter_block %}
+						<div class="filter-outer">
+							<button for="filter-open" id="filter-show" class="filter-show-button accordion-trigger" aria-controls="filters" aria-expanded="false" aria-label="Expand filters">Show filters</button>
+							<div class="filter-inner" aria-expanded="false" id="filters">
+								<form method="post" class="filter">
+
+									<div class="filter-block">
+										<label for="filter-type">Type</label>
+										<select id="filter-type" class="filter-field">
+											<option value="Select Type" selected>Select Type</option>
+											<option value="type 1">Lorem</option>
+											<option value="type 2">Ipsum</option>
+											<option value="type 3">Dolor</option>
+										</select>
+									</div>
+
+									<div class="filter-block">
+										<label for="filter-location">Location</label>
+										<select id="filter-location" class="filter-field">
+											<option value="Select Topic" selected>Select Location</option>
+											<option value="type 1">Lorem</option>
+											<option value="type 2">Ipsum</option>
+											<option value="type 3">Dolor</option>
+										</select>
+									</div>
+
+									<div class="filter-block">
+										<label for="filter-category">Category</label>
+										<select id="filter-category" class="filter-field">
+											<option value="Select Topic" selected>Select Category</option>
+											<option value="type 1">Lorem</option>
+											<option value="type 2">Ipsum</option>
+											<option value="type 3">Dolor</option>
+										</select>
+									</div>
+
+									<div class="filter-block date-range">
+										<label for="filter-category">Date</label>
+										<input type="text" name="daterange" value="01/01/2024 - 01/01/2025" />
+									</div>
+
+									<div class="filter-block actions">
+										<input type="submit" value="Search" id="filter-submit" class="filter-submit">
+										<input type="reset" value="Clear" id="filter-reset" class="filter-reset">
+									</div>
+								</form>
+							</div>
+						</div>
+					{% endblock filter_block %}
+
+					{% block listing %}
+						{% include '@hc/components/cards.twig' with {
+							'section_class': 'cards-outer',
+							'cards': [
+								{
+									'path': '/events-single',
+									'accessible': 'true',
+									'image': '/assets/images/holder-530x920.png',
+									'imgheight': '530',
+									'imgwidth': '920',
+									'title': 'Event title',
+									'startdate': 'yesterday',
+									'enddate': 'tomorrow',
+									'startTime': '9AM',
+									'endTime': '6PM',
+									'location': '10a Lant Street,London, SE1 1QR',
+									'summary': 'Maecenas faucibus mollis interdum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Maecenas sed diam eget risus varius.',
+									'price': '£20/adult, children FREE',
+									'age_friendly': 'true',
+								},
+								{
+									'path': '/events-single',
+									'online_only': 'true',
+									'accessible': 'partial',
+									'image': '/assets/images/holder-530x920.png',
+									'imgheight': '530',
+									'imgwidth': '920',
+									'title': 'Event title',
+									'startdate': 'yesterday',
+									'enddate': 'tomorrow',
+									'startTime': '9AM',
+									'endTime': '6PM',
+									'location': '10a Lant Street,London, SE1 1QR',
+									'summary': 'Maecenas faucibus mollis interdum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Maecenas sed diam eget risus varius.',
+									'price': '£20/adult, children FREE',
+									'age_friendly': 'true',
+								},
+								{
+									'path': '/events-single',
+									'online_only': 'true',
+									'accessible': 'false',
+									'image': '/assets/images/holder-530x920.png',
+									'imgheight': '530',
+									'imgwidth': '920',
+									'title': 'Event title',
+									'startdate': 'yesterday',
+									'enddate': 'tomorrow',
+									'startTime': '9AM',
+									'endTime': '6PM',
+									'location': '10a Lant Street,London, SE1 1QR',
+									'summary': 'Maecenas faucibus mollis interdum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Maecenas sed diam eget risus varius.',
+									'price': '£20/adult, children FREE',
+									'age_friendly': 'true',
+								},
+								{
+									'path': '/events-single',
+									'accessible': 'true',
+									'image': '/assets/images/holder-530x920.png',
+									'imgheight': '530',
+									'imgwidth': '920',
+									'title': 'Event title',
+									'startdate': 'yesterday',
+									'enddate': 'tomorrow',
+									'startTime': '9AM',
+									'endTime': '6PM',
+									'location': '10a Lant Street,London, SE1 1QR',
+									'summary': 'Maecenas faucibus mollis interdum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Maecenas sed diam eget risus varius.',
+									'price': '£20/adult, children FREE',
+									'age_friendly': 'true',
+								},
+								{
+									'path': '/events-single',
+									'accessible': 'partial',
+									'image': '/assets/images/holder-530x920.png',
+									'imgheight': '530',
+									'imgwidth': '920',
+									'title': 'Event title',
+									'startdate': 'yesterday',
+									'enddate': 'tomorrow',
+									'startTime': '9AM',
+									'endTime': '6PM',
+									'location': '10a Lant Street,London, SE1 1QR',
+									'summary': 'Maecenas faucibus mollis interdum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Maecenas sed diam eget risus varius.',
+									'price': '£20/adult, children FREE',
+									'age_friendly': 'true',
+								},
+								{
+									'path': '/events-single',
+									'accessible': 'false',
+									'image': '/assets/images/holder-530x920.png',
+									'imgheight': '530',
+									'imgwidth': '920',
+									'title': 'Event title',
+									'startdate': 'yesterday',
+									'enddate': 'tomorrow',
+									'startTime': '9AM',
+									'endTime': '6PM',
+									'location': '10a Lant Street,London, SE1 1QR',
+									'summary': 'Maecenas faucibus mollis interdum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Maecenas sed diam eget risus varius.',
+									'price': '£20/adult, children FREE',
+									'age_friendly': 'true',
+								},
+								{
+									'path': '/events-single',
+									'accessible': 'true',
+									'image': '/assets/images/holder-530x920.png',
+									'imgheight': '530',
+									'imgwidth': '920',
+									'title': 'Event title',
+									'startdate': 'yesterday',
+									'enddate': 'tomorrow',
+									'startTime': '9AM',
+									'endTime': '6PM',
+									'location': '10a Lant Street,London, SE1 1QR',
+									'summary': 'Maecenas faucibus mollis interdum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Maecenas sed diam eget risus varius.',
+									'price': '£20/adult, children FREE',
+									'age_friendly': 'true',
+								},
+								{
+									'path': '/events-single',
+									'accessible': 'partial',
+									'image': '/assets/images/holder-530x920.png',
+									'imgheight': '530',
+									'imgwidth': '920',
+									'title': 'Event title',
+									'startdate': 'yesterday',
+									'enddate': 'tomorrow',
+									'startTime': '9AM',
+									'endTime': '6PM',
+									'location': '10a Lant Street,London, SE1 1QR',
+									'summary': 'Maecenas faucibus mollis interdum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Maecenas sed diam eget risus varius.',
+									'price': '£20/adult, children FREE',
+									'age_friendly': 'true',
+								},
+								{
+									'path': '/events-single',
+									'accessible': 'partial',
+									'image': '/assets/images/holder-530x920.png',
+									'imgheight': '530',
+									'imgwidth': '920',
+									'title': 'Event title',
+									'startdate': 'yesterday',
+									'enddate': 'tomorrow',
+									'startTime': '9AM',
+									'endTime': '6PM',
+									'location': '10a Lant Street,London, SE1 1QR',
+									'summary': 'Maecenas faucibus mollis interdum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Maecenas sed diam eget risus varius.',
+									'price': '£20/adult, children FREE',
+									'age_friendly': 'true',
+								}
+							]}
+						%}
+					{% endblock listing %}
+
+				{% block pagination %}
+					<footer class="main-footer section pagination-outer">
+						<div class="container">
+                    		{% if cms == 'WordPress' %}
+								{% include '@hc/partials/wordpress/pagination-wp.twig' %}
+							{% else %}
+								{% include '@hc/partials/drupal/pagination-drupal.twig' %}
+							{% endif %}
+						</div>
+					</footer>
+				{% endblock pagination %}
+
+			</div>
+		{% endblock main_content %}
+
+    {% endblock main %}
+
+	{% block scripts_page %}
+
+		{# https://www.daterangepicker.com/ #}
+		<script type="text/javascript">
+			jQuery(document).ready(function() {
+				jQuery(function() {
+					jQuery('input[name="daterange"]').daterangepicker({
+						opens: 'left'
+					}, function(start, end, label) {
+						console.log("A new date selection was made: " + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD'));
+					});
+				});
+			});
+		</script>
+
+		<script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+		<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+		<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+
+	{% endblock %}

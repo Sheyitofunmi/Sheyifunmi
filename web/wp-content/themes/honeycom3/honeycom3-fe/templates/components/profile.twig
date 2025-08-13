@@ -1,0 +1,58 @@
+{% extends '@hc/scaffolding/section.twig' %}
+
+{% block section_content %}
+	<div class="container">
+		{% include '@hc/partials/profile-item.twig' %}
+	</div>
+	<div class="profile-overlay"></div>
+{% endblock section_content %}
+
+
+{# Include like so:
+{% include '@hc/components/profile.twig' with {
+'section_class': 'profile-outer',
+'title': 'Team profiles component', 
+'summary': 'The client can create rows of five team member headshots that will display in a grid and whose order can be set in the CMS. If less than four team members are added, they will simply align left, leaving space on the right.',
+'profiles': [
+    {
+        'image': '/assets/images/avatar-holder.png',
+        'name': 'Nullam congue tempor faucibus',
+        'title': 'Tempor faucibus',
+        'id' : '1',
+        'summary' : 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.',
+        'meta': [
+            { 'selector': 'twitter', 'text': 'Twitter' },
+            { 'selector': 'facebook', 'text': 'Facebook' },
+            { 'selector': 'linkedin', 'text': 'LinkedIn' },
+            { 'selector': 'mail', 'text': 'email@emailaddress.com' },
+        ]
+    },
+    {
+        'image': '/assets/images/avatar-holder.png',
+        'name': 'Maecenas sed diam risus varius blandit sit amet',
+        'title': 'Tempor faucibus',
+        'id' : '2',
+        'summary' : 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.',
+        'meta': [
+            { 'selector': 'twitter', 'text': 'Twitter' },
+            { 'selector': 'facebook', 'text': 'Facebook' },
+            { 'selector': 'linkedin', 'text': 'LinkedIn' },
+            { 'selector': 'mail', 'text': 'email@emailaddress.com' },
+        ]
+    },
+    {
+        'image': '/assets/images/avatar-holder.png',
+        'name': 'Cras justo odio dapibus ac facilisis in',
+        'title': 'Tempor faucibus',
+        'id' : '3',
+        'summary' : 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.',
+        'meta': [
+            { 'selector': 'twitter', 'text': 'Twitter' },
+            { 'selector': 'facebook', 'text': 'Facebook' },
+            { 'selector': 'linkedin', 'text': 'LinkedIn' },
+            { 'selector': 'mail', 'text': 'email@emailaddress.com' },
+        ]
+    }
+]}
+%}
+#}

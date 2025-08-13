@@ -1,0 +1,19 @@
+{
+	"name": "acf/donate",
+	"title": "Donate",
+	"description": "An donate block.",
+	"style": [ "fb-gutenberg-donate" ],
+	"category": "formatting",
+	"icon": "money-alt",
+	"keywords": ["donate"],
+	"acf": {
+		"mode": "auto",
+		"renderCallback": "fb_gutenberg_render_callback",
+		"blockVersion": 2
+	},
+	"supports": {
+		"align": false,
+		"anchor": true,
+		"mode": false
+	}
+}

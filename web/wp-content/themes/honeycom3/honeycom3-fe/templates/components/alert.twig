@@ -1,0 +1,23 @@
+{% if alert == true %}
+	<div class="alert-outer">
+		<div class="container">
+			<div class="alert">
+				<div class="alert-inner">
+
+					<div class="alert-header">
+						<h3 class="alert-title">{{ alert_title }}</h3>
+						<p class="alert-summary">{{ alert_copy }}</p>
+					</div>
+
+					{% if alert_link_text %}
+						<div class="alert-link">
+							<a href="{{ alert_link_path }}" class="button"{% if alert_link_external %} target="_blank" {% endif %}>{{ alert_link_text }}</a>
+						</div>
+					{% endif %}
+
+					<button aria-label="Close Alert Info bar" class="alert-close">×</button>
+				</div>
+			</div>
+		</div>
+	</div>
+{% endif %}

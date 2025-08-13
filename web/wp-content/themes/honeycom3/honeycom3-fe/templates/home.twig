@@ -1,0 +1,267 @@
+{% extends function('function_exists', 'get_permalink') ? '@wp/scaffolding/base.twig' : '@hc/scaffolding/base.twig' %}
+
+{% set body_class = 'home' %}
+
+{% block main %}
+
+{#
+	REMEMBER: Wrap all components in a block so they can be replaced
+#}
+
+	{% block home_hero %}
+		{% include '@hc/components/hero.twig' with {
+			'section_class': 'hero-outer full',
+			'image': '/assets/images/holder-1920x1080.png',
+			'hero_title': 'Hero component',
+			'hero_summary': 'Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Donec ullamcorper nulla non metus auctor fringilla. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum.',
+			'link_copy': 'Watch our video',
+			'link_path': 'https://www.youtube.com/watch?v=j_iNLRAzjg4',
+			'link_class': 'popup-video'
+		} %}
+	{% endblock home_hero %}
+
+	{% block home_wysiwyg %}
+		{% include '@hc/components/wysiwyg.twig' with {
+				'section_class': 'wysiwyg-outer center',
+				'wysiwyg_content': '
+				<h3>WYSIWYG Component</h3>
+				<p>Augue mauris augue neque gravida in fermentum et sollicitudin. In ornare quam viverra orci sagittis eu volutpat odio facilisis. Mauris augue neque gravida in fermentum et sollicitudin ac. Dignissim diam quis enim lobortis. Sem viverra aliquet eget sit amet tellus. Eros donec ac odio tempor orci dapibus ultrices in. Maecenas pharetra convallis posuere morbi leo urna molestie at. At elementum eu facilisis sed odio morbi quis commodo.</p>
+				'
+			}
+		%}
+	{% endblock %}
+
+	{% block home_signposts %}
+
+		{% include '@hc/components/cards.twig' with {
+			'section_class': 'cards-outer signpost secondary',
+			'title': 'Signpost area',
+			'summary': 'Use this component to create rows of three promos specifically to present subpage or related content.',
+			'header_link': 'Button',
+			'header_link_path': '#',
+			'cards': [
+				{
+					'title': 'Nullam congue tempor faucibus',
+					'summary': 'Nullam id dolor id nibh ultricies vehicula ut id elit. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.',
+				},
+				{
+					'title': 'Maecenas sed diam risus varius blandit sit amet',
+					'summary': 'Maecenas faucibus mollis interdum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Maecenas sed diam eget risus varius.',
+				},
+				{
+					'title': 'Cras justo odio dapibus ac facilisis in',
+					'summary': 'Maecenas faucibus mollis interdum. Nulla vitae elit libero, a pharetra augue. Nullam quis risus eget urna mollis ornare vel eu leo. Aenean eu leo quam.',
+				},
+				{
+					'title': 'Cras justo odio dapibus ac facilisis in',
+					'summary': 'Maecenas faucibus mollis interdum. Nulla vitae elit libero, a pharetra augue. Nullam quis risus eget urna mollis ornare vel eu leo. Aenean eu leo quam.',
+				},
+				{
+					'title': 'Cras justo odio dapibus ac facilisis in',
+					'summary': 'Maecenas faucibus mollis interdum. Nulla vitae elit libero, a pharetra augue. Nullam quis risus eget urna mollis ornare vel eu leo. Aenean eu leo quam.',
+				},
+				{
+					'title': 'Cras justo odio dapibus ac facilisis in',
+					'summary': 'Maecenas faucibus mollis interdum. Nulla vitae elit libero, a pharetra augue. Nullam quis risus eget urna mollis ornare vel eu leo. Aenean eu leo quam.',
+				},
+				{
+					'title': 'Cras justo odio dapibus ac facilisis in',
+					'summary': 'Maecenas faucibus mollis interdum. Nulla vitae elit libero, a pharetra augue. Nullam quis risus eget urna mollis ornare vel eu leo. Aenean eu leo quam.',
+				},
+				{
+					'title': 'Cras justo odio dapibus ac facilisis in',
+					'summary': 'Maecenas faucibus mollis interdum. Nulla vitae elit libero, a pharetra augue. Nullam quis risus eget urna mollis ornare vel eu leo. Aenean eu leo quam.',
+				}
+			]}
+		%}
+
+	{% endblock home_signposts %}
+
+	{% block home_impact %}
+		{% include '@hc/components/impact.twig' with {
+			'section_class': 'impact-outer',
+			'title': 'Impact overview component',
+			'summary': 'Nullam id dolor id nibh ultricies vehicula ut id elit. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Nullam id dolor id nibh ultricies vehicula ut id elit.',
+			'impacts': [
+				{
+					'image': '/assets/images/holder-530x920.png',
+				},
+				{
+					'blockquote': 'Nullam id dolor id nibh ultricies vehicula ut id elit. Duis mollis, est non commodo luctus, nisi erat porttitor ligula',
+					'attribution': 'Nullam id dolor',
+				},
+				{
+					'cta_image': '/assets/images/holder-530x920.png',
+					'cta_title': 'Maecenas sed diam risus varius blandit sit amet',
+					'cta_summary': 'Nullam id dolor id nibh ultricies vehicula ut id elit. Duis mollis, est non commodo luctus, nisi erat porttitor ligula',
+					'cta_button': 'Read more',
+					'cta_path': '#/',
+				},
+				{
+					'priority': 'secondary',
+					'blockquote': 'Nullam id dolor id nibh ultricies vehicula ut id elit. Duis mollis, est non commodo luctus, nisi erat porttitor ligula',
+					'attribution': 'Nullam id dolor',
+				},
+				{
+					'priority': 'secondary',
+					'stat_value_prefix': '£',
+					'stat_value': '28',
+					'stat_value_suffix': '%',
+					'stat_title': 'Culpa dolore sint ea elit',
+					'stat_summary': 'Consectetur ea nulla consectetur nostrud qui aliquip duis voluptate in Lorem ex deserunt excepteur aute veniam consequat. In exercitation ut dolore laborum culpa sint duis est deserunt elit officia incididunt aute sint veniam ad.'
+				},
+			]
+		} %}
+	{% endblock home_impact %}
+
+	{% block home_footer_ctas %}
+		{% include '@hc/components/cards.twig' with {
+			'section_class': 'cards-outer home-ctas',
+			'cards': [
+				{
+					'path': '/page-builder',
+					'image': '/assets/images/holder-530x530.png',
+					'title': 'Lorem ipsum dolor sit amet',
+					'summary': 'Consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua',
+				},
+				{
+					'path': '/page-builder',
+					'image': '/assets/images/holder-530x530.png',
+					'title': 'Lorem ipsum dolor sit amet',
+					'summary': 'Consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua',
+				},
+				{
+					'path': '/page-builder',
+					'image': '/assets/images/holder-530x530.png',
+					'title': 'Lorem ipsum dolor sit amet',
+					'summary': 'Consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua',
+				}
+			]}
+		%}
+	{% endblock home_footer_ctas %}
+
+	{% block home_stats %}
+
+		{% include '@hc/components/statistics.twig' with {
+			'section_id': 'stats',
+			'section_class': 'statistic-outer',
+			'title': 'Statistics component',
+			'summary': 'Use this section to present up to three key statistics. At least two promos must be populated and the layout will adjust accordingly.',
+			'link': 'View all statistics',
+			'link_path': '#',
+			'statistics': [
+				{
+					'value': '28',
+					'value_suffix': '%',
+					'title': 'Culpa dolore sint ea elit',
+					'summary': 'Consectetur ea nulla consectetur nostrud qui aliquip duis voluptate in Lorem ex deserunt excepteur aute veniam consequat. In exercitation ut dolore laborum culpa sint duis est deserunt elit officia incididunt aute sint veniam ad.'
+				},
+				{
+					'value': '9572',
+					'title': 'Est consectetur qui',
+					'summary': 'Nostrud mollit nisi magna ullamco nostrud quis do. Enim pariatur laborum aute quis nulla et voluptate magna aute pariatur esse officia exercitation laboris.',
+					'source': 'Est consectetur qui',
+				},
+				{
+					'value': '9572',
+					'title': 'Est consectetur qui',
+					'summary': 'Nostrud mollit nisi magna ullamco nostrud quis do. Enim pariatur laborum aute quis nulla et voluptate magna aute pariatur esse officia exercitation laboris.',
+					'source': 'Est consectetur qui',
+				}
+			]}
+		%}
+
+	{% endblock %}
+
+	{% block tabs %}
+		{% include '@hc/components/feed-tabs.twig' with {
+			'title': 'Tabs latest feed',
+			'summary': 'Paragraph body lorem ipsum dolor sit amet, consectetur adipiscing elit. Mattis tellus et pulvinar sed euismod ultrices penatibus mattis.',
+			'section_class': 'tabs-outer secondary',
+			'tabs': [
+				{
+				'title': 'Tab one',
+				'cards': [
+					{
+						'path': '/page-builder',
+						'image': '/assets/images/holder-530x920.png',
+						'title': 'Tab one Title',
+						'summary': 'Maecenas faucibus mollis interdum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Maecenas sed diam eget risus varius.',
+						'tags': [
+							{ 'path': '#/', 'title': 'Topic' },
+							{ 'path': '#/', 'title': 'Type' }
+						]
+					},
+					{
+						'path': '/page-builder',
+						'image': '/assets/images/holder-530x920.png',
+						'title': 'Tab one Title',
+						'summary': 'Maecenas faucibus mollis interdum. Nulla vitae elit libero, a pharetra augue. Nullam quis risus eget urna mollis ornare vel eu leo. Aenean eu leo quam.',
+						'tags': [
+							{ 'path': '#/', 'title': 'Topic' },
+							{ 'path': '#/', 'title': 'Type' }
+						]
+					}
+				],
+				'link': 'View all one',
+				'link_path': '#',
+				},
+				{
+				'title': 'Tab two',
+				'cards': [
+					{
+						'path': '/page-builder',
+						'image': '/assets/images/holder-530x920.png',
+						'title': 'Tab two Title',
+						'summary': 'Maecenas faucibus mollis interdum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Maecenas sed diam eget risus varius.',
+						'tags': [
+							{ 'path': '#/', 'title': 'Topic' },
+							{ 'path': '#/', 'title': 'Type' }
+						]
+					},
+					{
+						'path': '/page-builder',
+						'image': '/assets/images/holder-530x920.png',
+						'title': 'Tab two Title',
+						'summary': 'Maecenas faucibus mollis interdum. Nulla vitae elit libero, a pharetra augue. Nullam quis risus eget urna mollis ornare vel eu leo. Aenean eu leo quam.',
+						'tags': [
+							{ 'path': '#/', 'title': 'Topic' },
+							{ 'path': '#/', 'title': 'Type' }
+						]
+					}
+				],
+				'link': 'View all two',
+				'link_path': '#',
+				},
+				{
+				'title': 'Tab three',
+				'cards': [
+					{
+						'path': '/page-builder',
+						'image': '/assets/images/holder-530x920.png',
+						'title': 'Tab three Title',
+						'summary': 'Maecenas faucibus mollis interdum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Maecenas sed diam eget risus varius.',
+						'tags': [
+							{ 'path': '#/', 'title': 'Topic' },
+							{ 'path': '#/', 'title': 'Type' }
+						]
+					},
+					{
+						'path': '/page-builder',
+						'image': '/assets/images/holder-530x920.png',
+						'title': 'Tab three Title',
+						'summary': 'Maecenas faucibus mollis interdum. Nulla vitae elit libero, a pharetra augue. Nullam quis risus eget urna mollis ornare vel eu leo. Aenean eu leo quam.',
+						'tags': [
+							{ 'path': '#/', 'title': 'Topic' },
+							{ 'path': '#/', 'title': 'Type' }
+						]
+					}
+				],
+				'link': 'View all three',
+				'link_path': '#',
+				}
+			]}
+		%}
+	{% endblock tabs %}
+
+{% endblock main %}

@@ -1,0 +1,261 @@
+body.search-listing {
+	.hero-inner {
+		padding-bottom: $gap * 2;
+	}
+}
+
+.col-listing {
+	@extend %flex;
+
+	.filter-outer {
+		@include flexbox(100%);
+		background-color: transparent;
+		margin: 0 0 $gap;
+
+		@include break(tablet) {
+			margin: 0 0 $gap * 2;
+		}
+
+		@include break(medium) {
+			@include flexbox(30%);
+			margin: 0;
+		}
+
+		&.tabs-filter {
+			margin-top: 40px;
+		}
+
+		.filter {
+			background-color: $grey90;
+			left: 0;
+			padding: 0;
+			top: $gap * 2;
+
+			&-inner {
+				margin: 0;
+				width: 100%;
+			}
+			&-block {
+				padding: 0 $gap * 2 $gap;
+
+				.filter-show-button {
+					@extend %font-header;
+					border-top: solid 1px $primary;
+					display: block;
+					padding: $gap $gap * 3.5 $gap 0;
+					text-align: left;
+					width: 100%;
+
+					span {
+						color: $black;
+						font-weight: $bold;
+					}
+
+					&.active {
+						background-color: transparent;
+
+						&:after {
+							background-color: $black;
+							transform: translate(0, -50%) rotate(-180deg);
+						}
+						&:hover {
+							&:after {
+								background-color: $primary;
+							}
+						}
+					}
+					&:hover {
+						&:after {
+							background-color: $black;
+						}
+					}
+
+					&:after {
+						background-color: $primary;
+						background-image: url("data:image/svg+xml,%3Csvg width='28' height='15' viewBox='0 0 28 15' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0.999999 0.999999L14 14L27 1' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E%0A");
+						background-position: center;
+						background-size: 12px;
+						border-radius: 100%;
+						height: 25px;
+						right: 0;
+						transform: translate(0, -50%) rotate(0deg);
+						width: 25px;
+					}
+				}
+				.filter-inner-accordion {
+					margin: $gap / 2 0;
+				}
+				&.actions {
+					padding: $gap $gap * 2 $gap * 2;
+				}
+			}
+		}
+	}
+
+	.cards-outer {
+		@include flexbox(100%);
+		margin: 0 0 0 auto;
+		padding-top: 0;
+		overflow: visible;
+
+		@include break(medium) {
+			@include flexbox(66.66%);
+		}
+
+		&.featured-listing {
+			@include flexbox(100%);
+			padding-top: $gap * 3;
+
+			.cards {
+				margin: 0;
+
+				> * {
+					@include break(small) {
+						@include flexbox(48%);
+					}
+
+					@include break(medium) {
+						@include flexbox(31.33%);
+						margin: 0;
+					}
+				}
+			}
+		}
+
+		.container {
+			padding: 0;
+		}
+
+		.cards {
+			> * {
+				@include flexbox(100%);
+
+				@include break(tablet) {
+					@include flexbox(48%);
+					margin: 0;
+				}
+
+				.card {
+					&.featured {
+						background-color: $primary;
+
+						.metalabel {
+							background-color: $primary;
+							color: $white;
+						}
+
+						.card-wrap-inner {
+							color: $white;
+
+							.card-header-title {
+								border-color: $white;
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+	.listing-tabs {
+		@extend %flex;
+		@include flexbox(100%);
+		margin: 0 0 0 auto;
+		padding-top: 0;
+		position: relative;
+		overflow: visible;
+
+		.tab-list {
+			@extend %flex;
+			@include flexbox(100%);
+			@include centerer(true, false);
+			justify-content: space-between;
+			top: 10px;
+			width: 100%;
+
+			@include break(tablet) {
+				top: -32px;
+				width: auto;
+			}
+
+			@include break(medium) {
+				left: -194px;
+				top: 0;
+				transform: none;
+			}
+
+			.button {
+				@include flexbox(48%);
+				background-color: $grey70;
+				border-radius: 15px;
+				color: $grey40;
+
+				@include break(tablet) {
+					flex: 0 auto;
+					max-width: none;
+					border-radius: 0 0 15px 15px;
+					width: auto;
+				}
+
+				@include break(medium) {
+					border-radius: 15px 15px 0 0;
+				}
+
+				&:hover {
+					background-color: $black;
+					color: $white;
+					text-decoration: none;
+				}
+
+				&.active {
+					background-color: $grey90;
+					color: $black;
+
+					&:hover {
+						background-color: $black;
+						color: $white;
+						text-decoration: none;
+					}
+				}
+			}
+		}
+
+		@include break(medium) {
+			@include flexbox(66.66%);
+		}
+
+		.cards-outer {
+			@include flexbox(100%);
+		}
+
+		#tab-listing, #map-listing {
+			@include flexbox(100%);
+			margin-top: $gap * 3;
+
+			@include break(small) {
+				margin-top: $gap * 5;
+			}
+
+			@include break(tablet) {
+				margin-top: $gap * 2;
+			}
+
+			@include break(medium) {
+				margin-top: 0;
+			}
+		}
+
+		iframe {
+			border-radius: 15px 15px 15px 0;
+			margin-top: $gap * 2;
+			width: 100%;
+
+			@include break(small) {
+				margin-top: 0;
+			}
+
+			@include break(medium) {
+				height: 100%;
+			}
+		}
+	}
+}

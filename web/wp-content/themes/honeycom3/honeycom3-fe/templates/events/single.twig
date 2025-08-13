@@ -1,0 +1,115 @@
+{% extends function('function_exists', 'get_permalink') ? '@wp/scaffolding/base.twig' : '@hc/scaffolding/base.twig' %}
+
+	{% set nav_section = 'Post' %}
+	{% set hc3_fe_body_class = "single-post" %}
+
+    {% block main %}
+		{% block hero_component %}
+			{% include '@hc/components/hero.twig' with {
+				'section_class': 'hero-outer',
+				'image': '/assets/images/holder-1920x1080.png',
+				'hero_type': 'Event type',
+				'hero_type_path': '#',
+				'hero_title': 'Events single',
+				'hero_summary': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis eros leo, fermentum sit amet iaculis non, finibus nec lectus. Duis vel sapien ullamcorper turpis fermentum lacinia sit amet ut eros.',
+			} %}
+		{% endblock hero_component %}
+
+		{% block breadcrumb %}
+			{% include '@hc/partials/breadcrumbs.twig' with {
+					'subnav': [
+					{ 'text': 'Curabitur', 'url': '#', 'active_trail': 'true', 'submenu': [
+
+						{ 'text': 'Parent page', 'url': '#', 'active': 'false', 'active_trail': 'true', 'submenu': [
+
+							{ 'text': 'Grandchild page', 'url': '#', 'active': 'false', 'active_trail': 'true', 'submenu': [
+
+								{ 'text': 'Great grandchild page', 'url': '#', 'active': 'true' }
+							]},
+						]},
+					]}
+					]
+				}
+			%}
+		{% endblock breadcrumb %}
+
+		{% block main_content %}
+        	<div class="main-section single" id="content">
+
+				{% if side_share %}
+					{% include '@hc/partials/main-share.twig' with {
+						'share': true,
+						'shares': [
+							{
+								'path': '#',
+								'selector': 'twitter',
+								'title': 'Twitter',
+							},
+							{
+								'path': '#',
+								'selector': 'facebook',
+								'title': 'Facebook',
+							},
+							{
+								'path': '#',
+								'selector': 'instagram',
+								'title': 'Instagram',
+							},
+							{
+								'path': '#',
+								'selector': 'linkedin',
+								'title': 'LinkedIn',
+							},
+							{
+								'path': '#',
+								'selector': 'tiktok',
+								'title': 'Tiktok',
+							},
+							{
+								'path': '#',
+								'selector': 'link',
+								'title': 'Link',
+							},
+							{
+								'path': '#',
+								'selector': 'email',
+								'title': 'Email',
+							},
+							]}
+					%}
+				{% endif %}
+
+				{% include '@hc/components/wysiwyg.twig' with {
+						'section_class': 'wysiwyg-outer with-sidebar',
+						'post_summary': '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis eros leo, fermentum sit amet iaculis non, finibus nec lectus. Duis vel sapien ullamcorper turpis fermentum lacinia sit amet ut eros. Augue mauris augue neque gravida in fermentum et sollicitudin. In ornare quam viverra orci sagittis eu volutpat odio facilisis.</p><p>Augue mauris augue neque gravida in fermentum et sollicitudin. In ornare quam viverra orci sagittis eu volutpat odio facilisis. Mauris augue neque gravida in fermentum et sollicitudin ac. Dignissim diam quis enim lobortis. Sem viverra aliquet eget sit amet tellus.</p>',
+						'wysiwyg_content': '<h3>Eats / Did you know? / Other info</h3>
+						<p>Augue mauris augue neque gravida in fermentum et sollicitudin. In ornare quam viverra orci sagittis eu volutpat odio facilisis. Mauris augue neque gravida in fermentum et sollicitudin ac. Dignissim diam quis enim lobortis. Sem viverra aliquet eget sit amet tellus. Eros donec ac odio tempor orci dapibus ultrices in. Maecenas pharetra convallis posuere morbi leo urna molestie at. At elementum eu facilisis sed odio morbi quis commodo.</p><p>Augue mauris augue neque gravida in fermentum et sollicitudin. In ornare quam viverra orci sagittis eu volutpat odio facilisis. Mauris augue neque gravida in fermentum et sollicitudin ac. Dignissim diam quis enim lobortis. Sem viverra aliquet eget sit amet tellus. Eros donec ac odio tempor orci dapibus ultrices in. Maecenas pharetra convallis posuere morbi leo urna molestie at. At elementum eu facilisis sed odio morbi quis commodo.</p>',
+						'metadata': true,
+						'startTime': '9AM',
+						'endTime': '6PM',
+						'startdate': 'yesterday',
+						'enddate': 'tomorrow',
+						'location': 'Fat Beehive Ltd, 10a Lant St London​, SE1 1QR',
+						'price': '&pound;350',
+						'tag_title': 'Tags',
+						'cats': [
+							{ 'title': 'Type A', 'link': '#/' },
+							{ 'title': 'Type A', 'link': '#/' },
+						],
+						'tags': [
+							{ 'title': 'Run', 'path': '#/' },
+							{ 'title': 'Bees', 'path': '#/' },
+							{ 'title': 'Dogs', 'path': '#/' },
+							{ 'title': 'Housing', 'path': '#/' },
+							{ 'title': 'Tigers', 'path': '#/' }
+						],
+						'postbuttons': [
+							{ 'title': 'Download/Book', 'link': '#/', 'external': 'true' }
+						],
+					}
+				%}
+
+        	</div>
+		{% endblock main_content %}
+
+    {% endblock main %}

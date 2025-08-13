@@ -1,0 +1,121 @@
+/* +++++++++++++++++++
++++ LAYOUT: ALERTS +++
++++++++++++++++++++ */
+
+@keyframes show-alert {
+	0% { bottom: -100px; opacity: 0; }
+	100% { bottom: 0; opacity: 1; }
+}
+@keyframes hide-alert {
+	0% { bottom: 0; opacity: 1; }
+	100% { bottom: -500px; opacity: 0; }
+}
+
+.alert-outer {
+	@extend %transition;
+	animation-duration: 2s;
+	animation-iteration-count: 1;
+	animation-name: show-alert;
+	animation-timing-function: ease-in-out;
+	background-color: $pink;
+	bottom: 0;
+	left: 0;
+	padding: $gap * 1.5 0 $gap;
+	position: fixed;
+	width: 100%;
+	z-index: 999;
+
+	@include break(tablet) {
+		padding: $gap * 1.5 0;
+	}
+
+	&.close-alert {
+		animation-duration: 3s;
+		animation-iteration-count: 1;
+		animation-name: hide-alert;
+		animation-timing-function: ease-out;
+		bottom: -500px;
+	}
+
+	.alert {
+		@extend %flex;
+		@include alert('black');
+		align-items: center;
+		background-position: center top;
+		background-size: 35px;
+		padding: $gap * 3 0;
+
+		@include break(tablet) {
+			background-position: left center;
+			background-size: 50px;
+			padding: 0 $gap * 3 0 $gap * 4.5;
+		}
+
+		&-inner {
+			@extend %flex;
+			align-items: center;
+			gap: $gap;
+			width: 100%;
+
+			@include break(medium) {
+				flex-wrap: nowrap;
+			}
+		}
+		&-title {
+			color: $black;
+		}
+		&-link {
+			@include break(tablet) {
+				margin: 0;
+			}
+		}
+
+		p {
+			color: $black;
+			font-size: 1rem;
+			font-weight: $bold;
+			margin-left: 0;
+			text-align: center;
+
+			@include break(tablet) {
+				font-size: 1.125rem;
+				text-align: left;
+			}
+		}
+
+		.button {
+			@extend .button-secondary;
+			white-space: nowrap;
+		}
+
+		&-close {
+			@extend %transition;
+			@include centerer(true, false);
+			background-color: $black;
+			border-radius: 100%;
+			bottom: 0;
+			color: $white;
+			font-size: 1.225rem;
+			font-weight: $bold;
+			height: 30px;
+			width: 30px;
+
+			@include break(tablet) {
+				@include centerer(false, true);
+				bottom: auto;
+				left: auto;
+				right: $gap * 2;
+			}
+
+			@include break(large) {
+				right: 0;
+			}
+
+			&:hover {
+				background-color: $primary;
+				color: $white;
+				text-decoration: none;
+			}
+		}
+	}
+}

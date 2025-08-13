@@ -1,0 +1,174 @@
+/* +++++++++++++++++
++++ LAYOUT: FEED +++
++++++++++++++++++ */
+
+// Feed is the basic listing of content such as news posts, more scannable and content heavy than cards
+
+.feat-items {
+	.container {
+		@extend %flex;
+		justify-content: space-between;
+	}
+	.item {
+		@include flexbox(100%);
+		align-content: flex-start;
+		background-color: $grey95;
+		border-radius: $corner;
+		display: grid;
+		grid-template-rows: 1fr auto;
+		padding-bottom: 0;
+
+		@include break(tablet) {
+			align-content: center;
+			grid-template-columns: repeat(2, 1fr);
+			grid-template-rows: 1fr;
+		}
+
+		@include break(medium) {
+			@include flexbox(48%);
+			margin: 0;
+		}
+		&:first-child {
+			margin-top: $gap * 2;
+
+			@include break(small) {
+				margin-top: 0;
+			}
+		}
+
+		&-image {
+			border-radius: $corner $corner 0 0;
+			overflow: hidden;
+			max-width: 100%;
+
+			@include break(tablet) {
+				border-radius: $corner 0 0 $corner;
+			}
+
+			+ .item-info {
+				max-width: 100%;
+				padding: $gap $gap * 1.5 $gap * 1.5;
+			}
+
+			img {
+				aspect-ratio: 1/1;
+			}
+		}
+
+		&-info {
+			.item-header-title {
+				font-size: 1.6rem;
+			}
+		}
+
+		+ .item {
+			border-top: 0;
+			margin-top: $gap * 2;
+			padding-top: 0;
+
+			@include break(medium) {
+				margin: 0;
+			}
+		}
+	}
+}
+
+.no-results {
+	@include flexbox(100%);
+	color: $red;
+	font-weight: $bold;
+	text-align: center;
+}
+
+.item {
+	@extend %flex;
+	flex-direction: row-reverse;
+	padding-bottom: $gap * 2;
+
+	@include break(medium) {
+		padding-bottom: 0;
+	}
+
+	&.hovered {
+		.item-header-title {
+			color: $secondary;
+			text-decoration: underline;
+		}
+	}
+
+    & + & {
+        border-top: $line solid $grey80;
+        padding-top: $gap * 2;
+    }
+
+    &-image {
+	    @include flexbox(100%);
+        border-radius: $corner;
+
+        img {
+			@include object-fit(16/9, 100%);
+        }
+    }
+
+    &-info {
+		@include flexbox(100%);
+	    margin: 0;
+    }
+
+    &-link {
+        @extend %text-hover;
+    }
+
+    &-header {
+        margin-top: $gap / 2;
+
+        &-title {
+			@extend %h3;
+        }
+
+        &-date, &-author {
+            display: inline-block;
+            margin: $gap / 2 0;
+        }
+        &-author {
+	        &:before {
+		        content: '|';
+		        display: inline-block;
+		        margin: 0 $gap / 2;
+	        }
+        }
+    }
+
+    &-summary {
+        margin-left: 0;
+        max-width: $half-column;
+    }
+
+    @include break(tablet) {
+        & + & {
+            margin-top: $gap * 2;
+            padding-top: $gap * 2;
+        }
+
+		&-info {
+			@include flexbox(100%);
+		}
+
+        &-image {
+	        @include flexbox(35%);
+
+	        + .item-info {
+				@include flexbox(100%);
+
+		        @include break(small) {
+					@include flexbox(65%);
+					padding-right: $gap * 2;
+		        }
+	        }
+
+            & + * {
+                margin-top: 0;
+            }
+        }
+    }
+}

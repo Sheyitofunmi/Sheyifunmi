@@ -1,0 +1,19 @@
+{
+	"name": "acf/self-selection",
+	"title": "Self selection",
+	"description": "A self selection block.",
+	"style": [ "fb-gutenberg-self-selection" ],
+	"category": "formatting",
+	"icon": "list-view",
+	"keywords": ["self selection"],
+	"acf": {
+		"mode": "auto",
+		"renderCallback": "fb_gutenberg_render_callback",
+		"blockVersion": 2
+	},
+	"supports": {
+		"align": false,
+		"anchor": true,
+		"mode": false
+	}
+}

@@ -1,0 +1,9 @@
+{% extends '@hc/scaffolding/section.twig' %}
+
+{% block section_content %}
+	<div class="container">
+		<div class="logos{% if carousel == true %} logo-carousel{% else %} logo-park{% endif %}">
+			{% include '@hc/partials/logo-item.twig' %}
+		</div>
+	</div>
+{% endblock section_content %}

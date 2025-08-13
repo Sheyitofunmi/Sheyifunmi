@@ -1,0 +1,6 @@
+<dialog class="modal" id="modal" aria-labelledby="{{ title }}" aria-describedby="{{ summary }}">
+	<button class="close-button"><span class="visually-hidden">Close</span></button>
+	{% if title %}<h2 class="modal-title">{{ title }}</h2>{% endif %}
+	{% if summary %}<p class="modal-summary">{{ summary }}</p>{% endif %}
+	{% if button_title %}<a href="{{ button_title_path }}" class="button">{{ button_title }}</a>{% endif %}
+</dialog>

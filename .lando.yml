@@ -1,0 +1,14 @@
+name: hc3
+recipe: wordpress
+services:
+  database:
+    portforward: 3306
+  pma:
+    type: phpmyadmin
+    hosts:
+      - database
+config:
+  webroot: web
+  php: '8.1'
+  via: nginx
+  database: mysql

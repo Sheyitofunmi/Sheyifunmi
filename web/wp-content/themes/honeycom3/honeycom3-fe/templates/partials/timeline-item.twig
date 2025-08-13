@@ -1,0 +1,37 @@
+<div class="timeline">
+	{% for timeline_event in timeline_events %}
+
+		{% if timeline_event.title %}
+		<div class="timeline-item">
+
+			<div class="timeline-item-inner">
+
+				{% block timeline_image %}
+					{% if timeline_event.image %}
+						<div class="timeline-item-img">
+							{% set image = timeline_event.image %}
+							{% set image_data = timeline_event.image_data %}
+							{% if image or image_data %}
+								{% include '@hc/partials/image.twig' with { 'imgheight': '530', 'imgwidth': '920' } %}
+							{% endif %}
+						</div>
+					{% endif %}
+					{% block timeline_date %}
+						<p class="timeline-item-date">{{ timeline_event.date }}<span class="timeline-item-year">{{ timeline_event.year }}</span></p>
+					{% endblock timeline_date %}
+				{% endblock timeline_image %}
+
+				{% block timeline_info %}
+					<div class="timeline-item-info">
+						<h3 class="timeline-item-title">{{ timeline_event.title }}</h3>
+						<div class="timeline-item-summary">
+							{{ timeline_event.summary|raw }}
+						</div>
+					</div>
+				{% endblock timeline_info %}
+			</div>
+		</div>
+		{% endif %}
+
+	{% endfor %}
+</div>

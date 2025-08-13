@@ -1,0 +1,68 @@
+/* ++++++++++++++++++
++++ LAYOUT: SHARE +++
+++++++++++++++++++ */
+
+.share {
+	@extend %flex;
+	flex: 1 auto;
+	gap: $gap;
+	padding-top: $gap / 2;
+
+	@include break(medium) {
+		width: 66.66%;
+	}
+
+	&-outer {
+		&.inline {
+			.share {
+				@include break(medium) {
+					margin: 0 0 0 auto;
+					width: 66.66%;
+				}
+			}
+			&.secondary {
+				.section-header {
+					color: $black;
+				}
+				.share {
+					background-color: $secondary;
+					border-radius: $corner;
+					padding: $gap * 1.5;
+				}
+			}
+		}
+		&.secondary {
+			.share-item {
+				.button {
+					background-color: $white;
+					color: $black;
+				}
+			}
+		}
+	}
+
+	&-item {
+		@extend %flex;
+		align-items: center;
+		flex-grow: 1;
+
+		h3 {
+			font-size: 1.3em;
+		}
+
+		.button {
+			@extend %flex;
+			align-items: center;
+			height: 100%;
+			justify-content: center;
+			width: 100%;
+
+			&.whatsapp, &.link {
+				.icon {
+					height: 1.2em;
+					width: 1.2em;
+				}
+			}
+		}
+	}
+}

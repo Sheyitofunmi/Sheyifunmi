@@ -1,0 +1,35 @@
+/* +++++++++++++++++++++++++
++++ LAYOUT: FIXED HEADER +++
++++++++++++++++++++++++++ */
+
+@if $fixedhead {
+	body.nav-down {
+		.main-share {
+			top: $gap * 10;
+		}
+	}
+	.header {
+		@include break(medium) {
+		   	box-shadow: 0 2px 12px 0 rgba($black, 0.1);
+		    height: $header-height;
+		    left: 0;
+		    position: fixed;
+		    top: 0;
+			transition: top 0.2s ease-in-out;
+		}
+
+	    &.nav-up {
+		    box-shadow: none;
+		    top: -$header-height;
+	    }
+	}
+	.main {
+	    @include break(medium) {
+		    margin-top: $header-height;
+	    }
+
+		&-share {
+			top: $gap * 2;
+		}
+	}
+}

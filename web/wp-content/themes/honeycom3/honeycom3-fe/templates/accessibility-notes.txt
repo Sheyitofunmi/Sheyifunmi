@@ -1,0 +1,25 @@
+// Accessibility guidelines & tips
+
+Styling
+  - If you use display: none or visibility: hidden to hide any content on initial page load,
+    make sure to also set the 'aria-live' attribute to make sure screenreaders are also notified
+    of any changes when the content becomes visible
+
+Links
+  - always make link text relevant and descriptive
+  - if a link wraps an image with alt text, the alt text of the image will act as the link
+    description for screen readers
+  - avoid using link title attributes - they do not get read aloud by screen readers and can cause
+    confusing/lengthy tooltips
+
+Content
+  - Always provide an alt tag for images - this is what screenreaders will read for context - it's
+    important for SEO too
+  - Specify font size in CSS, don't use a heading to make text larger - check content input by client to make sure that headings aren't used inappropriately
+
+// Useful links
+
+1. https://developer.mozilla.org/en-US/docs/Learn/Accessibility/HTML - Accessibility features & benefits in HTML
+2. https://developer.mozilla.org/en-US/docs/Learn/Accessibility/CSS_and_JavaScript - Accessibility best practices for CSS & JS
+3. https://contrastchecker.com/ - for checking colour contrast
+4. https://www.sitepoint.com/how-to-use-aria-effectively-with-html5/ - Info on ARIA Labels

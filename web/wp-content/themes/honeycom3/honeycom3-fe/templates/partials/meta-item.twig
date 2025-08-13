@@ -1,0 +1,248 @@
+{% block accordion %}
+	  {% for accordion in accordions %}
+		  {% if accordion.accordion_items %}
+			  <div class="sidebar-accordion-outer">
+				  {% set accordion_items = accordion.accordion_items %}
+				  {% for accordion_item in accordion_items %}
+					  <div class="sidebar-accordion-item">
+						  <div class="sidebar-accordion-info">
+							  {% set image = accordion_item.image %}
+							  {% if accordion_item.image or accordion_item.image_data %}
+								  <div class="sidebar-accordion-info-image">
+									  {# Minimum image size: 100px X 100px #}
+										{% set image_data = accordion_item.image_data %}
+										{% if image or image_data %}
+											{% include '@hc/partials/image.twig' with { 'imgheight': '100', 'imgwidth': '100' } %}
+										{% endif %}
+								  </div>
+							  {% endif %}
+							  <div class="sidebar-accordion-info-inner">
+									{% if accordion_item.title %}{{ accordion_item.title|e('html') }}{% endif %}
+									{% if accordion_item.role %}
+										<p class="sidebar-accordion-info-role">{{ accordion_item.role }}</p>
+									{% endif %}
+							  </div>
+							</div>
+
+							{% set author_infos = accordion_item.author_info %}
+						{% if accordion_item.author_info %}
+							<button class="sidebar-accordion-button sidebar-accordion-trigger" aria-expanded="false" aria-controls="accordion-panel-{{ accordion_item.title|replace({' ': '-'}) }}"></button>
+							  <div class="sidebar-accordion-panel" aria-labelledby="accordion-panel-{{ accordion_item.title|replace({' ': '-'}) }}" aria-expanded="false" tabindex="-1">
+								  <div class="sidebar-accordion-additional-info">
+									  {% for author_info in author_infos %}
+										  <p class="sidebar-accordion-info-meta {{ author_info.selector }}"><a href="{% if author_info.selector == 'mail' %}mailto:{% endif %}{{ author_info.link }}">
+											  <span class="icon-outer">
+												  <svg aria-hidden="true" class="icon"><use xlink:href="{{ assets_dir }}/svg/icons.svg#{{ author_info.selector }}"/>{{ author_info.title }}</svg>
+												  <span class="visually-hidden">{{ author_info.title }}</span>
+											  </span>
+											  {{ author_info.title }}</a>
+										  </p>
+									  {% endfor %}
+								  </div>
+							  </div>
+						  {% endif %}
+					  </div>
+					{% endfor %}
+			  </div>
+		  {% endif %}
+
+	  {% endfor %}
+  {% endblock accordion %}
+
+ {% block facility_accordion %}
+   {% if facility_accordion %}
+		<div class="facility-accordion">
+		 {% for accordion in accordions %}
+		 {% if accordion.accordion_list_items.0.title or accordion.accordion_list_items.0.file_name or accordion.summary %}
+		   {% block accordion_item %}
+			 <div class="accordion-item{% if accordion.type %} {{ accordion.type }}{% endif %}">
+			   {% block accordion_title %}
+				 <button class="accordion-button accordion-trigger active facility-accordion-button" aria-expanded="true" aria-controls="accordionPanel{{ accordion.title|replace({' ': ''}) }}">
+				   {{ accordion.title }} <svg aria-hidden="true" class="icon"><use xlink:href="{{ assets_dir }}/svg/icons.svg#arrow-right"/></svg>
+				 </button>
+			   {% endblock accordion_title %}
+
+			   {% block accordion_panel %}
+				 <div class="facility-accordion-panel" id="accordionPanel{{ accordion.title|replace({' ': ''}) }}" tabindex="-1" aria-expanded="true">
+
+					   {% set accordion_list_items = accordion.accordion_list_items %}
+						 {% if accordion_list_items %}
+					 <ul class="accordion-list">
+					   {% for accordion_list_item in accordion_list_items %}
+						 <li class="accordion-list-block">
+						   <p>{{ accordion_list_item.title }}{% if accordion_list_item.distance %} | {{ accordion_list_item.distance }}{% endif %}</p>
+						 </li>
+					   {% endfor %}
+					 </ul>
+					 {% endif %}
+
+					 {% if accordion.summary %}
+						   <div class="facility-accordion-info">
+							 {% if accordion.subtitle %}<p class="facility-accordion-subtitle">{{ accordion.subtitle }}</p>{% endif %}
+							 {% if accordion.summary %}<p class="facility-accordion-summary">{{ accordion.summary }}</p>{% endif %}
+							 {% if accordion.map_embed %}<div class="facility-map">{{ accordion.map_embed|raw }}</div>{% endif %}
+							 {% if accordion.map_path %}<a href="{{ accordion.map_path }}" class="facility-link" target="_blank">View directions on Google Maps</a>{% endif %}
+							 {% if accordion.what3words %}<p><strong>What3words</strong> <a href="{{ accordion.what3words_path }}" target="_blank">{{ accordion.what3words }}</a></p>{% endif %}
+						   </div>
+					   {% endif %}
+
+				 </div>
+			   {% endblock accordion_panel %}
+			 </div>
+		   {% endblock accordion_item %}
+		   {% endif %}
+		 {% endfor %}
+		 </div>
+   {% endif %}
+   {% endblock facility_accordion %}
+
+<ul class="sidebar-meta">
+	{% if image %}
+		<li class="sidebar-meta-block image">
+			{# Minimum image size: 325px X 433px #}
+			{% include '@hc/partials/image.twig' %}
+		</li>
+	{% endif %}
+	<li class="sidebar-meta-block info">
+		<ul>
+		{% if smartDate %}
+			<li class="sidebar-meta-block date">
+				<span>Date:</span>
+				{{ smartDate }}
+			</li>
+		{% endif %}
+		{% if date %}
+			<li class="sidebar-meta-block date">
+				<span>Published:</span> <time datetime="{{ date|date("Y-m-d") }}"> {{ date|date("j M Y") }}</time>
+			</li>
+		{% endif %}
+		{% if author %}
+			<li class="sidebar-meta-block author">
+				<span>Author:</span> {{ author }}
+			</li>
+		{% endif %}
+		{% if startdate %}
+			<li class="sidebar-meta-block startdate">
+				<span>Date:</span> <time datetime="{{ startdate|date("Y-m-d") }}"> {{ startdate|date("j M Y") }}</time>
+				{% if enddate %} - <time datetime="{{ enddate|date("Y-m-d") }}"> {{ enddate|date("j M Y") }}</time>{% endif %}
+			</li>
+		{% endif %}
+		{% if startTime %}
+			<li class="sidebar-meta-block time">
+				<span>Time:</span>
+				{{ startTime|date('H:i') }}{% if endTime %} - {{ endTime|date('H:i') }}{% endif %}
+			</li>
+		{% endif %}
+		{% if location %}
+			<li class="sidebar-meta-block location">
+				<span>Location:</span> {{ location }}
+			</li>
+		{% endif %}
+		{% if price %}
+			<li class="sidebar-meta-block price">
+				<span>Price:</span> {{ price|raw }}
+			</li>
+		{% endif %}
+		{% if postbuttons %}
+			<li class="sidebar-meta-block sidebar-button">
+				{% for postbutton in postbuttons %}
+					<a href="{{ postbutton.link }}" {% if postbutton.external_button %}target="_blank"{% endif %} class="button">{{ postbutton.title }}</a>
+				{% endfor %}
+			</li>
+		{% endif %}
+
+		{% if authors %}
+			{% for author in authors %}
+				<li class="sidebar-meta-block author">
+					{# Minimum image size: 100px X 100px #}
+					{% set image = author.image %}
+					{% set image_data = author.image_data %}
+					{% if image or image_data %}
+						<div class="author-image">
+							{% include '@hc/partials/image.twig' with { 'imgheight': '100', 'imgwidth': '100' } %}
+						</div>
+					{% endif %}
+					<div class="author-info">
+					{% if author.url %}
+						<p class="author-name"><a href="{{ author.url }}" {% if author.target %}target="{{ author.target }}"{% endif %}>{{ author.name }}</a></p>
+					{% else %}
+						<p class="author-name">{{ author.name }}</p>
+					{% endif %}
+						<p>{{ author.role }}</p>
+						<p><a href="mailto:{{ author.email }}">{{ author.email }}</a></p>
+					</div>
+				</li>
+			{% endfor %}
+		{% endif %}
+
+		{% if cats or tags %}
+			<li class="sidebar-meta-block tags">
+				{% if tag_title %}<h2 class="sidebar-meta-block-title">{{ tag_title }}</h2>{% endif %}
+				<span class="sidebar-meta-block-inner">
+					{% for cat in cats %}
+						<a href="{{ cat.link }}" class="sidebar-meta-block-cat">{{ cat.title }}</a>
+					{% endfor %}
+				</span>
+				<span class="sidebar-meta-block-inner">
+					{% for tag in tags %}
+						<a href="{{ tag.link }}" class="sidebar-meta-block-tag">{{ tag.title }}</a>
+					{% endfor %}
+				</span>
+			</li>
+		{% endif %}
+		{% if postshares %}
+			<li class="sidebar-meta-block share">
+				{% if share_title %}<h2 class="sidebar-meta-share-title">{{ share_title }}</h2>{% endif %}
+				{% if postshares %}
+					<div class="sidebar-meta-share">
+						{% for postshare in postshares %}
+							<a href="{{ postshare.link }}" class="sidebar-meta-share-button {{ postshare.selector }}">
+								<svg aria-hidden="true" class="icon"><use xlink:href="{{ assets_dir }}/svg/icons.svg#{{ postshare.selector }}"/>
+									<span class="visually-hidden">{{ postshare.selector }}</span>
+								</svg>
+							</a>
+						{% endfor %}
+					</div>
+				{% endif %}
+			</li>
+		{% endif %}
+		{% if postdownloads %}
+			<li class="sidebar-meta-block downloads">
+				<h2 class="sidebar-meta-block-title">Downloads</h2>
+				{% for postdownload in postdownloads %}
+					<a href="{{ postdownload.link }}" {% if postdownload.target %}target="{{ postdownload.target }}"{% endif %}class="downloads-link">
+						<span class="icon">
+							{% if postdownload.type %}
+								<svg aria-hidden="true" class="icon"><use xlink:href="{{ assets_dir }}/svg/icons.svg#{{ postdownload.type }}"/>{{ postdownload.type }}</svg>
+							{% else %}
+								<svg aria-hidden="true" class="icon"><use xlink:href="{{ assets_dir }}/svg/icons.svg#linefile"/>Document</svg>
+							{% endif %}
+						</span>
+					{{ postdownload.title }}</a>
+				{% endfor %}
+			</li>
+		{% endif %}
+		{% if press_email or press_intro or press_tel or press_pack %}
+			<li class="sidebar-meta-block press">
+				<h2 class="sidebar-meta-block-title">Press contact</h2>
+				{% if press_intro %}<p>{{ press_intro }}</p>{% endif %}
+				{% if press_email %}
+					<p class="press-mail">
+						<a href="mailto:{{ press_email }}"><span class="icon-outer"></span>{{ press_email }}</a>
+					</p>
+				{% endif %}
+				{% if press_tel %}
+					<p class="press-tel">
+						<a href="tel:{{ press_tel }}"><span class="icon-outer"></span>{{ press_tel }}</a>
+					</p>
+				{% endif %}
+				{% if press_pack %}
+					<p class="press-pack">
+						<a href="{{ press_pack }}"><span class="icon-outer"><svg aria-hidden="true" class="icon"><use xlink:href="{{ assets_dir }}/svg/icons.svg#book-download"/></svg></span>Download press pack</a>
+					</p>
+				{% endif %}
+			</li>
+		{% endif %}
+		</ul>
+	</li>
+</ul>

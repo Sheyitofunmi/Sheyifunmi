@@ -1,0 +1,389 @@
+{% extends function('function_exists', 'get_permalink') ? '@wp/scaffolding/base.twig' : '@hc/scaffolding/base.twig' %}
+
+    {% block main %}
+
+		{% block hero_component %}
+			{% include '@hc/components/hero.twig' with {
+				'section_class': 'hero-outer full',
+				'hero_title': 'Events listing with filters',
+				'hero_summary': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis eros leo, fermentum sit amet iaculis non, finibus nec lectus. Duis vel sapien ullamcorper turpis fermentum lacinia sit amet ut eros.',
+			} %}
+		{% endblock %}
+
+		{% block breadcrumb %}
+			{% include '@hc/partials/breadcrumbs.twig' with {
+					'subnav': [
+					{ 'text': 'Curabitur', 'url': '#', 'active_trail': 'true', 'submenu': [
+
+						{ 'text': 'Parent page', 'url': '#', 'active': 'false', 'active_trail': 'true', 'submenu': [
+
+							{ 'text': 'Grandchild page', 'url': '#', 'active': 'false', 'active_trail': 'true', 'submenu': [
+
+								{ 'text': 'Great grandchild page', 'url': '#', 'active': 'true' }
+							]},
+						]},
+					]}
+					]
+				}
+			%}
+		{% endblock breadcrumb %}
+
+		{% block main_content %}
+			<div class="main-section" id="content">
+
+				<div class="container col-listing">
+
+					{% block featured_listing %}
+						{% include '@hc/components/cards.twig' with {
+							'section_class': 'cards-outer featured-listing',
+							'cards': [
+								{
+									'path': '/events-single',
+									'accessible': 'true',
+									'image': '/assets/images/holder-530x920.png',
+									'imgheight': '530',
+									'imgwidth': '920',
+									'title': 'Event title',
+									'startdate': 'yesterday',
+									'enddate': 'tomorrow',
+									'startTime': '9AM',
+									'endTime': '6PM',
+									'location': 'Sevenoaks Wildlife Reserve and Jeffery Harrison Visitor Centre, Sevenoaks, Kent',
+									'summary': 'Maecenas faucibus mollis interdum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Maecenas sed diam eget risus varius.',
+									'price': '£20/adult, children FREE',
+									'age_friendly': 'true',
+								},
+								{
+									'path': '/events-single',
+									'online_only': 'true',
+									'accessible': 'partial',
+									'image': '/assets/images/holder-530x920.png',
+									'imgheight': '530',
+									'imgwidth': '920',
+									'title': 'Event title',
+									'startdate': 'yesterday',
+									'enddate': 'tomorrow',
+									'startTime': '9AM',
+									'endTime': '6PM',
+									'location': 'Sevenoaks Wildlife Reserve and Jeffery Harrison Visitor Centre, Sevenoaks, Kent',
+									'summary': 'Maecenas faucibus mollis interdum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Maecenas sed diam eget risus varius.',
+									'price': '£20/adult, children FREE',
+									'age_friendly': 'true',
+								},
+								{
+									'path': '/events-single',
+									'accessible': 'false',
+									'image': '/assets/images/holder-530x920.png',
+									'imgheight': '530',
+									'imgwidth': '920',
+									'title': 'Event title',
+									'startdate': 'yesterday',
+									'enddate': 'tomorrow',
+									'startTime': '9AM',
+									'endTime': '6PM',
+									'location': 'Sevenoaks Wildlife Reserve and Jeffery Harrison Visitor Centre, Sevenoaks, Kent',
+									'summary': 'Maecenas faucibus mollis interdum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Maecenas sed diam eget risus varius.',
+									'price': '£20/adult, children FREE',
+									'age_friendly': 'true',
+								}
+							]}
+						%}
+					{% endblock featured_listing %}
+
+					{% block filter_block %}
+						<div class="filter-outer tabs-filter events">
+							<div class="filter">
+								<button for="filter-open" id="filter-show" class="filter-show-button accordion-trigger" aria-controls="filters" aria-expanded="false" aria-label="Expand filters"><span>Show filters</span></button>
+								<div class="filter-inner" aria-expanded="false" id="filters-show">
+									<h2 class="filter-block-title">Filter event by</h2>
+									<div class="filter-section">
+										<form method="post">
+
+											<div class="filter-block filter-search">
+												<label for="first-name">Location</label>
+												<input type="text" id="first-name" name="first-name" aria-required="true" placeholder="Search">
+												{# <input type="submit" value="Go" class="filter-submit"> #}
+											</div>
+
+											<div class="filter-block">
+												<label for="filter-type">Distance from location</label>
+												<select id="filter-type" class="filter-field">
+													<option value="Seclect Type" selected>Any</option>
+													<option value="type 1">Lorem</option>
+													<option value="type 2">Ipsum</option>
+													<option value="type 3">Dolor</option>
+												</select>
+											</div>
+
+											<div class="filter-block-inner">
+												<div class="filter-block">
+													<label for="filter-date-from">Date from</label>
+													<input type="date" id="filter-date-from" name="filter-date-from" min="2022-01-01" />
+												</div>
+												<div class="filter-block">
+													<label for="filter-date-to">Date to</label>
+													<input type="date" id="filter-date-to" name="filter-date-to" min="2022-01-01" />
+												</div>
+											</div>
+
+											<div class="filter-block">
+												<input id="show-online-events" type="checkbox">
+												<label for="show-online-events">Show online events only</label>
+											</div>
+
+											<div class="filter-block actions">
+												<input type="submit" value="Filter" class="filter-submit">
+												<input type="reset" value="Clear" class="filter-reset">
+											</div>
+										</form>
+									</div>
+
+									{# Facet filter examples #}
+									{# <div class="filter-block">
+										<button for="filter-open-class" id="filter-show" class="filter-show-button accordion-trigger active" aria-controls="Class filters" aria-expanded="true" aria-label="Expand class filters"><span>Suitable for</span></button>
+										<div class="filter-inner-accordion" aria-expanded="true" id="filter-open-class">
+											<ul class="facet-active js-facets-checkbox-links item-list__checkbox js-facets-widget" data-drupal-facet-ajax="0" data-drupal-facet-alias="page_type" data-drupal-facet-filter-key="f" data-drupal-facet-id="page_type" data-once="facets-checkbox-transform js-facet-filter">
+												<li class="facet-item facets-reset">
+													<input class="facets-checkbox" id="page-type-reset-all" name="f[]" type="checkbox" value="page_type:reset_all"><label for="page-type-reset-all"><span class="facet-item__value">Show all</span> <span class="facet-item__count">(20)</span></label> <a data-drupal-facet-ajax="0" data-drupal-facet-filter-value="page_type:reset_all" data-drupal-facet-item-count="20" data-drupal-facet-item-id="page-type-reset-all" data-drupal-facet-item-value="reset_all" data-drupal-facet-widget-element-class="facets-checkbox" href="/search?keywords=test&amp;facets_query=" rel="nofollow" style="display: none;"><span class="facet-item__value">Show all</span> <span class="facet-item__count">(20)</span></a>
+												</li>
+												<li class="facet-item">
+													<input class="facets-checkbox" id="page-type-campaign" name="f[]" type="checkbox" value="page_type:campaign"><label for="page-type-campaign"><span class="facet-item__value">Families</span> <span class="facet-item__count">(8)</span></label> <a data-drupal-facet-ajax="0" data-drupal-facet-filter-value="page_type:campaign" data-drupal-facet-item-count="8" data-drupal-facet-item-id="page-type-campaign" data-drupal-facet-item-value="campaign" data-drupal-facet-widget-element-class="facets-checkbox" href="/search?keywords=test&amp;facets_query=&amp;f%5B0%5D=page_type%3Aadvice&amp;f%5B1%5D=page_type%3Acampaign" rel="nofollow" style="display: none;"><span class="facet-item__value">Families</span> <span class="facet-item__count">(8)</span></a>
+												</li>
+												<li class="facet-item">
+													<input class="facets-checkbox" id="page-type-advice" name="f[]" type="checkbox" value="page_type:advice"> <label class="is-active" for="page-type-advice"><span class="facet-item__value">Solo explorers</span> <span class="facet-item__count">(12)</span></label> <a class="is-active" data-drupal-facet-ajax="0" data-drupal-facet-filter-value="page_type:advice" data-drupal-facet-item-count="12" data-drupal-facet-item-id="page-type-advice" data-drupal-facet-item-value="advice" data-drupal-facet-widget-element-class="facets-checkbox" href="/search?keywords=test&amp;facets_query=" rel="nofollow" style="display: none;"><span class="facet-item__status js-facet-deactivate">(-)</span> <span class="facet-item__value">Solo explorers</span> <span class="facet-item__count">(12)</span></a>
+												</li>
+												<li class="facet-item">
+													<input class="facets-checkbox" id="page-type-advice" name="f[]" type="checkbox" value="page_type:advice"> <label class="is-active" for="page-type-advice"><span class="facet-item__value">Wheelchair users</span> <span class="facet-item__count">(12)</span></label> <a class="is-active" data-drupal-facet-ajax="0" data-drupal-facet-filter-value="page_type:advice" data-drupal-facet-item-count="12" data-drupal-facet-item-id="page-type-advice" data-drupal-facet-item-value="advice" data-drupal-facet-widget-element-class="facets-checkbox" href="/search?keywords=test&amp;facets_query=" rel="nofollow" style="display: none;"><span class="facet-item__status js-facet-deactivate">(-)</span> <span class="facet-item__value">Wheelchair users</span> <span class="facet-item__count">(12)</span></a>
+												</li>
+											</ul>
+										</div>
+									</div>
+									<div class="filter-block">
+										<button for="filter-open-family" id="filter-show" class="filter-show-button accordion-trigger active" aria-controls="Family filters" aria-expanded="true" aria-label="Expand family filters"><span>Age range</span></button>
+										<div class="filter-inner-accordion" aria-expanded="true" id="filter-open-family">
+											<ul class="facet-active js-facets-checkbox-links item-list__checkbox js-facets-widget" data-drupal-facet-ajax="0" data-drupal-facet-alias="page_type" data-drupal-facet-filter-key="f" data-drupal-facet-id="page_type" data-once="facets-checkbox-transform js-facet-filter">
+												<li class="facet-item facets-reset">
+													<input class="facets-checkbox" id="page-type-reset-all" name="f[]" type="checkbox" value="page_type:reset_all"><label for="page-type-reset-all"><span class="facet-item__value">Show all</span> <span class="facet-item__count">(20)</span></label> <a data-drupal-facet-ajax="0" data-drupal-facet-filter-value="page_type:reset_all" data-drupal-facet-item-count="20" data-drupal-facet-item-id="page-type-reset-all" data-drupal-facet-item-value="reset_all" data-drupal-facet-widget-element-class="facets-checkbox" href="/search?keywords=test&amp;facets_query=" rel="nofollow" style="display: none;"><span class="facet-item__value">Show all</span> <span class="facet-item__count">(20)</span></a>
+												</li>
+												<li class="facet-item">
+													<input class="facets-checkbox" id="page-type-campaign" name="f[]" type="checkbox" value="page_type:campaign"><label for="page-type-campaign"><span class="facet-item__value">0-5</span> <span class="facet-item__count">(8)</span></label> <a data-drupal-facet-ajax="0" data-drupal-facet-filter-value="page_type:campaign" data-drupal-facet-item-count="8" data-drupal-facet-item-id="page-type-campaign" data-drupal-facet-item-value="campaign" data-drupal-facet-widget-element-class="facets-checkbox" href="/search?keywords=test&amp;facets_query=&amp;f%5B0%5D=page_type%3Aadvice&amp;f%5B1%5D=page_type%3Acampaign" rel="nofollow" style="display: none;"><span class="facet-item__value">0-5</span> <span class="facet-item__count">(8)</span></a>
+												</li>
+												<li class="facet-item">
+													<input class="facets-checkbox" id="page-type-advice" name="f[]" type="checkbox" value="page_type:advice"> <label class="is-active" for="page-type-advice"><span class="facet-item__value">5-10</span> <span class="facet-item__count">(12)</span></label> <a class="is-active" data-drupal-facet-ajax="0" data-drupal-facet-filter-value="page_type:advice" data-drupal-facet-item-count="12" data-drupal-facet-item-id="page-type-advice" data-drupal-facet-item-value="advice" data-drupal-facet-widget-element-class="facets-checkbox" href="/search?keywords=test&amp;facets_query=" rel="nofollow" style="display: none;"><span class="facet-item__status js-facet-deactivate">(-)</span> <span class="facet-item__value">5-10</span> <span class="facet-item__count">(12)</span></a>
+												</li>
+												<li class="facet-item">
+													<input class="facets-checkbox" id="page-type-advice" name="f[]" type="checkbox" value="page_type:advice"> <label class="is-active" for="page-type-advice"><span class="facet-item__value">10-15</span> <span class="facet-item__count">(12)</span></label> <a class="is-active" data-drupal-facet-ajax="0" data-drupal-facet-filter-value="page_type:advice" data-drupal-facet-item-count="12" data-drupal-facet-item-id="page-type-advice" data-drupal-facet-item-value="advice" data-drupal-facet-widget-element-class="facets-checkbox" href="/search?keywords=test&amp;facets_query=" rel="nofollow" style="display: none;"><span class="facet-item__status js-facet-deactivate">(-)</span> <span class="facet-item__value">10-15</span> <span class="facet-item__count">(12)</span></a>
+												</li>
+											</ul>
+										</div>
+									</div>
+									<div class="filter-block">
+										<button for="filter-open-habitat" id="filter-show" class="filter-show-button accordion-trigger active" aria-controls="Habitat filters" aria-expanded="true" aria-label="Expand species habitat"><span>Type of event</span></button>
+										<div class="filter-inner-accordion" aria-expanded="true" id="filter-open-habitat">
+											<ul class="facet-active js-facets-checkbox-links item-list__checkbox js-facets-widget" data-drupal-facet-ajax="0" data-drupal-facet-alias="page_type" data-drupal-facet-filter-key="f" data-drupal-facet-id="page_type" data-once="facets-checkbox-transform js-facet-filter">
+												<li class="facet-item facets-reset">
+													<input class="facets-checkbox" id="page-type-reset-all" name="f[]" type="checkbox" value="page_type:reset_all"><label for="page-type-reset-all"><span class="facet-item__value">Show all</span> <span class="facet-item__count">(20)</span></label> <a data-drupal-facet-ajax="0" data-drupal-facet-filter-value="page_type:reset_all" data-drupal-facet-item-count="20" data-drupal-facet-item-id="page-type-reset-all" data-drupal-facet-item-value="reset_all" data-drupal-facet-widget-element-class="facets-checkbox" href="/search?keywords=test&amp;facets_query=" rel="nofollow" style="display: none;"><span class="facet-item__value">Show all</span> <span class="facet-item__count">(20)</span></a>
+												</li>
+												<li class="facet-item">
+													<input class="facets-checkbox" id="page-type-campaign" name="f[]" type="checkbox" value="page_type:campaign"><label for="page-type-campaign"><span class="facet-item__value">Workshop</span> <span class="facet-item__count">(8)</span></label> <a data-drupal-facet-ajax="0" data-drupal-facet-filter-value="page_type:campaign" data-drupal-facet-item-count="8" data-drupal-facet-item-id="page-type-campaign" data-drupal-facet-item-value="campaign" data-drupal-facet-widget-element-class="facets-checkbox" href="/search?keywords=test&amp;facets_query=&amp;f%5B0%5D=page_type%3Aadvice&amp;f%5B1%5D=page_type%3Acampaign" rel="nofollow" style="display: none;"><span class="facet-item__value">Workshop</span> <span class="facet-item__count">(8)</span></a>
+												</li>
+												<li class="facet-item">
+													<input class="facets-checkbox" id="page-type-advice" name="f[]" type="checkbox" value="page_type:advice"> <label class="is-active" for="page-type-advice"><span class="facet-item__value">Quiz trail</span> <span class="facet-item__count">(12)</span></label> <a class="is-active" data-drupal-facet-ajax="0" data-drupal-facet-filter-value="page_type:advice" data-drupal-facet-item-count="12" data-drupal-facet-item-id="page-type-advice" data-drupal-facet-item-value="advice" data-drupal-facet-widget-element-class="facets-checkbox" href="/search?keywords=test&amp;facets_query=" rel="nofollow" style="display: none;"><span class="facet-item__status js-facet-deactivate">(-)</span> <span class="facet-item__value">Quiz trail</span> <span class="facet-item__count">(12)</span></a>
+												</li>
+												<li class="facet-item">
+													<input class="facets-checkbox" id="page-type-advice" name="f[]" type="checkbox" value="page_type:advice"> <label class="is-active" for="page-type-advice"><span class="facet-item__value">Holiday club</span> <span class="facet-item__count">(12)</span></label> <a class="is-active" data-drupal-facet-ajax="0" data-drupal-facet-filter-value="page_type:advice" data-drupal-facet-item-count="12" data-drupal-facet-item-id="page-type-advice" data-drupal-facet-item-value="advice" data-drupal-facet-widget-element-class="facets-checkbox" href="/search?keywords=test&amp;facets_query=" rel="nofollow" style="display: none;"><span class="facet-item__status js-facet-deactivate">(-)</span> <span class="facet-item__value">Holiday club</span> <span class="facet-item__count">(12)</span></a>
+												</li>
+											</ul>
+										</div>
+									</div>
+									<div class="filter-block actions">
+										<input type="reset" value="Clear" class="filter-reset">
+									</div> #}
+								</div>
+							</div>
+						</div>
+					{% endblock filter_block %}
+
+					{% block listing %}
+
+						<div class="listing-tabs">
+
+						<div class="tab-list" role="tablist">
+							<button class="tab-item tab-button button" role="tab" aria-controls="tab-listing" aria-selected="true">Listing</button>
+							<button class="tab-item tab-button button" role="tab" aria-controls="map-listing" aria-selected="true">Map</button>
+						</div>
+
+						<div id="tab-listing" role="tabpanel" tab-title="Tab listing">
+
+						{% include '@hc/components/cards.twig' with {
+							'section_class': 'cards-outer',
+							'cards': [
+								{
+									'path': '/events-single',
+									'accessible': 'true',
+									'image': '/assets/images/holder-530x920.png',
+									'imgheight': '530',
+									'imgwidth': '920',
+									'title': 'Event title',
+									'startdate': 'yesterday',
+									'enddate': 'tomorrow',
+									'startTime': '9AM',
+									'endTime': '6PM',
+									'location': 'Sevenoaks Wildlife Reserve and Jeffery Harrison Visitor Centre, Sevenoaks, Kent',
+									'summary': 'Maecenas faucibus mollis interdum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Maecenas sed diam eget risus varius.',
+									'price': '£20/adult, children FREE',
+									'age_friendly': 'true',
+								},
+								{
+									'path': '/events-single',
+									'online_only': 'true',
+									'accessible': 'partial',
+									'image': '/assets/images/holder-530x920.png',
+									'imgheight': '530',
+									'imgwidth': '920',
+									'title': 'Event title',
+									'startdate': 'yesterday',
+									'enddate': 'tomorrow',
+									'startTime': '9AM',
+									'endTime': '6PM',
+									'location': 'Sevenoaks Wildlife Reserve and Jeffery Harrison Visitor Centre, Sevenoaks, Kent',
+									'summary': 'Maecenas faucibus mollis interdum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Maecenas sed diam eget risus varius.',
+									'price': '£20/adult, children FREE',
+									'age_friendly': 'true',
+								},
+								{
+									'path': '/events-single',
+									'online_only': 'true',
+									'accessible': 'false',
+									'image': '/assets/images/holder-530x920.png',
+									'imgheight': '530',
+									'imgwidth': '920',
+									'title': 'Event title',
+									'startdate': 'yesterday',
+									'enddate': 'tomorrow',
+									'startTime': '9AM',
+									'endTime': '6PM',
+									'location': 'Sevenoaks Wildlife Reserve and Jeffery Harrison Visitor Centre, Sevenoaks, Kent',
+									'summary': 'Maecenas faucibus mollis interdum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Maecenas sed diam eget risus varius.',
+									'price': '£20/adult, children FREE',
+									'age_friendly': 'true',
+								},
+								{
+									'path': '/events-single',
+									'accessible': 'true',
+									'image': '/assets/images/holder-530x920.png',
+									'imgheight': '530',
+									'imgwidth': '920',
+									'title': 'Event title',
+									'startdate': 'yesterday',
+									'enddate': 'tomorrow',
+									'startTime': '9AM',
+									'endTime': '6PM',
+									'location': 'Sevenoaks Wildlife Reserve and Jeffery Harrison Visitor Centre, Sevenoaks, Kent',
+									'summary': 'Maecenas faucibus mollis interdum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Maecenas sed diam eget risus varius.',
+									'price': '£20/adult, children FREE',
+									'age_friendly': 'true',
+								},
+								{
+									'path': '/events-single',
+									'accessible': 'partial',
+									'image': '/assets/images/holder-530x920.png',
+									'imgheight': '530',
+									'imgwidth': '920',
+									'title': 'Event title',
+									'startdate': 'yesterday',
+									'enddate': 'tomorrow',
+									'startTime': '9AM',
+									'endTime': '6PM',
+									'location': 'Sevenoaks Wildlife Reserve and Jeffery Harrison Visitor Centre, Sevenoaks, Kent',
+									'summary': 'Maecenas faucibus mollis interdum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Maecenas sed diam eget risus varius.',
+									'price': '£20/adult, children FREE',
+									'age_friendly': 'true',
+								},
+								{
+									'path': '/events-single',
+									'accessible': 'false',
+									'image': '/assets/images/holder-530x920.png',
+									'imgheight': '530',
+									'imgwidth': '920',
+									'title': 'Event title',
+									'startdate': 'yesterday',
+									'enddate': 'tomorrow',
+									'startTime': '9AM',
+									'endTime': '6PM',
+									'location': 'Sevenoaks Wildlife Reserve and Jeffery Harrison Visitor Centre, Sevenoaks, Kent',
+									'summary': 'Maecenas faucibus mollis interdum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Maecenas sed diam eget risus varius.',
+									'price': '£20/adult, children FREE',
+									'age_friendly': 'true',
+								},
+								{
+									'path': '/events-single',
+									'accessible': 'true',
+									'image': '/assets/images/holder-530x920.png',
+									'imgheight': '530',
+									'imgwidth': '920',
+									'title': 'Event title',
+									'startdate': 'yesterday',
+									'enddate': 'tomorrow',
+									'startTime': '9AM',
+									'endTime': '6PM',
+									'location': 'Sevenoaks Wildlife Reserve and Jeffery Harrison Visitor Centre, Sevenoaks, Kent',
+									'summary': 'Maecenas faucibus mollis interdum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Maecenas sed diam eget risus varius.',
+									'price': '£20/adult, children FREE',
+									'age_friendly': 'true',
+								},
+								{
+									'path': '/events-single',
+									'accessible': 'partial',
+									'image': '/assets/images/holder-530x920.png',
+									'imgheight': '530',
+									'imgwidth': '920',
+									'title': 'Event title',
+									'startdate': 'yesterday',
+									'enddate': 'tomorrow',
+									'startTime': '9AM',
+									'endTime': '6PM',
+									'location': 'Sevenoaks Wildlife Reserve and Jeffery Harrison Visitor Centre, Sevenoaks, Kent',
+									'summary': 'Maecenas faucibus mollis interdum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Maecenas sed diam eget risus varius.',
+									'price': '£20/adult, children FREE',
+									'age_friendly': 'true',
+								}
+							]}
+						%}
+						</div>
+
+						<div id="map-listing" role="tabpanel" tab-title="Map listing">
+							<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d640072.9004726586!2d0.08330407167711358!3d51.19540425012738!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47d8a815e2b18297%3A0x9251e76476201559!2sKent!5e0!3m2!1sen!2suk!4v1698226844001!5m2!1sen!2suk" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+						</div>
+
+					</div>
+
+					{% endblock listing %}
+
+				</div>
+
+				{% block pagination %}
+					<footer class="main-footer section pagination-outer">
+						<div class="container">
+                    		{% if cms == 'WordPress' %}
+								{% include '@hc/partials/wordpress/pagination-wp.twig' %}
+							{% else %}
+								{% include '@hc/partials/drupal/pagination-drupal.twig' %}
+							{% endif %}
+						</div>
+					</footer>
+				{% endblock pagination %}
+
+			</div>
+		{% endblock main_content %}
+
+    {% endblock main %}
+
+	{% block scripts_page %}
+		<script defer src="https://unpkg.com/a11y-tabs@0.1.0/dist/a11y-tabs.min.js"></script>
+		<script>
+		window.addEventListener('DOMContentLoaded', () => {
+		  new A11yTabs('.listing-tabs .tab-list', '.listing-tabs [role="tabpanel"]', 0);
+		});
+		</script>
+	{% endblock %}

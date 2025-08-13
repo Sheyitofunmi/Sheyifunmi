@@ -1,0 +1,19 @@
+{
+	"name": "acf/accordion",
+	"title": "Accordion",
+	"description": "An accordion block.",
+	"style": [ "fb-gutenberg-accordion" ],
+	"category": "formatting",
+	"icon": "menu",
+	"keywords": ["accordion"],
+	"acf": {
+		"mode": "edit",
+		"renderCallback": "fb_gutenberg_render_callback",
+		"blockVersion": 2
+	},
+	"supports": {
+		"align": false,
+		"anchor": true,
+		"mode": false
+	}
+}

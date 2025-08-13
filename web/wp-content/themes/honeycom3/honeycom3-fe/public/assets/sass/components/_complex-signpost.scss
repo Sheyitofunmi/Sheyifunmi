@@ -1,0 +1,123 @@
+/* +++++++++++++++++++++++++++++
++++ LAYOUT: COMPLEX SIGNPOST +++
++++++++++++++++++++++++++++++ */
+
+.complex-signpost {
+	background-image: none;
+	padding: $gap 0 $gap * 4;
+
+	@include break(large) {
+		padding: $gap * 2 0 $gap * 4;
+	}
+
+	.section-header {
+		color: $tertiary;
+		margin-bottom: $gap * 2;
+
+		+ .container {
+			display: grid;
+			grid-template-columns: 1fr;
+			grid-template-rows: auto auto;
+			gap: 2rem 2rem;
+
+			@include break(medium) {
+				grid-template-columns: 300px 1fr;
+			}
+			@include break(large) {
+				grid-template-columns: 372px 1fr;
+			}
+
+			.card-wrap-inner {
+				padding: $gap $gap $gap * 1.5;
+
+				@include break(large) {
+					padding: $gap * 1.5;
+				}
+				.card-header-title {
+					color: $black;
+					font-size: 1.225rem;
+					@include break(large) {
+						font-size: 1.6rem;
+					}
+				}
+				.card-summary {
+					font-size: 1rem;
+					@include break(large) {
+						font-size: 1.125rem;
+					}
+				}
+			}
+
+			.cards {
+				&-featured, &-alt {
+					@extend %flex;
+					width: 100%;
+
+					> * {
+						@extend %flex;
+						margin: 0;
+						width: 100%;
+					}
+				}
+				&-featured {
+					> * {
+						.card {
+							grid-template-rows: 80% auto;
+
+							&-wrap-inner {
+								padding: $gap * 1.5;
+							}
+
+							&-header-title {
+								font-size: 1.6rem;
+							}
+						}
+					}
+				}
+				&-alt {
+					@extend %flex;
+					gap: $gap * 2 0;
+				}
+				&-secondary, &-tertiary {
+					@extend %flex;
+					@include flexbox(100%);
+					gap: $gap * 1.5 3%;
+					margin: 0;
+
+					@include break(medium) {
+						gap: $gap * 1.5 4%;
+					}
+
+					> * {
+						@extend %flex;
+						@include flexbox(47.5%);
+						margin: 0;
+
+						@include break(tablet) {
+							@include flexbox(31.33%);
+						}
+
+						@include break(medium) {
+							@include flexbox(30.33%);
+						}
+
+						&:first-child:nth-last-child(2), &:first-child:nth-last-child(2) ~ article {
+							@include break(tablet) {
+								@include flexbox(47.5%);
+							}
+						}
+						&:first-child:nth-last-child(3), &:first-child:nth-last-child(3) ~ article {
+							&:last-child {
+								display: none;
+
+								@include break(tablet) {
+									display: flex;
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}

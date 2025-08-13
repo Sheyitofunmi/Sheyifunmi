@@ -1,0 +1,106 @@
+{% block profile %}
+	<div class="profile">
+		{% for profile in profiles %}
+			{% set random_number = random() %}
+
+			<div class="profile-element">
+				{% block profile_item %}
+					<div class="profile-item{% if profile.summary %} is-trigger{% endif %}" data-overlay="profile_{{ random_number }}">
+						{% block profile_image %}
+							<div class="profile-image">
+								{% set image = profile.image %}
+								{% set imgheight = profile.imgheight %}
+								{% set imgwidth = profile.imgwidth %}
+								{% if profile.image or profile.image_data %}
+									{% include '@hc/partials/image.twig' with { 'image_data': profile.image_data, 'imgheight': '530', 'imgwidth': '530' } %}
+								{% else %}
+									<img src="{{ assets_dir }}/images/avatar-holder.png" alt="avatar holder"/>
+								{% endif %}
+							</div>
+						{% endblock profile_image %}
+
+						{% block profile_wrap %}
+							{% if profile.name %}
+								<div class="profile-wrap">
+									{% if profile.name %}
+										<h3 class="profile-name">{{ profile.name }}</h3>
+									{% endif %}
+									{% if profile.pronoun %}
+										<div class="profile-pronoun">{{ profile.pronoun }}</div>
+									{% endif %}
+									{% if profile.title %}
+										<div class="profile-title">{{ profile.title|raw }}</div>
+									{% endif %}
+								</div>
+							{% endif %}
+						{% endblock profile_wrap %}
+					</div>
+				{% endblock profile_item %}
+
+				{% block profile_summary %}
+					<div class="profile-summary" id="profile_{{ random_number }}">
+						<span class="profile-summary-close">
+							<svg aria-hidden="true" class="icon"><use xlink:href="{{ assets_dir }}/svg/icons.svg#close"/>close</svg>
+						</span>
+
+						<div class="profile-summary-inner">
+							<div class="profile-summary-header">
+								{% block profile_summary_image %}
+									<div class="profile-image">
+										{% set image = profile.image %}
+										{% set imgheight = profile.imgheight %}
+										{% set imgwidth = profile.imgwidth %}
+										{% if profile.image or profile.image_data %}
+											{% include '@hc/partials/image.twig' with { 'image_data': profile.image_data, 'imgheight': '530', 'imgwidth': '530' } %}
+										{% else %}
+											<img src="{{ assets_dir }}/images/avatar-holder.png" alt="avatar holder"/>
+										{% endif %}
+									</div>
+								{% endblock profile_summary_image %}
+
+								<div class="profile-summary-header-content">
+
+									{% if profile.name %}
+										<h3 class="profile-name">{{ profile.name }}</h3>
+									{% endif %}
+									{% if profile.pronoun %}
+										<p class="profile-pronoun">{{ profile.pronoun }}</p>
+									{% endif %}
+									{% if profile.title %}
+										<p class="profile-title">{{ profile.title|raw }}</p>
+									{% endif %}
+
+								</div>
+
+								{% block profile_meta %}
+									{% if profile.meta %}
+										{% set meta = profile.meta %}
+
+										<ul class="profile-meta">
+											{% for meta_item in meta %}
+												{% if meta_item.text %}
+													<li class="profile-meta-item">
+														<a href="{{ meta_item.url }}" class="{{ meta_item.selector }} profile-meta-item-link"{% if meta_item.target %} target="{{ meta_item.target }}" {% endif %}>
+															<svg aria-hidden="true" class="icon"><use xlink:href="{{ assets_dir }}/svg/icons.svg#{{ meta_item.selector }}"/>{{ meta_item.selector|capitalize }}</svg>
+															<span class="profile-meta-item-text visually-hidden">{{ meta_item.text }}</span>
+														</a>
+													</li>
+												{% endif %}
+											{% endfor %}
+										</ul>
+									{% endif %}
+								{% endblock profile_meta %}
+							</div>
+
+							<div class="profile-summary-inner-content content">
+								{% if profile.summary %}
+									<div class="profile-summary-copy">{{ profile.summary|raw }}</div>
+								{% endif %}
+							</div>
+						</div>
+					</div>
+				{% endblock profile_summary %}
+			</div>
+		{% endfor %}
+	</div>
+{% endblock profile %}

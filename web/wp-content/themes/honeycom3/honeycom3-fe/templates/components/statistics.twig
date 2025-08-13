@@ -1,0 +1,34 @@
+{% extends '@hc/scaffolding/section.twig' %}
+
+{% block section_content %}
+	<div class="container">
+		{% include '@hc/partials/stat-item.twig' %}
+	</div>
+{% endblock section_content %}
+
+{# Include like so:
+{% include '@hc/components/statistics.twig' with { 
+'title': 'Statistics component', 
+'summary': 'Use this section to present up to three key statistics. At least two promos must be populated and the layout will adjust accordingly.',
+'link': 'View all statistics',
+'link_path': '#',
+'section_class': 'statistic-outer',
+'statistics': [
+	{
+		'value': '856',
+		'title': 'Excepteur nostrud magna dolor',
+		'summary': 'Voluptate tempor consequat velit dolore velit incididunt laboris est incididunt irure labore tempor dolore. Mollit eu exercitation sit anim occaecat ad sunt eiusmod est.'
+	},
+	{
+		'value': '28%',
+		'title': 'Culpa dolore sint ea elit',
+		'summary': 'Consectetur ea nulla consectetur nostrud qui aliquip duis voluptate in Lorem ex deserunt excepteur aute veniam consequat. In exercitation ut dolore laborum culpa sint duis est deserunt elit officia incididunt aute sint veniam ad.'
+	},
+	{
+		'value': '9572',
+		'title': 'Est consectetur qui',
+		'summary': 'Nostrud mollit nisi magna ullamco nostrud quis do. Enim pariatur laborum aute quis nulla et voluptate magna aute pariatur esse officia exercitation laboris.'
+	}
+]} 
+%}
+#}

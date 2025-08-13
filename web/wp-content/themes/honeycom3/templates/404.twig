@@ -1,0 +1,25 @@
+{% embed '@hc/page-builder.twig' %}
+	{% block hero_component %}
+
+		{% include '@hc/components/hero.twig' with {
+			'section_class': 'hero-outer full solid',
+			'hero_title': options.page_not_found.title|e('esc_html'),
+		} %}
+	{% endblock %}
+
+	{% block breadcrumb %}
+
+	{% endblock breadcrumb %}
+
+	{% block main_content %}
+		<div class="main-section" id="content">
+			{% include '@hc/components/wysiwyg.twig' with {
+				'section_class': 'wysiwyg-outer',
+				'subnav': false,
+				'wysiwyg_content': options.page_not_found.content|e('wp_kses_post'),
+				}
+			%}
+		</div>
+
+	{% endblock main_content %}
+{% endembed %}

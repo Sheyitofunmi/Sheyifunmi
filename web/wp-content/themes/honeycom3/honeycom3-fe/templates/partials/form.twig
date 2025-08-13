@@ -1,0 +1,131 @@
+<form action="" method="post">
+    <fieldset>
+        <legend>Simple sample form</legend>
+
+        <label for="first-name">First Name</label>
+        <input type="text" id="first-name" name="first-name" aria-required="true" placeholder="John">
+
+        <label for="last-name">Last Name</label>
+        <input type="text" id="last-name" name="last-name" placeholder="Smith" disabled>
+
+        <label for="email">Email Address</label>
+        <input type="text" id="email" name="email" aria-required="true" placeholder="john@smith.com">
+
+        <label for="message">Message</label>
+        <textarea id="message" name="message">The cat was playing in the garden.</textarea>
+    </fieldset>
+
+    <fieldset>
+        <legend>Select, checkboxes, lists</legend>
+
+        <label for="cars">Select field</label>
+        <select id="cars" name="cars">
+            <option value="volvo" selected>Volvo</option>
+            <option value="saab">Saab</option>
+            <option value="fiat">Fiat</option>
+            <option value="audi">Audi</option>
+        </select>
+
+        <label for="dummy4">Select with groups</label>
+        <select id="dummy4" name="dummy4">
+            <option>Favorite pet</option>
+            <optgroup label="mammals">
+                <option>dog</option>
+                <option>cat</option>
+                <option>rabbit</option>
+                <option>horse</option>
+            </optgroup>
+            <optgroup label="reptiles">
+                <option>iguana</option>
+                <option>snake</option>
+            </optgroup>
+        </select>
+
+        <label>Radio buttons</label>
+        <ul>
+            <li>
+                <input id="radio-one" type="radio" name="example">
+                <label for="radio-one">Radio one</label>
+            </li>
+            <li>
+                <input id="radio-two" type="radio" name="example">
+                <label for="radio-two">Radio two</label>
+            </li>
+            <li>
+                <input id="radio-three" type="radio" name="example">
+                <label for="radio-three">Radio three</label>
+            </li>
+        </ul>
+
+        <label>Checkboxes</label>
+        <ul>
+            <li>
+                <input id="check-one" type="checkbox">
+                <label for="check-one">Check one</label>
+            </li>
+            <li>
+                <input id="check-two" type="checkbox">
+                <label for="check-two">Check two</label>
+            </li>
+            <li>
+                <input id="check-three" type="checkbox">
+                <label for="check-three">Check three</label>
+            </li>
+        </ul>
+
+        <label>Datalist</label>
+        <input list="browsers">
+        <datalist id="browsers">
+            <option value="Internet Explorer">
+            <option value="Firefox">
+            <option value="Chrome">
+            <option value="Opera">
+            <option value="Safari">
+        </datalist>
+    </fieldset>
+
+    <fieldset>
+        <legend>Input types</legend>
+
+        <label>Color</label>
+        <input type="color" name="favcolor">
+
+        <label>Date</label>
+        <input type="date" name="bday">
+
+        <label>Date and time</label>
+        <input type="datetime" name="bdaytime">
+
+        <label>Date and time local</label>
+        <input type="datetime-local" name="bdaytime">
+
+        <label>Month</label>
+        <input type="month" name="bdaymonth">
+
+        <label>Week</label>
+        <input type="week" name="week_year">
+
+        <label>Time</label>
+        <input type="time" name="usr_time">
+
+        <label>File</label>
+        <input type="file" name="img">
+
+        <label>Number</label>
+        <input type="number" name="quantity" min="1" max="5">
+
+        <label>Range</label>
+        <input type="range" name="points" min="0" max="10">
+
+        <label>Search</label>
+        <input type="search" name="googlesearch">
+
+        <label>Telephone</label>
+        <input type="tel" name="usrtel">
+
+        <label>URL</label>
+        <input type="url" name="homepage">
+
+        <input type="reset">
+    </fieldset>
+</form>

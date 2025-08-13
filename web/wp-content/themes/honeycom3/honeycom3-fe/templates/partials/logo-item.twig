@@ -1,0 +1,32 @@
+{% for logo in logos %}
+
+	{% if logo.url %}
+
+	<a href="{{ logo.url }}"{% if path_target %} target="{{ path_target}}"{% endif %} class="logos-item">
+		<div class="logos-item-inner">
+			{% set image = logo.image %}
+			{% set image_data = logo.image_data %}
+			{% set title = logo.alt %}
+			{% if image or image_data %}
+				{% include '@hc/partials/image.twig' with { 'imgheight': '530', 'imgwidth': '530' } %}
+			{% endif %}
+		</div>
+		{% if logo.title %}<p class="logos-title">{{ logo.title }}</p>{% endif %}
+	</a>
+
+	{% else %}
+
+	<div class="logos-item">
+		<div class="logos-item-inner">
+			{% set image = logo.image %}
+			{% set image_data = logo.image_data %}
+			{% set title = logo.alt %}
+			{% if image or image_data %}
+				{% include '@hc/partials/image.twig' with { 'imgheight': '530', 'imgwidth': '530' } %}
+			{% endif %}
+		</div>
+		{% if logo.title %}<p class="logos-title">{{ logo.title }}</p>{% endif %}
+	</div>
+
+	{% endif %}
+{% endfor %}

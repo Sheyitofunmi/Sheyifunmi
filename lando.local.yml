@@ -1,0 +1,3 @@
+excludes:
+  - web/wp-admin
+  - web/wp-includes

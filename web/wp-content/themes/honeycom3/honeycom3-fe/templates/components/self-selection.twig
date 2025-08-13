@@ -1,0 +1,20 @@
+{% extends '@hc/scaffolding/section.twig' %}
+
+{% block section_content %}
+	<div class="container">
+		<div class="self-selection">
+			<div class="self-selection-inner">
+				<label for="audience_selector">{{ select_label }}</label>
+				<div class="self-selection-form">
+					<select class="audience-selector" name="audience selector" id="audience_selector">
+						<option value="" disabled selected hidden>{{ select_placeholder }}</option>
+						{% for select in selects %}
+							<option value="{{ select.value }}"{% if selected %} selected{% endif %}>{{ select.title }}</option>
+						{% endfor %}
+					</select>
+					<input type="submit" value="{{ submit_button_text ? submit_button_text : 'Submit' }}" class="audience_selector_button">
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock section_content %}

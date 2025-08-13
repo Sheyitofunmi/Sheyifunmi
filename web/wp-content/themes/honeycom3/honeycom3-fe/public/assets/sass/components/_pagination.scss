@@ -1,0 +1,188 @@
+/* +++++++++++++++++++++++
++++ LAYOUT: PAGINATION +++
++++++++++++++++++++++++ */
+
+// Pagination links for the listing and features pages
+
+.pagination-outer {
+	padding: 0;
+
+	@include break(tablet) {
+		padding: 0 0 $gap * 2;
+	}
+
+	@include break(medium) {
+		padding: 0 0 $gap * 3;
+	}
+}
+
+%pagination {
+    @extend %flex;
+    @extend %font-meta;
+    text-align: center;
+    justify-content: space-between;
+
+    a {
+        @extend %transition;
+
+        &:hover {
+            background: $grey90;
+        }
+    }
+
+    &-block {
+        margin: 0;
+        width: 48%;
+    }
+
+    &-number {
+      display: none;
+    }
+
+    &-element {
+        border-radius: $corner;
+        padding: $gap / 4 $gap / 2;
+        overflow: hidden;
+
+		@include break(tablet) {
+			display: block;
+		}
+    }
+
+    &-arrow {
+        @extend .button;
+        display: block;
+    }
+
+    &-current {
+        box-shadow: 0 0 0 $line $secondary inset;
+        color: $secondary;
+    }
+
+    @include break(tablet) {
+        justify-content: center;
+
+        &-number {
+            display: block;
+        }
+
+        &-block {
+            margin: 0 $gap / 4;
+            width: auto;
+        }
+
+        &-element {
+            display: block;
+            padding: $gap / 2 $gap;
+        }
+    }
+}
+
+@if $wordpress {
+    .pagination {
+        @extend %pagination;
+
+		&-outer {
+			padding: 0 0 $gap * 2;
+
+			@include break(medium) {
+				padding: 0 0 $gap * 3;
+			}
+		}
+
+        &_block {
+            @extend %pagination-block;
+
+            &.next {
+                float: right;
+            }
+
+            &.numeral {
+                @extend %pagination-number;
+            }
+
+            &.view_all {
+                display: none;
+            }
+        }
+
+        &_element {
+            @extend %pagination-element;
+
+            &.prev {
+                @extend %pagination-arrow;
+                font-size: 0.8em;
+
+                @include break(medium){
+                  font-size: 1em;
+                }
+            }
+
+            &.next {
+                @extend %pagination-arrow;
+                font-size: 0.8em;
+
+                @include break(medium){
+                  font-size: 1em;
+                }
+            }
+
+            &.current {
+                @extend %pagination-current;
+            }
+        }
+    }
+}
+
+@if $drupal {
+    .pager {
+	    padding: $gap 0;
+
+	    &__items {
+	        @extend %pagination;
+	    }
+
+        &-first { float: right; }
+
+        &__item {
+	        @extend %pagination-block;
+			display: none;
+
+			@include break(tablet) {
+				display: inline-block;
+			}
+
+	        a {
+	            @extend %pagination-element;
+				padding: $gap / 2 $gap;
+				width: 100%;
+	        }
+
+	        &.is-active {
+	            @extend %pagination-element;
+	            @extend %pagination-current;
+
+	            a {
+		            @include break(small) {
+			            padding: 0;
+		            }
+	            }
+	        }
+
+	        &--first a,
+	        &--previous a,
+	        &--next a,
+	        &--last a {
+	            @extend %pagination-arrow;
+	            @extend %pagination-block;
+	        }
+			&--previous, &--next {
+				display: inline-block;
+			}
+        }
+
+        &-ellipsis {
+            @extend %pagination-element;
+        }
+    }
+}

@@ -1,0 +1,82 @@
+/* ++++++++++++++++++++++
++++ LAYOUT: DOWNLOADS +++
+++++++++++++++++ */
+
+.download {
+	@extend %flex;
+	gap: $gap * 1.5 3%;
+	padding: $gap * 1.5 0;
+
+	&-outer {
+		&.inline {
+			.download {
+				@include break(medium) {
+					margin: 0 0 0 auto;
+					width: 66.66%;
+				}
+				&-block {
+					@include flexbox(100%);
+
+					@include break(small) {
+						@include flexbox(48.5%);
+					}
+				}
+			}
+			&.secondary {
+				.section-header {
+					&-inner {
+						background-color: $secondary;
+						padding: $gap * 1.5 $gap * 2 0;
+					}
+				}
+				.download {
+					background-color: $secondary;
+					padding: 0 $gap * 2 $gap * 2;
+				}
+			}
+		}
+
+		&.secondary {
+			.download {
+				&-block {
+					background-color: $white;
+					color: $black;
+					padding: $gap $gap $gap $gap * 1.5;
+
+					.icon {
+						left: $gap / 2;
+					}
+				}
+			}
+		}
+	}
+
+	&-block {
+		@include flexbox(48.5%);
+		margin: 0;
+		position: relative;
+
+		@include break(medium) {
+			@include flexbox(31.33%);
+		}
+
+		.icon {
+			@include centerer(false, true);
+			left: 0;
+		}
+	}
+	&-link {
+		@extend %transition;
+		display: inline-block;
+		padding-left: $gap * 2;
+
+		&:hover {
+			color: $primary;
+			text-decoration: underline;
+		}
+		span {
+			font-size: 0.9em;
+			text-transform: uppercase;
+		}
+	}
+}

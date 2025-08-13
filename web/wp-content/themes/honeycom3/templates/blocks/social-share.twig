@@ -1,0 +1,44 @@
+{% include '@hc/components/share.twig' with {
+	'section_id': fields.anchor_id|e('esc_html'),
+	'section_class': 'share-outer ' ~ fields.background_colour|get_background_class_name ~ ' ' ~ fields.alignment_classes,
+	'title': fields.title|e('esc_html'),
+	'summary': fields.summary|e('wp_kses_post'),
+	'shares': [
+		{
+			'enabled': fields.facebook,
+			'path': 'https://www.facebook.com/sharer/sharer.php?u=' ~ post.link,
+			'selector': 'facebook',
+			'title': 'Facebook',
+		},
+		{
+			'enabled': fields.twitter,
+			'path': 'https://twitter.com/intent/tweet?text=' ~ (post.title|e('esc_html')) ~ '&url=' ~ (post.link|url_encode),
+			'selector': 'twitter',
+			'title': 'Twitter',
+		},
+		{
+			'enabled': fields.whatsapp,
+			'path': 'whatsapp://send?text=' ~ (post.link|url_encode),
+			'selector': 'whatsapp',
+			'title': 'Whatsapp',
+		},
+		{
+			'enabled': fields.linkedin,
+			'path': 'https://www.linkedin.com/sharing/share-offsite/?url=' ~ (post.link|url_encode),
+			'selector': 'linkedin',
+			'title': 'LinkedIn',
+		},
+		{
+			'enabled': fields.email,
+			'path': 'mailto:?subject=' ~ (post.title|e('esc_html')) ~ '&body=' ~ (post.link|url_encode),
+			'selector': 'email',
+			'title': 'Email',
+		},
+		{
+			'enabled': fields.link,
+			'path': post.link|e('esc_url'),
+			'selector': 'link',
+			'title': 'Copy',
+		},
+	]}
+%}

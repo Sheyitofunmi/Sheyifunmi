@@ -1,0 +1,145 @@
+{# Website header #}
+{% set meganav = false %}
+
+{% block header %}
+<header class="header clearfix">
+
+    <div class="header-inner container">
+
+    	{% block logo %}
+			{% if body_class == 'home' %}
+	        <a href="/" id="logo" class="header-logo">
+				 <picture>
+					<source type="image/svg+xml" srcset="{{ assets_dir }}/images/logo.svg" />
+					<img srcset="{{ assets_dir }}/images/logo.png 1x, {{ assets_dir }}/images/logo@2x.png 2x" src="{{ assets_dir }}/images/logo.png" width="200" height="32" alt="" class="header-logo-image" />
+				  </picture>
+				  <h1 class="visually-hidden">{{ meta_sitename }}</h1>
+			  </a>
+			  {% else %}
+				<a href="/" id="logo" class="header-logo">
+					 <picture>
+						<source type="image/svg+xml" srcset="{{ assets_dir }}/images/logo.svg" />
+						<img srcset="{{ assets_dir }}/images/logo.png 1x, {{ assets_dir }}/images/logo@2x.png 2x" src="{{ assets_dir }}/images/logo.png" width="200" height="32" alt="" class="header-logo-image" />
+					  </picture>
+					  <span class="visually-hidden">{{ meta_sitename }}</span>
+				  </a>
+			  {% endif %}
+        {% endblock logo %}
+
+        {# Main navigation #}
+
+        {% block nav %}
+			{% apply spaceless %}
+			<nav class="header-nav">
+				{# Primary navigation #}
+				<ul class="header-nav-list clearfix">
+					{% for nav in navigation %}
+						<li class="nav-item parent">
+							<a href="{{ nav.url }}" class="nav-item-link{% if nav.active == true %} current{% endif %}"{% if nav.target %} target="{{ nav.target}}"{% endif %}>{{ nav.text }}</a>
+
+							{% if meganav == true and nav.submenu %}
+								<ul class="dropdown" role="dropdown navigation">
+									<li class="dropdown-item">
+
+									{% if nav.submenu %}
+										<ul class="dropdown with-great-grandchildren" role="dropdown navigation">
+											{# Temporary array to store items without grand children for use later #}
+											{% set items_without_grandchildren = [] %}
+											{% for child in nav.submenu %}
+												{% if child.submenu %}
+													<li class="dropdown-item">
+														<a href="{{ child.url }}" class="nav-item-link"{% if child.target %} target="{{ child.target}}"{% endif %}>{{ child.text }}</a>
+														<ul class="dropdown-sub with-great-grandchildren" role="dropdown navigation">
+															{% for grandchild in child.submenu %}
+																<li class="dropdown-sub-item">
+																	<a href="{{ grandchild.url }}" class="nav-item-link"{% if grandchild.target %} target="{{ grandchild.target}}"{% endif %}>{{ grandchild.text }}</a>
+																</li>
+															{% endfor %}
+														</ul>
+												{% else %}
+													{% set items_without_grandchildren = items_without_grandchildren|merge([{
+														'url': child.url,
+														'text': child.text,
+														}])
+													%}
+												{% endif %}
+												</li>
+											{% endfor %}
+										</ul>
+									{% endif %}
+
+									{% if (items_without_grandchildren) %}
+										<ul class="dropdown without-great-grandchildren" role="dropdown navigation">
+											{% for item in items_without_grandchildren %}
+												<li class="dropdown-item">
+													<a href="{{ item.url }}" class="nav-item-link"{% if item.target %} target="{{ item.target}}"{% endif %}>{{ item.text }}</a>
+												</li>
+											{% endfor %}
+											{# Reset the temporary array #}
+											{% set items_without_grandchildren = [] %}
+										</ul>
+
+									{% endif %}
+									</li>
+								</ul>
+
+								{% elseif nav.submenu %}
+									<ul class="dropdown" role="dropdown navigation">
+										{% for item in nav.submenu %}
+											<li class="dropdown-item">
+												<a href="{{ item.url }}" class="nav-item-link"{% if item.target %} target="{{ item.target}}"{% endif %}>{{ item.text }}</a>
+											</li>
+										{% endfor %}
+									</ul>
+								{% endif %}
+						</li>
+					{% endfor %}
+				</ul>
+			</nav>
+			{% endapply %}
+		{% endblock nav %}
+
+		{% block links %}
+		    <div class="header-links clearfix">
+	            {% for button in buttons %}
+                  <a href="{{ button.url }}" class="button">{{ button.text }}</a>
+	            {% endfor %}
+		    </div>
+	    {% endblock links %}
+
+		{# Hamburger button #}
+		<button for="rnav-open" id="rnav-button" class="menu-button" aria-controls="menu" aria-expanded="false">Menu <svg aria-hidden="true" class="icon"><use xlink:href="{{ assets_dir }}/svg/icons.svg#menu"/></svg></button>
+	</div>
+
+	{# Sub navigation #}
+	<div class="header-subnav-outer">
+
+		<div class="header-subnav-inner container">
+			{% block secnav %}
+			<nav class="header-subnav">
+
+				{# Secondary navigation #}
+
+				{% block secnav_list %}
+					<ul class="header-subnav-list clearfix">
+						{% for secnav in secnav %}
+							<li class="subnav-item">
+								<a href="{{ secnav.url }}" class="nav-item-link"{% if secnav.target %} target="{{ secnav.target}}"{% endif %}>{{ secnav.text }}</a>								
+							</li>
+						{% endfor %}
+					</ul>
+				{% endblock secnav_list %}
+			</nav>
+			{% endblock secnav %}
+
+			{% block search %}
+				{% include '@hc/partials/search.twig' with { 'searchtype_id': 'header', 'search_action': search_form.action, 'search_name': search_form.input_name } %}
+			{% endblock search %}
+
+			{% block multilingual %}{% endblock multilingual %}
+		</div>
+	</div>
+
+</header>
+{% endblock header %}
+{% include '@hc/partials/responsive-nav.twig' %}

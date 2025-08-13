@@ -1,0 +1,36 @@
+{% extends '@hc/scaffolding/section.twig' %}
+
+{% block section_content %}
+	<div class="container">
+		{% if feed %}
+			{% for item in feed %}
+				{% block feed_item %}
+					{% include '@hc/partials/feed-item.twig' with { 'imgheight': '530', 'imgwidth': '920' } %}
+			    {% endblock feed_item %}
+			{% endfor %}
+		{% elseif no_results_message %}
+			<p class="no-results">{{ no_results_message}}</p>
+		{% endif %}
+	</div>
+{% endblock section_content %}
+
+{# Include like so:
+{% set feed = [
+    {
+        'path': '/page-builder',
+        'image': 'image-1.jpg',
+        'label': 'news',
+        'label_path': '/features',
+        'title': 'Nullam congue tempor faucibus',
+        'date': 'today',
+        'summary': 'Nullam id dolor id nibh ultricies vehicula ut id elit. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Nullam id dolor id nibh ultricies vehicula ut id elit.',
+        'tags': [
+            { 'path': '/features', 'title': 'Lorem' },
+            { 'path': '/features', 'title': 'Ipsum' },
+        ]
+    },
+]
+%}
+
+{% include 'partials/feed.twig' with {'title': 'Lorem ipsum', 'summary': 'Dolor sit amet', 'link': 'Read more', 'link_path': '#', 'feedtype': 'event or resource' } %}
+#}

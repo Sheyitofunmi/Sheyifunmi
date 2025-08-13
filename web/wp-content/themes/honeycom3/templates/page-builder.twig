@@ -1,0 +1,65 @@
+{% embed '@hc/page-builder.twig' %}
+
+	{% block hero_component %}
+		{% set use_a_donate_block = post.meta('hero_section').use_a_donate_block %}
+		{% if use_a_donate_block %}
+			{% include '@hc/components/donate.twig' with {
+				'section_class': 'donate-outer secondary',
+				'image_data': get_image_data( post.meta('hero_section').image, 'hero_image' ),
+				'title': post.title|e('esc_html'),
+				'summary': post.meta('hero_section').summary|e('wp_kses_post'),
+				'buttons': hero_buttons,
+			}%}
+		{% else %}
+			{% include '@hc/components/hero.twig' with {
+				'section_class': 'hero-outer full solid',
+				'image_data': get_image_data( post.meta('hero_section').image, 'hero_image' ),
+				'hero_title': post.title|e('esc_html'),
+				'hero_summary': post.meta('hero_section').summary|e('wp_kses_post'),
+				'link_copy': post.meta( 'hero_section' ).button.title|e('esc_html'),
+				'link_path': post.meta( 'hero_section' ).button.url|e('esc_url'),
+				'link_target': post.meta( 'hero_section' ).button.target|e('esc_html')
+			} %}
+		{% endif %}
+	{% endblock %}
+
+
+	{% block breadcrumb %}
+			{% include '@wp/partials/breadcrumbs.twig' with {
+					'subnav': subnav
+				}
+			%}
+	{% endblock breadcrumb %}
+
+	{% block main_content %}
+		<div class="main-section" id="content">
+			{% if postshares %}
+				{% include '@hc/partials/main-share.twig' with {
+					'share': true,
+					'shares': postshares
+					}
+				%}
+			{% endif %}
+
+
+			{% set hide_local_navigation = post.meta('hide_local_navigation') %}
+			{% if post.meta('content') or not hide_local_navigation %}
+				{% include '@hc/components/wysiwyg.twig' with {
+						'section_class': hide_local_navigation ? 'wysiwyg-outer' : 'wysiwyg-outer with-sidebar',
+						'subnav_title': post.meta('local_navigation_heading')|e('esc_html'),
+						'subnav': hide_local_navigation ? false : subnav,
+						'post_summary': post.meta('post_summary')|e('wp_kses_post'),
+						'headlines': page_sidebar.headlines,
+						'wysiwyg_content': post.meta('content')|e('wp_kses_post'),
+					}
+				%}
+			{% endif %}
+
+
+			{{ post.content }}
+
+		</div>
+
+	{% endblock main_content %}
+
+{% endembed %}

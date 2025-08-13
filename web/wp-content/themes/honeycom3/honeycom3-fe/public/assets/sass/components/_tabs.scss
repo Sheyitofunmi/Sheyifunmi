@@ -1,0 +1,155 @@
+/* +++++++++++++++++
++++ LAYOUT: TABS +++
++++++++++++++++++ */
+
+.tabs-outer {
+	&.secondary {
+		.tab-list {
+			.tab-button {
+				&:hover, &.active, &:focus {
+					background-color: $black;
+					color: $white;
+					text-decoration: none;
+				}
+			}
+		}
+		.tab-footer {
+			.button {
+				@extend .button-secondary;
+			}
+		}
+	}
+
+	.section-header-inner {
+		margin: 0 auto;
+		text-align: center;
+	}
+	.tab {
+		&-list {
+			@extend %flex;
+			justify-content: center;
+			margin: 0 auto $gap * 2;
+			text-align: center;
+
+			.tab-button {
+				@extend %transition;
+				@extend %font-content;
+				@include flexbox(50%);
+				background-color: $white;
+				border-bottom: solid 1px $secondary;
+				border-right: solid 1px $secondary;
+				border-top: solid 1px $secondary;
+				color: $secondary;
+				font-size: 1.125rem;
+				padding: $gap / 3 $gap * 1.5;
+
+				@include break(small) {
+					flex: 0 auto;
+					max-width: none;
+				}
+
+				@include break(medium) {
+					padding: $gap / 3 $gap * 3;
+				}
+
+				&:first-child {
+					border-left: solid 1px $secondary;
+					border-radius: $corner 0 0 0;
+
+					@include break(small) {
+						border-radius: $corner 0 0 $corner;
+					}
+				}
+				&:nth-child(2) {
+					border-radius: 0 $corner 0 0;
+
+					@include break(small) {
+						border-radius: 0;
+					}
+				}
+				&:nth-child(3) {
+					border-left: solid 1px $secondary;
+					border-radius: 0 0 0 $corner;
+					border-top: 0;
+
+					@include break(small) {
+						border-left: 0;
+						border-radius: 0;
+						border-top: solid 1px $secondary;
+					}
+				}
+				&:last-child {
+					border-radius: 0 0 $corner 0;
+					border-top: 0;
+
+					@include break(small) {
+						border-radius: 0 $corner $corner 0;
+						border-top: solid 1px $secondary;
+					}
+				}
+				&:hover, &.active, &:focus {
+					background-color: $secondary;
+					color: $white;
+					text-decoration: none;
+				}
+			}
+		}
+		&-block {
+			@extend %flex;
+			justify-content: space-between;
+			padding: $gap * 1.5 0;
+
+			> * {
+				@include flexbox(100%);
+				margin: 0 0 $gap * 3;
+
+				@include break(medium) {
+					@include flexbox(48%);
+					margin: 0;
+				}
+
+				.card {
+					align-items: center;
+					margin: 0;
+
+					@include break(small) {
+						grid-template-columns: repeat(2, 1fr);
+						grid-template-rows: 1fr;
+					}
+
+					&-image {
+						border-radius: 0;
+						height: 100%;
+
+						@include break(small) {
+							grid-column: 2;
+						}
+					}
+
+					&-wrap {
+						@extend %flex;
+						flex-direction: column-reverse;
+						height: 100%;
+						justify-content: flex-end;
+
+						@include break(small) {
+							grid-row: 1;
+						}
+					}
+					&-tags {
+						padding: $gap $gap * 1.5 0;
+						width: 100%;
+
+						.tags {
+							margin-top: 0;
+						}
+					}
+				}
+			}
+		}
+		&-footer {
+			padding: $gap * 2 0 $gap;
+			text-align: center;
+		}
+	}
+}

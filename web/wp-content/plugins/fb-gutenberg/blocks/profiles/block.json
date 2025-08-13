@@ -1,0 +1,19 @@
+{
+	"name": "acf/profiles",
+	"title": "Profiles",
+	"description": "A profiles block.",
+	"style": [ "fb-gutenberg-profiles" ],
+	"category": "formatting",
+	"icon": "businessperson",
+	"keywords": ["profiles"],
+	"acf": {
+		"mode": "auto",
+		"renderCallback": "fb_gutenberg_render_callback",
+		"blockVersion": 2
+	},
+	"supports": {
+		"align": false,
+		"anchor": true,
+		"mode": false
+	}
+}

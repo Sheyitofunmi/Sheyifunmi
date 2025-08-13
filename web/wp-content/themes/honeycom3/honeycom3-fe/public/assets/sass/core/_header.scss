@@ -1,0 +1,329 @@
+/* +++++++++++++++++++
++++ LAYOUT: HEADER +++
++++++++++++++++++++ */
+
+// Site header bar
+.header {
+	@extend %flex;
+    background: $header-color;
+    flex-flow: column-reverse;
+    position: relative;
+    width: 100%;
+    z-index: map-get($zindex, header);
+
+    &-inner {
+	    @extend %flex;
+		align-items: center;
+	    justify-content: space-between;
+        margin: 0 auto;
+	    padding: $gap;
+
+		@include break(tablet) {
+			padding: $gap $gap * 2;
+		}
+    }
+    &-logo {
+	    margin-left: 0;
+    }
+
+    &-links, {
+     	margin: 0;
+		order: 2;
+		width: 100%;
+
+		@include break(small) {
+			order: 0;
+			width: auto;
+		}
+
+		@include break(medium) {
+            display: block;
+            padding-left: $gap / 2;
+		}
+
+		.button {
+			display: block;
+			margin-top: $gap;
+			width: 100%;
+
+			@include break(small) {
+				display: inline-block;
+				margin-top: 0;
+				width: auto;
+			}
+		}
+    }
+    &-nav {
+	    margin-right: 0;
+
+	    &-list {
+	        display: none;
+
+		    @include break(medium) {
+				display: flex;
+				flex-direction: row;
+				flex-wrap: wrap;
+		        margin: 0;
+		    }
+	    }
+    }
+    &-subnav {
+	    &-outer {
+		    background-color: $grey90;
+		    display: none;
+		    text-align: right;
+		    width: 100%;
+
+		    @include break(medium) {
+			    display: block;
+		    }
+	    }
+
+	    @include break(medium) {
+		    display: inline-block;
+
+		    &-list {
+			    text-align: right;
+
+			    .subnav-item {
+				    display: inline-block;
+
+				    .nav-item-link {
+					    font-size: 0.9em;
+					    margin: 0 $gap / 2;
+				    }
+			    }
+		    }
+	    }
+    }
+}
+
+// Navigation items in the header and footer
+.nav-item {
+    &:focus-within .dropdown, &:hover .dropdown {
+        @include transition(opacity 0.2s 0.3s ease);
+        opacity: 1;
+        visibility: visible;
+
+        .nav-item {
+            float: none;
+        }
+    }
+    &.hovered {
+        .nav-item-link {
+            text-decoration: underline;
+        }
+        .dropdown-item {
+            .nav-item-link {
+                text-decoration: none;
+            }
+        }
+    }
+
+    .button {
+        margin-left: $gap;
+    }
+
+    &-link {
+        display: block;
+        margin: 0 $gap;
+        padding: $gap / 2 0;
+
+        .social & {
+            margin: 0;
+            padding: $gap / 2 $gap;
+        }
+
+        &.current {
+            text-decoration: underline;
+        }
+    }
+
+    &-arrow {
+        width: $gap;
+    }
+}
+
+// Responsive nav hamburger button
+.menu-button {
+    background-color: transparent;
+    color: $black;
+    cursor: pointer;
+    font-size: 1.4em;
+    font-weight: $bold;
+    margin: $gap / 5 0 0 $gap;
+    padding: 0 $gap * 1.5 0 0;
+    position: relative;
+    text-transform: uppercase;
+    width: auto;
+
+    &:hover {
+        background-color: transparent;
+        box-shadow: none;
+        color: $secondary;
+    }
+
+    @include break(medium) {
+        display: none;
+    }
+    .icon {
+        @include centerer(false, true);
+        height: 1em;
+        right: 0;
+        width: 1em;
+    }
+}
+
+// Dropdown & meganav menu styling
+@if $meganav {
+	.dropdown {
+		@include transition(visibility 0s 0.4s ease, opacity 0.2s 0.2s ease);
+		@include centerer(true, false);
+		background-color: $white;
+		border-radius: 0 0 $corner $corner;
+		margin-top: 16px;
+		opacity: 0;
+		padding: 0 $gap $gap * 1.5;
+		visibility: hidden;
+		width: 76rem;
+
+		&-item {
+			@extend %flex;
+			align-items: flex-start;
+
+			.dropdown {
+				left: auto;
+				margin: 0;
+				position: relative;
+				transform: none;
+
+				&:first-child:nth-last-child(2), &:first-child:nth-last-child(2) ~ .dropdown {
+					&.with-great-grandchildren {
+						@include flexbox(70%);
+
+						.dropdown-item {
+							@include flexbox(33.33%);
+						}
+						&:empty {
+							display: none;
+
+							+ .without-great-grandchildren {
+								@extend %flex;
+								@include flexbox(100%);
+
+								.dropdown-item {
+									@include flexbox(25%);
+									margin: 0;
+								}
+							}
+						}
+					}
+					&.without-great-grandchildren {
+						@include flexbox(30%);
+					}
+				}
+
+				&.with-great-grandchildren {
+					@extend %flex;
+					@include flexbox(100%);
+					align-items: flex-start;
+					padding: 0;
+
+					.dropdown-item {
+						@include flexbox(25%);
+						margin: 0;
+
+						.dropdown-sub {
+							@include flexbox(100%);
+							background-color: transparent;
+
+							&-item {
+								@include flexbox(100%);
+							}
+						}
+					}
+				}
+				&.without-great-grandchildren {
+					@include flexbox(30%);
+					padding: 0;
+
+					.dropdown-item {
+						@include flexbox(100%);
+					}
+				}
+			}
+		}
+
+		&-item {
+			&:focus-within .dropdown-sub, &:hover .dropdown-sub {
+				opacity: 1;
+				visibility: visible;
+			}
+			.nav-item-link {
+				color: $black;
+				font-size: 1.125rem;
+				margin: 0;
+				padding: $gap / 4 $gap;
+
+				&:hover {
+					color: $black;
+					text-decoration: underline;
+				}
+
+				&:after {
+					display: none;
+				}
+			}
+		}
+		&-sub {
+			@extend %flex;
+			align-content: flex-start;
+			background-color: $white;
+			border-radius: 0 0 $corner 0;
+			width: 100%;
+			z-index: 10;
+
+			&-item {
+				margin: 0;
+
+				&-title {
+					font-size: 1.5rem;
+					font-weight: $bold;
+					padding: $gap / 4 $gap;
+				}
+				.nav-item-link {
+					color: $secondary;
+					font-size: 1rem;
+					width: 100%;
+
+					&:hover {
+						color: $black;
+						text-decoration: underline;
+					}
+				}
+			}
+		}
+	}
+}
+@else {
+	.dropdown {
+		@include transition(visibility 0s 0.4s ease, opacity 0.2s 0.2s ease);
+		background: $header-color;
+		border-radius: 0 0 $corner $corner;
+		margin-top: 15px;
+		opacity: 0;
+		min-width: 180px;
+		position: absolute;
+		visibility: hidden;
+
+		.dropdown-item {
+			.nav-item-link {
+				font-size: 0.9rem;
+
+				&:hover {
+					text-decoration: underline;
+				}
+			}
+		}
+	}
+}

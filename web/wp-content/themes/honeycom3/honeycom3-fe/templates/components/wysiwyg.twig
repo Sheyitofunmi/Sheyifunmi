@@ -1,0 +1,26 @@
+{% extends '@hc/scaffolding/section.twig' %}
+
+{% block section_content %}
+
+	<div class="container">
+
+		{% if subnav or metadata %}
+			{% block sidebar %}
+				{% include '@hc/partials/sidebar.twig' %}
+			{% endblock sidebar %}
+		{% endif %}
+
+		{% include '@hc/partials/wysiwyg-item.twig' %}
+	</div>
+{% endblock section_content %}
+
+{# Include like so:
+{% include '@hc/components/wysiwyg.twig' with {
+'section_class': 'wysiwyg',
+'wysiwyg_content': '
+<h3>WYSIWYG Component</h3>
+<p>Augue mauris augue neque gravida in fermentum et sollicitudin. In ornare quam viverra orci sagittis eu volutpat odio facilisis. Mauris augue neque gravida in fermentum et sollicitudin ac. Dignissim diam quis enim lobortis. Sem viverra aliquet eget sit amet tellus. Eros donec ac odio tempor orci dapibus ultrices in. Maecenas pharetra convallis posuere morbi leo urna molestie at. At elementum eu facilisis sed odio morbi quis commodo.</p>
+'
+}
+%}
+#}

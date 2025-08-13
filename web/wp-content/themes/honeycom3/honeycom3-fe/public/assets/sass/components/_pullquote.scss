@@ -1,0 +1,189 @@
+/* ++++++++++++++++++++++
++++ LAYOUT: PULLQUOTE +++
+++++++++++++++++++++++ */
+
+.pullquote {
+	@extend %flex;
+	font-family: $font-quote;
+	justify-content: center;
+	margin: 0 auto;
+	padding: $gap * 1.5 0;
+	text-align: center;
+
+	@include break(small) {
+		align-items: center;
+		text-align: left;
+	}
+
+	@include break(medium) {
+		padding: $gap * 2 $gap * 3;
+	}
+
+	@include break(xlarge) {
+		padding: $gap * 2 0;
+	}
+
+	&.pullquote-has-image {
+		.pullquote-info {
+			&:before {
+				display: none;
+			}
+		}
+	}
+
+	&-outer {
+		&.inline {
+			padding: 0;
+
+			.pullquote {
+				padding: 0;
+
+				@include break(medium) {
+					margin: 0 0 0 auto;
+					width: 66.66%;
+				}
+
+				&-info {
+					@include break(small) {
+						padding-left: 60px;
+					}
+
+					&:before {
+						@include break(small) {
+							background-position: top $gap center;
+							border-radius: 0;
+							height: 100%;
+							width: 40px;
+						}
+					}
+				}
+
+				&-image {
+					+ .pullquote-info {
+
+						@include break(small) {
+							padding: 0 0 0 $gap * 2;
+						}
+						blockquote {
+							font-size: 1.3em;
+						}
+					}
+				}
+				blockquote {
+					font-size: 1.3em;
+				}
+				cite {
+					font-size: 1em;
+				}
+			}
+			&.secondary {
+				background-color: transparent;
+
+				.pullquote {
+					background-color: $secondary;
+					padding: $gap * 2;
+
+					&-info {
+						color: $white;
+					}
+				}
+			}
+		}
+		&.secondary {
+			.pullquote {
+				background-color: $white;
+				color: $black;
+				padding: $gap * 2;
+			}
+		}
+	}
+
+	&-image {
+		@include flexbox(50%);
+
+		@include break(small) {
+			@include flexbox(20%);
+		}
+
+		+ .pullquote-info {
+			@include flexbox(100%);
+			padding: $gap * 1.5 0 0 0;
+
+			@include break(small) {
+				@include flexbox(80%);
+				padding: 0 0 0 $gap * 2;
+			}
+
+			@include break(medium) {
+				padding: 0 0 0 $gap * 2;
+			}
+		}
+	}
+	&-info {
+		padding-top: 100px;
+		position: relative;
+
+		@include break(small) {
+			padding-left: 200px;
+			padding-top: 0;
+		}
+
+		&:before {
+			@include quote('white');
+			@include centerer(true, false);
+			background-color: $primary;
+			border-radius: 100%;
+			background-position: center;
+			background-size: 50%;
+			content: '';
+			display: block;
+			height: 80px;
+			top: 0;
+			width: 80px;
+
+			@include break(small) {
+				left: 0;
+				top: 50%;
+				transform: translate(0, -50%);
+				height: 150px;
+				width: 150px;
+			}
+		}
+	}
+
+	blockquote {
+		font-size: 1.3rem;
+		font-weight: $bold;
+		padding-bottom: $gap / 1.5;
+		quotes: "“" "”" "‘" "’";
+
+		@include break(medium) {
+			font-size: 1.8rem;
+		}
+
+		&:before {
+		    content: open-quote;
+		    display: inline-block;
+		}
+		&:after {
+		    content: close-quote;
+		    display: inline-block;
+		}
+	}
+	cite {
+		font-size: 1em;
+		font-style: normal;
+
+		@include break(medium) {
+			font-size: 1.4em;
+		}
+		a {
+			@extend %transition;
+			text-decoration: underline;
+
+			&:hover {
+				color: $secondary;
+			}
+		}
+	}
+}

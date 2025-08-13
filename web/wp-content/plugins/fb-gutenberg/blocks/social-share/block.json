@@ -1,0 +1,19 @@
+{
+	"name": "acf/social-share",
+	"title": "Social share",
+	"description": "A social share block.",
+	"style": [ "fb-gutenberg-social-share" ],
+	"category": "formatting",
+	"icon": "share",
+	"keywords": ["social share"],
+	"acf": {
+		"mode": "auto",
+		"renderCallback": "fb_gutenberg_render_callback",
+		"blockVersion": 2
+	},
+	"supports": {
+		"align": false,
+		"anchor": true,
+		"mode": false
+	}
+}

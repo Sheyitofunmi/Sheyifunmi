@@ -1,0 +1,35 @@
+<div class="info-overview ">
+	<ul class="info-overview-list">
+		{% for info in infos %}
+			<li class="info-overview-list-block{% if not info.icon %} no-icon{% endif %}">
+				{% if info.icon %}
+					<div class="info-overview-icon">
+						{# Minimum image size: 200px X 200px #}
+						{% set image = info.icon %}
+						{% set image_data = info.image_data %}
+						{% if image or image_data %}
+							{% include '@hc/partials/image.twig' with { 'imgheight': '530', 'imgwidth': '920' } %}
+						{% endif %}
+					</div>
+				{% endif %}
+
+				<div class="info-overview-content">
+					{% if info.title %}
+						<h2 class="info-overview-title">{{ info.title }}</h2>
+					{% endif %}
+					{% if info.summary %}
+						<p class="info-overview-summary">{{ info.summary }}</p>
+					{% endif %}
+
+					{% block tags %}
+						{% if info.tags %}
+							{% set tags = info.tags %}
+							{% include '@hc/partials/tags.twig' with tags %}
+						{% endif %}
+					{% endblock tags %}
+				</div>
+
+			</li>
+		{% endfor %}
+	</ul>
+</div>

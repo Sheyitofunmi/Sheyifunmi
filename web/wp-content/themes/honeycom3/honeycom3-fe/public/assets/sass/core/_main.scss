@@ -1,0 +1,278 @@
+/* +++++++++++++++++
++++ LAYOUT: MAIN +++
++++++++++++++++++ */
+
+// Main is the high level container of content, in between the site header and footer
+
+.main {
+	background: $body-color;
+	display: block;
+	margin: 0;
+
+	&-header,
+	&-footer {
+		text-align: center;
+	}
+
+	&-header {
+		&-outer {
+			background-color: $primary;
+			color: $white;
+		}
+		&-title {
+			padding-bottom: $gap;
+		}
+		&-summary {
+			p {
+				font-size: 1.2em;
+			}
+		}
+	}
+
+	&-section {
+		@include break(medium) {
+			flex-flow: row wrap;
+		}
+
+		&.single  {
+			.wysiwyg-outer {
+				&.with-sidebar {
+					.container {
+						flex-direction: row-reverse;
+
+						.content {
+							margin: 0 auto 0 0;
+						}
+					}
+				}
+			}
+			.section {
+				&.inline {
+					.container, .cta, .cta.with-image {
+						div, ul {
+							margin: 0 auto 0 0;
+						}
+					}
+				}
+			}
+		}
+	}
+
+	@if $main_share_side {
+		&-share {
+			@extend %flex;
+			@extend %transition;
+			align-items: center;
+			background-color: $secondary;
+			flex-wrap: nowrap;
+			justify-content: center;
+			margin: 0 auto;
+			padding: $gap / 1.5 $gap / 2;
+			position: -webkit-sticky;
+			position: sticky;
+			right: 0;
+			top: $gap * 2;
+			width: 100%;
+
+			@include break(xsmall) {
+				flex-wrap: nowrap;
+			}
+
+			@include break(medium) {
+				box-shadow: none;
+				display: block;
+				padding: $gap / 2 $gap / 1.5;
+			}
+
+			&-outer {
+				@extend %transition;
+				@include flexbox(auto);
+				bottom: 0;
+				display: inline-block;
+				left: 50%;
+				position: fixed;
+				transform: translate(-50%, 0);
+				z-index: 998;
+
+				@include break(xsmall) {
+					width: auto;
+				}
+
+				@include break(medium) {
+					left: auto;
+					position: absolute;
+					right: 0;
+					top: 0;
+					transform: none;
+				}
+				&.hide-share {
+					display: none;
+					pointer-events: none;
+					@include break(medium) {
+						opacity: 0;
+						pointer-events: none;
+					}
+				}
+			}
+			&-item {
+				margin: 0 $gap / 5;
+				height: 30px;
+
+				@include break(tablet) {
+					height: 44px;
+				}
+				@include break(medium) {
+					margin: $gap / 2 0;
+				}
+
+				&.title {
+					height: 100%;
+					margin: 0;
+					padding-bottom: $gap / 2;
+					text-align: center;
+					width: 100%;
+
+					@include break(xsmall) {
+						padding-bottom: 0;
+						text-align: left;
+						width: 46px;
+					}
+
+					@include break(medium) {
+						padding-right: 0;
+						width: auto;
+					}
+
+					h2 {
+						font-size: 1.2rem;
+						font-weight: $bold;
+						width: 100%;
+
+						@include break(medium) {
+							font-size: 1.375rem;
+							line-height: 26.4px;
+							margin-left: -9px;
+							text-align: center;
+							width: 62px;
+						}
+					}
+				}
+			}
+			&-item-link {
+				@extend %transition;
+				background-color: $white;
+				border-radius: 100%;
+				display: inline-block;
+				height: 30px;
+				padding: 0;
+				position: relative;
+				width: 30px;
+
+				@include break(tablet) {
+					height: 44px;
+					width: 44px;
+				}
+
+				.icon {
+					@include centerer(true, true);
+					height: 100%;
+					width: 100%;
+				}
+
+				&:hover {
+					background-color: $black;
+
+					.icon {
+						color: $white;
+					}
+					&.close {
+						@include close('white');
+						background-position: center;
+						background-repeat: no-repeat;
+						background-size: 12px;
+						cursor: pointer;
+
+						@include break(tablet) {
+							background-size: 16px;
+						}
+					}
+				}
+				&.print {
+					cursor: pointer;
+				}
+				&.twitter, &.link, &.email, &.print {
+					.icon {
+						width: 16px;
+						@include break(tablet) {
+							width: 22px;
+						}
+					}
+				}
+				&.facebook, &.instagram {
+					.icon {
+						width: 22px;
+
+						@include break(tablet) {
+							width: 28px;
+						}
+					}
+				}
+				&.youtube {
+					.icon {
+						width: 24px;
+					}
+				}
+				&.tiktok {
+					.icon {
+						width: 14px;
+						@include break(tablet) {
+							width: 18px;
+						}
+					}
+				}
+				&.linkedin {
+					.icon {
+						margin-top: 2px;
+						width: 1.2rem;
+
+						@include break(tablet) {
+							width: 1.4rem;
+						}
+					}
+				}
+				&.print {
+					background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1466' height='1534' viewBox='0 0 1466 1534' fill='none'%3E%3Cpath d='M1388.6 628.427H1355.74L1355.73 425.347C1355.73 408.415 1342 394.68 1325.06 394.68H1202.45V256.347H1201.08C1204.3 245.628 1201.49 233.915 1193.47 225.877L976.737 9.13063C968.706 1.09943 956.988 -1.7027 946.268 1.5161L946.273 0.146362H294.34C277.408 0.146362 263.673 13.881 263.673 30.813V394.666H141.058C124.126 394.666 110.392 408.401 110.392 425.333V628.413H77.5063C35.0063 628.413 0.423584 662.997 0.423584 705.496V1181.19C0.423584 1223.69 35.0076 1258.27 77.5063 1258.27H263.653V1503.14C263.653 1520.07 277.388 1533.81 294.32 1533.81H1171.77C1188.7 1533.81 1202.44 1520.07 1202.44 1503.14L1202.44 1258.3H1388.59C1431.09 1258.3 1465.67 1223.71 1465.67 1181.22L1465.67 705.509C1465.69 663.009 1431.11 628.426 1388.61 628.426L1388.6 628.427ZM1202.45 456.013H1294.39V628.427H1202.45V456.013ZM985.72 104.88L1097.72 216.88H985.72V104.88ZM325 61.4946H924.36V247.548C924.36 264.48 938.095 278.215 955.027 278.215H1141.08V628.415H325V61.4946ZM171.72 456.015H263.652V628.428H171.72V456.015ZM1141.11 1472.49H325V1093.36H1141.09L1141.11 1472.49ZM1404.33 1181.21C1404.33 1189.75 1397.14 1196.95 1388.6 1196.95L1202.45 1196.94V1093.36H1226.19C1243.12 1093.36 1256.85 1079.63 1256.85 1062.69C1256.85 1045.76 1243.12 1032.03 1226.19 1032.03H239.92C222.988 1032.03 209.253 1045.76 209.253 1062.69C209.253 1079.63 222.988 1093.36 239.92 1093.36H263.655V1196.94H77.508C68.9768 1196.94 61.7733 1189.75 61.7733 1181.21L61.7785 705.516C61.7785 696.985 68.9764 689.781 77.5132 689.781H1388.61C1397.14 689.781 1404.34 696.979 1404.34 705.516L1404.33 1181.21ZM266.8 790.001C266.8 806.933 253.065 820.668 236.133 820.668H179.081C162.149 820.668 148.415 806.933 148.415 790.001C148.415 773.069 162.149 759.335 179.081 759.335H236.133C253.065 759.335 266.8 773.069 266.8 790.001ZM396.868 1212.39C396.868 1195.46 410.603 1181.72 427.535 1181.72H1038.56C1055.49 1181.72 1069.23 1195.46 1069.23 1212.39C1069.23 1229.32 1055.49 1243.05 1038.56 1243.05H427.535C410.603 1243.07 396.868 1229.34 396.868 1212.39ZM396.868 1352.27C396.868 1335.34 410.603 1321.6 427.535 1321.6H1038.56C1055.49 1321.6 1069.23 1335.34 1069.23 1352.27C1069.23 1369.2 1055.49 1382.93 1038.56 1382.93H427.535C410.603 1382.93 396.868 1369.2 396.868 1352.27Z' fill='black'/%3E%3C/svg%3E");
+					background-repeat: no-repeat;
+					background-position: center;
+					background-size: 20px;
+					cursor: pointer;
+
+					&:hover {
+						background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1466' height='1534' viewBox='0 0 1466 1534' fill='none'%3E%3Cpath d='M1388.6 628.427H1355.74L1355.73 425.347C1355.73 408.415 1342 394.68 1325.06 394.68H1202.45V256.347H1201.08C1204.3 245.628 1201.49 233.915 1193.47 225.877L976.737 9.13063C968.706 1.09943 956.988 -1.7027 946.268 1.5161L946.273 0.146362H294.34C277.408 0.146362 263.673 13.881 263.673 30.813V394.666H141.058C124.126 394.666 110.392 408.401 110.392 425.333V628.413H77.5063C35.0063 628.413 0.423584 662.997 0.423584 705.496V1181.19C0.423584 1223.69 35.0076 1258.27 77.5063 1258.27H263.653V1503.14C263.653 1520.07 277.388 1533.81 294.32 1533.81H1171.77C1188.7 1533.81 1202.44 1520.07 1202.44 1503.14L1202.44 1258.3H1388.59C1431.09 1258.3 1465.67 1223.71 1465.67 1181.22L1465.67 705.509C1465.69 663.009 1431.11 628.426 1388.61 628.426L1388.6 628.427ZM1202.45 456.013H1294.39V628.427H1202.45V456.013ZM985.72 104.88L1097.72 216.88H985.72V104.88ZM325 61.4946H924.36V247.548C924.36 264.48 938.095 278.215 955.027 278.215H1141.08V628.415H325V61.4946ZM171.72 456.015H263.652V628.428H171.72V456.015ZM1141.11 1472.49H325V1093.36H1141.09L1141.11 1472.49ZM1404.33 1181.21C1404.33 1189.75 1397.14 1196.95 1388.6 1196.95L1202.45 1196.94V1093.36H1226.19C1243.12 1093.36 1256.85 1079.63 1256.85 1062.69C1256.85 1045.76 1243.12 1032.03 1226.19 1032.03H239.92C222.988 1032.03 209.253 1045.76 209.253 1062.69C209.253 1079.63 222.988 1093.36 239.92 1093.36H263.655V1196.94H77.508C68.9768 1196.94 61.7733 1189.75 61.7733 1181.21L61.7785 705.516C61.7785 696.985 68.9764 689.781 77.5132 689.781H1388.61C1397.14 689.781 1404.34 696.979 1404.34 705.516L1404.33 1181.21ZM266.8 790.001C266.8 806.933 253.065 820.668 236.133 820.668H179.081C162.149 820.668 148.415 806.933 148.415 790.001C148.415 773.069 162.149 759.335 179.081 759.335H236.133C253.065 759.335 266.8 773.069 266.8 790.001ZM396.868 1212.39C396.868 1195.46 410.603 1181.72 427.535 1181.72H1038.56C1055.49 1181.72 1069.23 1195.46 1069.23 1212.39C1069.23 1229.32 1055.49 1243.05 1038.56 1243.05H427.535C410.603 1243.07 396.868 1229.34 396.868 1212.39ZM396.868 1352.27C396.868 1335.34 410.603 1321.6 427.535 1321.6H1038.56C1055.49 1321.6 1069.23 1335.34 1069.23 1352.27C1069.23 1369.2 1055.49 1382.93 1038.56 1382.93H427.535C410.603 1382.93 396.868 1369.2 396.868 1352.27Z' fill='white'/%3E%3C/svg%3E");
+					}
+
+					.icon {
+						display: none;
+					}
+				}
+				&.close {
+					@include close('black');
+					background-position: center;
+					background-repeat: no-repeat;
+					background-size: 12px;
+					cursor: pointer;
+
+					@include break(tablet) {
+						background-size: 16px;
+					}
+				}
+				.icon {
+					@extend %transition;
+					@include centerer(true, true);
+					color: $primary;
+					margin: 0;
+				}
+			}
+		}
+	}
+}

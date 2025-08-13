@@ -1,0 +1,19 @@
+{
+	"name": "acf/page-index",
+	"title": "Page index",
+	"description": "A page index block.",
+	"style": [ "fb-gutenberg-page-index" ],
+	"category": "formatting",
+	"icon": "index-card",
+	"keywords": ["page index"],
+	"acf": {
+		"mode": "auto",
+		"renderCallback": "fb_gutenberg_render_callback",
+		"blockVersion": 2
+	},
+	"supports": {
+		"align": false,
+		"anchor": true,
+		"mode": false
+	}
+}

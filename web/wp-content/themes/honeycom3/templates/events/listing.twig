@@ -1,0 +1,123 @@
+{% embed '@hc/news/listing.twig' %}
+
+	{% block hero_component %}
+		{% include '@hc/components/hero.twig' with {
+			'section_class': 'hero-outer full',
+			'image_data': get_image_data( post.meta('hero_section').hero_image, 'hero_image' ),
+			'hero_title': post.title|e('esc_html'),
+			'hero_summary': post.meta('hero_section').hero_summary|e('wp_kses_post'),
+			'link_copy': post.meta( 'hero_section' ).hero_button.title|e('esc_html'),
+			'link_path': post.meta( 'hero_section' ).hero_button.url|e('esc_url'),
+			'link_target': post.meta( 'hero_section' ).hero_button.target|e('esc_html'),
+			'hero_metas': hero_metas,
+		} %}
+	{% endblock %}
+
+	{% block breadcrumb %}
+			{% include '@wp/partials/breadcrumbs.twig' with {
+					'subnav': subnav
+				}
+			%}
+	{% endblock breadcrumb %}
+
+	{% block main_share %}
+		{% include '@hc/partials/main-share.twig' with {
+		'share': true,
+		'shares': postshares
+		}%}
+	{% endblock main_share %}
+
+	{% block featured %}
+		{% if featured_cards %}
+			{% include '@hc/components/cards.twig' with {
+				'section_class': 'cards-outer featured-listing',
+				'cards': featured_cards
+			}%}
+		{% endif %}
+	{% endblock featured %}
+
+	{% block filter_block %}
+		<div class="filter-outer">
+			<button for="filter-open" id="filter-show" class="filter-show-button accordion-trigger" aria-controls="filters" aria-expanded="false" aria-label="Expand filters">Show filters</button>
+			<div class="filter-inner" aria-expanded="false" id="filters">
+				<form method="get" class="filter" action="{{post.link}}">
+
+					{% set event_types = search.event_types %}
+					{% if event_types %}
+						<div class="filter-block">
+							<label for="filter-type">{{ __( 'Type', constant( 'WPML_DOMAIN' ) ) }}</label>
+							<select name="event-type" id="filter-type" class="filter-field">
+								<option value="" selected>{{ __( 'Select type', constant( 'WPML_DOMAIN' ) ) }}</option>
+								{% for type in event_types %}
+									{% set is_selected = (type.term_id == selected.event_type) %}
+									<option {% if is_selected %} selected="selected" {% endif %} value="{{ type.term_id }}">{{ type.name}}</option>
+								{% endfor %}
+							</select>
+						</div>
+					{% endif %}
+
+					{% set event_locations = search.event_locations %}
+					{% if event_locations %}
+						<div class="filter-block">
+							<label for="filter-location">{{ __( 'Location', constant( 'WPML_DOMAIN' ) ) }}</label>
+							<select name="event-location" id="filter-location" class="filter-field">
+								<option value="" selected>{{ __( 'Select location', constant( 'WPML_DOMAIN' ) ) }}</option>
+								{% for location in event_locations %}
+									{% set is_selected = (location.term_id == selected.event_location) %}
+									<option {% if is_selected %} selected="selected" {% endif %} value="{{ location.term_id }}">{{ location.name}}</option>
+								{% endfor %}
+							</select>
+						</div>
+					{% endif %}
+
+					{% set event_categories = search.event_categories %}
+					{% if event_categories %}
+						<div class="filter-block">
+							<label for="filter-category">{{ __( 'Category', constant( 'WPML_DOMAIN' ) ) }}</label>
+							<select name="event-category" id="filter-category" class="filter-field">
+								<option value="" selected>{{ __( 'Select category', constant( 'WPML_DOMAIN' ) ) }}</option>
+								{% for category in event_categories %}
+									{% set is_selected = (category.term_id == selected.event_category) %}
+									<option {% if is_selected %} selected="selected" {% endif %} value="{{ category.term_id }}">{{ category.name}}</option>
+								{% endfor %}
+							</select>
+						</div>
+					{% endif %}
+
+					<div class="filter-block actions">
+						<input type="hidden" name="search" value="1">
+						<input type="submit" value="{{ __( 'Search', constant( 'WPML_DOMAIN' ) ) }}" id="filter-submit" class="filter-submit">
+						<input type="reset" value="{{ __( 'Clear', constant( 'WPML_DOMAIN' ) ) }}" id="filter-reset" class="filter-reset" onclick="event.preventDefault(); window.location='{{ post.link }}'">
+					</div>
+				</form>
+			</div>
+		</div>
+	{% endblock filter_block %}
+
+	{% block listing %}
+		{% if events_feed %}
+			{% include '@hc/components/cards.twig' with {
+				'section_class': 'cards-outer',
+				'cards': events_feed
+				}
+			%}
+		{% else %}
+			<div class="no-results">
+				{{ options.events_listing.no_results_message|e('wp_kses_post') }}
+			</div>
+		{% endif %}
+	</div>
+
+	{% endblock listing %}
+
+	{% block main_footer %}
+		<footer class="main-footer section pagination-outer">
+			<div class="container">
+				{% if  pagination %}
+					{% include '@wp/partials/pagination-wp.twig' %}
+				{% endif %}
+			</div>
+		</footer>
+	{% endblock main_footer %}
+
+{% endembed %}

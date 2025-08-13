@@ -1,0 +1,19 @@
+{
+	"name": "acf/cta",
+	"title": "Call to action",
+	"description": "A call to action block.",
+	"style": [ "fb-gutenberg-cta" ],
+	"category": "formatting",
+	"icon": "button",
+	"keywords": ["cta"],
+	"acf": {
+		"mode": "auto",
+		"renderCallback": "fb_gutenberg_render_callback",
+		"blockVersion": 2
+	},
+	"supports": {
+		"align": false,
+		"anchor": true,
+		"mode": false
+	}
+}

@@ -1,0 +1,11 @@
+<div class="share-inner">
+	<ul class="share">
+		{% for share in shares %}
+			{% if share.enabled %}
+				<li class="share-item">
+					<a href="{{ share.path }}" target="_blank" class="button {{ share.selector }}{% if share.selector == 'link'%} js-copy-button{% endif %}" aria-label="Share on {{ share.selector }}"><svg aria-hidden="true" class="icon"><use xlink:href="{{ assets_dir }}/svg/icons.svg#{{ share.selector }}"/></svg><span class="visually-hidden">{{ share.title }}</span></a>
+				</li>
+			{% endif %}
+		{% endfor %}
+	</ul>
+</div>

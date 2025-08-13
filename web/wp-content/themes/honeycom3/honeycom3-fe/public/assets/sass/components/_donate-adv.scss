@@ -1,0 +1,161 @@
+.donations {
+	background-color: $primary;
+	padding: 0;
+	position: relative;
+	@include break(medium) {
+		padding: $gap * 3 0;
+	}
+	&-image {
+		@include object-fit(16/9, 100%);
+		min-height: 180px;
+		@include break(small) {
+			min-height: 350px;
+		}
+		@include break(medium) {
+			top: 0;
+			left: 0;
+			position: absolute;
+		}
+	}
+	form {
+		background-color: $white;
+		box-shadow: $shadow;
+		padding: $gap * 1;
+		margin: -$gap * 1 auto $gap auto;
+		max-width: 100%;
+		@include break(small) {
+			margin: -$gap * 2 auto $gap * 2 auto;
+			padding: $gap * 2;
+		}
+		@include break(medium) {
+			margin: $gap * 3 0 $gap * 3 0;
+			max-width: 450px;
+		}
+	}
+	h2 {
+		text-align: center;
+		text-transform: uppercase;
+		@include break(small) {
+			text-align: left;
+		}
+	}
+	&-actions {
+		@extend %flex;
+		justify-content: space-between;
+		margin: $gap 0 0;
+		width: 100%;
+
+		input, button {
+			@include flexbox(100%);
+			margin: 0;
+			&+button {
+				margin-top: 10px;
+			}
+			@include break(small) {
+				@include flexbox(48%);
+				&+button {
+					margin-top: 0px;
+				}
+			}
+		}
+		button {
+			border-radius: 0;
+			color: $white;
+		}
+	}
+	&-amount {
+		flex: 1;
+		margin: 0;
+		input:checked {
+			+span {
+				background-color: $primary;
+				border-color: $primary;
+				color: $white;
+				&:after {
+					background-color: $primary;
+					bottom: -5px;
+					content: '';
+					height: 10px;
+					left: calc(50% - 5px);
+					position: absolute;
+					transform: rotate(45deg);
+					width: 10px;
+				}
+			}
+		}
+		span {
+			@extend %flex;
+			@include font-size(20);
+			align-items: center;
+			border: solid 1px $grey95;
+			color: $primary;
+			cursor: pointer;
+			font-weight: $bold;
+			font-family: $font-header;
+			height: 80px;
+			justify-content: center;
+			position: relative;
+			@include break(small) {
+				height: 100px;
+			}
+		}
+	}
+	.amount-tabpanel {
+		background-color: $grey90;
+		margin-top: $gap;
+		padding: $gap;
+		p {
+			@include font-size(14);
+		}
+	}
+	.tabs {
+		@extend %flex;
+	}
+	[role="tablist"] {
+		@extend %flex;
+		justify-content: space-between;
+		width: 100%;
+		&.frequency-tablist {
+			background-color: $grey90;
+			padding: 10px;
+			&.both {
+				margin-top: $gap;
+			}
+		}
+		button {
+			@include flexbox(100%);
+			@extend %font-header;
+			background-color: $white;
+			color: $black;
+			height: 2.5rem;
+			margin: 0;
+			&+button {
+				margin-top: 10px;
+			}
+			@include break(small) {
+				@include flexbox(48%);
+				&+button {
+					margin-top: 0px;
+				}
+			}
+		}
+	}
+	button[aria-selected="true"] {
+		background-color: $secondary;
+		color: $white;
+	}
+	button:focus {
+		outline: none;
+		box-shadow: inset 0px 0px 1px 2px $secondary-dark;
+	}
+	.frequency {
+		&-tab {
+			&:only-child {
+				display: none;
+			}
+		}
+		&-tabpanel {
+			margin-top: $gap;
+		}
+	}
+}

@@ -1,0 +1,19 @@
+{
+	"name": "acf/local-navigation",
+	"title": "Local navigation",
+	"description": "A local navigation block.",
+	"style": [ "fb-gutenberg-local-navigation" ],
+	"category": "formatting",
+	"icon": "menu",
+	"keywords": ["local navigation"],
+	"acf": {
+		"mode": "auto",
+		"renderCallback": "fb_gutenberg_render_callback",
+		"blockVersion": 2
+	},
+	"supports": {
+		"align": false,
+		"anchor": true,
+		"mode": false
+	}
+}

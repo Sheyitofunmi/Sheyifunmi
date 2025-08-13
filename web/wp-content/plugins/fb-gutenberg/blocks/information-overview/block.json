@@ -1,0 +1,19 @@
+{
+	"name": "acf/information-overview",
+	"title": "Information overview",
+	"description": "An information overview block.",
+	"style": [ "fb-gutenberg-information-overview" ],
+	"category": "formatting",
+	"icon": "info-outline",
+	"keywords": ["information overview"],
+	"acf": {
+		"mode": "auto",
+		"renderCallback": "fb_gutenberg_render_callback",
+		"blockVersion": 2
+	},
+	"supports": {
+		"align": false,
+		"anchor": true,
+		"mode": false
+	}
+}

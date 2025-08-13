@@ -1,0 +1,9 @@
+<form method="get" class="search"{% if search_action %} action="{{ search_action }}"{% endif %}>
+	<div role="search">
+	  <label class="search-label visually-hidden" for="search-{{ searchtype_id }}">Search website</label>
+	  <input id="search-{{ searchtype_id }}" class="search-input" type="text" placeholder="Search site"{% if search_name %} name="{{ search_name }}"{% endif%}>
+	  <button class="search-button" type="submit" title="Search submit" aria-label="Search submit">
+		  <svg aria-hidden="true" class="search-icon"><use xlink:href="{{ assets_dir }}/svg/icons.svg#search"/></svg></span>
+	  </button>
+	</div>
+</form>

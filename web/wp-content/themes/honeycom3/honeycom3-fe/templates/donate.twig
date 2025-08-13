@@ -1,0 +1,85 @@
+{% extends '@hc/scaffolding/base.twig' %}
+
+    {% block main %}
+		{% block donate %}
+			{% include '@hc/components/donate.twig' with {
+				'image':'/assets/images/holder-1920x1080.png',
+				'title':'Donate today',
+				'donation_base_url': '#',
+				'amount_url_string': 'amount=',
+				'tabs': [
+					{
+						'tab_name':'Monthly',
+						'tab_url_string': 'dontype=monthly',
+						'currency_symbol':'£',
+						'amounts': [
+							{
+								'value': '10',
+								'amount_description': '10 Eligendi modi libero cum omnis commodi dolorum sapiente quae expedita, perspiciatis, accusamus deserunt molestias esse ad.',
+							},
+							{
+								'value': '20',
+								'amount_description': '20 Eligendi modi libero cum omnis commodi dolorum sapiente quae expedita, perspiciatis, accusamus deserunt molestias esse ad.',
+							},
+							{
+								'value': '30',
+								'amount_description': '30 Eligendi modi libero cum omnis commodi dolorum sapiente quae expedita, perspiciatis, accusamus deserunt molestias esse ad.',
+							},
+						]
+					},
+					{
+						'tab_name':'Single',
+						'tab_url_string': 'dontype=single',
+						'currency_symbol':'£',
+						'amounts': [
+							{
+								'value': '40',
+								'amount_description': '40 Eligendi modi libero cum omnis commodi dolorum sapiente quae expedita, perspiciatis, accusamus deserunt molestias esse ad.',
+							},
+							{
+								'value': '50',
+								'amount_description': '50 Eligendi modi libero cum omnis commodi dolorum sapiente quae expedita, perspiciatis, accusamus deserunt molestias esse ad.',
+							},
+							{
+								'value': '60',
+								'amount_description': '60 Eligendi modi libero cum omnis commodi dolorum sapiente quae expedita, perspiciatis, accusamus deserunt molestias esse ad.',
+							},
+						]
+					}
+				],
+			}%}
+			
+			{% include '@hc/components/cards.twig' with {
+				'title': 'Other ways to donate', 
+				'summary': 'Use this component to create rows of three promos specifically to present subpage or related content.', 
+				'link': 'View all', 
+				'link_path': '#', 
+				'section_class': 'cards-outer',
+				'cards': [
+					{
+						'path': '/page-builder',
+						'image': '/assets/images/holder-530x920.png',
+						'title': 'Nullam congue tempor faucibus',
+						'summary': 'Nullam id dolor id nibh ultricies vehicula ut id elit. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.',
+						'button': 'Button',
+					},
+					{
+						'path': '/page-builder',
+						'image': '/assets/images/holder-530x920.png',
+						'title': 'Maecenas sed diam risus varius blandit sit amet',
+						'summary': 'Maecenas faucibus mollis interdum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Maecenas sed diam eget risus varius.',
+						'button': 'Button',
+					},
+					{
+						'path': '/page-builder',
+						'image': '/assets/images/holder-530x920.png',
+						'title': 'Cras justo odio dapibus ac facilisis in',
+						'summary': 'Maecenas faucibus mollis interdum. Nulla vitae elit libero, a pharetra augue. Nullam quis risus eget urna mollis ornare vel eu leo. Aenean eu leo quam.',
+						'button': 'Button',
+					}
+				]} 
+			%}
+		{% endblock %}
+	
+    {% endblock main %}
+

@@ -1,0 +1,41 @@
+<article class="item clearfix">
+	{% block item_image %}
+        <a href="{{ item.path }}" class="item-image">
+			{% if item.image %}
+				{# Minimum image size: 530px X 920px #}
+                <img srcset="{{ item.image }} 960w, {{ item.image }} 560w, {{ item.image }} 320w"
+                    sizes="(min-width: 1280px) 608px, (min-width: 960px) 50vw, 100vw"
+                    src="{{ item.image }}"
+                    alt="{{ item.title }}">
+			{% else %}
+                <img src="{{ assets_dir }}/images/holder-530x920.png" alt="holding image" />
+			{% endif %}
+        </a>
+    {% endblock item_image %}
+
+    {% if item.label %}
+    	{% block item_meta %}
+            <span class="metalabel"><a href="{{ item.label_path }}">{{ item.label }}</a></span>
+        {% endblock item_meta %}
+    {% endif %}
+
+	{% block item_header %}
+        <header class="item-header">
+            <h3 class="item-header-title">
+                <a href="{{ item.path }}" class="item-link">{{ item.title }}</a>
+            </h3>
+
+            {% if item.date %}
+                <span class="item-header-date"><time datetime="{{ item.date|date("Y-m-d") }}">{{ item.date|date("jS F Y") }}</time></span>
+            {% endif %}
+        </header>
+    {% endblock item_header %}
+
+    {% if item.summary %}
+    	{% block item_summary %}
+            <div class="item-summary">
+                <p>{{ item.summary }}</p>
+            </div>
+        {% endblock item_summary %}
+    {% endif %}
+</article>

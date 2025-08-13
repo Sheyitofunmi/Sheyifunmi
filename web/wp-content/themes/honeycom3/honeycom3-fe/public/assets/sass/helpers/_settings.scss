@@ -1,0 +1,87 @@
+//++++++++++++++++
+//+++ SETTINGS +++
+//++++++++++++++++
+
+// Set the color scheme
+$primary: $black;
+$secondary: $blue;
+$tertiary: $grey30;
+
+// Creates a full palette from base colours
+$primary-bright: lighten($primary, 20%);
+$primary-light: lighten($primary, 10%);
+$primary-dark: darken($primary, 10%);
+$primary-shade: darken($primary, 20%);
+
+$secondary-bright: lighten($secondary, 20%);
+$secondary-light: lighten($secondary, 10%);
+$secondary-dark: darken($secondary, 10%);
+$secondary-shade: darken($secondary, 20%);
+
+// Set common colors
+$body-color: $white;
+$header-color: $white;
+
+// Set fixed header
+$fixedhead: false;
+
+// Set main share location
+$main_share_breadcrumb: true;
+$main_share_side: false;
+
+// Set meganav
+$meganav: false;
+
+// Typography
+$font-header: 'Open Sans', 'Trebuchet MS', 'Lucida Grande', Tahoma, sans-serif;
+$font-body: 'Open Sans', 'Trebuchet MS', 'Lucida Grande', Tahoma, sans-serif;
+$font-content: 'Open Sans', 'Trebuchet MS', 'Lucida Grande', Tahoma, sans-serif;
+$font-quote: 'Open Sans', 'Trebuchet MS', 'Lucida Grande', Tahoma, sans-serif;
+$font-meta: 'Andale Mono', AndaleMono, 'Lucida Console', monospace;
+
+$light: 300;
+$normal: 400;
+$bold: 700;
+
+// Layout
+$header-height: 110px;
+$gap: 1rem;
+$corner: 4px;
+$line: 1px;
+$page-width: 80rem;
+$shadow: 0 0 8px 0 rgba($black, 0.4);
+
+// Sets width of fixed columns
+$half-column: $page-width / 2;
+$third-column: $page-width / 3;
+$two-thirds-column: ($page-width / 3) * 2;
+$fourth-column: $page-width / 4;
+$three-fourths-column: ($page-width / 4) * 3;
+$sixth-column: $page-width / 6;
+$five-sixths-column: ($page-width / 6) * 5;
+
+// Keep track of z-indexes to avoid z-index: 999999999;
+$zindex: (
+    popup: 50,
+    header: 40,
+    rnav: 30,
+    footer: 20,
+    overlay: 10,
+    highlight: -10,
+);
+
+// Breakpoints
+$breakpoints: (
+	xsmall: 360px,
+    small: 560px,
+    tablet: 700px,
+    medium: 960px,
+    large: 1280px,
+    xlarge: 1440px,
+    xxlarge: 1700px,
+);
+
+// add CMS specific changes
+$wordpress: true;
+$drupal: false;
+$drupal-version: 8;

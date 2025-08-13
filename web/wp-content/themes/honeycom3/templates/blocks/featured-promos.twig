@@ -1,0 +1,13 @@
+{% if fields.display_title_only %}
+	{% set extra_class = 'signpost' %}
+{% endif %}
+
+{% include '@hc/components/cards.twig' with {
+	'section_id': fields.anchor_id|e('esc_html'),
+	'section_class': 'cards-outer ' ~ fields.background_colour|get_background_class_name ~ ' ' ~ fields.alignment_classes ~ ' ' ~ extra_class,
+	'title': fields.title|e('esc_html'),
+	'summary': fields.summary|nl2br,
+	'link': fields.button.title|e('esc_html'),
+	'link_path': fields.button.url|e('esc_url'),
+	'cards': twiggified_data }
+%}

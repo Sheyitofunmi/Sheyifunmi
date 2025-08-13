@@ -1,0 +1,205 @@
+/* ++++++++++++++++++++++
++++ LAYOUT: ACCORDION +++
+++++++++++++++++++++++ */
+
+.accordion {
+	background-color: $white;
+	position: relative;
+
+	&-outer {
+		&.two-col {
+			&.inline {
+				background-color: transparent;
+				.section-header-inner {
+					margin: 0 0 0 auto;
+				}
+				.accordion-col {
+					@include break(medium) {
+						margin: 0 0 0 auto;
+						width: 66.66%;
+					}
+					.accordion {
+						margin: 0;
+						padding-top: $gap / 1.5;
+
+						@include break(tablet) {
+							padding-top: 0;
+						}
+
+						+ .accordion {
+							padding-bottom: $gap / 1.5;
+
+							@include break(tablet) {
+								padding-bottom: 0;
+							}
+						}
+					}
+				}
+			}
+		}
+		&.inline {
+			.accordion {
+				@include break(medium) {
+					margin: 0 0 0 auto;
+					width: 66.66%;
+				}
+				&-description {
+					width: 100%;
+				}
+			}
+			&.secondary {
+				.section-header {
+					color: $white;
+
+					&-inner {
+						background-color: $secondary;
+						padding: $gap * 1.2 $gap * 2 0;
+					}
+				}
+				.accordion {
+					background-color: $secondary;
+					color: $white;
+					padding: 0 $gap * 2 $gap * 2;
+
+					&-inner {
+						background-color: $white;
+						padding: 0 $gap * 1.5;
+
+						@include break(tablet) {
+							padding: $gap $gap * 1.5;
+						}
+					}
+					&-col {
+						.accordion {
+							padding: 0 $gap * 2;
+
+							@include break(tablet) {
+								@include flexbox(50%);
+								padding: 0 $gap $gap * 2 $gap * 2;
+							}
+
+							&-inner {
+								padding-bottom: 0;
+
+								@include break(tablet) {
+									padding-bottom: 0;
+									padding-top: 0;
+								}
+							}
+
+							+ .accordion {
+								padding-bottom: $gap * 2;
+
+								@include break(tablet) {
+									padding-left: $gap;
+									padding-right: $gap * 2;
+								}
+
+								.accordion-inner {
+									padding-top: 0;
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		&.secondary {
+			.accordion {
+				padding: 0 $gap;
+
+				&-panel {
+					color: $black;
+				}
+			}
+		}
+	}
+
+	&-col {
+		@extend %flex;
+		justify-content: space-between;
+
+		.accordion {
+			@include flexbox(100%);
+			border-top: $line solid $grey80;
+			margin: 0;
+
+			@include break(tablet) {
+				@include flexbox(48%);
+				border-top: 0;
+			}
+			&:first-child {
+				border-top: 0;
+			}
+		}
+	}
+
+	&-item {
+		padding: $gap 0;
+
+	    & + & {
+	        border-top: $line solid $grey80;
+	    }
+	}
+
+	&-trigger {
+		* {
+			pointer-events: none;
+		}
+	}
+
+	&-button {
+		background: none;
+		border-radius: 0;
+		color: $black;
+		display: block;
+		font-size: 1.25rem;
+		padding: 0 $gap * 1.5 0 0;
+		position: relative;
+		text-align: left;
+		width: 100%;
+
+		.icon {
+			display: inline-block;
+			height: 1.05rem;
+			pointer-events: none;
+			position: absolute;
+			right: 0;
+			top: 0.3rem;
+			transition: 0.235s transform ease-in-out;
+			transform: rotate(90deg);
+			width: 1.05rem;
+		}
+
+		&:hover,
+		&:focus {
+			background: none;
+			box-shadow: none;
+			outline: 0;
+		}
+
+		&:active,
+		&.active {
+			.icon {
+				transform: rotate(-90deg);
+				transition: 0.235s transform ease-in-out;
+			}
+		}
+	}
+
+	&-panel {
+		display: none;
+		padding-top: $gap;
+
+		p {
+			color: $black;
+		}
+	}
+
+	&-description {
+		@include break(medium) {
+			margin: 0 auto 0 0;
+			width: 66.66%;
+		}
+	}
+}

@@ -1,0 +1,19 @@
+{
+	"name": "acf/media",
+	"title": "Media",
+	"description": "A media block.",
+	"style": [ "fb-gutenberg-media" ],
+	"category": "media",
+	"icon": "format-image",
+	"keywords": ["media"],
+	"acf": {
+		"mode": "auto",
+		"renderCallback": "fb_gutenberg_render_callback",
+		"blockVersion": 2
+	},
+	"supports": {
+		"align": false,
+		"anchor": true,
+		"mode": false
+	}
+}

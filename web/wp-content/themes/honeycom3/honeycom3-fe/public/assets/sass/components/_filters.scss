@@ -1,0 +1,311 @@
+/* ++++++++++++++++++++
++++ LAYOUT: FILTERS +++
+++++++++++++++++++++ */
+
+.filter {
+	@extend %flex;
+    align-items: flex-end;
+	gap: $gap;
+    max-width: $page-width;
+    padding: $gap * 1.5 $gap 0;
+
+    @include break(small) {
+	    padding: $gap $gap * 2;
+    }
+
+	@include break(tablet) {
+		gap: 0 $gap;
+	}
+
+	&-outer {
+		&.events {
+			.filter-section {
+				background-color: $grey70;
+				margin-top: $gap / 2;
+				padding: $gap * 1.5 0;
+
+				+ .filter-block {
+					.filter-show-button {
+						border-top: 0;
+						padding-top: $gap * 2;
+					}
+				}
+
+				.filter-block {
+					padding-bottom: $gap;
+
+					select {
+						background-position: 96% center;
+
+						@include break(small) {
+							background-position: 98% center;
+						}
+
+						@include break(medium) {
+							background-position: 95% center;
+						}
+					}
+
+					&.filter-search {
+						position: relative;
+
+						.filter-submit {
+							border-radius: 0 13px 13px 0;
+							bottom: 18px;
+							height: 35px;
+							padding: 0;
+							position: absolute;
+							right: 34px;
+							width: 45px;
+						}
+					}
+
+					&-inner {
+						@extend %flex;
+						justify-content: space-between;
+						padding: 0 $gap * 2 $gap;
+
+						.filter-block {
+							@include flexbox(48%);
+							margin: 0;
+							padding: 0;
+						}
+					}
+					&.actions {
+						padding-bottom: $gap / 2;
+					}
+				}
+			}
+			label {
+				padding-bottom: 0;
+			}
+		}
+		&.keyword-search {
+			background-color: $primary;
+			padding: 0 0 $gap * 4;
+
+			.filter {
+				padding: 0;
+
+				@include break(medium) {
+					margin: 0 auto 0 0;
+					width: 50%;
+				}
+
+				&-block {
+					label {
+						color: $white;
+					}
+				}
+				.filter-submit {
+					@extend .button-secondary;
+				}
+			}
+		}
+	}
+
+    &-button {
+        text-align: center;
+    }
+
+    &-show-button {
+        @extend %transition;
+		@extend %font-header;
+        background-color: $primary;
+        background-image: url("data:image/svg+xml,%3Csvg width='28' height='15' viewBox='0 0 28 15' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0.999999 0.999999L14 14L27 1' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E%0A");
+        background-position: right $gap center;
+        background-repeat: no-repeat;
+        background-size: 20%;
+		color: $white;
+        cursor: pointer;
+        display: block;
+        margin: 0 auto;
+        padding: $gap $gap * 4 $gap $gap;
+
+        @include break(tablet) {
+            display: none;
+        }
+
+		&:hover {
+			color: $white;
+			text-decoration: none;
+		}
+    }
+    &-inner {
+        display: none;
+
+        @include break(tablet) {
+            display: block !important;
+        }
+    }
+
+    &-block {
+		@include flexbox(100%);
+        text-align: left;
+
+		@include break(tablet) {
+			flex: 0 auto;
+			flex-grow: 1;
+			max-width: none;
+		}
+
+        label {
+	        font-weight: $bold;
+        }
+
+		&-title {
+			@extend %h4;
+			padding: $gap * 2 $gap * 2 $gap;
+		}
+
+		.filter-show-button {
+			background-color: transparent;
+			background-image: none;
+			position: relative;
+
+			&:after {
+				@extend %transition;
+				@include centerer(false, true);
+				@include bg-arrow('%23058295');
+				background-repeat: no-repeat;
+				background-size: 100%;
+				content: '';
+				display: inline-block;
+				height: 25px;
+				right: 18px;
+				transform: translate(0, -50%) rotate(90deg);
+				width: 25px;
+			}
+
+			span {
+				@extend %font-header;
+				color: $black;
+			}
+			&:hover, &.active, &:focus {
+				background-color: transparent;
+				text-decoration: none;
+
+				&:after {
+					@include bg-arrow('black');
+					transform: translate(0, -50%) rotate(180deg);
+				}
+			}
+			&.active {
+				background-color: #00788A;
+
+				span {
+					color: $white;
+				}
+
+				&:after {
+					@include bg-arrow('white');
+					transform: translate(0, -50%) rotate(270deg);
+				}
+			}
+		}
+
+		.js-facets-checkbox-links {
+			height: 95px;
+			margin-right: .6rem;
+			overflow-y: scroll;
+
+			&::-webkit-scrollbar {
+			  width: 6px;
+			}
+
+			&::-webkit-scrollbar-track {
+			  background-color: $white;
+			}
+
+			&::-webkit-scrollbar-thumb {
+			  background-color: $primary;
+			  border-radius: 2px;
+			}
+		}
+
+		[type="checkbox"] {
+			appearance: none;
+			border: solid 1px $primary;
+			cursor: pointer;
+			height: 15px;
+			margin-top: 6px;
+			padding: 0;
+			-moz-appearance: none;
+			-webkit-appearance: none;
+			width: 15px;
+
+			+ label {
+				cursor: pointer;
+			}
+			&:hover {
+				background-color: $primary;
+				border: solid 1px $white;
+
+				+ label {
+					color: $primary;
+				}
+			}
+		}
+		[type="checkbox"]:checked {
+			background-color: $primary;
+			border: solid 1px $white;
+		}
+		&.date-range {
+			[type="text"] {
+				background-image: url("data:image/svg+xml,%3Csvg width='28' height='15' viewBox='0 0 28 15' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0.999999 0.999999L14 14L27 1' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E%0A");
+				background-position: right $gap center;
+				background-repeat: no-repeat;
+				background-size: 20px;
+				border: solid 1px $grey80;
+			}
+		}
+
+		&.actions {
+			@extend %flex;
+			gap: $gap;
+
+			@include break(tablet) {
+				flex-wrap: nowrap;
+				gap: 0 $gap;
+			}
+
+			input {
+				flex-grow: 1;
+			}
+		}
+    }
+
+    &-submit {
+		background-color: $primary;
+		padding: 0;
+		color: $white;
+		text-decoration: none;
+		width: 100%;
+
+		&:hover,
+		&:active {
+			background-color: $secondary;
+			color: $white;
+		}
+
+		@include break(small) {
+			margin-top: 0;
+		}
+
+		&:hover {
+			background-color: $white;
+			color: $black;
+		}
+	}
+	&-reset {
+		background-color: transparent;
+		color: $grey15;
+		padding: 0;
+		text-decoration: underline;
+
+		&:hover {
+			background-color: transparent;
+			color: $secondary;
+		}
+	}
+}

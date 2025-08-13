@@ -1,0 +1,301 @@
+/* ++++++++++++++++++++
++++ LAYOUT: CONTENT +++
+++++++++++++++++++++ */
+
+// Content is the section of the page that contains body copy, typically from a WYSIWYG area. This gets all the post styling such as blockquotes and lists.
+
+.secondary {
+	.content {
+		a {
+			&:hover {
+				color: $white;
+			}
+		}
+		a[href^="http://"]:not([href*="mysite.com"]),
+		a[href^="https://"]:not([href*="mysite.com"]),
+		a[href^="//"]:not([href*="mysite.com"]),
+		a[target=_blank] {
+			&:after {
+				@extend %transition;
+				background-image: url("data:image/svg+xml,%3Csvg width='18' height='18' viewBox='0 0 18 18' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M14.3333 9.88897V15.2223C14.3333 15.6938 14.146 16.146 13.8126 16.4794C13.4792 16.8128 13.0271 17.0001 12.5556 17.0001H2.77778C2.30628 17.0001 1.8541 16.8128 1.5207 16.4794C1.1873 16.146 1 15.6938 1 15.2223V5.44453C1 4.97303 1.1873 4.52085 1.5207 4.18745C1.8541 3.85405 2.30628 3.66675 2.77778 3.66675H8.11111' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M11.6667 1H17.0001V6.33333' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M7.22217 10.7778L16.9999 1' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E%0A");
+			}
+		}
+	}
+}
+
+.standfirst {
+	p {
+		&:first-of-type {
+			font-size: 1.3rem;
+		}
+	}
+	+ .content {
+		margin-top: $gap;
+	}
+}
+
+.content {
+    @extend %font-content;
+
+    * {
+		margin-top: $gap;
+
+        &:first-child {
+	        margin-top: 0;
+        }
+    }
+
+    // Lists
+    ol, ul {
+	    margin-top: $gap;
+        padding-left: $gap * 1.2;
+
+		li {
+			margin-top: 0;
+			padding: $gap / 4 0;
+		}
+    }
+
+    ol li {
+        list-style: decimal;
+
+        ol li { list-style-type: lower-roman; }
+        ul li { list-style-type: circle; }
+    }
+
+    ul li {
+        list-style: disc;
+
+        ul li { list-style-type: circle; }
+        ol li { list-style-type: decimal; }
+    }
+
+    form {
+        ol, ul {
+            padding: 0;
+        }
+
+        li {
+            list-style: none !important;
+        }
+    }
+
+    p {
+        font-size: 1em;
+
+        &:empty {
+            display: none;
+        }
+    }
+
+	table {
+		margin: $gap 0 0;
+    td, th {
+      border: 1px solid;
+      padding: 0.5rem 1rem;
+      vertical-align: middle;
+    }
+    th {
+      background-color: $grey90;
+    }
+	}
+
+    a {
+        @extend %text-hover;
+        text-decoration: underline;
+    }
+	a[href^="http://"]:not([href*="mysite.com"]),
+	a[href^="https://"]:not([href*="mysite.com"]),
+	a[href^="//"]:not([href*="mysite.com"]),
+	a[target=_blank] {
+		&:after {
+			@extend %transition;
+			background-image: url("data:image/svg+xml,%3Csvg width='18' height='18' viewBox='0 0 18 18' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M14.3333 9.88897V15.2223C14.3333 15.6938 14.146 16.146 13.8126 16.4794C13.4792 16.8128 13.0271 17.0001 12.5556 17.0001H2.77778C2.30628 17.0001 1.8541 16.8128 1.5207 16.4794C1.1873 16.146 1 15.6938 1 15.2223V5.44453C1 4.97303 1.1873 4.52085 1.5207 4.18745C1.8541 3.85405 2.30628 3.66675 2.77778 3.66675H8.11111' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M11.6667 1H17.0001V6.33333' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M7.22217 10.7778L16.9999 1' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E%0A");
+			background-size: 100%;
+			content: '';
+			display: inline-block;
+			height: 16px;
+			margin-left: $gap / 2;
+			width: 16px;
+		}
+	}
+	// a.button[href^="http://"]:not([href*="mysite.com"]),
+	// a.button[href^="https://"]:not([href*="mysite.com"]),
+	// a.button[href^="//"]:not([href*="mysite.com"]),
+	// a.button[target=_blank] {
+	// 	&:after {
+	// 		@extend %transition;
+	// 		background-image: url("data:image/svg+xml,%3Csvg width='18' height='18' viewBox='0 0 18 18' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M14.3333 9.88897V15.2223C14.3333 15.6938 14.146 16.146 13.8126 16.4794C13.4792 16.8128 13.0271 17.0001 12.5556 17.0001H2.77778C2.30628 17.0001 1.8541 16.8128 1.5207 16.4794C1.1873 16.146 1 15.6938 1 15.2223V5.44453C1 4.97303 1.1873 4.52085 1.5207 4.18745C1.8541 3.85405 2.30628 3.66675 2.77778 3.66675H8.11111' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M11.6667 1H17.0001V6.33333' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M7.22217 10.7778L16.9999 1' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E%0A");
+	// 		height: 20px;
+	// 		width: 20px;
+	// 	}
+	// 	&:hover {
+	// 		&:after {
+	// 			background-image: url("data:image/svg+xml,%3Csvg width='18' height='18' viewBox='0 0 18 18' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M14.3333 9.88897V15.2223C14.3333 15.6938 14.146 16.146 13.8126 16.4794C13.4792 16.8128 13.0271 17.0001 12.5556 17.0001H2.77778C2.30628 17.0001 1.8541 16.8128 1.5207 16.4794C1.1873 16.146 1 15.6938 1 15.2223V5.44453C1 4.97303 1.1873 4.52085 1.5207 4.18745C1.8541 3.85405 2.30628 3.66675 2.77778 3.66675H8.11111' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M11.6667 1H17.0001V6.33333' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M7.22217 10.7778L16.9999 1' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E%0A");
+	// 		}
+	// 	}
+	// }
+
+    // Media
+    img {
+        border-radius: $corner;
+        margin: $gap * 1.5 0 0 0;
+    }
+
+    .fluid-width-video-wrapper {
+        border-radius: $corner;
+        overflow: hidden;
+    }
+
+    a img {
+        @extend %image-hover;
+    }
+
+    // Buttons
+    .btn,
+    .button {
+        font-size: 1rem;
+        margin-top: $gap;
+
+        + .btn, .button {
+	        @include break(small) {
+		        margin-left: $gap;
+	        }
+        }
+    }
+
+    .btn a,
+    .button a,
+    a.btn,
+    a.button {
+        border: none;
+        box-shadow: none;
+        color: $white;
+        text-decoration: none;
+
+		&:hover {
+			color: $white;
+		}
+    }
+
+    p.btn,
+    p.button {
+        padding: 0;
+    }
+
+    .btn a,
+    .button a {
+        display: block;
+        padding: $gap / 2 $gap;
+    }
+
+    // Quotes
+    blockquote {
+		background-color: $grey95;
+		border-radius: $corner;
+		margin: $gap * 1.5 0;
+		position: relative;
+
+	    p {
+		    border-left: solid 6px $secondary;
+	        display: block;
+	        font-weight: $bold;
+	        padding: $gap * 1.5;
+			quotes: "“" "”" "‘" "’";
+
+			&:before {
+			    content: open-quote;
+			    display: inline-block;
+			}
+			&:after {
+			    content: close-quote;
+			    display: inline-block;
+			}
+	    }
+    }
+
+    code {
+        background: $grey95;
+        border-radius: $corner;
+        border: 1px solid $grey80;
+        font-family: $font-meta;
+    }
+
+
+sub, sup {
+	font-size: 75%;
+	line-height: 0;
+	position: relative;
+	vertical-align: baseline;
+}
+
+sup {
+	top: -0.5em;
+}
+
+sub {
+	bottom: -0.25em;
+}
+
+    @include break(small) {
+        p, li { font-size: 1.125em; }
+        li { font-size: 1.125rem; }
+    }
+
+    @include break(medium) {
+        .alignleft,
+        .float-left,
+        .float_left {
+            float: left;
+            margin: $gap * 1.5 $gap * 1.5 $gap * 1.5 0;
+            max-width: 48%;
+        }
+
+        .alignright,
+        .float-right,
+        .float_right {
+            float: right;
+            margin: $gap * 1.5 0 $gap * 1.5 $gap * 1.5;
+            max-width: 48%;
+        }
+    }
+}
+
+@if $wordpress {
+    .wp-caption {
+        position: relative;
+        width: auto !important;
+
+	    &-text {
+	        @extend figcaption;
+	    }
+    }
+}
+@if $drupal {
+    figure[role=group] {
+        position: relative;
+        width: auto !important;
+
+	    figcaption {
+	        @extend figcaption;
+	    }
+    }
+}
+
+pre {
+	background-color: $grey95;
+	border-radius: 3px;
+	font-size: 85%;
+	font-family: $font-meta;
+	line-height: 1.45;
+	margin: $gap * 3 0;
+	overflow: auto;
+	padding: $gap;
+}
+
+p {
+	pre {
+		display: inline-block;
+		padding: 0;
+	}
+}

@@ -1,0 +1,26 @@
+{% extends '@hc/scaffolding/section.twig' %}
+
+{% block section_content %}
+	<div class="container">
+		{% include '@hc/partials/accordion-item.twig' %}
+	</div>
+{% endblock section_content %}
+
+
+{# Include like so:
+{% include '@hc/components/accordion.twig' with {
+'title': 'Accordion component',
+'summary': 'The Client can create a set of expandable panels.', 
+'section_class': 'secondary',
+'accordions': [
+    {
+        'title': 'Nullam congue tempor faucibus',
+        'description': 'Nullam id dolor id nibh ultricies vehicula ut id elit. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Nullam id dolor id nibh ultricies vehicula ut id elit.',
+    },
+        {
+        'title': 'Nullam congue tempor faucibus',
+        'description': 'Nullam id dolor id nibh ultricies vehicula ut id elit. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Nullam id dolor id nibh ultricies vehicula ut id elit.',
+    }
+] } 
+%}
+#}

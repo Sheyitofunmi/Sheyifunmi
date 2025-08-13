@@ -1,0 +1,55 @@
+/* +++++++++++++++++++++
++++ LAYOUT: METADATA +++
++++++++++++++++++++++ */
+
+// Metadata on an article page
+.metadata {
+    @extend %font-meta;
+    color: $secondary;
+
+    &-link {
+        @extend %text-hover;
+        @extend %transition;
+        font-weight: $bold;
+    }
+
+    time {
+        font-weight: $bold;
+    }
+}
+
+.metalabel {
+    @extend %font-label;
+    color: $primary;
+    display: block;
+
+    a {
+        @extend %text-hover;
+    }
+}
+
+// Tags
+
+.tags {
+	margin-top: $gap;
+}
+.metatag {
+    float: left;
+    margin: $gap / 4 $gap / 4 0 0;
+
+    &-link {
+        @extend %transition;
+        background-color: $primary;
+        border-radius: 25px;
+        color: $white;
+        display: inline-block;
+        font: $bold 0.8em/1.5 $font-body;
+        margin: $gap / 4 $gap / 4 $gap / 4 0;
+        padding: $gap / 4 $gap / 1.5;
+
+        &:hover {
+            background: $secondary;
+            color: $white;
+        }
+    }
+}

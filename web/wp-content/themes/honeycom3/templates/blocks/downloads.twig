@@ -1,0 +1,7 @@
+{% include '@hc/components/downloads.twig' with {
+	'section_id': fields.anchor_id|e('esc_html'),
+	'section_class': 'download-outer ' ~ fields.background_colour|get_background_class_name ~ ' ' ~ fields.alignment_classes,
+	'title': fields.title|e('esc_html'),
+	'summary': fields.summary|nl2br,
+	'downloads': twiggified_data }
+%}

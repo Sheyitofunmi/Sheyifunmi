@@ -1,0 +1,18 @@
+{% extends '@hc/scaffolding/section.twig' %}
+
+{% block section_content %}
+	<div class="container">
+		<div class="embed-inner">
+			{{ embed_code|raw }}
+		</div>
+	</div>
+{% endblock section_content %}
+
+{# Include like so:
+{% include '@hc/components/embed.twig' with {
+'title': 'Embed component',
+'section_class': 'embed-outer',
+'embed_code': '<iframe src="https://www.fatbeehive.com/" title="iframe test"></iframe>',
+}
+%}
+#}

@@ -1,0 +1,35 @@
+{% extends '@hc/scaffolding/section.twig' %}
+
+{% block section_header %}{% endblock section_header %}
+{% block section_content %}
+	<div class="container">
+		{% include '@hc/partials/media-item.twig' %}
+	</div>
+{% endblock section_content %}
+
+
+{# Include like so:
+{% include '@hc/components/media-section.twig' with {
+'section_class': 'media-block-outer light',
+'image': '/assets/images/holder-530x920.png',
+'title': 'Media block component',
+'summary': 'The Client can create a single promo leading with an image or video.',
+'button': 'Optional button',
+'button_link': '#',
+} %}
+
+{% include '@hc/components/media-section.twig' with {
+'section_class': 'media-block-outer right secondary',
+'video_link': 'https://www.youtube.com/watch?v=j_iNLRAzjg4',
+'image': '/assets/images/holder-530x920.png',
+'title': 'Media block component with video modal',
+'summary': 'The Client can create a single promo leading with an image or video.',
+} %}
+
+{% include '@hc/components/media-section.twig' with {
+'section_class': 'media-block-outer video grey',
+'video': '<iframe width="560" height="315" src="https://www.youtube.com/embed/vhOgYN5SDQg?si=98HBvYMwWQ-sWsRZ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>',
+'title': 'Media block component with video',
+'summary': 'The Client can create a single promo leading with an image or video.',
+} %}
+#}

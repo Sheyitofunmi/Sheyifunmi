@@ -1,0 +1,272 @@
+/* ++++++++++++++++
++++ LAYOUT: CTA +++
+++++++++++++++++ */
+
+.cta {
+    &-outer {
+	    background-color: $primary;
+	    position: relative;
+
+		&.inline {
+			background: transparent;
+
+			.cta {
+				margin: 0 auto;
+				padding: 0 $gap;
+
+				@include break(small) {
+					padding: 0 $gap * 2;
+				}
+
+				@include break(large) {
+					width: $page-width;
+				}
+
+				&-info {
+					margin: 0;
+					padding: 0;
+				}
+
+				&-inner {
+					background-color: $grey90;
+					border-radius: 0;
+					padding: $gap * 1.5 $gap * 2 $gap * 2;
+					text-align: left;
+
+					@include break(medium) {
+						margin: 0 0 0 auto;
+						width: 66.66%;
+					}
+					.cta-title {
+						font-size: 1.8125rem;
+						margin: 0;
+					}
+					.button {
+						margin: 0;
+					}
+				}
+				&.with-image {
+					.cta-inline {
+						@extend %flex;
+						flex-direction: row-reverse;
+						margin:  0 0 0 auto;
+						position: relative;
+
+						@include break(medium) {
+							width: 66.66%;
+						}
+					}
+
+					.cta-image {
+						@include flexbox(100%);
+						border-radius: 0;
+						height: auto;
+						position: relative;
+						width: auto;
+
+						@include break(small) {
+							@include flexbox(50%);
+						}
+
+						+ .cta-info {
+							@include flexbox(100%);
+							border-radius: 0;
+
+							box-shadow: none;
+							margin:  0;
+							width: 100%;
+
+							@include break(small) {
+								@include flexbox(50%);
+							}
+
+							.cta-inner {
+								background-color: $grey90;
+								color: $black;
+								width: 100%;
+							}
+
+							.cta-title {
+								color: $primary;
+							}
+						}
+					}
+				}
+			}
+		}
+
+	    &.full-width-image {
+		    padding: 0;
+
+		    @include break(tablet) {
+				min-height: 80vh;
+		    }
+
+		    .cta-image {
+				position: relative;
+
+				@include break(tablet) {
+					position: absolute;
+				}
+		    }
+	    }
+
+	    &.site-width-image {
+		    padding: 0;
+
+		    @include break(tablet) {
+				min-height: 60vh;
+		    }
+		    @include break(large) {
+			    margin: 0 auto;
+		    	width: $page-width;
+		    }
+
+		    .cta-image {
+				position: relative;
+
+				@include break(tablet) {
+					position: absolute;
+				}
+		    }
+	    }
+
+		&.left-inner {
+			.cta-image {
+				+ .cta-info {
+					.cta-inner {
+						@include break(medium) {
+							margin: 0 auto 0 0;
+							text-align: left;
+							width: 50%;
+						}
+					}
+				}
+			}
+		}
+		&.right-inner {
+			.cta-image {
+				+ .cta-info {
+					.cta-inner {
+						@include break(medium) {
+							margin: 0 0 0 auto;
+							text-align: left;
+							width: 50%;
+						}
+					}
+				}
+			}
+		}
+
+	    .cta-image {
+		    + .cta-info {
+				margin: 4rem;
+
+				@include break(small) {
+					margin: 8rem 4rem;
+				}
+				@include break(medium) {
+					margin: 8rem auto;
+				}
+		    }
+	    }
+		.cta-inner {
+			background-color: rgba($white, 0.8);
+			border-radius: $corner;
+			box-shadow: $shadow;
+			color: $black;
+			padding: $gap * 1.5;
+			text-align: center;
+			position: relative;
+			z-index: 1;
+
+			@include break(small) {
+				padding: $gap * 3;
+			}
+			@include break(medium) {
+				width: 66.66%;
+			}
+		}
+		&.secondary {
+			.cta {
+				&-inner {
+					background-color: rgba($black, 0.8);
+					color: $white;
+
+					.button {
+						@extend .button-secondary;
+					}
+				}
+			}
+			&.inline {
+				.cta {
+					&-inner {
+						background-color: $secondary;
+					}
+					&.with-image {
+						.cta-image {
+							+ .cta-info {
+								.cta-inner {
+									background-color: $secondary;
+									color: $white;
+
+									.cta-title {
+										color: $white;
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+    }
+
+	&-info {
+		margin: 4rem;
+
+		@include break(small) {
+			margin: 8rem 4rem;
+		}
+		@include break(medium) {
+			margin: 4rem auto;
+			max-width: $page-width;
+			padding: 0 $gap * 2;
+		}
+	}
+
+	&-title {
+		+ .button {
+			margin-top: $gap * 2;
+		}
+	}
+
+ 	&-summary {
+	 	padding: $gap * 1.5 0 $gap * 2;
+ 	}
+
+ 	&-image {
+	 	height: 100%;
+	 	left: 0;
+	 	position: absolute;
+	 	top: 0;
+	 	width: 100%;
+
+	 	img {
+		 	@include object-fit(16/9, 100%);
+	 	}
+ 	}
+    &-caption {
+	    background-color: $primary;
+	    color: $white;
+		font-size: 0.8em;
+	    padding: $gap / 1.5 $gap * 1.5;
+
+
+		@include break(tablet) {
+			bottom: 0;
+			left: 0;
+			position: absolute;
+		}
+    }
+}

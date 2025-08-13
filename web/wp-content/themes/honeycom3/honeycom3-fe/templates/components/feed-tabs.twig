@@ -1,0 +1,41 @@
+{% extends '@hc/scaffolding/section.twig' %}
+
+{% block section_content %}
+	<div class="container">
+
+		<div class="tab-list" role="tablist">
+			{% for tab in tabs %}
+				<button class="tab-item tab-button" role="tab" aria-controls="tab-{{ loop.index }}" aria-selected="true">{{ tab.title }}</button>
+			{% endfor %}
+		</div>
+
+		{% for tab in tabs %}
+			<div id="tab-{{ loop.index }}" role="tabpanel" tab-title="Tab {{ loop.index }}">
+				<div class="tab-block">
+
+				{% set cards = tab.cards %}
+				{% for card in cards %}
+					{% include '@hc/partials/card.twig' %}
+				{% endfor %}
+
+				</div>
+				{% if tab.link %}
+					<div class="tab-footer">
+						<a href="{{ tab.link_path }}" class="button">{{ tab.link }}</a>
+					</div>
+				{% endif %}
+			</div>
+		{% endfor %}
+
+	</div>
+
+	{% block scripts_page %}
+		<script defer src="https://unpkg.com/a11y-tabs@0.1.0/dist/a11y-tabs.min.js"></script>
+		<script>
+		window.addEventListener('DOMContentLoaded', () => {
+		  new A11yTabs('.tabs-outer .tab-list', '.tabs-outer [role="tabpanel"]', 0);
+		});
+		</script>
+	{% endblock %}
+
+{% endblock section_content %}

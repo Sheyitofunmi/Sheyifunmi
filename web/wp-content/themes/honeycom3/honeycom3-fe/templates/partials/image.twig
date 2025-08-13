@@ -1,0 +1,11 @@
+{% if image_data.srcset %}
+  <img srcset="
+    {% for width, src in image_data.srcset %}
+      {{ src }} {{ width }}{% if not loop.last %}, {% endif %}
+    {% endfor %}"
+    sizes="(min-width: 1280px) 1920px, (min-width: 960px) 50vw, 100vw" src="{{ image_data.fallback }}" alt="{{ image_data.alt }}">
+{% elseif image is iterable %}
+  {{ image }}
+{% elseif image %}
+  <img srcset="{{ image }} 960w, {{ image }} 560w, {{ image }} 320w" sizes="(min-width: 1280px) 608px, (min-width: 960px) 50vw, 100vw" src="{{ image }}" alt="{{ alt }}" height="{{ imgheight }}" width="{{ imgwidth }}">
+{% endif %}

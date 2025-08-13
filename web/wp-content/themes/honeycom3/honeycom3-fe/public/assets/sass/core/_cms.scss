@@ -1,0 +1,146 @@
+/* ++++++++++++++++
++++ LAYOUT: CMS +++
+++++++++++++++++ */
+
+ // Wordpress
+
+ body.logged-in {
+	 .header {
+		/* position: relative; */
+	 }
+	 .main {
+		 margin-top: 0;
+	 }
+ }
+
+@if $wordpress {
+	body.admin-bar {
+		.header, .lg-outer {
+			@include break(medium) {
+				top: 33px;
+			}
+		}
+	}
+	#wpadminbar {
+		box-sizing: content-box;
+		margin-top: 0;
+
+		img {
+			display: inline;
+		}
+
+		@media screen and (max-width: 600px) {
+			position: fixed;
+		}
+	}
+}
+
+.dialog-off-canvas-main-canvas {
+	width: 100%;
+}
+.wp-block-heading {
+	&.alignfull {
+		&.has-text-align-center {
+			text-align: center;
+		}
+	}
+}
+
+@if $drupal {
+	.header-nav-outer {
+		.nav-item-link {
+			&.is-active {
+				color: $grey15;
+				font-weight: $bold;
+			}
+		}
+	}
+	.local-task-list {
+		display: flex;
+		justify-content: center;
+		position: relative;
+		text-align: center;
+		z-index: 999;
+
+		&-base {
+			@extend %flex;
+			align-items: center;
+			backdrop-filter: blur(6px);
+			background-color: rgba(77, 77, 77, 0.85);
+			border-radius: 1em 1em 0 0;
+			bottom: 0;
+			gap: $gap;
+			justify-content: center;
+			margin-top: 0;
+			padding: $gap;
+			position: fixed;
+			z-index: 999;
+
+			* {
+				margin-top: 0;
+			}
+		}
+		&-block {
+			@extend %font-header;
+			@extend %transition;
+			background: $primary;
+			border-radius: $corner;
+			color: $white;
+			display: block;
+			line-height: 35px;
+			list-style: none;
+			margin: 0;
+			text-align: center;
+
+			&:hover {
+				background: lighten($primary, 12%);
+			}
+
+			&:first-child {
+				margin-left: 0;
+			}
+
+			a {
+				display: block;
+				padding: 0 $gap / 1.5;
+			}
+		}
+	}
+
+	@include break(medium) {
+		#toolbar-administration .hover-intent .toolbar-menu .toolbar-menu {
+			margin-left: 200px;
+			margin-top: -39px;
+		}
+	}
+
+	.toolbar-tray-horizontal li {
+		margin: 0;
+	}
+
+	#toolbar-item-administration-tray {
+		margin: 0;
+	}
+
+	nav.toolbar-bar .menu-item {
+		margin: unset;
+	}
+
+	.content-moderation-entity-moderation-form {
+		.entity-moderation-form {
+			border: 1px dashed red;
+			justify-content: center;
+
+			&__item {
+				margin: 0 2rem 0 0;
+
+				select {
+					width: 170px;
+				}
+				label {
+					font-weight: 700;
+				}
+			}
+		}
+	}
+}

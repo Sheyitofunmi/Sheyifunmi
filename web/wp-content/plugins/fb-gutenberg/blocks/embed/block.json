@@ -1,0 +1,19 @@
+{
+	"name": "acf/embed",
+	"title": "Embed",
+	"description": "An embed block.",
+	"style": [ "fb-gutenberg-embed" ],
+	"category": "embed",
+	"icon": "embed-generic",
+	"keywords": ["embed"],
+	"acf": {
+		"mode": "auto",
+		"renderCallback": "fb_gutenberg_render_callback",
+		"blockVersion": 2
+	},
+	"supports": {
+		"align": false,
+		"anchor": true,
+		"mode": false
+	}
+}

@@ -1,0 +1,56 @@
+{% set meta_sitename = site.name|striptags %}
+{% set meta_color = '#263238' %}
+{% set cms = 'WordPress' %}
+
+{% set webfont_preloads %}
+	{# Open sans #}
+	<link rel="preload" as="font" crossorigin="crossorigin" type="font/woff" href="{{ assets_dir }}/webfonts/opensans-regular.woff" />
+	<link rel="preload" as="font" crossorigin="crossorigin" type="font/woff2" href="{{ assets_dir }}/webfonts/opensans-regular.woff2" />
+	<link rel="preload" as="font" crossorigin="crossorigin" type="font/woff" href="{{ assets_dir }}/webfonts/opensans-italic.woff" />
+	<link rel="preload" as="font" crossorigin="crossorigin" type="font/woff2" href="{{ assets_dir }}/webfonts/opensans-italic.woff2" />
+	<link rel="preload" as="font" crossorigin="crossorigin" type="font/woff" href="{{ assets_dir }}/webfonts/opensans-bold.woff" />
+	<link rel="preload" as="font" crossorigin="crossorigin" type="font/woff2" href="{{ assets_dir }}/webfonts/opensans-bold.woff2" />
+	<link rel="preload" as="font" crossorigin="crossorigin" type="font/woff" href="{{ assets_dir }}/webfonts/opensans-bolditalic.woff" />
+	<link rel="preload" as="font" crossorigin="crossorigin" type="font/woff2" href="{{ assets_dir }}/webfonts/opensans-bolditalic.woff2" />
+{% endset %}
+
+{% set navigation = global_nav %}
+{% set secnav = sec_nav %}
+
+{% set socials = [
+	{ 'selector': 'twitter', 'path': '#' },
+	{ 'selector': 'facebook', 'path': '#' },
+	{ 'selector': 'instagram', 'path': '#' },
+	{ 'selector': 'youtube', 'path': '#' }
+] %}
+
+{% set buttons = [
+	{ 'text': 'Donate', 'url': '/donate' }
+] %}
+
+{% set footer_nav = [
+	{ 'text': 'Home', 'url': '/' },
+	{ 'text': 'Page builder', 'url': '/' },
+	{ 'text': 'Listing', 'url': '/' },
+	{ 'text': 'Post', 'url': '/' },
+] %}
+
+{% set quicklinks = [
+	{ 'text': 'Listing', 'url': '/' },
+	{ 'text': 'Post', 'url': '/' },
+	{ 'text': 'Home', 'url': '/' },
+	{ 'text': 'Page builder', 'url': '/' },
+] %}
+
+{% set site_tools = [
+	{ 'text': 'Sitemap', 'url': '#' },
+	{ 'text': 'Accessibility', 'url': '#' },
+	{ 'text': 'Privacy & cookies', 'url': '#' }
+] %}
+
+{% set copyright_text = meta_sitename ~ ' All Rights Reserved.' %}
+{% set charity_info = 'Registered charity in England and Wales (No. 1084696)' %}
+
+{# This is the htmlPage block that all other content is rendered into, don't delete unless you want a broken site #}
+{% block htmlPage %}
+{% endblock %}

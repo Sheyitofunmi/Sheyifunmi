@@ -1,0 +1,60 @@
+<div class="breadcrumb-outer">
+	<div class="container">
+		<ul class="breadcrumb-list" role="tablist">
+			<li class="breadcrumb-list-item" role="tab">
+				<a href="/" class="breadcrumb-list-link">Home</a>
+			</li>
+
+			{% for nav in subnav %}
+
+				{% if nav.active_trail %}
+					<li class="breadcrumb-list-item{% if nav.active == 'true' %} current{% endif %}" role="tab">
+						<a href="{{ nav.url }}" class="breadcrumb-list-link{% if nav.active == 'true' %} current{% endif %}">{{ nav.text }}</a>
+					</li>
+				{% endif %}
+
+				{% if nav.active_trail %}
+					{% for nav2 in nav.submenu %}
+						{% if nav2.active_trail  %}
+							<li class="breadcrumb-list-item{% if nav2.active == 'true' %} current{% endif %}" role="tab">
+								<a href="{{ nav2.url }}" class="breadcrumb-list-link{% if nav2.active == 'true' %} current{% endif %}">{{ nav2.text }}</a>
+							</li>
+						{% endif %}
+
+						{# Nav 2 code block #}
+						{% if nav2.active_trail %}
+							{% for nav3 in nav2.submenu %}
+
+								{% if nav3.active_trail %}
+									<li class="breadcrumb-list-item{% if nav3.active == 'true' %} current{% endif %}" role="tab">
+										<a href="{{ nav3.url }}" class="breadcrumb-list-link{% if nav3.active == 'true' %} current{% endif %}">{{ nav3.text }}</a>
+									</li>
+								{% endif %}
+
+								{# Nav 3 code block #}
+								{% if nav3.active_trail %}
+									{% for nav4 in nav3.submenu %}
+										{% if nav4.active_trail %}
+											<li class="breadcrumb-list-item{% if nav4.active == 'true' %} current{% endif %}" role="tab">
+												<a href="{{ nav4.url }}" class="breadcrumb-list-link{% if nav4.active == 'true' %} current{% endif %}">{{ nav4.text }}</a>
+											</li>
+										{% endif %}
+									{% endfor %}
+								{% endif %}
+								{# END Nav 3 code block #}
+
+							{% endfor %}
+						{% endif %}
+						{# END Nav 2 code block #}
+					{% endfor %}
+				{% endif %}
+
+			{% endfor %}
+		</ul>
+	</div>
+</div>
+<div>
+	{% if function('is_plugin_active', 'reading-time-wp/rt-reading-time.php') %}
+		<p>{{ function('do_shortcode', '[rt_reading_time label="Reading Time:" postfix="minutes" postfix_singular="minute"]')}}</p>
+	{% endif %}
+</div>

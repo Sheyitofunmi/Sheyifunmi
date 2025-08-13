@@ -1,0 +1,61 @@
+{% embed '@hc/author/single.twig' %}
+
+    {% block hero_component %}
+        {% include '@hc/components/hero.twig' with {
+            'section_class': 'hero-outer author-profile',
+            'image_data': get_image_data( post.meta('profile_picture'), 'hero_image' ),
+            'hero_title': post.title|e('esc_html'),
+            'hero_role': post.meta('role')|e('esc_html'),
+            'hero_socials': hero_socials,
+        } %}
+    {% endblock %}
+
+    {% block breadcrumb_center %}
+		<div class="center">
+			{% include '@wp/partials/breadcrumbs.twig' with {
+                'subnav': subnav
+            }
+        %}
+		</div>
+	{% endblock breadcrumb_center %}
+
+    {% block main_content %}
+        <div class="main-section single" id="content">
+			{% if postshares %}
+				{% include '@hc/partials/main-share.twig' with {
+					'share': true,
+					'shares': postshares
+					}
+				%}
+			{% endif %}
+
+
+			{% set hide_local_navigation = post.meta('hide_local_navigation') %}
+			{% if post.meta('content') or not hide_local_navigation %}
+				{% include '@hc/components/wysiwyg.twig' with {
+						'section_class': hide_local_navigation ? 'wysiwyg-outer' : 'wysiwyg-outer with-sidebar',
+						'subnav_title': post.meta('local_navigation_heading')|e('esc_html'),
+						'subnav': hide_local_navigation ? false : subnav,
+						'post_summary': post.meta('post_summary')|e('wp_kses_post'),
+						'headlines': page_sidebar.headlines,
+						'wysiwyg_content': post.meta('content')|e('wp_kses_post'),
+					}
+				%}
+			{% endif %}
+
+            {% if post.meta('biography') %}
+                {% include '@hc/components/wysiwyg.twig' with {
+                        'section_class': 'wysiwyg-outer',
+                        'subnav': false,
+                        'wysiwyg_content': post.meta('biography')|e('wp_kses_post'),
+                    }
+                %}
+            {% endif %}
+            
+			{{ post.content }}
+
+		</div>
+
+	{% endblock main_content %}
+
+{% endembed %}

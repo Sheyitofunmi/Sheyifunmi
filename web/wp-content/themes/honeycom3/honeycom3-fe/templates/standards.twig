@@ -1,0 +1,61 @@
+{% extends '@hc/scaffolding/base.twig' %}
+
+{% set nav_section = 'Details' %}
+
+    {% block main %}
+
+        <div class="main-section">
+        
+        	<div class="container">
+	
+	            <article class="article">
+	                <div class="content clearfix">                
+		                <header class="article-header">
+		                    <h1 class="article-header-title">Honeycomb coding standards</h1>
+		                </header>
+						
+						<h3>CSS Syntax</h3>
+						
+						<p>Alphabetical sorting of declarations</p>
+						<p>When grouping selectors, keep individual selectors to a single line.</p>
+						<p>Include one space before the opening brace of declaration blocks for legibility.</p>
+						<p>Place closing braces of declaration blocks on a new line.</p>
+						<p>Include one space after <strong>:</strong> for each declaration.</p>
+						<p>Do not use ID selectors.</p>
+						<p>All selectors lowercase</p>
+						<p>Keep names unspecific</p>
+						<p>Only use <strong>!important</strong> if its needed to overwrite third party code</p>
+						
+						<pre>
+						/* Bad CSS */
+
+						.selector, .selector-secondary, .selector[type=text]{
+						padding:15px;
+						margin:0px 0px 15px;
+						background-color:rgba(0, 0, 0, 0.5);
+						box-shadow:0px 1px 2px #CCC,inset 0 1px 0 #FFFFFF;
+						margin: $variable*2;}
+
+						/* Good CSS */
+
+						.selector,
+						.selector-secondary,
+						.selector[type="text"] {
+							background-color: rgba($black,.5);
+							box-shadow: 0 1px 2px $grey90, inset 0 1px 0 $white;	
+							padding: $gap;
+							margin-bottom: $gap;
+							margin: $gap * 2;
+						}
+						</pre>
+						
+	                </div>
+	                
+	            </article>
+			
+			</div>
+
+        </div>
+
+    {% endblock main %}
+

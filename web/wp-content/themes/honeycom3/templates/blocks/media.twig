@@ -1,0 +1,23 @@
+{% set extra_class = fields.background_colour|get_background_class_name %}
+{% set mode = fields.mode %}
+{% if mode == 'video' %}
+	{% set extra_class = extra_class ~ ' video' %}
+{% endif %}
+
+{% if fields.alignment != 'inline' and fields.media_alignment == 'right' %}
+	{% set extra_class = extra_class ~ ' right' %}
+{% endif %}
+
+{% include '@hc/components/media-section.twig' with {
+	'section_id': fields.anchor_id|e('esc_html'),
+	'section_class': 'media-block-outer ' ~ extra_class ~ ' ' ~ fields.alignment_classes,
+	'image_data': mode == 'image' ? get_image_data( fields.image, 'landscape_image' ) : get_image_data( fields.placeholder_image, 'landscape_image' ),
+	'title': fields.alignment == 'inline' ? false : fields.title|e('esc_html'),
+	'summary': fields.alignment == 'inline' ? false : fields.summary|nl2br,
+	'button': fields.alignment == 'inline' ? false : fields.button.title|e('esc_html'),
+	'button_link': fields.alignment == 'inline' ? false : fields.button.url|e('esc_url'),
+	'transcript_link_text': mode == 'video' ? fields.transcript_link.title|e('esc_html') : false,
+	'transcript_link': mode == 'video' ? fields.transcript_link.url|e('esc_url') : false,
+	'video_link': mode == 'video' ? fields.video|e('esc_url') : false,
+	'caption': fields.caption_text|e('esc_html'),
+} %}

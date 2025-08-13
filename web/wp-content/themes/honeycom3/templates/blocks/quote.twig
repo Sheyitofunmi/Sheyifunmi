@@ -1,0 +1,9 @@
+{% include '@hc/components/pullquote.twig' with {
+	'section_id': fields.anchor_id|e('esc_html'),
+	'section_class': 'pullquote-outer ' ~ fields.background_colour|get_background_class_name ~ ' ' ~ fields.alignment_classes,
+	'image_data': fields.alignment == 'full-width' ? get_image_data( fields.image, 'hero_image' ) : false,
+	'blockquote': fields.quote|nl2br,
+	'attribution': fields.attribution|e('esc_html'),
+	'attribution_path': fields.attribution_link.url|e('esc_url'),
+	'submit_button_text': fields.submit_button_text|e('html_attr'),
+} %}

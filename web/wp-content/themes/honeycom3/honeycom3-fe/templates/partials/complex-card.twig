@@ -1,0 +1,160 @@
+{% if feat_cards %}
+	<div class="cards-featured">
+		{% for feat_card in feat_cards %}
+			<article>
+				{% block card %}
+					<div class="card">
+
+						{% block card_image %}
+							{% if feat_card.image or feat_card.image_data %}
+								<div class="card-image">
+									{% if feat_card.featured %}<p class="card-featured">Featured</p>{% endif %}
+									{# Minimum image size: 530px X 920px #}
+									{% set image = feat_card.image %}
+									{% set image_data = feat_card.image_data %}
+									{% if image or image_data %}
+										{% include '@hc/partials/image.twig' with { 'imgheight': '530', 'imgwidth': '920' } %}
+									{% endif %}
+								</div>
+							{% endif %}
+						{% endblock card_image %}
+
+						{% block card_wrap %}
+							<div class="card-wrap">
+								<div class="card-wrap-inner">
+									{% block card_header %}
+										<header class="card-header">
+											{% if feat_card.title and feat_card.button and feat_card.path %}
+												<h2 class="card-header-title">{{ feat_card.title }}</h2>
+											{% elseif feat_card.title and feat_card.path and not feat_card.button %}
+												<h2 class="card-header-title"><a href="{{ feat_card.path }}" class="card-link">{{ feat_card.title }}</a></h2>
+											{% else %}
+												<h2 class="card-header-title">{{ feat_card.title }}</h2>
+											{% endif %}
+										</header>
+									{% endblock card_header %}
+
+									{% block card_summary %}
+										{% if feat_card.summary %}
+										<div class="card-summary">
+											<p>{{ feat_card.summary }}</p>
+										</div>
+										{% endif %}
+									{% endblock card_summary %}
+								</div>
+							</div>
+						{% endblock card_wrap %}
+					</div>
+				{% endblock card %}
+			</article>
+		{% endfor %}
+	</div>
+{% endif %}
+
+<div class="cards-alt">
+	{% if sec_cards %}
+		<div class="cards-secondary">
+			{% for sec_card in sec_cards %}
+				<article{% if sec_card.class %} class="{{ sec_card.class }}"{% endif %}>
+					{% block sec_card %}
+						<div class="card">
+
+							{% block sec_card_image %}
+								{% if sec_card.image or sec_card.image_data %}
+									<div class="card-image">
+										{% if sec_card.featured %}<p class="card-featured">Featured</p>{% endif %}
+										{# Minimum image size: 530px X 920px #}
+										{% set image = sec_card.image %}
+										{% set image_data = sec_card.image_data %}
+										{% if image or image_data %}
+											{% include '@hc/partials/image.twig' with { 'imgheight': '530', 'imgwidth': '920' } %}
+										{% endif %}
+									</div>
+								{% endif %}
+							{% endblock sec_card_image %}
+
+							{% block sec_card_wrap %}
+								<div class="card-wrap">
+									<div class="card-wrap-inner">
+										{% block sec_card_header %}
+											<header class="card-header">
+												{% if sec_card.title and sec_card.button and sec_card.path %}
+													<h2 class="card-header-title">{{ sec_card.title }}</h2>
+												{% elseif sec_card.title and sec_card.path and not sec_card.button %}
+													<h2 class="card-header-title"><a href="{{ sec_card.path }}" class="card-link">{{ sec_card.title }}</a></h2>
+												{% else %}
+													<h2 class="card-header-title">{{ sec_card.title }}</h2>
+												{% endif %}
+											</header>
+										{% endblock sec_card_header %}
+
+										{% block sec_card_summary %}
+											{% if sec_card.summary %}
+												<div class="card-summary">
+													<p>{{ sec_card.summary }}</p>
+												</div>
+											{% endif %}
+										{% endblock sec_card_summary %}
+									</div>
+								</div>
+							{% endblock sec_card_wrap %}
+						</div>
+					{% endblock sec_card %}
+				</article>
+			{% endfor %}
+		</div>
+	{% endif %}
+
+	{% if ter_cards %}
+		<div class="cards-tertiary">
+			{% for ter_card in ter_cards %}
+				<article{% if ter_card.class %} class="{{ ter_card.class }}"{% endif %}>
+					{% block ter_card %}
+						<div class="card">
+
+							{% block ter_card_image %}
+								{% if ter_card.image or ter_card.image_data %}
+									<div class="card-image">
+										{% if ter_card.featured %}<p class="card-featured">Featured</p>{% endif %}
+										{# Minimum image size: 530px X 920px #}
+										{% set image = ter_card.image %}
+										{% set image_data = ter_card.image_data %}
+										{% if image or image_data %}
+											{% include '@hc/partials/image.twig' with { 'imgheight': '530', 'imgwidth': '920' } %}
+										{% endif %}
+									</div>
+								{% endif %}
+							{% endblock ter_card_image %}
+
+							{% block ter_card_wrap %}
+								<div class="card-wrap">
+									<div class="card-wrap-inner">
+										{% block ter_card_header %}
+											<header class="card-header">
+												{% if ter_card.title and ter_card.button and ter_card.path %}
+													<h2 class="card-header-title">{{ ter_card.title }}</h2>
+												{% elseif ter_card.title and ter_card.path and not ter_card.button %}
+													<h2 class="card-header-title"><a href="{{ ter_card.path }}" class="card-link">{{ ter_card.title }}</a></h2>
+												{% else %}
+													<h2 class="card-header-title">{{ ter_card.title }}</h2>
+												{% endif %}
+											</header>
+										{% endblock ter_card_header %}
+
+										{% block ter_card_summary %}
+											{% if ter_card.summary %}
+												<div class="card-summary">
+													<p>{{ ter_card.summary }}</p>
+												</div>
+											{% endif %}
+										{% endblock ter_card_summary %}
+									</div>
+								</div>
+							{% endblock ter_card_wrap %}
+						</div>
+					{% endblock ter_card %}
+				</article>
+			{% endfor %}
+		</div>
+	{% endif %}
+</div>

@@ -1,0 +1,51 @@
+//++++++++++++++++++++++++
+//+++ HELPERS: BUTTONS +++
+//++++++++++++++++++++++++
+
+// Button mixin
+%button {
+    @extend %transition;
+    @extend %font-body;
+    border-radius: $corner;
+    display: block;
+    font-weight: $bold;
+    padding: $gap / 2 $gap;
+    text-align: center;
+    width: 100%;
+
+    @include break('small') {
+        display: inline-block;
+        width: auto;
+    }
+}
+
+.btn,
+.button {
+    @extend %button;
+    background-color: $secondary;
+    color: $white;
+
+    &:hover {
+        background-color: $primary-dark;
+        color: $white;
+    }
+
+    &:active {
+        background-color: $primary-light;
+    }
+}
+
+.btn-secondary,
+.button-secondary {
+    @extend %button;
+    background-color: $white;
+	color: $primary;
+
+    &:hover {
+		background-color: $primary;
+		color: $white;
+	}
+	&:active {
+		background-color: $primary-light;
+	}
+}

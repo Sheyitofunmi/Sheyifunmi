@@ -1,0 +1,181 @@
+{% extends function('function_exists', 'get_permalink') ? '@wp/scaffolding/base.twig' : '@hc/scaffolding/base.twig' %}
+
+{% set body_class = body_class ~ ' search-listing' %}
+
+{% block main %}
+
+	{% block hero_component %}
+		{% include '@hc/components/hero.twig' with {
+			'section_class': 'hero-outer full',
+			'hero_title': 'Search listing with filter',
+			'hero_summary': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis eros leo, fermentum sit amet iaculis non, finibus nec lectus. Duis vel sapien ullamcorper turpis fermentum lacinia sit amet ut eros.',
+		} %}
+	{% endblock %}
+
+	{% block filter_block %}
+		<div class="filter-outer keyword-search">
+			<div class="container">
+				<form method="post" class="filter">
+					<div class="filter-block">
+						<label for="filter-keywords">Keywords</label>
+						<input type="text" id="filter-keywords" class="filter-field" placeholder="Start typing here">
+					</div>
+
+					<div class="filter-block">
+						<input type="submit" value="Search" id="filter-submit" class="filter-submit">
+					</div>
+				</form>
+			</div>
+		</div>
+	{% endblock filter_block %}
+
+	{% block breadcrumb %}
+		{% include '@hc/partials/breadcrumbs.twig' with {
+				'subnav': [
+				{ 'text': 'Curabitur', 'url': '#', 'active_trail': 'true', 'submenu': [
+
+					{ 'text': 'Parent page', 'url': '#', 'active': 'false', 'active_trail': 'true', 'submenu': [
+
+						{ 'text': 'Grandchild page', 'url': '#', 'active': 'false', 'active_trail': 'true', 'submenu': [
+
+							{ 'text': 'Great grandchild page', 'url': '#', 'active': 'true' }
+						]},
+					]},
+				]}
+				]
+			}
+		%}
+	{% endblock breadcrumb %}
+
+	{% block search_results %}
+		{% include '@hc/partials/feed.twig' with {
+			'section_class': 'search-listing',
+			'feed': [
+				{
+					'path': '/page-builder',
+					'image': '/assets/images/holder-530x920.png',
+					'title': 'Maecenas sed diam risus varius blandit sit amet',
+					'summary': 'Maecenas faucibus mollis interdum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Maecenas sed diam eget risus varius.',
+					'tags': [
+						{ 'path': '#/', 'title': 'Type' },
+						{ 'path': '#/', 'title': 'Topic' },
+					]
+				},
+				{
+					'path': '/page-builder',
+					'title': 'Maecenas sed diam risus varius blandit sit amet',
+					'summary': 'Maecenas faucibus mollis interdum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Maecenas sed diam eget risus varius.',
+					'tags': [
+						{ 'path': '#/', 'title': 'Type' },
+						{ 'path': '#/', 'title': 'Topic' },
+					]
+				},
+				{
+					'path': '/page-builder',
+					'image': '/assets/images/holder-530x920.png',
+					'title': 'Maecenas sed diam risus varius blandit sit amet',
+					'summary': 'Maecenas faucibus mollis interdum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Maecenas sed diam eget risus varius.',
+					'tags': [
+						{ 'path': '#/', 'title': 'Type' },
+						{ 'path': '#/', 'title': 'Topic' },
+					]
+				},
+				{
+					'path': '/page-builder',
+					'image': '/assets/images/holder-530x920.png',
+					'title': 'Maecenas sed diam risus varius blandit sit amet',
+					'author': 'Gordon Cole',
+					'date': 'yesterday',
+					'summary': 'Maecenas faucibus mollis interdum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Maecenas sed diam eget risus varius.',
+					'tags': [
+						{ 'path': '#/', 'title': 'Type' },
+						{ 'path': '#/', 'title': 'Topic' },
+					]
+				},
+				{
+					'path': '/page-builder',
+					'image': '/assets/images/holder-530x920.png',
+					'title': 'Maecenas sed diam risus varius blandit sit amet',
+					'author': 'Gordon Cole',
+					'date': 'yesterday',
+					'summary': 'Maecenas faucibus mollis interdum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Maecenas sed diam eget risus varius.',
+					'tags': [
+						{ 'path': '#/', 'title': 'Type' },
+						{ 'path': '#/', 'title': 'Topic' },
+					]
+				},
+				{
+					'path': '/page-builder',
+					'image': '/assets/images/holder-530x920.png',
+					'title': 'Maecenas sed diam risus varius blandit sit amet',
+					'author': 'Gordon Cole',
+					'date': 'yesterday',
+					'summary': 'Maecenas faucibus mollis interdum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Maecenas sed diam eget risus varius.',
+					'tags': [
+						{ 'path': '#/', 'title': 'Type' },
+						{ 'path': '#/', 'title': 'Topic' },
+					]
+				},
+				{
+					'path': '/page-builder',
+					'image': '/assets/images/holder-530x920.png',
+					'title': 'Maecenas sed diam risus varius blandit sit amet',
+					'author': 'Gordon Cole',
+					'date': 'yesterday',
+					'summary': 'Maecenas faucibus mollis interdum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Maecenas sed diam eget risus varius.',
+					'tags': [
+						{ 'path': '#/', 'title': 'Type' },
+						{ 'path': '#/', 'title': 'Topic' },
+					]
+				},
+				{
+					'path': '/page-builder',
+					'image': '/assets/images/holder-530x920.png',
+					'title': 'Maecenas sed diam risus varius blandit sit amet',
+					'author': 'Gordon Cole',
+					'date': 'yesterday',
+					'summary': 'Maecenas faucibus mollis interdum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Maecenas sed diam eget risus varius.',
+					'tags': [
+						{ 'path': '#/', 'title': 'Type' },
+						{ 'path': '#/', 'title': 'Topic' },
+					]
+				},
+				{
+					'path': '/page-builder',
+					'image': '/assets/images/holder-530x920.png',
+					'label': 'News Type',
+					'label_path': '/listing',
+					'title': 'Duis mollis, est non commodo luctus, nisi erat porttitor ligula',
+					'date': 'last year',
+					'summary': 'Cras mattis consectetur purus sit amet fermentum. Donec ullamcorper nulla non metus auctor fringilla. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Aenean lacinia bibendum nulla sed consectetur. Nulla vitae elit libero, a pharetra augue. Integer posuere erat a ante venenatis dapibus posuere velit aliquet.',
+				},
+				{
+					'path': '/page-builder',
+					'image': '/assets/images/holder-530x920.png',
+					'title': 'Maecenas sed diam risus varius blandit sit amet',
+					'author': 'Gordon Cole',
+					'date': 'yesterday',
+					'summary': 'Maecenas faucibus mollis interdum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Maecenas sed diam eget risus varius.',
+					'tags': [
+						{ 'path': '#/', 'title': 'Type' },
+						{ 'path': '#/', 'title': 'Topic' },
+					]
+				},
+			]}
+		%}
+	{% endblock %}
+
+	{% block main_footer %}
+		<footer class="main-footer section pagination-outer">
+			<div class="container">
+				{% if cms == 'wordpress' %}
+					{% include '@hc/partials/wordpress/pagination-wp.twig' %}
+				{% else %}
+					{% include '@hc/partials/drupal/pagination-drupal.twig' %}
+				{% endif %}
+			</div>
+		</footer>
+	{% endblock %}
+
+{% endblock main %}
+

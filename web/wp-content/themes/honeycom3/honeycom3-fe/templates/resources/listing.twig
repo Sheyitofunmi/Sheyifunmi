@@ -1,0 +1,271 @@
+{% extends function('function_exists', 'get_permalink') ? '@wp/scaffolding/base.twig' : '@hc/scaffolding/base.twig' %}
+
+{% block main %}
+
+	{% block hero_component %}
+		{% include '@hc/components/hero.twig' with {
+			'section_class': 'hero-outer full',
+			'hero_title': 'Resource listing with filters',
+			'hero_summary': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis eros leo, fermentum sit amet iaculis non, finibus nec lectus. Duis vel sapien ullamcorper turpis fermentum lacinia sit amet ut eros.',
+		} %}
+	{% endblock %}
+
+	{% block breadcrumb %}
+		{% include '@hc/partials/breadcrumbs.twig' with {
+				'subnav': [
+				{ 'text': 'Curabitur', 'url': '#', 'active_trail': 'true', 'submenu': [
+
+					{ 'text': 'Parent page', 'url': '#', 'active': 'false', 'active_trail': 'true', 'submenu': [
+
+						{ 'text': 'Grandchild page', 'url': '#', 'active': 'false', 'active_trail': 'true', 'submenu': [
+
+							{ 'text': 'Great grandchild page', 'url': '#', 'active': 'true' }
+						]},
+					]},
+				]}
+				]
+			}
+		%}
+	{% endblock breadcrumb %}
+
+	{% block main_share %}
+	{% endblock main_share %}
+
+	{% block featured %}
+		{% include '@hc/components/cards.twig' with {
+			'section_class': 'cards-outer resource-listing',
+			'cards': [
+				{
+					'featured': 'true',
+					'path': '/page-builder',
+					'image': '/assets/images/report-holder.png',
+					'imgheight': '920',
+					'imgwidth': '530',
+					'label': 'News Type',
+					'label_path': '/listing',
+					'title': 'Maecenas sed diam risus varius blandit sit amet',
+					'author': 'Gordon Cole',
+					'date': 'yesterday',
+					'summary': 'Maecenas faucibus mollis interdum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Maecenas sed diam eget risus varius.',
+					'tags': [
+						{ 'path': '#/', 'title': 'Type' },
+						{ 'path': '#/', 'title': 'Topic' },
+					]
+				},
+				{
+					'featured': 'true',
+					'path': '/page-builder',
+					'image': '/assets/images/report-holder.png',
+					'imgheight': '920',
+					'imgwidth': '530',
+					'label': 'News Type',
+					'label_path': '/listing',
+					'title': 'Maecenas sed diam risus varius blandit sit amet',
+					'author': 'Gordon Cole',
+					'date': 'yesterday',
+					'summary': 'Maecenas faucibus mollis interdum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Maecenas sed diam eget risus varius.',
+					'tags': [
+						{ 'path': '#/', 'title': 'Type' },
+						{ 'path': '#/', 'title': 'Topic' },
+					]
+				}
+			]}
+		%}
+	{% endblock featured %}
+
+	{% block filter_block %}
+		<div class="filter-outer">
+			<button for="filter-open" id="filter-show" class="filter-show-button accordion-trigger" aria-controls="filters" aria-expanded="false" aria-label="Expand filters">Show filters</button>
+			<div class="filter-inner" aria-expanded="false" id="filters">
+				<form method="post" class="filter">
+					<div class="filter-block">
+						<label for="filter-topic">Topic</label>
+						<select id="filter-topic" class="filter-field">
+							<option value="Select Topic" selected>Select Topic</option>
+							<option value="type 1">Lorem</option>
+							<option value="type 2">Ipsum</option>
+							<option value="type 3">Dolor</option>
+						</select>
+					</div>
+
+					<div class="filter-block">
+						<label for="filter-type">Type</label>
+						<select id="filter-type" class="filter-field">
+							<option value="Select Type" selected>Select Type</option>
+							<option value="type 1">Lorem</option>
+							<option value="type 2">Ipsum</option>
+							<option value="type 3">Dolor</option>
+						</select>
+					</div>
+
+					<div class="filter-block actions">
+						<input type="submit" value="Search" id="filter-submit" class="filter-submit">
+						<input type="reset" value="Clear" id="filter-reset" class="filter-reset">
+					</div>
+				</form>
+			</div>
+		</div>
+	{% endblock filter_block %}
+
+	{% block listing %}
+		{% include '@hc/components/cards.twig' with {
+			'section_class': 'cards-outer resource-listing',
+			'cards': [
+				{
+					'path': '/page-builder',
+					'image': '/assets/images/report-holder.png',
+					'imgheight': '920',
+					'imgwidth': '530',
+					'label': 'News Type',
+					'label_path': '/listing',
+					'title': 'Maecenas sed diam risus varius blandit sit amet',
+					'author': 'Gordon Cole',
+					'date': 'yesterday',
+					'summary': 'Maecenas faucibus mollis interdum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Maecenas sed diam eget risus varius.',
+					'tags': [
+						{ 'path': '#/', 'title': 'Type' },
+						{ 'path': '#/', 'title': 'Topic' },
+					]
+				},
+				{
+					'path': '/page-builder',
+					'label': 'News Type',
+					'label_path': '/listing',
+					'title': 'Maecenas sed diam risus varius blandit sit amet',
+					'author': 'Gordon Cole',
+					'date': 'yesterday',
+					'summary': 'Maecenas faucibus mollis interdum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Maecenas sed diam eget risus varius.',
+					'tags': [
+						{ 'path': '#/', 'title': 'Type' },
+						{ 'path': '#/', 'title': 'Topic' },
+					]
+				},
+				{
+					'path': '/page-builder',
+					'image': '/assets/images/report-holder.png',
+					'imgheight': '920',
+					'imgwidth': '530',
+					'label': 'News Type',
+					'label_path': '/listing',
+					'title': 'Maecenas sed diam risus varius blandit sit amet',
+					'author': 'Gordon Cole',
+					'date': 'yesterday',
+					'summary': 'Maecenas faucibus mollis interdum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Maecenas sed diam eget risus varius.',
+					'tags': [
+						{ 'path': '#/', 'title': 'Type' },
+						{ 'path': '#/', 'title': 'Topic' },
+					]
+				},
+				{
+					'path': '/page-builder',
+					'image': '/assets/images/report-holder.png',
+					'imgheight': '920',
+					'imgwidth': '530',
+					'label': 'News Type',
+					'label_path': '/listing',
+					'title': 'Maecenas sed diam risus varius blandit sit amet',
+					'author': 'Gordon Cole',
+					'date': 'yesterday',
+					'summary': 'Maecenas faucibus mollis interdum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Maecenas sed diam eget risus varius.',
+					'tags': [
+						{ 'path': '#/', 'title': 'Type' },
+						{ 'path': '#/', 'title': 'Topic' },
+					]
+				},
+				{
+					'path': '/page-builder',
+					'image': '/assets/images/report-holder.png',
+					'imgheight': '920',
+					'imgwidth': '530',
+					'label': 'News Type',
+					'label_path': '/listing',
+					'title': 'Maecenas sed diam risus varius blandit sit amet',
+					'author': 'Gordon Cole',
+					'date': 'yesterday',
+					'summary': 'Maecenas faucibus mollis interdum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Maecenas sed diam eget risus varius.',
+					'tags': [
+						{ 'path': '#/', 'title': 'Type' },
+						{ 'path': '#/', 'title': 'Topic' },
+					]
+				},
+				{
+					'path': '/page-builder',
+					'image': '/assets/images/report-holder.png',
+					'imgheight': '920',
+					'imgwidth': '530',
+					'label': 'News Type',
+					'label_path': '/listing',
+					'title': 'Maecenas sed diam risus varius blandit sit amet',
+					'author': 'Gordon Cole',
+					'date': 'yesterday',
+					'summary': 'Maecenas faucibus mollis interdum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Maecenas sed diam eget risus varius.',
+					'tags': [
+						{ 'path': '#/', 'title': 'Type' },
+						{ 'path': '#/', 'title': 'Topic' },
+					]
+				},
+				{
+					'path': '/page-builder',
+					'image': '/assets/images/report-holder.png',
+					'imgheight': '920',
+					'imgwidth': '530',
+					'label': 'News Type',
+					'label_path': '/listing',
+					'title': 'Maecenas sed diam risus varius blandit sit amet',
+					'author': 'Gordon Cole',
+					'date': 'yesterday',
+					'summary': 'Maecenas faucibus mollis interdum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Maecenas sed diam eget risus varius.',
+					'tags': [
+						{ 'path': '#/', 'title': 'Type' },
+						{ 'path': '#/', 'title': 'Topic' },
+					]
+				},
+				{
+					'path': '/page-builder',
+					'image': '/assets/images/report-holder.png',
+					'imgheight': '920',
+					'imgwidth': '530',
+					'label': 'News Type',
+					'label_path': '/listing',
+					'title': 'Maecenas sed diam risus varius blandit sit amet',
+					'author': 'Gordon Cole',
+					'date': 'yesterday',
+					'summary': 'Maecenas faucibus mollis interdum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Maecenas sed diam eget risus varius.',
+					'tags': [
+						{ 'path': '#/', 'title': 'Type' },
+						{ 'path': '#/', 'title': 'Topic' },
+					]
+				},
+				{
+					'path': '/page-builder',
+					'image': '/assets/images/report-holder.png',
+					'imgheight': '920',
+					'imgwidth': '530',
+					'label': 'News Type',
+					'label_path': '/listing',
+					'title': 'Duis mollis, est non commodo luctus, nisi erat porttitor ligula',
+					'date': 'last year',
+					'summary': 'Maecenas faucibus mollis interdum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Maecenas sed diam eget risus varius.',
+					'tags': [
+						{ 'path': '#/', 'title': 'Type' },
+						{ 'path': '#/', 'title': 'Topic' },
+					]
+				}
+			]}
+		%}
+	{% endblock listing %}
+
+	{% block main_footer %}
+		<footer class="main-footer section pagination-outer">
+			<div class="container">
+				{% if cms == 'wordpress' %}
+					{% include '@hc/partials/wordpress/pagination-wp.twig' %}
+				{% else %}
+					{% include '@hc/partials/drupal/pagination-drupal.twig' %}
+				{% endif %}
+			</div>
+		</footer>
+	{% endblock %}
+
+{% endblock main %}
+

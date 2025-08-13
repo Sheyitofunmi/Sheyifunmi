@@ -1,0 +1,9 @@
+{% include '@hc/components/donate.twig' with {
+	'section_id': fields.anchor_id|e('esc_html'),
+	'section_class': 'donate-outer ' ~ fields.background_colour|get_background_class_name ~ ' ' ~ fields.alignment_classes,
+	'image_data': get_image_data( fields.image, 'landscape_image' ),
+	'title':fields.title|e('esc_html'),
+	'summary': fields.summary|nl2br,
+	'buttons': twiggified_data
+	}
+%}

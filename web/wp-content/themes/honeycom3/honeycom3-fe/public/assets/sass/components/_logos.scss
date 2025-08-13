@@ -1,0 +1,84 @@
+/* ++++++++++++++++++++
++++ LAYOUT: LOGOS +++
+++++++++++++++++++++ */
+
+.logos {
+	padding: 0 $gap * 4;
+	position: relative;
+
+	&-outer {
+		&.secondary {
+			.logo-carousel {
+				.slick-arrow {
+					&:before {
+						color: $white;
+					}
+					&:hover {
+						&:before {
+							color: $black;
+						}
+					}
+				}
+				.slick-dots {
+					button {
+						&:before {
+							color: $white;
+						}
+					}
+				}
+			}
+		}
+	}
+
+	&-item {
+    	padding: 1em;
+
+		img {
+			aspect-ratio: 3/2;
+			object-fit: contain;
+			// mix-blend-mode: color-burn; only add to strip background
+		}
+	}
+	&-title {
+		font-weight: $light;
+		padding-top: $gap / 1.5;
+		text-align: center;
+	}
+
+	&.logo-park {
+		@extend %flex;
+		justify-content: center;
+		gap: $gap / 1.5 2%;
+		padding-top: $gap * 2;
+		position: relative;
+
+		@include break(tablet) {
+			gap: $gap * 1.5 2%;
+			padding-top: 0;
+		}
+
+		.logos {
+			&-item {
+				@include flexbox(32%);
+				margin: 0;
+
+				@include break(tablet) {
+					@include flexbox(15%);
+				}
+
+				img {
+					aspect-ratio: 3/2;
+					object-fit: contain;
+					width: 80%;
+				}
+				&-inner {
+					@extend %flex;
+					align-content: center;
+					aspect-ratio: 1;
+					background-color: $white;
+					border-radius: 10px;
+				}
+			}
+		}
+	}
+}

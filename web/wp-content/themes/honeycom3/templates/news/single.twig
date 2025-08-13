@@ -1,0 +1,60 @@
+{% embed '@hc/news/single.twig' %}
+
+	{% block hero_component %}
+		{% include '@hc/components/hero.twig' with {
+			'section_class': 'hero-outer',
+			'image_data': get_image_data( post.meta('hero_section').hero_image, 'hero_image' ),
+			'hero_title': post.title|e('esc_html'),
+			'hero_summary': post.meta('hero_section').hero_summary|e('wp_kses_post'),
+			'link_copy': post.meta( 'hero_section' ).hero_button.title|e('esc_html'),
+			'link_path': post.meta( 'hero_section' ).hero_button.url|e('esc_url'),
+			'link_target': post.meta( 'hero_section' ).hero_button.target|e('esc_html')
+		} %}
+
+	{% endblock hero_component %}
+
+	{% block breadcrumb %}
+		{% include '@wp/partials/cpt-breadcrumbs.twig' with {
+			'subnav': subnav
+		} %}
+	{% endblock breadcrumb %}
+
+	{% block main_content %}
+		<div class="main-section single" id="content">
+			{% include '@hc/components/wysiwyg.twig' with {
+				'section_class': 'wysiwyg-outer with-sidebar',
+				'wysiwyg_content': post.meta('content')|e('wp_kses_post'),
+				'post_summary': post.meta('post_summary')|e('wp_kses_post'),
+				'headlines': updates_sidebar.headlines,
+				'metadata': 'true',
+				'accordions': [
+					{
+						'accordion_items': [
+							{
+								'image_data': updates_sidebar.author_profiles.image_data,
+								'title': updates_sidebar.author_profiles.title,
+								'role': updates_sidebar.author_profiles.role,
+								'author_info': updates_sidebar.author_profiles.author_info,
+							},
+						]
+					}
+				],
+				'date': post.date,
+				'author': updates_sidebar.single_author,
+				'share_title': 'Share',
+				'postshares': postshares,
+				'tag_title': 'About this update',
+				'cats':updates_sidebar.cats,
+				'tags': updates_sidebar.tags,
+				'press_intro': updates_sidebar.press_intro,
+				'press_tel': updates_sidebar.press_tel,
+				'press_email': updates_sidebar.press_email,
+			}%}
+
+
+			{{ post.content }}
+
+		</div>
+	{% endblock main_content %}
+
+{% endembed %}

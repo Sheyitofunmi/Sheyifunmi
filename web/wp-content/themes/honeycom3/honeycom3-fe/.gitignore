@@ -1,0 +1,12 @@
+syntax: glob
+.codekit-cache
+.DS_Store
+.sass-cache
+*.orig
+*.swp
+composer.phar
+config.codekit3
+node_modules
+vendor/
+package-lock.json
+.nova/

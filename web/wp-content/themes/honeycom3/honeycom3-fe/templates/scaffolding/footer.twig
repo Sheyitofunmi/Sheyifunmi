@@ -1,0 +1,97 @@
+{# Website footer #}
+
+{% block footer %}
+	<footer class="section footer">
+	    <div class="container">
+
+			{% block footer_header %}
+		    	<div class="footer-header">
+
+					{% block footer_logo %}
+						<a href="/" class="footer-logo">
+							<picture>
+								<source type="image/svg+xml" srcset="{{ assets_dir }}/images/logo.svg" />
+								<img srcset="{{ assets_dir }}/images/logo.png 1x, {{ assets_dir }}/images/logo@2x.png 2x" src="{{ assets_dir }}/images/logo.png" width="200" height="32" alt="{{ meta_sitename }}" class="footer-logo-image" />
+							</picture>
+						</a>
+					{% endblock footer_logo %}
+
+					{% block footer_socialnav %}
+			            <ul class="footer-nav social clearfix">
+			                {% for social in socials %}
+			                <li class="footer-nav-item social">
+			                    <a href="{{ social.path }}" class="{{ social.selector }} nav-item-link" aria-label="Share on {{ social.selector }} (opens in a new window)" target="_blank">
+			                        <svg aria-hidden="true" class="icon"><use xlink:href="{{ assets_dir }}/svg/icons.svg#{{ social.selector }}"/>{{ social.selector|capitalize }}</svg>
+			                        <span class="visually-hidden">Share on {{ social.selector }} (opens in a new window)</span>
+			                    </a>
+			                </li>
+			                {% endfor %}
+			            </ul>
+		            {% endblock footer_socialnav %}
+		    	</div>
+	    	{% endblock footer_header %}
+
+			<div class="footer-nav-outer">
+
+				{% block footer_nav %}
+		            <ul class="footer-nav">
+		                <li class="footer-nav-item">
+		                    <h3 class="footer-nav-item-title">Site navigation</h3>
+		                </li>
+						{% for link in footer_nav %}
+							<li class="footer-nav-item">
+								<a href="{{ link.url }}" class="nav-item-link">{{ link.text }}</a>
+							</li>
+						{% endfor %}
+		            </ul>
+
+		            <ul class="footer-nav">
+		                <li class="footer-nav-item">
+		                    <h3 class="footer-nav-item-title">Quicklinks</h3>
+		                </li>
+		                {% for link in quicklinks %}
+							<li class="footer-nav-item">
+								<a href="{{ link.url }}" class="nav-item-link">{{ link.text }}</a>
+							</li>
+						{% endfor %}
+		            </ul>
+
+		            <ul class="footer-nav">
+		                <li class="footer-nav-item">
+		                    <h3 class="footer-nav-item-title">Footer nav title</h3>
+		                </li>
+		                {% for tool in site_tools %}
+			                <li class="footer-nav-item tools">
+			                    <a href="{{ tool.url }}" class="nav-item-link">{{ tool.text }}</a>
+			                </li>
+		                {% endfor %}
+		            </ul>
+	            {% endblock footer_nav %}
+
+				{% block footer_details %}
+		            <div class="footer-details">
+						<h3 class="footer-nav-item-title">Address</h3>
+						<p>Address line one</p>
+						<p>Telephone Number</p>
+						<p><a href="#">email@email.co.uk</a></p>
+		            </div>
+	            {% endblock footer_details %}
+
+			</div>
+
+	    </div>
+
+		{% block footer_credits %}
+		    <div class="footer-credits">
+		    	<div class="container">
+		        	<p>Copyright &copy; {{ 'now'|date('Y') }}. {{ copyright_text }}</p>
+		        	<p>{{ charity_info }} | <a target="_blank" href="http://www.fatbeehive.com/">Charity web design</a> by Fat Beehive</p>
+					<div class="footer-credits-logo">
+						<img src="{{ assets_dir }}/images/fr-logo.svg" alt="Fundraising standards">
+					</div>
+		    	</div>
+		    </div>
+	    {% endblock footer_credits %}
+
+	</footer>
+{% endblock footer %}

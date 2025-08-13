@@ -1,0 +1,496 @@
+{% extends '@hc/scaffolding/base.twig' %}
+
+	{% set body_class = body_class ~ ' page-builder' %}
+
+		{% block main %}
+
+		{% block hero_component %}
+			{% include '@hc/components/hero.twig' with {
+				'section_class': 'hero-outer full solid',
+				'hero_title': 'Hero component no image',
+				'hero_summary': 'Use this to add a more impactful title area at the top of your pagebuilder page. It will utilise the existing Page title & summary.',
+				'caption': 'image caption styling'
+			} %}
+		{% endblock %}
+
+		{% block breadcrumb %}
+			{% include '@hc/partials/breadcrumbs.twig' with {
+					'subnav': [
+					{ 'text': 'Curabitur', 'url': '#', 'active_trail': 'true', 'submenu': [
+
+						{ 'text': 'Parent page', 'url': '#', 'active': 'false', 'active_trail': 'true', 'submenu': [
+
+							{ 'text': 'Grandchild page', 'url': '#', 'active': 'false', 'active_trail': 'true', 'submenu': [
+
+								{ 'text': 'Great grandchild page', 'url': '#', 'active': 'true' }
+							]},
+						]},
+					]}
+					]
+				}
+			%}
+		{% endblock breadcrumb %}
+
+		{% block main_content %}
+
+			<div class="main-section" id="content">
+
+				{% if side_share %}
+					{% include '@hc/partials/main-share.twig' with {
+						'share': true,
+						'shares': [
+							{
+								'path': '#',
+								'selector': 'twitter',
+								'title': 'Twitter',
+							},
+							{
+								'path': '#',
+								'selector': 'facebook',
+								'title': 'Facebook',
+							},
+							{
+								'path': '#',
+								'selector': 'instagram',
+								'title': 'Instagram',
+							},
+							{
+								'path': '#',
+								'selector': 'linkedin',
+								'title': 'LinkedIn',
+							},
+							{
+								'path': '#',
+								'selector': 'tiktok',
+								'title': 'Tiktok',
+							},
+							{
+								'path': '#',
+								'selector': 'link',
+								'title': 'Link',
+							},
+							{
+								'path': '#',
+								'selector': 'email',
+								'title': 'Email',
+							},
+							]}
+					%}
+				{% endif %}
+
+					{% include '@hc/components/wysiwyg.twig' with {
+							'section_class': 'wysiwyg-outer',
+							'wysiwyg_content_test': true,
+						}
+					%}
+
+					{% block inline_components %}
+
+						{% include '@hc/components/page-nav.twig' with {
+							'section_class': 'page-nav-outer inline center',
+							'page_nav_title': 'On this page',
+							'page_nav_items': [
+								{
+									'id': 'accordion',
+									'title': 'Accordion component',
+								},
+								{
+									'id': 'cta',
+									'title': 'Call to action component',
+								},
+								{
+									'id': 'stats',
+									'title': 'Statistics component',
+								},
+								{
+									'id': 'profiles',
+									'title': 'Profile component',
+								},
+							]}
+						%}
+
+						{% include '@hc/components/pullquote.twig' with {
+							'section_class': 'pullquote-outer inline center',
+							'image': '/assets/images/avatar-holder.png',
+							'blockquote': 'Pullquote component add a quote mi tempus imperdiet nulla malesuada pellentesque elit eget egestas sed sed risus pretium quam',
+							'attribution': 'With citation lorem ipsum, Dolor sit amet',
+						} %}
+
+						{% include '@hc/components/pullquote.twig' with {
+							'section_class': 'pullquote-outer inline center',
+							'blockquote': 'Pullquote component add a quote mi tempus imperdiet nulla malesuada pellentesque elit eget egestas sed sed risus pretium quam',
+							'attribution': 'With citation lorem ipsum, Dolor sit amet',
+						} %}
+
+						{% include '@hc/components/media-section.twig' with {
+							'section_class': 'media-block-outer inline center',
+							'image': '/assets/images/holder-530x920.png',
+							'caption': 'Inline image component',
+						} %}
+
+						{% include '@hc/components/media-section.twig' with {
+							'section_class': 'media-block-outer inline center',
+							'video': '<iframe width="560" height="315" src="https://www.youtube.com/embed/vhOgYN5SDQg?si=98HBvYMwWQ-sWsRZ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>',
+							'caption': 'Inline image component',
+							'transcript_link_text': 'Read transcript',
+							'transcript_link': '#',
+						} %}
+
+						{% include '@hc/components/wysiwyg.twig' with {
+								'section_class': 'wysiwyg-outer inline center',
+								'wysiwyg_content': '
+								<h4>Inline WYSIWYG Component</h4>
+								<p>Augue mauris augue neque gravida in fermentum et sollicitudin. In ornare quam viverra orci sagittis eu volutpat odio facilisis. Mauris augue neque gravida in fermentum et sollicitudin ac. Dignissim diam quis enim lobortis. Sem viverra aliquet eget sit amet tellus. Eros donec ac odio tempor orci dapibus ultrices in. Maecenas pharetra convallis posuere morbi leo urna molestie at. At elementum eu facilisis sed odio morbi quis commodo.</p>
+								'
+							}
+						%}
+
+						{% include '@hc/components/accordion.twig' with {
+							'section_class': 'accordion-outer two-col inline center',
+							'twocol_accordion': 'true',
+							'title': 'Accordion two column',
+							'summary': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed malesuada quis nisi ac pharetra. Integer placerat dolor et odio auctor accumsan. Donec th at dolor commodo porttitor. ',
+							'accordion_cols': [
+								{
+									'accordions': [
+										{
+											'title': 'Nullam congue tempor faucibus',
+											'description': 'Nullam id dolor id nibh ultricies vehicula ut id elit. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Nullam id dolor id nibh ultricies vehicula ut id elit.',
+										},
+											{
+											'title': 'Nullam congue tempor faucibus',
+											'description': 'Nullam id dolor id nibh ultricies vehicula ut id elit. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Nullam id dolor id nibh ultricies vehicula ut id elit.',
+										}
+									]
+								},
+								{
+									'accordions': [
+										{
+											'title': 'Nullam congue tempor faucibus',
+											'description': 'Nullam id dolor id nibh ultricies vehicula ut id elit. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Nullam id dolor id nibh ultricies vehicula ut id elit.',
+										},
+											{
+											'title': 'Nullam congue tempor faucibus',
+											'description': 'Nullam id dolor id nibh ultricies vehicula ut id elit. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Nullam id dolor id nibh ultricies vehicula ut id elit.',
+										}
+									]
+								}
+							]}
+						%}
+
+						{% include '@hc/components/accordion.twig' with {
+							'section_class': 'accordion-outer inline center',
+							'title': 'Accordion inline component',
+							'summary': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut et massa mi. Aliquam in hendrerit urna.',
+							'accordions': [
+								{
+									'title': 'Nullam congue tempor faucibus',
+									'description': 'Nullam id dolor id nibh ultricies vehicula ut id elit. <strong>Duis mollis, est non</strong> commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Nullam id dolor id nibh ultricies vehicula ut id elit.',
+								},
+								{
+									'title': 'Nullam congue tempor faucibus',
+									'description': 'Nullam id dolor id nibh ultricies vehicula ut id elit. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Nullam id dolor id nibh ultricies vehicula ut id elit.',
+								},
+							]}
+						%}
+
+						{% include '@hc/components/downloads.twig' with {
+							'section_class': 'download-outer inline center',
+							'title': 'Download inline component',
+							'summary': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut et massa mi. Aliquam in hendrerit urna.',
+							'downloads': [
+								{
+									'type': 'pdf',
+									'link': '#',
+									'linktext': 'This is a PDF download',
+									'size': '2mb'
+								},
+								{
+									'type': 'doc',
+									'link': '#',
+									'linktext': 'This is a DOC download',
+								}
+							] }
+						%}
+
+						{% include '@hc/components/cta.twig' with {
+							'section_id': 'cta',
+							'section_class': 'cta-outer inline center',
+							'cta_title': 'Call to action',
+							'cta_summary': 'Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Aenean lacinia bibendum nulla sed consectetur.',
+							'button': 'Button',
+							'path': '#',
+							'path_target': '_blank'
+							}
+						%}
+						{% include '@hc/components/cta.twig' with {
+							'section_class': 'cta-outer inline center',
+							'image': '/assets/images/holder-1920x1080.png',
+							'cta_title': 'Call to action',
+							'cta_summary': 'Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Aenean lacinia bibendum nulla sed consectetur.',
+							'button': 'Button',
+							'path': '#'
+							}
+						%}
+
+						{% include '@hc/components/info-overview.twig' with {
+							'section_class': 'info-overview-outer inline center',
+							'title': 'Info overview',
+							'infos': [
+								{
+									'icon': '/assets/images/info-icon.png',
+									'title': 'Nullam congue tempor faucibus',
+									'summary': 'Nullam id dolor id nibh ultricies vehicula ut id elit. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.',
+									'tags': [
+										{ 'path': '#/', 'title': 'Type' },
+										{ 'path': '#/', 'title': 'Topic' },
+									]
+								},
+								{
+									'title': 'Nullam congue tempor faucibus',
+									'summary': 'Nullam id dolor id nibh ultricies vehicula ut id elit. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.',
+									'tags': [
+										{ 'path': '#/', 'title': 'Type' },
+										{ 'path': '#/', 'title': 'Topic' },
+									]
+								}
+							]}
+						%}
+
+						{% include '@hc/components/embed.twig' with {
+							'section_class': 'embed-outer inline center',
+							'title': 'Embed component',
+							'embed_code': '<iframe width="560" height="315" src="https://www.youtube.com/embed/o3tq3BsCBys" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>',
+							}
+						%}
+
+						{% include '@hc/components/self-selection.twig' with {
+							'section_class': 'self-selection-outer inline center',
+							'title': 'Self selection',
+							'summary': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed malesuada quis nisi ac pharetra. Integer placerat dolor et odio auctor accumsan. Donec th at dolor commodo porttitor. ',
+							'select_label': 'Self select an option',
+							'select_placeholder': 'Choose an option...',
+							'selects': [
+								{ 'title': 'Homepage', 'value': '/' },
+								{ 'title': 'Page builder', 'value': '/page-builder' },
+								{ 'title': 'News listing', 'value': '/news-listing' },
+								{ 'title': 'News single', 'value': '/news-single' },
+							],
+						} %}
+
+						{% include '@hc/components/share.twig' with {
+							'section_class': 'share-outer inline center',
+							'title': 'Share',
+							'summary': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed malesuada quis nisi ac pharetra. Integer placerat dolor et odio auctor accumsan. Donec th at dolor commodo porttitor. ',
+							'shares': [
+								{
+									'enabled': true,
+									'path': '#',
+									'selector': 'facebook',
+									'title': 'Facebook',
+								},
+								{
+									'enabled': true,
+									'path': '#',
+									'selector': 'twitter',
+									'title': 'Twitter',
+								},
+								{
+									'enabled': true,
+									'path': '#',
+									'selector': 'whatsapp',
+									'title': 'Whatsapp',
+								},
+								{
+									'enabled': true,
+									'path': '#',
+									'selector': 'linkedin',
+									'title': 'LinkedIn',
+								},
+								{
+									'enabled': true,
+									'path': '#',
+									'selector': 'email',
+									'title': 'Email',
+								},
+								{
+									'enabled': true,
+									'path': '#',
+									'selector': 'tiktok',
+									'title': 'Tiktok',
+								},
+								{
+									'enabled': true,
+									'path': '#',
+									'selector': 'link',
+									'title': 'Copy',
+								},
+								]}
+						%}
+
+						{% include '@hc/components/donate.twig' with {
+							'section_class': 'donate-outer inline center',
+							'image':'/assets/images/holder-1920x1080.png',
+							'title':'Donate today',
+							'summary': 'Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Aenean lacinia bibendum nulla sed consectetur.',
+							'buttons': [
+								{ 'title': 'Make a one off donation', 'path': '#' },
+								{ 'title': 'Set up a regular gift', 'path': '#' },
+							],
+						} %}
+
+						{% include '@hc/components/cards.twig' with {
+							'section_class': 'cards-outer inline center',
+							'title': 'Feature promo component',
+							'summary': 'Use this component to create rows of three promos specifically to present subpage or related content.',
+							'cards': [
+								{
+									'path': '/page-builder',
+									'image': '/assets/images/holder-530x920.png',
+									'title': 'Nullam congue tempor faucibus',
+									'summary': 'Nullam id dolor id nibh ultricies vehicula ut id elit. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.',
+								},
+								{
+									'path': '/page-builder',
+									'image': '/assets/images/holder-530x920.png',
+									'title': 'Maecenas sed diam risus varius blandit sit amet',
+									'summary': 'Maecenas faucibus mollis interdum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Maecenas sed diam eget risus varius.',
+								}
+							]}
+						%}
+
+						{% include '@hc/components/profile.twig' with {
+							'section_id': 'profiles',
+							'section_class': 'profile-outer inline center',
+							'title': 'Team profiles component',
+							'summary': '<p>The client can create rows of five team member headshots that will display in a grid and whose order can be set in the CMS.</p> <p>If less than four team members are added, they will simply align centrally.</p>',
+							'profiles': [
+								{
+									'image': '/assets/images/avatar-holder.png',
+									'name': 'Profile name',
+									'pronoun': 'He/him',
+									'title': 'Chief Executive Officer',
+									'summary' : 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.',
+									'meta': [
+										{ 'selector': 'twitter', 'text': 'Twitter', 'url': 'https://twitter.com/', 'target_blank': 'true' },
+										{ 'selector': 'facebook', 'text': 'Facebook', 'url': 'https://www.facebook.com/', 'target_blank': 'true' },
+										{ 'selector': 'linkedin', 'text': 'LinkedIn', 'url': 'https://uk.linkedin.com/', 'target_blank': 'true' },
+										{ 'selector': 'email', 'text': 'email@emailaddress.com', 'url': 'mailto:email@emailaddress.com', 'target_blank': 'true' },
+										{ 'selector': 'link', 'text': '#' },
+									]
+								},
+								{
+									'image': '/assets/images/avatar-holder.png',
+									'name': 'Profile name',
+									'pronoun': 'She/Her',
+									'title': 'Co-Founder and Executive Director',
+									'summary' : 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.',
+									'meta': [
+										{ 'selector': 'twitter', 'text': 'Twitter' },
+										{ 'selector': 'facebook', 'text': 'Facebook' },
+										{ 'selector': 'linkedin', 'text': 'LinkedIn' },
+										{ 'selector': 'email', 'text': 'email@emailaddress.com' },
+										{ 'selector': 'link', 'text': '#' },
+									]
+								},
+								{
+									'image': '/assets/images/avatar-holder.png',
+									'name': 'Profile name',
+									'pronoun': 'He/him',
+									'title': 'Chief Operating Officer and Designated Safeguarding Lead',
+									'summary' : '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras facilisis interdum neque nec sollicitudin. Quisque egestas nisi velit. Morbi eu efficitur urna. Proin posuere orci sit amet diam auctor, sit amet tempus ligula lacinia. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. In aliquet bibendum diam, vel consectetur eros imperdiet sed.</p> <p>Nam at erat posuere, rhoncus nibh et, efficitur risus. Pellentesque fringilla pulvinar condimentum. Maecenas ut massa interdum nisi congue vestibulum ac vel ipsum. Sed nisi libero, venenatis sed urna in, ullamcorper mollis ante. Aenean id aliquam nulla, a sodales augue. Nunc imperdiet tincidunt nisl. Ut ac vulputate nulla, et placerat mi.</p> <p>Duis elementum lacus eleifend magna hendrerit, ut malesuada odio cursus. Mauris vel magna ut nunc consectetur aliquam. In sed tellus at nibh auctor placerat at sed dolor. Nulla ut auctor nisi. Proin risus metus, venenatis eu iaculis quis, malesuada eget sem. Suspendisse non elementum sapien. Sed pharetra est faucibus eros suscipit blandit eget vel mauris. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Phasellus arcu ex, dapibus at sagittis sit amet, rhoncus non dolor.</p>',
+									'meta': [
+										{ 'selector': 'twitter', 'text': 'Twitter' },
+										{ 'selector': 'facebook', 'text': 'Facebook' },
+										{ 'selector': 'linkedin', 'text': 'LinkedIn' },
+										{ 'selector': 'email', 'text': 'email@emailaddress.com' },
+										{ 'selector': 'link', 'text': '#' },
+									]
+								}
+							]}
+						%}
+
+						{% include '@hc/components/statistics.twig' with {
+							'section_id': 'stats',
+							'section_class': 'statistic-outer inline center',
+							'title': 'Statistics component',
+							'summary': 'Use this section to present up to three key statistics. At least two promos must be populated and the layout will adjust accordingly.',
+							'statistics': [
+								{
+									'value_prefix': '£',
+									'value': '856',
+									'title': 'Excepteur nostrud magna dolor',
+									'summary': 'Voluptate tempor consequat velit dolore velit incididunt laboris est incididunt irure labore tempor dolore. Mollit eu exercitation sit anim occaecat ad sunt eiusmod est.'
+								},
+								{
+									'value': '28',
+									'value_suffix': '%',
+									'title': 'Culpa dolore sint ea elit',
+									'summary': 'Consectetur ea nulla consectetur nostrud qui aliquip duis voluptate in Lorem ex deserunt excepteur aute veniam consequat. In exercitation ut dolore laborum culpa sint duis est deserunt elit officia incididunt aute sint veniam ad.'
+								},
+								{
+									'value': '9572',
+									'title': 'Est consectetur qui',
+									'summary': 'Nostrud mollit nisi magna ullamco nostrud quis do. Enim pariatur laborum aute quis nulla et voluptate magna aute pariatur esse officia exercitation laboris.',
+									'source': 'Est consectetur qui',
+								}
+							]}
+						%}
+
+						{% include '@hc/components/gallery.twig' with {
+							'section_class': 'gallery-outer inline center',
+							'title': 'Gallery component',
+							'summary': 'The Client can create a gallery of images, presented as a row of four thumbnails with left/right arrow to see more. Maximum of 8 images. Click on a thumbnail to view a larger photo with an optional caption.',
+							'gallery': [
+								{
+									'image': '/assets/images/holder-1920x1080.png',
+									'imagethumb': '/assets/images/image-square-1.jpg',
+									'caption' : 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.',
+								},
+								{
+									'image': '/assets/images/image-square-2.jpg',
+									'imagethumb': '/assets/images/image-square-2.jpg',
+									'caption' : 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.',
+									'source': 'Source test'
+								},
+								{
+									'image': '/assets/images/image-square-3.jpg',
+									'imagethumb': '/assets/images/image-square-3.jpg',
+									'caption' : 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.',
+									'source': 'Source test'
+								},
+								{
+									'image': '/assets/images/image-square-4.jpg',
+									'imagethumb': '/assets/images/image-square-4.jpg',
+									'caption' : 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.',
+									'source': 'Source test'
+								},
+								{
+									'image': '/assets/images/image-square-5.jpg',
+									'imagethumb': '/assets/images/image-square-5.jpg',
+									'caption' : 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.',
+								},
+								{
+									'image': '/assets/images/image-square-6.jpg',
+									'imagethumb': '/assets/images/image-square-6.jpg',
+									'caption' : 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.',
+								},
+								{
+									'image': '/assets/images/image-square-1.jpg',
+									'imagethumb': '/assets/images/image-square-1.jpg',
+									'caption' : 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.',
+								},
+								{
+									'image': '/assets/images/image-square-2.jpg',
+									'imagethumb': '/assets/images/image-square-2.jpg',
+									'caption' : 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.',
+								}
+							]}
+						%}
+
+					{% endblock inline_components %}
+			</div>
+
+		{% endblock main_content %}
+
+		{% endblock main %}

@@ -1,0 +1,15 @@
+{% extends '@hc/scaffolding/section.twig' %}
+
+{% block section_content %}
+	<div class="container">
+		{% include '@hc/partials/pullquote-item.twig' %}
+	</div>
+{% endblock section_content %}
+
+{# Include like so:
+{% include '@hc/components/pullquote.twig' with {
+'image': '/assets/images/avatar-holder.png',
+'blockquote': 'Pullquote component add a quote mi tempus imperdiet nulla malesuada pellentesque elit eget egestas sed sed risus pretium quam',
+'cite': 'With citation lorem ipsum, Dolor sit amet',
+} %}
+#}

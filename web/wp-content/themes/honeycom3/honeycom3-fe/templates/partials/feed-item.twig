@@ -1,0 +1,56 @@
+<article class="item clearfix">
+	{% block item_image %}
+		{% if item.image or item.image_data %}
+			<div class="item-image">
+				{# Minimum image size: 530px X 920px #}
+				{% set image = item.image %}
+				{% set image_data = item.image_data %}
+				{% set imgheight = item.imgheight %}
+				{% set imgwidth = item.imgwidth %}
+				{% if image or image_data %}
+					{% include '@hc/partials/image.twig' %}
+				{% endif %}
+			</div>
+		{% endif %}
+	{% endblock item_image %}
+
+	{% block item_info %}
+	<div class="item-info">
+
+		{% block item_header %}
+			<header class="item-header">
+
+				<h2 class="item-header-title">
+					<a href="{{ item.path }}" class="item-link">{{ item.title }}</a>
+				</h2>
+
+				{% if item.date %}
+					<span class="item-header-date"><time datetime="{{ item.date|date("Y-m-d") }}">{{ item.date|date("jS F Y") }}</time></span>
+				{% endif %}
+				{% if item.smartDate %}
+					<span class="item-header-date">{{ item.smartDate }}</span>
+				{% endif %}
+
+				{% if item.author %}
+					<span class="item-header-author"><a href="#">{{ item.author }}</a></span>
+				{% endif %}
+			</header>
+		{% endblock item_header %}
+
+		{% if item.summary %}
+			{% block item_summary %}
+				<div class="item-summary">
+					<p>{{ item.summary }}</p>
+
+					{% if item.tags %}
+					{% set tags = item.tags %}
+						{% include '@hc/partials/tags.twig' with tags %}
+					{% endif %}
+				</div>
+			{% endblock item_summary %}
+		{% endif %}
+
+	</div>
+	{% endblock item_info %}
+
+</article>

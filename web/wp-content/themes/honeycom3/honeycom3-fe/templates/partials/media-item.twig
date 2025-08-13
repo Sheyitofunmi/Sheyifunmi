@@ -1,0 +1,74 @@
+{% block media_block %}
+	<div class="media-block{% if not title %} image-only{% endif %}">
+
+		{% block media_element %}
+		    <figure class="media-block-element">
+		    	{% if video_link %}
+		    		<a href="{{ video_link }}" class="media-block-element-play popup-video">
+		    			<svg aria-hidden="true" class="icon"><use xlink:href="{{ assets_dir }}/svg/icons.svg#play"/></svg>
+		    			<span class="visually-hidden">Play video</span>
+		    		</a>
+		    	{% endif %}
+			    {% if image or image_data %}
+			    	{# Minimum image size: 530px X 920px #}
+						{% include '@hc/partials/image.twig' %}
+					{% elseif fallback_image %}
+						{% set image = fallback_image %}
+						{% include '@hc/partials/image.twig' %}
+	        	{% endif %}
+				{% if video_embed_code %}
+					<div class="video-outer">
+						{{ video_embed_code }}
+					</div>
+		    	{% elseif video %}
+		    		<div class="video-outer">{{ video|raw }}</div>
+	        	{% endif %}
+		    </figure>
+	    {% endblock media_element %}
+
+		{% if caption or transcript_link %}
+			<p class="media-block-caption">
+				{% if caption %}{{ caption }}{% endif %}
+				{% if caption and transcript_link and not title %} | {% endif %}
+				{% if transcript_link and not title %}<a href="{{ transcript_link }}">{{ transcript_link_text }}</a>{% endif %}
+			</p>
+		{% endif %}
+
+		{% if title or summary or button %}
+			{% block media_info %}
+				<div class="media-block-info">
+					<div class="media-block-content">
+						{% block media_info_title %}
+							{% if title %}
+					        	<h2 class="media-block-title">{{ title }}</h2>
+				        	{% endif %}
+			        	{% endblock media_info_title %}
+
+						{% block media_info_summary %}
+							{% if summary %}
+								<div class="media-block-summary content">
+					        		{{ summary|raw }}
+								</div>
+				        	{% endif %}
+			        	{% endblock media_info_summary %}
+
+						{% block media_info_button %}
+							{% if button and transcript_link %}
+									<div class="button-outer">
+										<a href="{{ button_link }}" {% if button_target %}target="{{ button_target }}"{% endif %} class="button">{{ button }}</a>
+										{% if transcript_link %}<p><a href="{{ transcript_link }}">{{ transcript_link_text }}</a></p>{% endif %}
+									</div>
+								{% elseif transcript_link and not button %}
+									<div class="transcript-outer">
+										{% if transcript_link %}<p><a href="{{ transcript_link }}">{{ transcript_link_text }}</a></p>{% endif %}
+									</div>
+								{% elseif button and not transcript_link %}
+									<a href="{{ button_link }}"{% if button_target %} target="{{ button_target }}"{% endif %} class="button{% if button_class == 'secondary' %}-{{ button_class }}{% endif %}">{{ button }}</a>
+								{% endif %}
+						{% endblock media_info_button %}
+		        	</div>
+		    	</div>
+	    	{% endblock media_info %}
+		{% endif %}
+	</div>
+{% endblock media_block %}

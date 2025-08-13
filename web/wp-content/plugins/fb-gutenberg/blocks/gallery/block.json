@@ -1,0 +1,19 @@
+{
+	"name": "acf/gallery",
+	"title": "Gallery",
+	"description": "A gallery block.",
+	"style": [ "fb-gutenberg-gallery" ],
+	"category": "media",
+	"icon": "format-gallery",
+	"keywords": ["gallery"],
+	"acf": {
+		"mode": "auto",
+		"renderCallback": "fb_gutenberg_render_callback",
+		"blockVersion": 2
+	},
+	"supports": {
+		"align": false,
+		"anchor": true,
+		"mode": false
+	}
+}

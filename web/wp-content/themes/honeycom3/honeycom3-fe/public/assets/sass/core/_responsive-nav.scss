@@ -1,0 +1,312 @@
+/* +++++++++++++++++++++++++++
++++ LAYOUT: RESPONSIVE NAV +++
++++++++++++++++++++++++++++ */
+
+// Layout and styling of the navigation at mobile and tablet sizes
+
+.menu-button-close {
+	background-image: url("data:image/svg+xml,%3Csvg width='28' height='28' viewBox='0 0 28 28' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M27.062 3.06248L24.938 0.938477L14 11.8765L3.06199 0.938477L0.937988 3.06248L11.876 14.0005L0.937988 24.9385L3.06199 27.0625L14 16.1185L24.938 27.0625L27.062 24.9385L16.124 14.0005L27.062 3.06248Z' fill='%23323232'/%3E%3C/svg%3E%0A");
+	background-color: transparent;
+	height: 27px;
+	position: absolute;
+	right: $gap * 1.5;
+	top: $gap * 2;
+	width: 27px;
+	z-index: 999;
+
+	&:hover {
+		text-decoration: none;
+	}
+}
+
+.rnav {
+	margin-top: 0;
+	padding-top: 0;
+
+	&-outer {
+		@extend %transition;
+		background: $white;
+		height: 100%;
+		overflow: hidden;
+		position: fixed;
+		right: -100%;
+		top: 0;
+		width: 100%;
+		z-index: 990;
+
+		@include break(medium) {
+			display: none !important;
+		}
+
+		&.show-nav {
+			display: block;
+			right: -1px;
+		}
+	}
+
+	&-search {
+		background-color: transparent;
+		padding: $gap * 1.5;
+
+		.search {
+			width: 90%;
+
+			&-input {
+				background-color: $white;
+				font-size: 1.125rem;
+				height: auto;
+				padding: $gap / 1.5 $gap $gap / 1.5 $gap * 3;
+
+				&::-webkit-input-placeholder { color: $black; opacity: 1; }
+				&::-moz-placeholder { color: $black; opacity: 1; }
+				&:-ms-input-placeholder { color: $black; opacity: 1; }
+				&:-moz-placeholder { color: $black; opacity: 1; }
+			}
+			&-icon {
+				height: 24px;
+				right: $gap / 1.8;
+				width: 24px;
+			}
+			&-button {
+				background-color: transparent;
+				border: 0;
+				left: 0;
+				width: 45px;
+
+				.search-icon {
+					fill: $black;
+				}
+			}
+		}
+	}
+
+	&-links {
+		@extend %flex;
+		align-items: flex-start;
+		padding: 0 $gap;
+
+		.button {
+			display: block;
+			margin-bottom: $gap;
+			padding: $gap / 1.5 $gap * 1.5;
+			width: 100%;
+
+			&:first-child {
+				padding: $gap / 1.5 $gap * 1.5;
+				width: 100%;
+			}
+			&:last-child {
+				margin-bottom: $gap / 2;
+			}
+		}
+	}
+
+	&-item {
+		background-color: $white;
+		padding: 0 $gap * 1.5;
+		position: relative;
+
+		&-link {
+			@extend %transition;
+			border-bottom: solid 2px $grey70;
+			display: block;
+			font-size: 1.125rem;
+			font-weight: $bold;
+			padding: $gap / 1.5 $gap * 3 $gap / 1.5 0;
+			text-align: left;
+
+			&:hover {
+				background: rgba($white, 0.1);
+			}
+		}
+		&.resp_secnav {
+			padding: 0;
+		}
+	}
+
+	.rnav-dropdown-info {
+		padding-top: $gap;
+	}
+	.dropdown {
+		&-info {
+			background-color: $white;
+			padding-top: $gap * 2;
+
+			&-heading {
+				font-size: 1.5rem;
+			}
+
+			&-summary {
+				font-size: .9rem;
+				padding: $gap 0;
+			}
+
+			&-link {
+				border-bottom: solid 2px $grey70;
+				display: block;
+				font-weight: $bold;
+				padding-bottom: $gap;
+			}
+		}
+	}
+
+	&-dropdown {
+		@extend %transition;
+		background-color: rgba($black, .8);
+		-webkit-backdrop-filter: blur(4px);
+		backdrop-filter: blur(4px);
+		height: 100%;
+		padding-left: 10%;
+		position: fixed;
+		right: -100%;
+		top: 0;
+		width: 100%;
+		z-index: 990;
+
+		scrollbar-width: none;
+		-webkit-overflow-scrolling: touch;
+		-ms-overflow-style: -ms-autohiding-scrollbar;
+		overflow-x: hidden;
+		overflow-y: scroll;
+
+		.rnav-item {
+			&:last-child {
+				border-bottom: solid $gap * 1.5 $white;
+			}
+		}
+
+		&:before {
+			background-color: $white;
+			content: '';
+			display: block;
+			height: 100%;
+			right: 0;
+			position: absolute;
+			top: 0;
+			width: 90%;
+		}
+
+		&.show-nav {
+			right: 0;
+		}
+
+		.rnav-dropdown {
+			background-color: rgba($black, .6);
+			padding: 0 0 0 20%;
+			right: -100%;
+			width: 100%;
+			z-index: 993;
+
+			&:before {
+				background-color: $white;
+				content: '';
+				display: block;
+				height: 100%;
+				right: 0;
+				position: absolute;
+				top: 0;
+				width: 80%;
+				z-index: 994;
+			}
+
+			.rnav-item-link {
+				font-weight: $normal;
+				position: relative;
+				z-index: 995;
+			}
+
+			&.show-nav {
+				right: 0;
+			}
+		}
+	}
+
+	&-secnav {
+		&-item {
+			border-bottom: $line solid rgba($white, 0.1);
+			display: block;
+			padding: 0 $gap * 1.5;
+
+			&:last-child {
+				border-bottom: 0;
+			}
+
+			.rnav-item-link {
+				font-size: 1rem;
+				font-weight: $normal;
+			}
+		}
+	}
+
+	&-socials {
+		@extend %flex;
+		flex-wrap: nowrap;
+		gap: $gap;
+		padding-top: $gap;
+
+		.rnav-item {
+			flex-grow: 1;
+			padding: 0;
+
+			&-link {
+				@extend %flex;
+				align-items: center;
+				border: $line solid rgba($primary, 0.1);
+				justify-content: center;
+				padding: $gap 0;
+				width: 100%;
+			}
+		}
+	}
+
+	&-close {
+		@extend %font-content;
+		background-image: url("data:image/svg+xml,%3Csvg width='10' height='19' viewBox='0 0 10 19' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0.298024 10.1864L8.34602 18.2344L9.76202 16.8184L2.41803 9.47437L9.71003 2.18237L8.29403 0.766374L0.294024 8.76637C-0.0979759 9.15837 -0.0979759 9.79037 0.294024 10.1824L0.298024 10.1864Z' fill='%23323232'/%3E%3C/svg%3E%0A");
+		background-color: transparent;
+		background-position: left center;
+		background-repeat: no-repeat;
+		background-size: 10px 17px;
+		font-size: 1.125rem;
+		margin-top: $gap * 2;
+		padding: 0 0 0 $gap * 1.5;
+		position: relative;
+		text-align: left;
+		width: 120px;
+
+		&.close-gran {
+			z-index: 994;
+		}
+	}
+
+	&-arrow {
+		background-color: transparent;
+		border-radius: $corner;
+		box-shadow: none;
+		cursor: pointer;
+		height: 2.5rem;
+		padding: 0;
+		position: absolute;
+		right: $gap / 2;
+		top: 4px;
+		width: 100%;
+
+		.icon {
+			@include transition(transform 0.4s ease);
+			@include centerer(false, true);
+			display: block;
+			fill: $black;
+			right: $gap / 4;
+			width: $gap * 2;
+		}
+
+		&:hover {
+			background-color: transparent;
+			box-shadow: none;
+		}
+	}
+
+	&-button {
+		border-top: $line solid rgba($white, 0.1);
+		padding: $gap;
+	}
+}

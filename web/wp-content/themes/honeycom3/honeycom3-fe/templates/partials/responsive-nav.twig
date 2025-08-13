@@ -1,0 +1,98 @@
+
+<div class="rnav-outer" aria-expanded="false">
+
+	<button for="rnav-close" id="rnav-button-close" class="menu-button-close" aria-controls="menu close" aria-expanded="false"><span class="visually-hidden">Close</span></button>
+
+	<div class="rnav-search">
+		{% include '@hc/partials/search.twig' with { 'searchtype_id': 'rnav', 'search_action': search_form.action, 'search_name': search_form.input_name } %}
+	</div>
+
+	{% block links %}
+		<div class="rnav-links clearfix">
+			{% for button in buttons %}
+			  <a href="{{ button.url }}" class="button">{{ button.text }}</a>
+			{% endfor %}
+		</div>
+	{% endblock links %}
+
+	<nav class="rnav">
+
+		<ul class="rnav-list" id="menu" role="tablist">
+			{% for key, nav in navigation %}
+				<li class="rnav-item{% if nav.active == true %} current{% endif %}{% if nav.submenu %} with-dropdown{% endif %}" {% if nav.submenu %}aria-haspopup="true"{% endif %} role="tab">
+					<a href="{{ nav.url }}" class="rnav-item-link">{{ nav.text }}</a>
+
+					{% if nav.submenu %}
+						<button class="rnav-arrow" aria-expanded="false">
+							<svg aria-hidden="true" class="icon"><use xlink:href="{{ assets_dir }}/svg/icons.svg#arrow-right"/>Expand dropdown</svg>
+						</button>
+
+						<ul class="rnav-dropdown children" aria-expanded="false" aria-label="{{ nav.text }} submenu" role="tablist">
+							<li class="rnav-item closenav"><button class="rnav-close close-child">Back</button></li>
+							{% if nav.description %}
+								<li class="rnav-item rnav-dropdown-info" role="tab">
+									<h2 class="dropdown-info-heading">{{ nav.text }}</h2>
+									<p class="dropdown-info-summary">{{ nav.description }}</p>
+								</li>
+							{% endif %}
+							<li class="rnav-item" role="tab">
+								<a href="{{ nav.url }}" class="rnav-item-link">View {{ nav.text }}</a>
+							</li>
+							{% for item in nav.submenu %}
+								<li class="rnav-item" role="tab">
+									<a href="{{ item.url }}" class="rnav-item-link">{{ item.text }}</a>
+
+									{% if item.submenu %}
+
+										<button class="rnav-arrow" aria-expanded="false">
+											<svg aria-hidden="true" class="icon"><use xlink:href="{{ assets_dir }}/svg/icons.svg#arrow-right"/>Expand dropdown</svg>
+										</button>
+
+										<ul class="rnav-dropdown granchildren" aria-expanded="false" aria-label="{{ item.text }} submenu" role="tablist">
+											<li class="rnav-item closenav"><button class="rnav-close close-gran">Back</button></li>
+											<li class="rnav-item" role="tab">
+												<a href="{{ item.url }}" class="rnav-item-link">View {{ item.text }}</a>
+											</li>
+											{% for item in item.submenu %}
+												<li class="rnav-item" role="tab">
+													<a href="{{ item.url }}" class="rnav-item-link">{{ item.text }}</a>
+												</li>
+											{% endfor %}
+										</ul>
+
+									{% endif %}
+
+								</li>
+							{% endfor %}
+						</ul>
+
+					{% endif %}
+
+				</li>
+			{% endfor %}
+
+			<li class="rnav-item resp_secnav" role="tab">
+				<ul class="rnav-secnav" role="tablist">
+					{% for resp_secnav in secnav %}
+						<li class="rnav-secnav-item" role="tab">
+							<a href="{{ resp_secnav.url }}" class="rnav-item-link">{{ resp_secnav.text }}</a>
+						</li>
+					{% endfor %}
+				</ul>
+			</li>
+
+			<li class="rnav-item" role="tab">
+				<ul class="rnav-socials" role="tablist">
+					{% for social in socials %}
+						<li class="rnav-item" role="tab">
+							<a href="{{ social.path }}" {% if social.target %}target="{{social.target}}"{% endif %} class="rnav-item-link">
+								<svg aria-hidden="true" class="icon"><use xlink:href="{{ assets_dir }}/svg/icons.svg#{{ social.selector }}"/></svg>
+								<span class="visually-hidden">{{ social.selector }}</span>
+							</a>
+						</li>
+					{% endfor %}
+				</ul>
+			</li>
+		</ul>
+	</nav>
+</div>

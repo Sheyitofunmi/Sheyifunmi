@@ -1,0 +1,44 @@
+{% extends '@hc/scaffolding/base.twig' %}
+
+    {% set main_title = "Templates" %}
+    {% set main_summary = "Links to templated pages" %}
+
+    {% block main %}
+    
+    	<section class="section">
+    		<div class="container">
+		        {% set cards = [
+		            {
+		                'path': '/page-builder',
+		                'title': 'Page Builder',
+		            },
+		            {
+		                'path': '/listing',
+		                'title': 'Listing',
+		            },
+		            {
+		                'path': '/single',
+		                'title': 'Single',
+		            },            
+		            {
+		                'path': '/forms',
+		                'title': 'Forms',
+		            },
+		            {
+		                'path': '/cards',
+		                'title': 'Cards',
+		            },
+		            {
+		                'path': '/donate',
+		                'title': 'Donate',
+		            },
+		        ]
+		        %}
+		
+		        {% include '@hc/components/cards.twig' %}
+	        </div>
+        </section>
+        
+        
+    {% endblock %}
+

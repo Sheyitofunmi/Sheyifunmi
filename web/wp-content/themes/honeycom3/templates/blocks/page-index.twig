@@ -1,0 +1,7 @@
+{% include '@hc/components/page-nav.twig' with {
+	'section_id': fields.anchor_id|e('esc_html'),
+	'section_class': 'page-nav-outer ' ~ fields.background_colour|get_background_class_name ~ ' ' ~ fields.alignment_classes,
+	'page_nav_title': fields.title|e('esc_html'),
+	'page_nav_items': twiggified_data
+	}
+%}

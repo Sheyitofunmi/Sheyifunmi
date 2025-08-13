@@ -1,0 +1,44 @@
+{
+    "key": "group_65b2cfd0958d8",
+    "title": "Event locations",
+    "fields": [
+        {
+            "key": "field_65b2cfd0c5ac6",
+            "label": "Address",
+            "name": "address",
+            "aria-label": "",
+            "type": "google_map",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "center_lat": "51.50853",
+            "center_lng": "-0.12574",
+            "zoom": "",
+            "height": ""
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "taxonomy",
+                "operator": "==",
+                "value": "location"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "",
+    "show_in_rest": 0,
+    "modified": 1708090740
+}

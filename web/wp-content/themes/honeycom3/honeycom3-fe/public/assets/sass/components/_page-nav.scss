@@ -1,0 +1,113 @@
+/* +++++++++++++++++++++
++++ LAYOUT: PAGE NAV +++
++++++++++++++++++++++ */
+
+.page-nav {
+	@extend %flex;
+	background-color: $grey95;
+	gap: $gap / 1.5 3%;
+	margin: 0 auto;
+	padding: $gap * 1.5;
+
+	@include break(medium) {
+		padding: $gap * 2;
+	}
+
+	&-outer {
+		@extend %transition;
+		@include flexbox(100%);
+		width: 100%;
+
+		&.inline {
+			.page-nav {
+				@include break(medium) {
+					margin: 0 0 0 auto;
+					padding: $gap * 2;
+					width: 66.66%;
+				}
+
+				&-block {
+					@include break(small) {
+						@include flexbox(48.5%);
+					}
+
+					&:nth-child(2) {
+						a {
+							border-top: 0;
+						}
+					}
+					&:nth-child(3) {
+						a {
+							@include break(small) {
+								border-top: 0;
+							}
+						}
+					}
+					&:nth-child(4) {
+						a {
+							border-top: solid 1px $grey60;
+						}
+					}
+				}
+			}
+			&.secondary {
+				color: $white;
+				.page-nav {
+					background-color: $secondary;
+				}
+			}
+		}
+		&.secondary {
+			color: $black;
+		}
+	}
+	&-title {
+		@include flexbox(100%);
+		font-size: 1.225rem;
+	}
+	&-block {
+		@extend %transition;
+		@include flexbox(100%);
+		margin: 0;
+
+		@include break(small) {
+			@include flexbox(48.5%);
+		}
+
+		@include break(medium) {
+			@include flexbox(31.33%);
+		}
+
+		&:nth-child(2) {
+			a {
+				border-top: 0;
+			}
+		}
+		&:nth-child(3), &:nth-child(4) {
+			a {
+				@include break(small) {
+					border-top: 0;
+				}
+			}
+		}
+
+
+		a {
+			@extend %transition;
+			border-top: solid 1px $grey60;
+			display: block;
+			font-size: 1.175rem;
+			padding-top: $gap / 2;
+			position: relative;
+
+			@include break(small) {
+				font-size: 1.225rem;
+			}
+
+			&:hover {
+				color: $secondary;
+				text-decoration: underline;
+			}
+		}
+	}
+}

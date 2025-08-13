@@ -1,0 +1,147 @@
+/* +++++++++++++++++++
++++ LAYOUT: IMPACT +++
++++++++++++++++++++ */
+
+.impact {
+	@extend %flex;
+	gap: $gap * 1.5 3%;
+
+	&-outer {
+		&.secondary {
+			.impact {
+				color: $black;
+			}
+		}
+	}
+
+	&-item {
+		@include flexbox(100%);
+		background-color: $grey80;
+		margin: 0;
+		position: relative;
+
+		&:nth-child(odd) {
+			background-color: lighten($grey80, 10);
+		}
+
+		&:first-child {
+			@include flexbox(100%);
+			@include break(medium) {
+				@include flexbox(31.33%);
+			}
+		}
+
+		@include break(tablet) {
+			@include flexbox(48.5%);
+		}
+
+		@include break(medium) {
+			@include flexbox(31.33%);
+		}
+		&.impact-secondary {
+			@include flexbox(100%);
+
+			@include break(medium) {
+				@include flexbox(48.5%);
+			}
+		}
+	}
+
+	&-image {
+		height: 100%;
+		width: 100%;
+
+		img {
+			@include object-fit(4/3, 100%);
+		}
+	}
+
+	&-cta-image {
+		height: 100%;
+		left: 0;
+		position: absolute;
+		top: 0;
+		width: 100%;
+
+		img {
+			@include object-fit(4/3, 100%);
+		}
+	}
+	&-summary {
+		&-wrap {
+			@extend %flex;
+			height: 100%;
+			padding: $gap * 1.5;
+		}
+	}
+
+	&-cta {
+		@extend %flex;
+		align-items: center;
+
+		&-image {
+			+ .impact-cta-wrap {
+				background-color: rgba($black, 0.6);
+				color: $white;
+				padding: $gap * 5 $gap * 1.5 $gap * 1.5;
+			}
+		}
+		&-wrap {
+			padding: $gap;
+			position: relative;
+			z-index: 2;
+		}
+
+		&-title {
+			font-size: 1.6rem;
+			word-break: break-word;
+		}
+		&-summary {
+			padding: $gap / 1.5 0 $gap;
+		}
+	}
+
+	&-quote {
+		@extend %flex;
+		align-content: center;
+		height: 100%;
+		padding: $gap * 1.5;
+
+		&:before {
+			@include quote('black');
+			content: '';
+			display: block;
+			height: 30px;
+			width: 30px;
+		}
+		blockquote {
+			@extend %h5;
+		}
+		blockquote, cite {
+			margin: 0;
+		}
+		cite {
+			margin-top: $gap / 2;
+		}
+	}
+	&-stat {
+		padding: $gap * 1.5;
+
+		&-prefix, &-suffix, &-value-number {
+			font-family: $font-quote;
+			font-size: 2.2rem;
+			font-weight: $bold;
+
+			@include break(small) {
+				font-size: 3rem;
+			}
+		}
+		&-title {
+			@extend %h5;
+		}
+		&-summary {
+			padding-top: $gap / 2;
+		}
+	}
+
+}

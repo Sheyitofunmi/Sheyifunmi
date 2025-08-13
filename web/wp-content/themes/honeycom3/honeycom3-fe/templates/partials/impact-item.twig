@@ -1,0 +1,68 @@
+<div class="impact">
+
+	{% for impact in impacts %}
+
+		<div class="impact-item{% if impact.priority == 'secondary' %} impact-secondary{% else %} impact-primary{% endif %}">
+
+			{% if impact.image or impact.image_data %}
+				<div class="impact-image">
+					{# Minimum image size: 530px X 920px #}
+					{% set image = impact.image %}
+					{% set image_data = impact.image_data %}
+					{% if impact.image or impact.image_data %}
+						{% include '@hc/partials/image.twig' with { 'imgheight': '530', 'imgwidth': '920' } %}
+					{% endif %}
+				</div>
+			{% endif %}
+
+			{% if impact.summary %}
+				<div class="impact-summary-wrap">
+					<p class="impact-summary">{{ impact.summary }}</p>
+				</div>
+			{% endif %}
+
+			{% if impact.cta_title %}
+				<div class="impact-cta">
+
+					{% if impact.cta_image or impact.cta_image_data %}
+						<div class="impact-cta-image">
+							{# Minimum image size: 530px X 920px #}
+							{% set image = impact.cta_image %}
+							{% set image_data = impact.cta_image_data %}
+							{% if impact.cta_image or impact.cta_image_data %}
+								{% include '@hc/partials/image.twig' with { 'imgheight': '530', 'imgwidth': '920' } %}
+							{% endif %}
+						</div>
+					{% endif %}
+
+					<div class="impact-cta-wrap">
+						<h3 class="impact-cta-title">{{ impact.cta_title }}</h3>
+						{% if impact.cta_summary %}<p class="impact-cta-summary">{{ impact.cta_summary }}</p>{% endif %}
+						{% if impact.cta_button %}<a href="{{ impact.cta_path }}" class="impact-cta-button button"{% if link_target %} target="{{ link_target }}"{% endif %}>{{ impact.cta_button }}</a>{% endif %}
+					</div>
+				</div>
+			{% endif %}
+
+			{% if impact.stat_value %}
+				<div class="impact-stat">
+					{% if impact.stat_value_prefix %}<span class="impact-stat-prefix">{{ impact.stat_value_prefix }}</span>{% endif %}
+						<span class="impact-stat-value-number">{{ impact.stat_value }}</span>
+					{% if impact.stat_value_suffix %}<span class="impact-stat-suffix">{{ impact.stat_value_suffix }}</span>{% endif %}
+					<h3 class="impact-stat-title">{{ impact.stat_title }}</h3>
+					{% if impact.stat_summary %}<p class="impact-stat-summary">{{ impact.stat_summary }}</p>{% endif %}
+				</div>
+			{% endif %}
+
+			{% if impact.blockquote %}
+				<div class="impact-quote">
+					<blockquote>{{ impact.blockquote }}</blockquote>
+					{% if impact.attribution %}<cite>{{ impact.attribution }}</cite>{% endif %}
+				</div>
+			{% endif %}
+
+		</div>
+
+	{% endfor %}
+
+
+</div>

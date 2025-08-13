@@ -1,0 +1,21 @@
+[submodule "web/wp-content/plugins/fb-gutenberg"]
+	path = web/wp-content/plugins/fb-gutenberg
+	url = git@bitbucket.org:fatbeehive/fb-gutenberg.git
+[submodule "web/wp-content/themes/honeycom3/honeycom3-fe"]
+	path = web/wp-content/themes/honeycom3/honeycom3-fe
+	url = git@bitbucket.org:fatbeehive/honeycom3-fe.git
+[submodule "web/wp-content/plugins/fb-wp-hc3-theme-settings"]
+	path = web/wp-content/plugins/fb-wp-hc3-theme-settings
+	url = git@bitbucket.org:fatbeehive/fb-wp-hc3-theme-settings.git
+[submodule "web/wp-content/plugins/fb-wp-honeycomb-navs"]
+	path = web/wp-content/plugins/fb-wp-honeycomb-navs
+	url = git@bitbucket.org:fatbeehive/fb-wp-honeycomb-navs.git
+[submodule "web/wp-content/plugins/fb-wp-hc2-responsive-images"]
+	path = web/wp-content/plugins/fb-wp-hc2-responsive-images
+	url = git@bitbucket.org:fatbeehive/fb-wp-hc2-responsive-images.git
+[submodule "web/wp-content/plugins/fb-super-editor"]
+	path = web/wp-content/plugins/fb-super-editor
+	url = git@bitbucket.org:fatbeehive/fb-super-editor.git
+[submodule "web/wp-content/plugins/acf-page-relationship"]
+	path = web/wp-content/plugins/acf-page-relationship
+	url = https://github.com/ashmatadeen/acf-page-relationship.git

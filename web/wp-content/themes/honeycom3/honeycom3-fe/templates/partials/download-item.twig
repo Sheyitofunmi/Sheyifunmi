@@ -1,0 +1,24 @@
+{% block download_list %}
+	<div class="download">
+		{% if inline_title or inline_summary %}
+			<div class="inline-header">
+				{% if inline_title %}<h2 class="inline-header-title">{{ inline_title }}</h2>{% endif %}
+				{% if inline_summary %}<p class="inline-header-summary">{{ inline_summary }}</p>{% endif %}
+			</div>
+		{% endif %}
+		{% block download_item %}
+			{% for download in downloads %}
+				<div class="{% if download.type %}{{ download.type }} {% endif %}download-block">
+					<span class="icon">
+						{% if download.type %}
+							<svg aria-hidden="true" class="icon"><use xlink:href="{{ assets_dir }}/svg/icons.svg#{{ download.type }}"/>{{ download.type }}</svg>
+						{% else %}
+							<svg aria-hidden="true" class="icon"><use xlink:href="{{ assets_dir }}/svg/icons.svg#book-download"/>Document</svg>
+						{% endif %}
+					</span>
+					<a href="{{ download.link }}"{% if download.link_target %} target="{{ download.link_target }}"{% endif %} class= "download-link">{{ download.linktext|e('html') }}{% if download.size %} <span>({{ download.size }}{% if download.type %}, {{ download.type|upper }}{% endif %})</span>{% endif %}</a>
+				</div>
+			{% endfor %}
+		{% endblock download_item %}
+	</div>
+{% endblock download_list %}

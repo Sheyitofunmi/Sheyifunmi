@@ -1,0 +1,19 @@
+{
+	"name": "acf/statistics",
+	"title": "Statistics",
+	"description": "A statistics block.",
+	"style": [ "fb-gutenberg-statistics" ],
+	"category": "formatting",
+	"icon": "analytics",
+	"keywords": ["statistics"],
+	"acf": {
+		"mode": "auto",
+		"renderCallback": "fb_gutenberg_render_callback",
+		"blockVersion": 2
+	},
+	"supports": {
+		"align": false,
+		"anchor": true,
+		"mode": false
+	}
+}

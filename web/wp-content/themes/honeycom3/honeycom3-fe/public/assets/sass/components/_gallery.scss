@@ -1,0 +1,146 @@
+/* ++++++++++++++++++++
++++ LAYOUT: GALLERY +++
+++++++++++++++++++++ */
+
+.gallery {
+	margin: $gap * 1.5 0;
+	padding: 0 $gap;
+	position: relative;
+
+	@include break(tablet) {
+		padding: 0;
+	}
+
+	&-item {
+        margin: 0;
+        text-align: center;
+	}
+	&-thumb {
+		height: 100%;
+		position: relative;
+
+		&-caption {
+			background-color: $primary;
+			color: $white;
+			display: none;
+			font-size: .8rem;
+			padding: $gap / 2 $gap * 2;
+			z-index: 10;
+
+			@include break(tablet) {
+				display: block;
+			}
+		}
+
+		img {
+			@include object-fit(4/3, 100%);
+		}
+	}
+	.figcaption-icon {
+		left: $gap;
+	}
+
+	&-outer {
+		.section-header {
+			+ .container {
+				padding: 0 $gap * 1.5;
+				@include break(medium) {
+					padding: 0 $gap * 2;
+				}
+			}
+		}
+
+		&.inline {
+			.gallery {
+				@include break(medium) {
+					margin: 0 0 0 auto;
+					width: 66.66%;
+				}
+			}
+		}
+	}
+}
+.lSAction {
+	.lSPrev, .lSNext {
+		@include centerer(false, true);
+		background-color: $white;
+		border-radius: 100%;
+		cursor: pointer;
+		color: transparent;
+		display: none !important;
+		font-size: 0px;
+		height: 35px;
+		left: 1.5rem;
+		line-height: 0px;
+		margin: 0;
+		outline: none;
+		padding: 0;
+		width: 35px;
+		transform: translate(0, -60%);
+		z-index: 99;
+
+		@include break(tablet) {
+			display: block !important;
+		}
+		@include break(large) {
+			left: $gap * 1.2;
+		}
+
+		&:before {
+			@extend %transition;
+			@include bg-arrow('black');
+			@include centerer(true, true);
+			content: '';
+			display: block !important;
+			height: 28px;
+			transform: translate(-50%, -50%) scaleX(-1);
+			width: 28px;
+		}
+
+		&:hover,
+		&:focus {
+			color: transparent;
+			outline: none;
+
+			&:before {
+				@include bg-arrow('black');
+			}
+		}
+	}
+	.lSNext {
+		left: auto;
+		right: $gap * 1.5;
+
+		@include break(large) {
+			right: $gap * 1.2;
+		}
+
+		&:before {
+			transform: translate(-50%, -50%) scaleX(1);
+		}
+	}
+}
+
+.lg-prev, .lg-next {
+	&:hover {
+		text-decoration: none;
+	}
+}
+
+.lSPager {
+	margin: 0 0 $gap 0 !important;
+
+	@include break(small) {
+		margin: 0 !important;
+	}
+
+	a {
+		background-color: $grey80 !important;
+	}
+
+	.active {
+		a {
+			background-color: $primary !important;
+		}
+	}
+}

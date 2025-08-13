@@ -1,0 +1,42 @@
+<div class="facility-accordion">
+  {% for accordion in accordions %}
+  {% if accordion.accordion_list_items.0.title or accordion.accordion_list_items.0.file_name or accordion.summary %}
+
+	{% block accordion_item %}
+	  <div class="accordion-item{% if accordion.type %} {{ accordion.type }}{% endif %}">
+		{% block accordion_title %}
+		  <button class="accordion-button accordion-trigger active facility-accordion-button" aria-expanded="true" aria-controls="accordionPanel{{ accordion.title|replace({' ': ''}) }}">
+			{{ accordion.title }} <svg aria-hidden="true" class="icon"><use xlink:href="{{ assets_dir }}/svg/icons.svg#arrow-right"/></svg>
+		  </button>
+		{% endblock accordion_title %}
+
+		{% block accordion_panel %}
+		  <div class="facility-accordion-panel" id="accordionPanel{{ accordion.title|replace({' ': ''}) }}" tabindex="-1" aria-expanded="true">
+
+			  {% set accordion_list_items = accordion.accordion_list_items %}
+			  {% if accordion_list_items %}
+			  	<ul class="accordion-list">
+					{% for accordion_list_item in accordion_list_items %}
+				  	<li class="accordion-list-block">
+						<p>{{ accordion_list_item.title }}</p>
+						{% if accordion_list_item.file_type %}
+					  	<p><a href="{{ accordion_list_item.path }}">{{ accordion_list_item.file_name }} ({{ accordion_list_item.file_type }}, {{ accordion_list_item.size }})</a></p>
+						{% endif %}
+				  	</li>
+					{% endfor %}
+			  	</ul>
+			  {% endif %}
+
+			  {% if accordion.summary %}
+			  		<div class="facility-accordion-info">
+						<p class="facility-accordion-subtitle">{{ accordion.subtitle }}</p>
+				  		<p class="facility-accordion-summary">{{ accordion.summary }}</p>
+			  		</div>
+			  {% endif %}
+		  </div>
+		{% endblock accordion_panel %}
+	  </div>
+	{% endblock accordion_item %}
+	{% endif %}
+  {% endfor %}
+  </div>

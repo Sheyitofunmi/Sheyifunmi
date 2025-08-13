@@ -1,0 +1,9 @@
+{% include '@hc/components/statistics.twig' with {
+	'section_id': fields.anchor_id|e('esc_html'),
+	'section_class': 'statistic-outer ' ~ fields.background_colour|get_background_class_name ~ ' ' ~ fields.alignment_classes,
+	'title': fields.title|e('esc_html'),
+	'summary': fields.summary|nl2br,
+	'link': fields.link.title|e('esc_html'),
+	'link_path': fields.link.url|e('esc_url'),
+	'statistics': twiggified_data
+}%}

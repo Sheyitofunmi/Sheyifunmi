@@ -1,0 +1,19 @@
+<div class="breadcrumb-outer">
+	<div class="container">
+		<ul class="breadcrumb-list" role="tablist">
+			<li class="breadcrumb-list-item" role="tab">
+				<a href="/" class="breadcrumb-list-link">Home</a>
+			</li>
+			{% for bc in cpt_breadcrumbs %}
+				<li class="breadcrumb-list-item {% if bc.active %}current {% endif %}" role="tab">
+					<a href="{{ bc.url }}" class="breadcrumb-list-link {% if bc.active %}current {% endif %}">{{ bc.text }}</a>
+				</li>
+			{% endfor %}
+		</ul>
+	</div>
+</div>
+<div>
+	{% if function('is_plugin_active', 'reading-time-wp/rt-reading-time.php') %}
+		<p>{{ function('do_shortcode', '[rt_reading_time label="Reading Time:" postfix="minutes" postfix_singular="minute"]')}}</p>
+	{% endif %}
+</div>

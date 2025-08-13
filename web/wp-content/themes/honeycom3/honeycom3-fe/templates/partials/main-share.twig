@@ -1,0 +1,28 @@
+{% if shares %}
+<div class="main-share-outer">
+	<ul class="main-share">
+		<li class="main-share-item title visually-hidden">
+			<h2>Share</h2>
+		</li>
+		{% for share in shares %}
+			<li class="main-share-item">
+				<a href="{{ share.link }}" class="{{ share.selector }} main-share-item-link{% if share.selector == 'link' %} js-copy-button" data-clipboard-text="{{ share.link }}"{% else %}"{% endif %} aria-label="{% if share.selector == 'link' %}Copy {% else %}Share on {% endif %}{{ share.selector }}{% if share.selector == 'link' %}{% else %} (opens in a new window){% endif %}" target="_blank">
+					<svg aria-hidden="true" class="icon"><use xlink:href="{{ assets_dir }}/svg/icons.svg#{{ share.selector }}"/>{% if share.selector == 'link' %}Copy {% else %}Share on {% endif %}{{ share.title }}{% if share.selector == 'link' %}{% else %} (opens in a new window){% endif %}</svg>
+					<span class="visually-hidden">{% if share.selector == 'link' %}Copy {% else %}Share on {% endif %}{{ share.title }} {% if share.selector == 'link' %}{% else %} (opens in a new window){% endif %}</span>
+				</a>
+			</li>
+		{% endfor %}
+		<li class="main-share-item">
+			<a onclick="window.print();return false;" class="print main-share-item-link" aria-label="Print page">
+				<svg aria-hidden="true" class="icon"><use xlink:href="{{ assets_dir }}/svg/icons.svg#print"/>Print page</svg>
+				<span class="visually-hidden">Print page</span>
+			</a>
+		</li>
+		<li class="main-share-item close">
+			<span class="close main-share-item-link" aria-label="Close sharing">
+				<span class="visually-hidden">Close</span>
+			</span>
+		</li>
+	</ul>
+</div>
+{% endif %}

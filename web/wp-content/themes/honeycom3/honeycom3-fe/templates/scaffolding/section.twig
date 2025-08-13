@@ -1,0 +1,31 @@
+{% block section %}
+	<section class="{% if section_class %}{{ section_class }} {% endif %}section"{% if section_id %} id="{{ section_id }}"{% endif %}>
+
+		{% block section_header %}
+			{% if title %}
+			    <header class="section-header container{% if header_link_path %} header-button{% endif %}">
+			        <div class="section-header-inner">
+						<h2 class="section-header-title">{{ title|raw }}</h2>
+						{% if summary %}<div class="section-header-summary">{{ summary|raw }}</div>{% endif %}
+					</div>
+					{% if header_link_path %}
+						<div class="section-header-link">
+							<a href="{{ header_link_path }}"{% if header_link_target %} target="{{ header_link_target }}"{% endif %} class="button{% if section_button_type == 'secondary' %}-{{ section_button_type }}{% endif %}">{{ header_link }}</a>
+						</div>
+					{% endif %}
+			    </header>
+			{% endif %}
+		{% endblock section_header %}
+
+		{% block section_content %}{% endblock section_content %}
+
+		{% block section_footer %}
+			{% if link %}
+			    <footer class="section-footer container">
+			        <a href="{{ link_path }}" class="button{% if section_button_type %}-{{ section_button_type }}{% endif %}" {% if link_target %} target="{{ link_target }}"{% endif %}>{{ link }}</a>
+			    </footer>
+			{% endif %}
+		{% endblock section_footer %}
+
+	</section>
+{% endblock section %}

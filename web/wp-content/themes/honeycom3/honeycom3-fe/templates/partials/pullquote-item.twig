@@ -1,0 +1,26 @@
+{% block pullquote %}
+	<div class="pullquote{% if image or image_data %} pullquote-has-image{% endif %}">
+
+		{% block pullquote_image %}
+			{% if image or image_data %}
+				<div class="pullquote-image">
+					{% include '@hc/partials/image.twig' with { 'imgheight': '530', 'imgwidth': '530' } %}
+				</div>
+			{% endif %}
+		{% endblock pullquote_image %}
+
+		{% block pullquote_info %}
+			<div class="pullquote-info">
+
+				<blockquote>{{ blockquote }}</blockquote>
+				{% if attribution and attribution_path %}
+					<cite><a href="{{ attribution_path }}"{% if attribution_target %} target="{{ attribution_target }}" {% endif %}>{{ attribution }}</a></cite>
+				{% elseif attribution %}
+					<cite>{{ attribution }}</cite>
+				{% endif %}
+
+			</div>
+		{% endblock pullquote_info %}
+
+	</div>
+{% endblock pullquote %}

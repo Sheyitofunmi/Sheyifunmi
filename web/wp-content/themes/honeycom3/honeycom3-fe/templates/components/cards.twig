@@ -1,0 +1,52 @@
+{% extends '@hc/scaffolding/section.twig' %}
+
+{% block section_content %}
+	<div class="container">
+		{% if cards_slider %}
+			<div class="cards-slider-arrows">
+		  	<a class="prev-arrow slick-arrow"><span class="visually-hidden">Prev</span></a>
+		  	<a class="next-arrow slick-arrow"><span class="visually-hidden">Next</span></a>
+			</div>
+		{% endif %}
+		<div class="cards">
+			{% if cards is empty %}
+				<div class="cards-noresults">
+					<h2>No results</h2>
+				</div>
+			{% endif %}
+		    {% for card in cards %}
+				{% include '@hc/partials/card.twig' %}
+		    {% endfor %}
+		</div>
+	</div>
+{% endblock section_content %}
+
+{# Include like so:
+{% include '@hc/components/cards.twig' with {
+'title': 'Listing component',
+'summary': 'The Client can create rows of listings, 2 per row. Listing A & B would appear on one row, listing C & D on the next row and so on.',
+'section_class': 'cards-outer listing light two-col' ,
+'cards': [
+    {
+        'path': '/page-builder',
+        'title': 'Nullam congue tempor faucibus',
+        'summary': 'Nullam id dolor id nibh ultricies vehicula ut id elit. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.',
+    },
+    {
+        'path': '/page-builder',
+        'title': 'Maecenas sed diam risus varius blandit sit amet',
+        'summary': 'Maecenas faucibus mollis interdum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Maecenas sed diam eget risus varius.',
+    },
+    {
+        'path': '/page-builder',
+        'title': 'Cras justo odio dapibus ac facilisis in',
+        'summary': 'Maecenas faucibus mollis interdum. Nulla vitae elit libero, a pharetra augue. Nullam quis risus eget urna mollis ornare vel eu leo. Aenean eu leo quam.',
+    },
+    {
+        'path': '/page-builder',
+        'title': 'Cras justo odio dapibus ac facilisis in',
+        'summary': 'Maecenas faucibus mollis interdum. Nulla vitae elit libero, a pharetra augue. Nullam quis risus eget urna mollis ornare vel eu leo. Aenean eu leo quam.',
+    }
+]}
+%}
+#}

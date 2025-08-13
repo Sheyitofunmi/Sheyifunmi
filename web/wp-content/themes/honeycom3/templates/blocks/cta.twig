@@ -1,0 +1,10 @@
+{% include '@hc/components/cta.twig' with {
+	'section_id': fields.anchor_id|e('esc_html'),
+	'section_class': 'cta-outer ' ~ fields.background_colour|get_background_class_name ~ ' ' ~ fields.alignment_classes,
+	'cta_title': fields.title|e('esc_html'),
+	'cta_summary': fields.summary|nl2br,
+	'image_data': get_image_data( fields.image, 'landscape_image' ),
+	'button': fields.button.title|e('esc_html'),
+	'path': fields.button.url|e('esc_url'),
+	'path_target': fields.button.target|e('esc_html'),
+}%}

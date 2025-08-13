@@ -1,0 +1,104 @@
+//+++++++++++++++++++++++++++
+//+++ HELPERS: TYPOGRAPHY +++
+//+++++++++++++++++++++++++++
+
+//=======================================
+// Helpers
+//=======================================
+
+// Form placeholder color
+@include placeholder {
+    color: currentColor;
+    opacity: 0.4;
+}
+
+
+//=======================================
+// Defaults
+//=======================================
+
+%font-header {
+    font: $bold 1rem/1.2 $font-header;
+}
+
+%font-body {
+    font: $normal 1rem/1.5 $font-body;
+}
+
+%font-content {
+    font: $normal 1rem/1.5 $font-content;
+}
+
+%font-meta {
+    font: $normal 1rem/1.5 $font-meta;
+}
+
+%font-label {
+    font: $bold 0.9rem/1.5 $font-header;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+}
+
+//=======================================
+// Settings
+//=======================================
+
+%h1 {
+    @extend %font-header;
+    font-size: 2rem;
+    font-size: calc(1.72rem + 1.4vw);
+
+    @include break(large) {
+        font-size: 3rem;
+    }
+}
+
+%h2 {
+    @extend %font-header;
+    font-size: 1.8rem;
+    font-size: calc(1.6rem + 1vw);
+
+    @include break(large) {
+        font-size: 2.5rem;
+    }
+}
+
+%h3 {
+    @extend %font-header;
+    font-size: 1.5rem;
+    font-size: calc(1.36rem + 0.7vw);
+
+    @include break(large) {
+        font-size: 2rem;
+    }
+}
+
+%h4 {
+    @extend %font-header;
+    font-size: 1.4rem;
+    font-size: calc(1.32rem + 0.4vw);
+
+    @include break(large) {
+        font-size: 1.7rem;
+    }
+}
+
+%h5 {
+    @extend %font-header;
+    font-size: 1.25rem;
+    font-size: calc(1.21rem + 0.2vw);
+
+    @include break(large) {
+        font-size: 1.4rem;
+    }
+}
+
+%h6 {
+    @extend %font-header;
+    font-size: 1.125rem;
+    font-size: calc(1.105rem + 0.1vw);
+
+    @include break(large) {
+        font-size: 1.2rem;
+    }
+}

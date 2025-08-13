@@ -1,0 +1,74 @@
+{% block donations %}
+
+<section class="section donations">
+
+        {% if image %}
+            {% block donation_image %}
+                <img src="{{ image }}" alt="{{ image_alt }}" class="donations-image" height="1080" width="1920">
+            {% endblock %}
+        {% endif %}
+
+        <div class="container">
+                <form method="post" id="donate" class="donate" action="" data-action="{{ donation_base_url }}">
+                {% if title %}
+                    <h2>{{ title }}</h2>
+                {% endif %}
+
+                <div class="tabs">
+
+                    <div role="tablist" aria-label="Donation frequency options" class="frequency-tablist {% if tabs |length > 1 %} both {% endif %}">
+
+                        {% for tab in tabs %}
+                            <button class="frequency-tab" role="tab" aria-selected="false" id="{{ tab.tab_name | lower }}">{{ tab.tab_name }}</button>
+                        {% endfor %}
+
+                    </div>
+
+                    {% for tab in tabs %}
+                        <div role="tabpanel" class="frequency-tabpanel" data-tabpanel="{{ tab.tab_name | lower }}" aria-labelledby="{{ tab.tab_name | lower }}" hidden>
+
+                            <div role="tablist" aria-label="Donation options">
+
+                                {% for amount in tab.amounts %}
+
+                                    <div class="donations-amount amount-tab" aria-selected="false" id="{{ tab.tab_name | lower }}-amount-{{ loop.index }}-tab" data-string="{{ tab.tab_url_string}}" role="tab">
+                                        <label for="{{ tab.tab_name | lower }}-amount-{{ loop.index }}" class="visually-hidden">{{ tab.currency_symbol }}{{ amount.value }}</label>
+                                        <input type="radio" id="{{ tab.tab_name | lower }}-amount-{{ loop.index }}" name="amount" value="{{ amount.value }}" class="visually-hidden">
+
+                                        {% block donate_amount %}
+                                            <span>{{ tab.currency_symbol }}{{ amount.value }}</span>
+                                        {% endblock donate_amount %}
+
+                                    </div>
+
+                                {% endfor %}
+
+                            </div>
+
+                            <div class="donation-amount-descriptions">
+                                {% for amount in tab.amounts %}
+                                    <div class="amount-tabpanel" aria-labelledby="{{ tab.tab_name | lower }}-amount-{{ loop.index }}" data-tabpanel="{{ tab.tab_name | lower }}-amount-{{ loop.index }}-tab" hidden>
+
+                                        {% block amount_description %}
+                                            <p>{{ amount.amount_description }}</p>
+                                        {% endblock amount_description %}
+
+                                    </div>
+                                {% endfor %}
+                            </div>
+
+                        </div>
+                    {% endfor %}
+
+                </div>
+
+                <div class="donations-actions">
+                    <label for="custom_amount" class="visually-hidden">Or enter your own amount</label>
+                    <input type="number" min="0" placeholder="Enter own amount" name="custom_amount" class="custom_amount" id="custom_amount">
+                    <button class="button donations_button orange" data-frequency_string="" data-amount_string="{{ amount_url_string }}" data-donation="">Donate</button>
+                </div>
+            </form>
+        </div>
+</section>
+
+{% endblock %}

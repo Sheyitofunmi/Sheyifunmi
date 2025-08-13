@@ -1,0 +1,25 @@
+//+++++++++++++++++++++++
+//+++ HELPERS: ICONS +++
+//+++++++++++++++++++++++
+
+.icon {
+    display: inline-block;
+    fill: currentColor;
+    height: $gap * 1.5;
+    vertical-align: top;
+    width: $gap * 1.5;
+
+    .ie & {
+        display: none;
+    }
+
+    &-label {
+        left: -9999px;
+        position: fixed;
+        top: -9999px;
+
+        .ie & {
+            position: static;
+        }
+    }
+}

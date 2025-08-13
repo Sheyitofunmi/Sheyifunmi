@@ -1,0 +1,85 @@
+<div class="breadcrumb-outer">
+	<div class="container">
+		<ul class="breadcrumb-list" role="tablist">
+			<li class="breadcrumb-list-item" role="tab">
+				<a href="/" class="breadcrumb-list-link">Home</a>
+			</li>
+			{% for nav in subnav %}
+				{% if nav.active_trail == 'true' %}
+					{% for nav2 in nav.submenu %}
+						<li class="breadcrumb-list-item{% if nav2.active == 'true' %} current{% endif %}" role="tab">
+							<a href="{{ nav2.url }}" class="breadcrumb-list-link{% if nav2.active == 'true' %} current{% endif %}">{{ nav2.text }}</a>
+						</li>
+						{% if nav2.active_trail == 'true' %}
+							{% for nav3 in nav2.submenu %}
+								<li class="breadcrumb-list-item{% if nav3.active == 'true' %} current{% endif %}" role="tab">
+									<a href="{{ nav3.url }}" class="breadcrumb-list-link{% if nav3.active == 'true' %} current{% endif %}">{{ nav3.text }}</a>
+								</li>
+
+								{% if nav3.active_trail == 'true' %}
+									{% for nav4 in nav3.submenu %}
+										<li class="breadcrumb-list-item{% if nav4.active == 'true' %} current{% endif %}" role="tab">
+											<a href="{{ nav4.url }}" class="breadcrumb-list-link{% if nav4.active == 'true' %} current{% endif %}">{{ nav4.text }}</a>
+										</li>
+									{% endfor %}
+								{% endif %}
+
+							{% endfor %}
+						{% endif %}
+					{% endfor %}
+				{% endif %}
+			{% endfor %}
+		</ul>
+
+		{% if breadcrumb_share %}
+			{% include '@hc/partials/main-share.twig' with {
+				'shares': [
+					{
+						'path': '#',
+						'selector': 'twitter',
+						'title': 'Twitter',
+					},
+					{
+						'path': '#',
+						'selector': 'facebook',
+						'title': 'Facebook',
+					},
+					{
+						'path': '#',
+						'selector': 'linkedin',
+						'title': 'LinkedIn',
+					},
+					{
+				  	'path': '#',
+				  	'selector': 'link',
+				  	'title': 'Link',
+					},
+					{
+						'path': '#',
+						'selector': 'email',
+						'title': 'Email',
+					},
+			  	]}
+		  	%}
+		  {% endif %}
+	</div>
+</div>
+
+
+{# {% block breadcrumb %}
+	{% include '@hc/partials/breadcrumbs.twig' with {
+			'subnav': [
+			{ 'text': 'Curabitur', 'url': '#', 'active_trail': 'true', 'submenu': [
+
+				{ 'text': 'Parent page', 'url': '#', 'active': 'false', 'active_trail': 'true', 'submenu': [
+
+					{ 'text': 'Grandchild page', 'url': '#', 'active': 'false', 'active_trail': 'true', 'submenu': [
+
+						{ 'text': 'Great grandchild page', 'url': '#', 'active': 'true' }
+					]},
+				]},
+			]}
+			]
+		}
+	%}
+{% endblock breadcrumb %} #}

@@ -1,0 +1,82 @@
+{% embed '@hc/home.twig' %}
+
+	{% block home_hero %}
+		{% set c = post.meta('hero') %}
+		{% include '@hc/components/hero.twig' with {
+			'section_class': 'hero-outer full',
+			'image_data':  get_image_data( c.image, 'hero_image' ),
+			'hero_title': c.title|e('esc_html'),
+			'hero_summary': c.summary|striptags|nl2br,
+			'link_copy': c.link_type == 'video' ? c.video_link.title|e('esc_html') : c.link.title|e('esc_html'),
+			'link_path': c.link_type == 'video' ? c.video_link.url|e('esc_url') : c.link.url|e('esc_url'),
+			'link_class': c.link_type == 'video' ? 'popup-video' : '',
+		} %}
+	{% endblock home_hero %}
+
+	{% block home_wysiwyg %}
+		{% if post.meta('optional_copy') %}
+			{% include '@hc/components/wysiwyg.twig' with {
+					'section_class': 'wysiwyg-outer center',
+					'wysiwyg_content': post.meta('optional_copy')|e('wp_kses_post'),
+				}
+			%}
+		{% endif %}
+	{% endblock %}
+
+	{% block home_signposts %}
+		{% set c = post.meta('signposts') %}
+		{% include '@hc/components/cards.twig' with {
+			'section_class': 'cards-outer signpost secondary',
+			'title': c.title|e('esc_html'),
+			'summary': c.summary|striptags|nl2br,
+			'header_link': c.button.title|e('esc_html'),
+			'header_link_path': c.button.url|e('esc_url'),
+			'cards': signpost_cards
+		}%}
+	{% endblock home_signposts %}
+
+	{% block home_impact %}
+		{% set c = post.meta('impact_overview') %}
+		{% include '@hc/components/impact.twig' with {
+			'section_class': 'impact-outer',
+			'title': c.title|e('esc_html'),
+			'summary': c.summary|striptags|nl2br,
+			'impacts': impact_overview,
+		} %}
+	{% endblock home_impact %}
+
+	{% block home_footer_ctas %}
+		{% include '@hc/components/cards.twig' with {
+			'section_class': 'cards-outer home-ctas',
+			'cards': home_ctas
+			}
+		%}
+	{% endblock home_footer_ctas %}
+
+	{% block home_stats %}
+		{% set c = post.meta('statistics') %}
+		{% include '@hc/components/statistics.twig' with {
+			'section_id': 'stats',
+			'section_class': 'statistic-outer',
+			'title': c.title|e('esc_html'),
+			'summary': c.summary|striptags|nl2br,
+			'link': c.button.title|e('esc_html'),
+			'link_path': c.button.url|e('esc_url'),
+			'statistics': home_stats
+			}
+		%}
+	{% endblock home_stats %}
+
+	{% block tabs %}
+		{% set c = post.meta('posts_feed') %}
+		{% include '@hc/components/feed-tabs.twig' with {
+			'title': c.title|e('esc_html'),
+			'summary': c.summary|striptags|nl2br,
+			'section_class': 'tabs-outer secondary',
+			'tabs': home_posts_feed_tabs
+			}
+		%}
+	{% endblock tabs %}
+
+
+{% endembed %}

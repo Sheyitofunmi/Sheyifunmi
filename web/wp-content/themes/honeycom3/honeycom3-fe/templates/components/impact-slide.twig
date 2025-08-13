@@ -1,0 +1,33 @@
+{% extends '@hc/scaffolding/section.twig' %}
+
+{% block section_content %}
+	<div class="container">
+		<div class="impact-slide-range">
+			<input type="range" id="impact-range" value="0" min="0" max="100" step="1">
+			<p class="amount-outer">£<output id="amount">0</output></p>
+		</div>
+		<div class="impact-slide-elements">
+			{% for impact in impacts %}
+				<div class="impact-slide-elements-item">
+					{% if impact.image or impact.image_data %}
+						<div class="impact-slide-image">
+							{# Minimum image size: 530px X 530px #}
+							{% set image = impact.image %}
+							{% set image_data = impact.image_data %}
+							{% if image or image_data %}
+								{% include '@hc/partials/image.twig' with { 'imgheight': '530', 'imgwidth': '920' } %}
+							{% endif %}
+						</div>
+					{% endif %}
+					<div class="impact-slide-info">
+						<div class="impact-slide-number" data-value="{{ impact.ammount }}">0</div>
+						<div class="impact-slide-info-inner">
+							{% if impact.title %}<h2 class="impact-slide-title">{{ impact.title }}</h2>{% endif %}
+							{% if impact.summary %}<p class="impact-slide-summary">{{ impact.summary }}</p>{% endif %}
+						</div>
+					</div>
+				</div>
+			{% endfor %}
+		</div>
+	</div>
+{% endblock section_content %}
