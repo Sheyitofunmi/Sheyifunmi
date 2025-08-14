@@ -1,12 +1,12 @@
 #!/bin/bash
 
 # Configuration
-LOCAL_SITE_NAME="dsc-funds-online"
+LOCAL_SITE_NAME="sheyifunmi"
 LOCAL_BASE="$HOME/Local Sites/$LOCAL_SITE_NAME/app"
 
 # Array of items to symlink (repo_path:local_path)
 LINKS=(
-    "web/wp-content/themes/fundsonline:public/wp-content/themes/fundsonline"
+    "web/wp-content/themes/honeycom3:public/wp-content/themes/honeycom3"
     "web/wp-content/mu-plugins:public/wp-content/mu-plugins"
 )
 
