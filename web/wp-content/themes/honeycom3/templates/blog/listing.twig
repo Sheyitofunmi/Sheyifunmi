@@ -1,0 +1,77 @@
+{% embed '@hc/news/listing.twig' %}
+
+    {% block hero_component %}
+        {% include '@hc/components/hero.twig' with {
+            'section_class': 'hero-outer full',
+            'hero_title': post.title|e('esc_html'),
+            'hero_summary': 'Thoughts, tutorials, and insights on WordPress development, performance, and modern web practices.',
+        } %}
+    {% endblock %}
+
+    {% block breadcrumb %}
+        {% include '@wp/partials/breadcrumbs.twig' with {
+            'subnav': subnav
+        } %}
+    {% endblock breadcrumb %}
+
+    {% block main_share %}{% endblock main_share %}
+    {% block featured %}{% endblock featured %}
+    {% block filter_block %}{% endblock filter_block %}
+
+    {% block listing %}
+        <section class="blog-listing-section section">
+            <div class="content-area">
+                {% if blog_posts %}
+                    <div class="blog-listing-grid">
+                        {% for post_item in blog_posts %}
+                            <article class="blog-card">
+                                <a href="{{ post_item.path }}" class="blog-card-link">
+                                    <div class="blog-card-content">
+                                        {% if post_item.categories %}
+                                            <div class="blog-card-categories">
+                                                {% for cat in post_item.categories %}
+                                                    <span class="blog-card-category">{{ cat }}</span>
+                                                {% endfor %}
+                                            </div>
+                                        {% endif %}
+                                        <h2 class="blog-card-title">{{ post_item.title }}</h2>
+                                        <p class="blog-card-summary">{{ post_item.summary }}</p>
+                                        <div class="blog-card-meta">
+                                            <span class="blog-card-date">{{ post_item.date }}</span>
+                                            {% if post_item.reading_time %}
+                                                <span class="blog-card-reading-time">{{ post_item.reading_time }} min read</span>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                </a>
+                            </article>
+                        {% endfor %}
+                    </div>
+
+                    {% if pagination %}
+                        <nav class="pagination" aria-label="Blog pagination">
+                            {% if pagination.prev %}
+                                <a href="{{ pagination.prev.link }}" class="pagination-prev">&laquo; Previous</a>
+                            {% endif %}
+                            {% for page in pagination.pages %}
+                                {% if page.current %}
+                                    <span class="pagination-current">{{ page.title }}</span>
+                                {% else %}
+                                    <a href="{{ page.link }}" class="pagination-link">{{ page.title }}</a>
+                                {% endif %}
+                            {% endfor %}
+                            {% if pagination.next %}
+                                <a href="{{ pagination.next.link }}" class="pagination-next">Next &raquo;</a>
+                            {% endif %}
+                        </nav>
+                    {% endif %}
+                {% else %}
+                    <div class="no-posts-message">
+                        <p>No blog posts found. Check back soon for new content!</p>
+                    </div>
+                {% endif %}
+            </div>
+        </section>
+    {% endblock listing %}
+
+{% endembed %}

@@ -10,3 +10,4 @@ private/database/
 *.sql
 *.sql.gz
 /vendor/*
+debug.log

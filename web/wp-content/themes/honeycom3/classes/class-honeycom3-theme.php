@@ -645,10 +645,14 @@ class Honeycom3 {
 
 				$icon = get_field( 'icon', $post->ID );
 				if ( $icon ) {
-					$cards[ $key ]['image_data'] = array(
-						'src' => esc_url( $icon['url'] ),
-						'alt' => esc_attr( $icon['alt'] ),
-					);
+					if ( is_array( $icon ) ) {
+						$cards[ $key ]['image_data'] = array(
+							'src' => esc_url( $icon['url'] ),
+							'alt' => esc_attr( $icon['alt'] ),
+						);
+					} else {
+						$cards[ $key ]['icon_name'] = esc_attr( $icon );
+					}
 				}
 			}
 		}

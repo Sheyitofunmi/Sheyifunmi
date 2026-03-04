@@ -127,10 +127,15 @@ class Honeycom3_Service extends Honeycom3_Custom_Post_Type {
 				// Icon.
 				$icon = get_field( 'icon', $post->ID );
 				if ( $icon ) {
-					$cards[ $key ]['image_data'] = array(
-						'src' => esc_url( $icon['url'] ),
-						'alt' => esc_attr( $icon['alt'] ),
-					);
+					if ( is_array( $icon ) && isset( $icon['url'] ) ) {
+						$cards[ $key ]['image_data'] = array(
+							'src' => esc_url( $icon['url'] ),
+							'alt' => esc_attr( $icon['alt'] ),
+						);
+					} else {
+						// Icon stored as a string name (e.g. "code", "shield").
+						$cards[ $key ]['icon_name'] = esc_attr( $icon );
+					}
 				}
 
 				// Features.
