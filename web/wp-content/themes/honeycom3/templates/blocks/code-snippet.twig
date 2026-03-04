@@ -1,0 +1,55 @@
+{# Code Snippet Block #}
+<section class="portfolio-block code-snippet" {% if fields.anchor_id %}id="{{ fields.anchor_id }}"{% endif %}>
+	<div class="code-snippet__inner">
+		<div class="code-snippet__header">
+			<div class="code-snippet__meta">
+				{% if fields.filename %}
+					<span class="code-snippet__filename">{{ fields.filename }}</span>
+				{% endif %}
+				<span class="code-snippet__language code-snippet__language--{{ fields.language }}">
+					{{ fields.language|upper }}
+				</span>
+			</div>
+			{% if fields.title %}
+				<span class="code-snippet__title">{{ fields.title }}</span>
+			{% endif %}
+			<button class="code-snippet__copy" type="button" data-copy-target="code-{{ block.id }}" aria-label="Copy code to clipboard">
+				<svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+					<path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 0 1 0 1.5h-1.5a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25Z"/>
+					<path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0 1 14.25 11h-7.5A1.75 1.75 0 0 1 5 9.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25Z"/>
+				</svg>
+				<span class="code-snippet__copy-text">Copy</span>
+			</button>
+		</div>
+
+		<div class="code-snippet__body">
+			<pre class="code-snippet__pre {{ fields.show_line_numbers ? 'code-snippet__pre--line-numbers' : '' }}"
+				 data-language="{{ fields.language }}"
+				 {% if fields.highlight_lines %}data-highlight="{{ fields.highlight_lines }}"{% endif %}>
+				<code id="code-{{ block.id }}" class="code-snippet__code language-{{ fields.language }}">{{ fields.code|e }}</code>
+			</pre>
+		</div>
+	</div>
+</section>
+
+{% if not is_preview %}
+<script>
+(function() {
+	var btn = document.querySelector('[data-copy-target="code-{{ block.id }}"]');
+	if (btn) {
+		btn.addEventListener('click', function() {
+			var code = document.getElementById('code-{{ block.id }}');
+			if (code) {
+				navigator.clipboard.writeText(code.textContent).then(function() {
+					var textEl = btn.querySelector('.code-snippet__copy-text');
+					if (textEl) {
+						textEl.textContent = 'Copied!';
+						setTimeout(function() { textEl.textContent = 'Copy'; }, 2000);
+					}
+				});
+			}
+		});
+	}
+})();
+</script>
+{% endif %}

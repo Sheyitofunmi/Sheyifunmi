@@ -1,5 +1,8 @@
-name: hc3
+name: joshua-portfolio
 recipe: wordpress
+proxy:
+  appserver_nginx:
+    - joshua-portfolio.lndo.site
 services:
   database:
     portforward: 3306

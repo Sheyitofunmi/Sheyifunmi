@@ -1,0 +1,49 @@
+{
+    "key": "taxonomy_service_category",
+    "title": "Service Categories",
+    "menu_order": 0,
+    "active": true,
+    "taxonomy": "service_category",
+    "object_type": [
+        "service"
+    ],
+    "advanced_configuration": true,
+    "import_source": "",
+    "import_date": "",
+    "labels": {
+        "name": "Service Categories",
+        "singular_name": "Service Category",
+        "menu_name": "Service Categories",
+        "all_items": "All Service Categories",
+        "edit_item": "Edit Service Category",
+        "view_item": "View Service Category",
+        "update_item": "Update Service Category",
+        "add_new_item": "Add New Service Category",
+        "new_item_name": "New Service Category Name",
+        "search_items": "Search Service Categories",
+        "not_found": "No service categories found"
+    },
+    "description": "Categories for services",
+    "public": true,
+    "publicly_queryable": true,
+    "hierarchical": true,
+    "show_ui": true,
+    "show_in_menu": true,
+    "show_in_nav_menus": true,
+    "show_in_rest": true,
+    "rest_base": "",
+    "rest_namespace": "wp\/v2",
+    "rest_controller_class": "WP_REST_Terms_Controller",
+    "show_tagcloud": false,
+    "show_in_quick_edit": true,
+    "show_admin_column": true,
+    "rewrite": {
+        "permalink_rewrite": "custom_permalink",
+        "slug": "service-category",
+        "with_front": "1"
+    },
+    "query_var": "taxonomy",
+    "default_term": "",
+    "sort": false,
+    "modified": 1709568000
+}

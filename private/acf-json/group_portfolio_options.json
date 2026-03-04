@@ -1,0 +1,387 @@
+{
+    "key": "group_portfolio_options",
+    "title": "Portfolio Global Settings",
+    "fields": [
+        {
+            "key": "field_options_tab_hero",
+            "label": "Hero Section",
+            "name": "",
+            "aria-label": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0,
+            "selected": 0
+        },
+        {
+            "key": "field_options_hero_headline",
+            "label": "Hero Headline",
+            "name": "hero_headline",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Main headline on the homepage hero section",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Joshua Adumchimma",
+            "placeholder": "",
+            "maxlength": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_options_hero_tagline",
+            "label": "Hero Tagline",
+            "name": "hero_tagline",
+            "aria-label": "",
+            "type": "textarea",
+            "instructions": "Subtitle text below the headline",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "WordPress Developer & Digital Solutions Architect",
+            "maxlength": 200,
+            "rows": 2,
+            "new_lines": "",
+            "placeholder": ""
+        },
+        {
+            "key": "field_options_hero_cta_text",
+            "label": "Hero CTA Text",
+            "name": "hero_cta_text",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "View My Work",
+            "placeholder": "",
+            "maxlength": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_options_hero_cta_link",
+            "label": "Hero CTA Link",
+            "name": "hero_cta_link",
+            "aria-label": "",
+            "type": "url",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "\/projects\/",
+            "placeholder": ""
+        },
+        {
+            "key": "field_options_tab_social",
+            "label": "Social Media",
+            "name": "",
+            "aria-label": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0,
+            "selected": 0
+        },
+        {
+            "key": "field_options_linkedin_url",
+            "label": "LinkedIn URL",
+            "name": "linkedin_url",
+            "aria-label": "",
+            "type": "url",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "https:\/\/linkedin.com\/in\/..."
+        },
+        {
+            "key": "field_options_github_url",
+            "label": "GitHub URL",
+            "name": "github_url",
+            "aria-label": "",
+            "type": "url",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "https:\/\/github.com\/..."
+        },
+        {
+            "key": "field_options_twitter_url",
+            "label": "Twitter\/X URL",
+            "name": "twitter_url",
+            "aria-label": "",
+            "type": "url",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "https:\/\/x.com\/..."
+        },
+        {
+            "key": "field_options_tab_contact",
+            "label": "Contact",
+            "name": "",
+            "aria-label": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0,
+            "selected": 0
+        },
+        {
+            "key": "field_options_contact_email",
+            "label": "Contact Email",
+            "name": "contact_email",
+            "aria-label": "",
+            "type": "email",
+            "instructions": "Public contact email address",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "hello@example.com",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_options_contact_form_shortcode",
+            "label": "Contact Form Shortcode",
+            "name": "contact_form_shortcode",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Shortcode for contact form plugin (e.g. Gravity Forms, CF7)",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "[gravityform id=\"1\" title=\"false\"]",
+            "maxlength": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_options_tab_footer",
+            "label": "Footer",
+            "name": "",
+            "aria-label": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0,
+            "selected": 0
+        },
+        {
+            "key": "field_options_footer_tagline",
+            "label": "Footer Tagline",
+            "name": "footer_tagline",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Short text displayed in the footer",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Building digital experiences that matter.",
+            "placeholder": "",
+            "maxlength": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_options_footer_copyright",
+            "label": "Footer Copyright",
+            "name": "footer_copyright",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Copyright text (year is auto-appended)",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Joshua Adumchimma. All rights reserved.",
+            "placeholder": "",
+            "maxlength": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_options_tab_about",
+            "label": "About",
+            "name": "",
+            "aria-label": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0,
+            "selected": 0
+        },
+        {
+            "key": "field_options_about_short_bio",
+            "label": "Short Bio",
+            "name": "about_short_bio",
+            "aria-label": "",
+            "type": "textarea",
+            "instructions": "Brief bio for homepage and sidebar contexts",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": 500,
+            "rows": 4,
+            "new_lines": "br",
+            "placeholder": ""
+        },
+        {
+            "key": "field_options_profile_photo",
+            "label": "Profile Photo",
+            "name": "profile_photo",
+            "aria-label": "",
+            "type": "image",
+            "instructions": "Professional headshot for about sections",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "array",
+            "library": "all",
+            "min_width": "",
+            "min_height": "",
+            "min_size": "",
+            "max_width": "",
+            "max_height": "",
+            "max_size": 2,
+            "mime_types": "jpg, jpeg, png, webp",
+            "preview_size": "medium"
+        },
+        {
+            "key": "field_options_cv_download",
+            "label": "CV\/Resume Download",
+            "name": "cv_download",
+            "aria-label": "",
+            "type": "file",
+            "instructions": "Downloadable CV\/Resume PDF",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "url",
+            "library": "all",
+            "min_size": "",
+            "max_size": 5,
+            "mime_types": "pdf"
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "options_page",
+                "operator": "==",
+                "value": "portfolio-settings"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "Global portfolio settings accessible from options page",
+    "show_in_rest": 0,
+    "modified": 1772654619
+}

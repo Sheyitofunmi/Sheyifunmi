@@ -1,0 +1,49 @@
+{
+    "key": "taxonomy_project_type",
+    "title": "Project Types",
+    "menu_order": 0,
+    "active": true,
+    "taxonomy": "project_type",
+    "object_type": [
+        "portfolio_project"
+    ],
+    "advanced_configuration": true,
+    "import_source": "",
+    "import_date": "",
+    "labels": {
+        "name": "Project Types",
+        "singular_name": "Project Type",
+        "menu_name": "Project Types",
+        "all_items": "All Project Types",
+        "edit_item": "Edit Project Type",
+        "view_item": "View Project Type",
+        "update_item": "Update Project Type",
+        "add_new_item": "Add New Project Type",
+        "new_item_name": "New Project Type Name",
+        "search_items": "Search Project Types",
+        "not_found": "No project types found"
+    },
+    "description": "Type of project work",
+    "public": true,
+    "publicly_queryable": true,
+    "hierarchical": true,
+    "show_ui": true,
+    "show_in_menu": true,
+    "show_in_nav_menus": true,
+    "show_in_rest": true,
+    "rest_base": "",
+    "rest_namespace": "wp\/v2",
+    "rest_controller_class": "WP_REST_Terms_Controller",
+    "show_tagcloud": false,
+    "show_in_quick_edit": true,
+    "show_admin_column": true,
+    "rewrite": {
+        "permalink_rewrite": "custom_permalink",
+        "slug": "project-type",
+        "with_front": "1"
+    },
+    "query_var": "taxonomy",
+    "default_term": "",
+    "sort": false,
+    "modified": 1709568000
+}

@@ -1,0 +1,158 @@
+{
+    "key": "group_testimonial_fields",
+    "title": "Testimonial Details",
+    "fields": [
+        {
+            "key": "field_testimonial_client_name",
+            "label": "Client Name",
+            "name": "client_name",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Name of the person giving the testimonial",
+            "required": 1,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "e.g. Jane Doe",
+            "maxlength": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_testimonial_client_role",
+            "label": "Client Role",
+            "name": "client_role",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Job title or role of the person",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "e.g. Head of Digital, Charity X",
+            "maxlength": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_testimonial_quote",
+            "label": "Testimonial Quote",
+            "name": "quote",
+            "aria-label": "",
+            "type": "textarea",
+            "instructions": "The testimonial text",
+            "required": 1,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "rows": 4,
+            "new_lines": "br",
+            "placeholder": ""
+        },
+        {
+            "key": "field_testimonial_client_photo",
+            "label": "Client Photo",
+            "name": "client_photo",
+            "aria-label": "",
+            "type": "image",
+            "instructions": "Headshot or avatar (optional)",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "array",
+            "library": "all",
+            "min_width": "",
+            "min_height": "",
+            "min_size": "",
+            "max_width": "",
+            "max_height": "",
+            "max_size": 2,
+            "mime_types": "jpg, jpeg, png, webp",
+            "preview_size": "thumbnail"
+        },
+        {
+            "key": "field_testimonial_rating",
+            "label": "Rating",
+            "name": "rating",
+            "aria-label": "",
+            "type": "number",
+            "instructions": "Star rating (1-5)",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "25",
+                "class": "",
+                "id": ""
+            },
+            "default_value": 5,
+            "min": 1,
+            "max": 5,
+            "step": 1,
+            "placeholder": 5,
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_testimonial_linked_project",
+            "label": "Linked Project",
+            "name": "linked_project",
+            "aria-label": "",
+            "type": "post_object",
+            "instructions": "Link to the related portfolio project",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "post_type": [
+                "portfolio_project"
+            ],
+            "post_status": "",
+            "taxonomy": "",
+            "return_format": "object",
+            "multiple": 0,
+            "allow_null": 1,
+            "bidirectional": 0,
+            "ui": 1,
+            "bidirectional_target": []
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "testimonial"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "Fields for client testimonials",
+    "show_in_rest": 0,
+    "modified": 1772654619
+}

@@ -1,0 +1,126 @@
+{
+    "key": "group_blog_additional_fields",
+    "title": "Blog Post Additional Fields",
+    "fields": [
+        {
+            "key": "field_blog_reading_time",
+            "label": "Reading Time",
+            "name": "reading_time",
+            "aria-label": "",
+            "type": "number",
+            "instructions": "Estimated reading time in minutes",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "25",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "min": 1,
+            "max": 60,
+            "step": 1,
+            "placeholder": 5,
+            "append": "min",
+            "prepend": ""
+        },
+        {
+            "key": "field_blog_series_name",
+            "label": "Series Name",
+            "name": "series_name",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "If this post is part of a series, enter the series name",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "25",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "e.g. WordPress Performance Tips",
+            "maxlength": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_blog_code_language",
+            "label": "Primary Code Language",
+            "name": "code_language",
+            "aria-label": "",
+            "type": "select",
+            "instructions": "Main programming language featured",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "25",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "php": "PHP",
+                "javascript": "JavaScript",
+                "typescript": "TypeScript",
+                "python": "Python",
+                "css": "CSS\/SCSS",
+                "html": "HTML\/Twig",
+                "sql": "SQL",
+                "bash": "Bash\/Shell",
+                "other": "Other"
+            },
+            "default_value": false,
+            "return_format": "value",
+            "multiple": 0,
+            "allow_null": 1,
+            "ui": 1,
+            "ajax": 0,
+            "placeholder": "Select language"
+        },
+        {
+            "key": "field_blog_related_project",
+            "label": "Related Project",
+            "name": "related_project",
+            "aria-label": "",
+            "type": "post_object",
+            "instructions": "Link to a related portfolio project",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "25",
+                "class": "",
+                "id": ""
+            },
+            "post_type": [
+                "portfolio_project"
+            ],
+            "post_status": "",
+            "taxonomy": "",
+            "return_format": "object",
+            "multiple": 0,
+            "allow_null": 1,
+            "bidirectional": 0,
+            "ui": 1,
+            "bidirectional_target": []
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "post"
+            }
+        ]
+    ],
+    "menu_order": 10,
+    "position": "side",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "Additional fields for blog posts",
+    "show_in_rest": 0,
+    "modified": 1772654619
+}

@@ -1,0 +1,40 @@
+{# Project Timeline Block #}
+{% set bg_class = fields.background_colour ? 'portfolio-bg-' ~ fields.background_colour : '' %}
+
+<section class="portfolio-block project-timeline {{ bg_class }}" {% if fields.anchor_id %}id="{{ fields.anchor_id }}"{% endif %}>
+	<div class="project-timeline__inner">
+		{% if fields.title %}
+			<h2 class="project-timeline__title">{{ fields.title }}</h2>
+		{% endif %}
+
+		{% if fields.timeline_items %}
+			<div class="project-timeline__track">
+				<div class="project-timeline__line" aria-hidden="true"></div>
+
+				{% for item in fields.timeline_items %}
+					<div class="project-timeline__item {{ item.highlight ? 'project-timeline__item--highlighted' : '' }} {{ loop.index is odd ? 'project-timeline__item--left' : 'project-timeline__item--right' }}">
+						<div class="project-timeline__marker" aria-hidden="true">
+							<span class="project-timeline__icon project-timeline__icon--{{ item.icon ?? 'milestone' }}"></span>
+						</div>
+
+						<div class="project-timeline__content">
+							{% if item.date %}
+								<time class="project-timeline__date">{{ item.date }}</time>
+							{% endif %}
+
+							<h3 class="project-timeline__item-title">{{ item.title }}</h3>
+
+							{% if item.description %}
+								<p class="project-timeline__description">{{ item.description|nl2br }}</p>
+							{% endif %}
+						</div>
+					</div>
+				{% endfor %}
+			</div>
+		{% else %}
+			{% if is_preview %}
+				<p class="portfolio-block__placeholder">Add timeline items to display the timeline.</p>
+			{% endif %}
+		{% endif %}
+	</div>
+</section>

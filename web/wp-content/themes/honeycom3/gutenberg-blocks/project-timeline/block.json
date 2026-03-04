@@ -1,0 +1,18 @@
+{
+	"name": "acf/project-timeline",
+	"title": "Project Timeline",
+	"description": "Display project milestones or career history in a vertical timeline.",
+	"category": "formatting",
+	"icon": "backup",
+	"keywords": ["timeline", "milestones", "history", "career"],
+	"acf": {
+		"mode": "auto",
+		"renderCallback": "fb_gutenberg_render_callback",
+		"blockVersion": 2
+	},
+	"supports": {
+		"align": false,
+		"anchor": true,
+		"mode": false
+	}
+}

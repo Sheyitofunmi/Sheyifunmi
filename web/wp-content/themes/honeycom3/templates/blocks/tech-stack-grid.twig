@@ -1,0 +1,65 @@
+{# Tech Stack Grid Block #}
+{% set bg_class = fields.background_colour ? 'portfolio-bg-' ~ fields.background_colour : '' %}
+
+<section class="portfolio-block tech-stack-grid {{ bg_class }}" {% if fields.anchor_id %}id="{{ fields.anchor_id }}"{% endif %}>
+	<div class="tech-stack-grid__inner">
+		{% if fields.title %}
+			<h2 class="tech-stack-grid__title">{{ fields.title }}</h2>
+		{% endif %}
+
+		{% if fields.summary %}
+			<p class="tech-stack-grid__summary">{{ fields.summary|nl2br }}</p>
+		{% endif %}
+
+		{% if fields.technologies %}
+			{# Group by category #}
+			{% set categories = {} %}
+			{% for tech in fields.technologies %}
+				{% set cat = tech.category ?: 'other' %}
+				{% if categories[cat] is not defined %}
+					{% set categories = categories|merge({(cat): []}) %}
+				{% endif %}
+				{% set categories = categories|merge({(cat): categories[cat]|merge([tech])}) %}
+			{% endfor %}
+
+			{% set category_labels = {
+				'frontend': 'Frontend',
+				'backend': 'Backend',
+				'cms': 'CMS',
+				'devops': 'DevOps',
+				'design': 'Design',
+				'tools': 'Tools',
+				'other': 'Other'
+			} %}
+
+			{% for cat_key, techs in categories %}
+				<div class="tech-stack-grid__category">
+					<h3 class="tech-stack-grid__category-title">{{ category_labels[cat_key] ?? cat_key|capitalize }}</h3>
+					<div class="tech-stack-grid__items">
+						{% for tech in techs %}
+							<div class="tech-stack-grid__item tech-stack-grid__item--{{ tech.proficiency ?? 'intermediate' }}">
+								{% if tech.icon %}
+									<div class="tech-stack-grid__icon">
+										<img src="{{ tech.icon.url }}" alt="{{ tech.name }}" loading="lazy" width="48" height="48">
+									</div>
+								{% endif %}
+								<div class="tech-stack-grid__info">
+									<span class="tech-stack-grid__name">{{ tech.name }}</span>
+									{% if tech.proficiency %}
+										<span class="tech-stack-grid__proficiency tech-stack-grid__proficiency--{{ tech.proficiency }}">
+											{{ tech.proficiency|capitalize }}
+										</span>
+									{% endif %}
+								</div>
+							</div>
+						{% endfor %}
+					</div>
+				</div>
+			{% endfor %}
+		{% else %}
+			{% if is_preview %}
+				<p class="portfolio-block__placeholder">Add technologies to display the grid.</p>
+			{% endif %}
+		{% endif %}
+	</div>
+</section>

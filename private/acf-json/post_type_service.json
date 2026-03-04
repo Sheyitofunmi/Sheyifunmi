@@ -1,0 +1,70 @@
+{
+    "key": "post_type_service",
+    "title": "Services",
+    "menu_order": 0,
+    "active": true,
+    "post_type": "service",
+    "advanced_configuration": true,
+    "import_source": "",
+    "import_date": "",
+    "labels": {
+        "name": "Services",
+        "singular_name": "Service",
+        "menu_name": "Services",
+        "all_items": "All Services",
+        "edit_item": "Edit Service",
+        "view_item": "View Service",
+        "view_items": "View Services",
+        "add_new_item": "Add New Service",
+        "add_new": "",
+        "new_item": "New Service",
+        "parent_item_colon": "Parent Service:",
+        "search_items": "Search Services",
+        "not_found": "No services found",
+        "not_found_in_trash": "No services found in Trash",
+        "archives": "Service Archives",
+        "attributes": "Service Attributes"
+    },
+    "description": "Professional services offered",
+    "public": true,
+    "hierarchical": false,
+    "exclude_from_search": false,
+    "publicly_queryable": true,
+    "show_ui": true,
+    "show_in_menu": true,
+    "admin_menu_parent": "",
+    "show_in_admin_bar": true,
+    "show_in_nav_menus": true,
+    "show_in_rest": true,
+    "rest_base": "",
+    "rest_namespace": "wp\/v2",
+    "rest_controller_class": "WP_REST_Posts_Controller",
+    "menu_position": "",
+    "menu_icon": {
+        "type": "dashicons",
+        "value": "dashicons-hammer"
+    },
+    "rename_capabilities": false,
+    "singular_capability_name": "post",
+    "plural_capability_name": "posts",
+    "supports": [
+        "title",
+        "editor"
+    ],
+    "taxonomies": [
+        "service_category"
+    ],
+    "has_archive": false,
+    "has_archive_slug": "",
+    "rewrite": {
+        "permalink_rewrite": "custom_permalink",
+        "slug": "services",
+        "with_front": "1",
+        "feeds": "0",
+        "pages": "1"
+    },
+    "query_var": "post_type",
+    "can_export": true,
+    "delete_with_user": false,
+    "modified": 1709568000
+}

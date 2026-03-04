@@ -1,0 +1,280 @@
+{
+    "key": "group_portfolio_project_fields",
+    "title": "Portfolio Project",
+    "fields": [
+        {
+            "key": "field_project_client_name",
+            "label": "Client Name",
+            "name": "client_name",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Client or organisation name (anonymised if needed)",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "e.g. Charity Organisation",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_project_url",
+            "label": "Project URL",
+            "name": "project_url",
+            "aria-label": "",
+            "type": "url",
+            "instructions": "Live site URL (if public)",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "https:\/\/example.com"
+        },
+        {
+            "key": "field_project_challenge",
+            "label": "Challenge",
+            "name": "challenge",
+            "aria-label": "",
+            "type": "wysiwyg",
+            "instructions": "The problem or brief",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "tabs": "all",
+            "toolbar": "full",
+            "media_upload": 1,
+            "delay": 0
+        },
+        {
+            "key": "field_project_solution",
+            "label": "Solution",
+            "name": "solution",
+            "aria-label": "",
+            "type": "wysiwyg",
+            "instructions": "Technical approach and implementation",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "tabs": "all",
+            "toolbar": "full",
+            "media_upload": 1,
+            "delay": 0
+        },
+        {
+            "key": "field_project_my_role",
+            "label": "My Role",
+            "name": "my_role",
+            "aria-label": "",
+            "type": "textarea",
+            "instructions": "Specific contribution and responsibilities",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "rows": 4,
+            "new_lines": "br",
+            "placeholder": ""
+        },
+        {
+            "key": "field_project_key_outcomes",
+            "label": "Key Outcomes",
+            "name": "key_outcomes",
+            "aria-label": "",
+            "type": "repeater",
+            "instructions": "Measurable results",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "layout": "table",
+            "pagination": 0,
+            "min": 0,
+            "max": 10,
+            "collapsed": "",
+            "button_label": "Add Outcome",
+            "rows_per_page": 20,
+            "sub_fields": [
+                {
+                    "key": "field_outcome_metric",
+                    "label": "Metric",
+                    "name": "metric",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "30",
+                        "class": "",
+                        "id": ""
+                    },
+                    "placeholder": "e.g. 40% faster",
+                    "default_value": "",
+                    "maxlength": "",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_project_key_outcomes"
+                },
+                {
+                    "key": "field_outcome_description",
+                    "label": "Description",
+                    "name": "description",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "70",
+                        "class": "",
+                        "id": ""
+                    },
+                    "placeholder": "e.g. Page load time improvement",
+                    "default_value": "",
+                    "maxlength": "",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_project_key_outcomes"
+                }
+            ]
+        },
+        {
+            "key": "field_project_gallery",
+            "label": "Gallery",
+            "name": "gallery",
+            "aria-label": "",
+            "type": "gallery",
+            "instructions": "Screenshots, before\/after comparisons",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "array",
+            "library": "all",
+            "min": 0,
+            "max": 20,
+            "min_width": "",
+            "min_height": "",
+            "min_size": "",
+            "max_width": "",
+            "max_height": "",
+            "max_size": "",
+            "mime_types": "jpg, jpeg, png, webp",
+            "preview_size": "medium",
+            "insert": "append"
+        },
+        {
+            "key": "field_project_linked_testimonial",
+            "label": "Linked Testimonial",
+            "name": "linked_testimonial",
+            "aria-label": "",
+            "type": "post_object",
+            "instructions": "Link to a Testimonial entry",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "post_type": [
+                "testimonial"
+            ],
+            "post_status": "",
+            "taxonomy": "",
+            "return_format": "object",
+            "multiple": 0,
+            "allow_null": 1,
+            "bidirectional": 0,
+            "ui": 1,
+            "bidirectional_target": []
+        },
+        {
+            "key": "field_project_is_featured",
+            "label": "Featured",
+            "name": "is_featured",
+            "aria-label": "",
+            "type": "true_false",
+            "instructions": "Show on homepage featured section",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "25",
+                "class": "",
+                "id": ""
+            },
+            "message": "",
+            "default_value": 0,
+            "ui": 1,
+            "ui_on_text": "Yes",
+            "ui_off_text": "No"
+        },
+        {
+            "key": "field_project_date",
+            "label": "Project Date",
+            "name": "project_date",
+            "aria-label": "",
+            "type": "date_picker",
+            "instructions": "Completion date for ordering",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "25",
+                "class": "",
+                "id": ""
+            },
+            "display_format": "F j, Y",
+            "return_format": "F j, Y",
+            "first_day": 1
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "portfolio_project"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "Fields for portfolio project case studies",
+    "show_in_rest": 0,
+    "modified": 1772654619
+}

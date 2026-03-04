@@ -24,6 +24,54 @@ class Honeycom3 {
 		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_honeycom3_editor_css' ) );
 		add_filter( 'timber/context', array( $this, 'add_profile_socials_data_to_context' ) );
 		add_filter( 'timber/context', array( $this, 'add_page_sidebar_data_to_context' ) );
+		add_filter( 'timber/context', array( $this, 'add_portfolio_homepage_data_to_context' ) );
+		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_portfolio_styles' ) );
+
+		// Admin customisations.
+		add_action( 'wp_dashboard_setup', array( $this, 'add_portfolio_dashboard_widget' ) );
+		add_filter( 'manage_portfolio_project_posts_columns', array( $this, 'set_project_admin_columns' ) );
+		add_action( 'manage_portfolio_project_posts_custom_column', array( $this, 'render_project_admin_columns' ), 10, 2 );
+		add_filter( 'manage_testimonial_posts_columns', array( $this, 'set_testimonial_admin_columns' ) );
+		add_action( 'manage_testimonial_posts_custom_column', array( $this, 'render_testimonial_admin_columns' ), 10, 2 );
+
+		// ACF Options Page.
+		add_action( 'acf/init', array( $this, 'register_portfolio_options_page' ) );
+
+		// Theme-level Gutenberg blocks.
+		add_filter( 'fb_hc3_theme_level_blocks', array( $this, 'register_portfolio_gutenberg_blocks' ) );
+	}
+
+	/**
+	 * Register ACF Options Page for portfolio global settings.
+	 */
+	public function register_portfolio_options_page() {
+		if ( function_exists( 'acf_add_options_page' ) ) {
+			acf_add_options_page(
+				array(
+					'page_title' => 'Portfolio Settings',
+					'menu_title' => 'Portfolio Settings',
+					'menu_slug'  => 'portfolio-settings',
+					'capability' => 'edit_posts',
+					'redirect'   => false,
+					'icon_url'   => 'dashicons-portfolio',
+					'position'   => 30,
+				)
+			);
+		}
+	}
+
+	/**
+	 * Register portfolio-specific Gutenberg blocks.
+	 *
+	 * @param array $blocks The existing theme-level blocks array.
+	 * @return array The modified blocks array.
+	 */
+	public function register_portfolio_gutenberg_blocks( $blocks ) {
+		$blocks['tech-stack-grid']      = '1.0';
+		$blocks['project-timeline']     = '1.0';
+		$blocks['code-snippet']         = '1.0';
+		$blocks['client-logo-carousel'] = '1.0';
+		return $blocks;
 	}
 
 	/**
@@ -475,6 +523,296 @@ class Honeycom3 {
 			return $tags;
 		} else {
 			return false;
+		}
+	}
+
+	/**
+	 * Enqueue portfolio-specific stylesheet and scripts.
+	 */
+	public function enqueue_portfolio_styles() {
+		wp_enqueue_style(
+			'portfolio-styles',
+			get_stylesheet_directory_uri() . '/assets/css/portfolio.css',
+			array( 'honeycom3' ),
+			'1.0',
+			'screen'
+		);
+
+		wp_enqueue_script(
+			'portfolio-theme-toggle',
+			get_stylesheet_directory_uri() . '/assets/js/theme-toggle.js',
+			array(),
+			'1.0',
+			true
+		);
+	}
+
+	/**
+	 * Add portfolio homepage data to context.
+	 *
+	 * @param array $context the timber context array.
+	 * @return array $context the timber context array with portfolio homepage data.
+	 */
+	public function add_portfolio_homepage_data_to_context( $context ) {
+		if ( is_front_page() ) {
+			$context['featured_projects']  = $this->get_homepage_featured_projects();
+			$context['services_overview']  = $this->get_homepage_services_overview();
+			$context['latest_blog_posts']  = $this->get_homepage_latest_blog_posts();
+			$context['testimonial_snippets'] = $this->get_homepage_testimonials();
+		}
+		return $context;
+	}
+
+	/**
+	 * Get featured projects for homepage.
+	 */
+	private function get_homepage_featured_projects( $limit = 4 ) {
+		$args = array(
+			'post_type'      => 'portfolio_project',
+			'posts_per_page' => $limit,
+			'meta_query'     => array(
+				array(
+					'key'   => 'is_featured',
+					'value' => 1,
+				),
+			),
+			'orderby'        => 'date',
+			'order'          => 'DESC',
+		);
+
+		$results = new WP_Query( $args );
+		$cards   = array();
+
+		if ( is_array( $results->posts ) && count( $results->posts ) > 0 ) {
+			foreach ( $results->posts as $key => $post ) {
+				$cards[ $key ]['_id']         = $post->ID;
+				$cards[ $key ]['path']        = esc_url( get_the_permalink( $post ) );
+				$cards[ $key ]['title']       = esc_html( get_the_title( $post ) );
+				$cards[ $key ]['summary']     = nl2br( wp_strip_all_tags( get_the_excerpt( $post ) ) );
+				$cards[ $key ]['client_name'] = esc_html( get_field( 'client_name', $post->ID ) );
+
+				$thumbnail_id = get_post_thumbnail_id( $post->ID );
+				if ( $thumbnail_id ) {
+					$cards[ $key ]['image_data'] = array(
+						'src' => esc_url( wp_get_attachment_image_url( $thumbnail_id, 'medium_large' ) ),
+						'alt' => esc_attr( get_post_meta( $thumbnail_id, '_wp_attachment_image_alt', true ) ),
+					);
+				}
+
+				$technologies = get_the_terms( $post->ID, 'technology' );
+				if ( $technologies && ! is_wp_error( $technologies ) ) {
+					$tech_tags = array();
+					foreach ( $technologies as $tech ) {
+						$tech_tags[] = array(
+							'title' => esc_html( $tech->name ),
+							'path'  => '#',
+						);
+					}
+					$cards[ $key ]['tags'] = $tech_tags;
+				}
+
+				$project_types = get_the_terms( $post->ID, 'project_type' );
+				if ( $project_types && ! is_wp_error( $project_types ) ) {
+					$cards[ $key ]['label'] = esc_html( $project_types[0]->name );
+				}
+			}
+		}
+
+		return $cards;
+	}
+
+	/**
+	 * Get services overview for homepage.
+	 */
+	private function get_homepage_services_overview( $limit = 6 ) {
+		$args = array(
+			'post_type'      => 'service',
+			'posts_per_page' => $limit,
+			'meta_key'       => 'display_order',
+			'orderby'        => 'meta_value_num',
+			'order'          => 'ASC',
+		);
+
+		$results = new WP_Query( $args );
+		$cards   = array();
+
+		if ( is_array( $results->posts ) && count( $results->posts ) > 0 ) {
+			foreach ( $results->posts as $key => $post ) {
+				$cards[ $key ]['_id']     = $post->ID;
+				$cards[ $key ]['path']    = esc_url( get_the_permalink( $post ) );
+				$cards[ $key ]['title']   = esc_html( get_the_title( $post ) );
+				$cards[ $key ]['summary'] = nl2br( wp_strip_all_tags( get_field( 'service_description', $post->ID ) ) );
+
+				$icon = get_field( 'icon', $post->ID );
+				if ( $icon ) {
+					$cards[ $key ]['image_data'] = array(
+						'src' => esc_url( $icon['url'] ),
+						'alt' => esc_attr( $icon['alt'] ),
+					);
+				}
+			}
+		}
+
+		return $cards;
+	}
+
+	/**
+	 * Get latest blog posts for homepage.
+	 */
+	private function get_homepage_latest_blog_posts( $limit = 3 ) {
+		$args = array(
+			'post_type'      => 'post',
+			'posts_per_page' => $limit,
+			'orderby'        => 'date',
+			'order'          => 'DESC',
+		);
+
+		$results = new WP_Query( $args );
+		$cards   = array();
+
+		if ( is_array( $results->posts ) && count( $results->posts ) > 0 ) {
+			foreach ( $results->posts as $key => $post ) {
+				$cards[ $key ]['_id']          = $post->ID;
+				$cards[ $key ]['path']         = esc_url( get_the_permalink( $post ) );
+				$cards[ $key ]['title']        = esc_html( get_the_title( $post ) );
+				$cards[ $key ]['summary']      = nl2br( wp_strip_all_tags( get_the_excerpt( $post ) ) );
+				$cards[ $key ]['date']         = get_the_date( 'j F Y', $post );
+				$cards[ $key ]['reading_time'] = get_field( 'reading_time', $post->ID );
+
+				$thumbnail_id = get_post_thumbnail_id( $post->ID );
+				if ( $thumbnail_id ) {
+					$cards[ $key ]['image_data'] = array(
+						'src' => esc_url( wp_get_attachment_image_url( $thumbnail_id, 'medium_large' ) ),
+						'alt' => esc_attr( get_post_meta( $thumbnail_id, '_wp_attachment_image_alt', true ) ),
+					);
+				}
+
+				$categories = get_the_category( $post->ID );
+				if ( $categories ) {
+					$cat_tags = array();
+					foreach ( $categories as $cat ) {
+						$cat_tags[] = array(
+							'title' => esc_html( $cat->name ),
+							'path'  => esc_url( get_category_link( $cat->term_id ) ),
+						);
+					}
+					$cards[ $key ]['tags'] = $cat_tags;
+				}
+			}
+		}
+
+		return $cards;
+	}
+
+	/**
+	 * Get testimonial snippets for homepage.
+	 */
+	private function get_homepage_testimonials( $limit = 3 ) {
+		$args = array(
+			'post_type'      => 'testimonial',
+			'posts_per_page' => $limit,
+			'orderby'        => 'date',
+			'order'          => 'DESC',
+		);
+
+		$results      = new WP_Query( $args );
+		$testimonials = array();
+
+		if ( is_array( $results->posts ) && count( $results->posts ) > 0 ) {
+			foreach ( $results->posts as $key => $post ) {
+				$testimonials[ $key ]['client_name']  = esc_html( get_field( 'client_name', $post->ID ) );
+				$testimonials[ $key ]['client_role']  = esc_html( get_field( 'client_role', $post->ID ) );
+				$testimonials[ $key ]['quote']        = esc_html( get_field( 'quote', $post->ID ) );
+				$testimonials[ $key ]['rating']       = intval( get_field( 'rating', $post->ID ) );
+
+				$client_photo = get_field( 'client_photo', $post->ID );
+				if ( $client_photo ) {
+					$testimonials[ $key ]['client_photo'] = array(
+						'src' => esc_url( $client_photo['sizes']['thumbnail'] ),
+						'alt' => esc_attr( $client_photo['alt'] ),
+					);
+				}
+			}
+		}
+
+		return $testimonials;
+	}
+
+	/**
+	 * Add portfolio admin dashboard widget.
+	 */
+	public function add_portfolio_dashboard_widget() {
+		wp_add_dashboard_widget(
+			'portfolio_dashboard_widget',
+			'Portfolio Quick Links',
+			array( $this, 'render_portfolio_dashboard_widget' )
+		);
+	}
+
+	/**
+	 * Render portfolio dashboard widget.
+	 */
+	public function render_portfolio_dashboard_widget() {
+		echo '<div class="portfolio-dashboard">';
+		echo '<ul>';
+		echo '<li><a href="' . admin_url( 'post-new.php?post_type=portfolio_project' ) . '">+ Add New Project</a></li>';
+		echo '<li><a href="' . admin_url( 'post-new.php' ) . '">+ Write New Blog Post</a></li>';
+		echo '<li><a href="' . admin_url( 'post-new.php?post_type=service' ) . '">+ Add New Service</a></li>';
+		echo '<li><a href="' . admin_url( 'post-new.php?post_type=testimonial' ) . '">+ Add New Testimonial</a></li>';
+
+		if ( class_exists( 'GFFormsModel' ) ) {
+			echo '<li><a href="' . admin_url( 'admin.php?page=gf_entries' ) . '">View Contact Form Submissions</a></li>';
+		}
+
+		echo '</ul>';
+		echo '</div>';
+	}
+
+	/**
+	 * Set custom admin columns for projects.
+	 */
+	public function set_project_admin_columns( $columns ) {
+		$columns['client_name'] = 'Client';
+		$columns['is_featured'] = 'Featured';
+		return $columns;
+	}
+
+	/**
+	 * Render custom admin columns for projects.
+	 */
+	public function render_project_admin_columns( $column, $post_id ) {
+		switch ( $column ) {
+			case 'client_name':
+				echo esc_html( get_field( 'client_name', $post_id ) );
+				break;
+			case 'is_featured':
+				$featured = get_field( 'is_featured', $post_id );
+				echo $featured ? '★' : '—';
+				break;
+		}
+	}
+
+	/**
+	 * Set custom admin columns for testimonials.
+	 */
+	public function set_testimonial_admin_columns( $columns ) {
+		$columns['client_name'] = 'Client';
+		$columns['rating']      = 'Rating';
+		return $columns;
+	}
+
+	/**
+	 * Render custom admin columns for testimonials.
+	 */
+	public function render_testimonial_admin_columns( $column, $post_id ) {
+		switch ( $column ) {
+			case 'client_name':
+				echo esc_html( get_field( 'client_name', $post_id ) );
+				break;
+			case 'rating':
+				$rating = intval( get_field( 'rating', $post_id ) );
+				echo str_repeat( '★', $rating ) . str_repeat( '☆', 5 - $rating );
+				break;
 		}
 	}
 }

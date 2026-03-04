@@ -1,0 +1,174 @@
+{% embed '@hc/page-builder.twig' %}
+
+    {% block hero_component %}
+        {% include '@hc/components/hero.twig' with {
+            'section_class': 'hero-outer full',
+            'image_data': get_image_data( post.meta('hero_section').hero_image, 'hero_image' ),
+            'hero_title': post.title|e('esc_html'),
+            'hero_summary': post.meta('hero_section').hero_summary|e('wp_kses_post'),
+            'link_copy': post.meta( 'hero_section' ).hero_button.title|e('esc_html'),
+            'link_path': post.meta( 'hero_section' ).hero_button.url|e('esc_url'),
+            'link_target': post.meta( 'hero_section' ).hero_button.target|e('esc_html')
+        } %}
+    {% endblock hero_component %}
+
+    {% block breadcrumb %}
+        {% include '@wp/partials/cpt-breadcrumbs.twig' with {
+            'subnav': subnav
+        } %}
+    {% endblock breadcrumb %}
+
+    {% block main_content %}
+        <div class="main-section single project-single" id="content">
+
+            {# Project meta header #}
+            <div class="project-meta-header">
+                {% if project.client_name %}
+                    <div class="project-client">
+                        <strong>Client:</strong> {{ project.client_name }}
+                    </div>
+                {% endif %}
+                {% if project.project_date %}
+                    <div class="project-date">
+                        <strong>Completed:</strong> {{ project.project_date }}
+                    </div>
+                {% endif %}
+                {% if project.project_url %}
+                    <div class="project-url">
+                        <a href="{{ project.project_url }}" target="_blank" rel="noopener noreferrer" class="button">Visit Live Site</a>
+                    </div>
+                {% endif %}
+            </div>
+
+            {# Technologies & Project Type tags #}
+            {% if project.technologies or project.project_types %}
+                <div class="project-tags">
+                    {% if project.project_types %}
+                        {% for type in project.project_types %}
+                            <span class="tag tag--type">{{ type.name }}</span>
+                        {% endfor %}
+                    {% endif %}
+                    {% if project.technologies %}
+                        {% for tech in project.technologies %}
+                            <span class="tag tag--tech">{{ tech.name }}</span>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+            {% endif %}
+
+            {# Challenge #}
+            {% if project.challenge %}
+                {% include '@hc/components/wysiwyg.twig' with {
+                    'section_class': 'wysiwyg-outer',
+                    'wysiwyg_content': '<h2>The Challenge</h2>' ~ project.challenge,
+                } %}
+            {% endif %}
+
+            {# Solution #}
+            {% if project.solution %}
+                {% include '@hc/components/wysiwyg.twig' with {
+                    'section_class': 'wysiwyg-outer',
+                    'wysiwyg_content': '<h2>The Solution</h2>' ~ project.solution,
+                } %}
+            {% endif %}
+
+            {# My Role #}
+            {% if project.my_role %}
+                <div class="project-role section">
+                    <h2>My Role</h2>
+                    <p>{{ project.my_role|nl2br }}</p>
+                </div>
+            {% endif %}
+
+            {# Key Outcomes #}
+            {% if project.key_outcomes %}
+                <div class="project-outcomes section">
+                    <h2>Key Outcomes</h2>
+                    <div class="outcomes-grid">
+                        {% for outcome in project.key_outcomes %}
+                            <div class="outcome-card">
+                                {% if outcome.metric %}
+                                    <div class="outcome-metric">{{ outcome.metric }}</div>
+                                {% endif %}
+                                {% if outcome.description %}
+                                    <p class="outcome-description">{{ outcome.description }}</p>
+                                {% endif %}
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            {% endif %}
+
+            {# Gallery #}
+            {% if project.gallery %}
+                <div class="project-gallery section">
+                    <h2>Project Gallery</h2>
+                    <div class="gallery-grid">
+                        {% for image in project.gallery %}
+                            <figure class="gallery-item">
+                                <img src="{{ image.sizes.large }}" alt="{{ image.alt }}" loading="lazy" />
+                                {% if image.caption %}
+                                    <figcaption>{{ image.caption }}</figcaption>
+                                {% endif %}
+                            </figure>
+                        {% endfor %}
+                    </div>
+                </div>
+            {% endif %}
+
+            {# Gutenberg content blocks #}
+            {{ post.content }}
+
+            {# Sidebar with metadata #}
+            {% include '@hc/components/wysiwyg.twig' with {
+                'section_class': 'wysiwyg-outer with-sidebar',
+                'metadata': 'true',
+                'share_title': 'Share',
+                'postshares': postshares,
+                'tag_title': 'Technologies',
+                'cats': project_sidebar.cats,
+                'tags': project_sidebar.tags,
+            } %}
+
+            {# Testimonial #}
+            {% if project.testimonial %}
+                <div class="project-testimonial section">
+                    <blockquote class="testimonial">
+                        <p class="testimonial-quote">"{{ project.testimonial.quote }}"</p>
+                        <footer class="testimonial-attribution">
+                            {% if project.testimonial.client_photo %}
+                                <img src="{{ project.testimonial.client_photo.sizes.thumbnail }}" alt="{{ project.testimonial.client_name }}" class="testimonial-photo" />
+                            {% endif %}
+                            <div class="testimonial-info">
+                                <cite class="testimonial-name">{{ project.testimonial.client_name }}</cite>
+                                {% if project.testimonial.client_role %}
+                                    <span class="testimonial-role">{{ project.testimonial.client_role }}</span>
+                                {% endif %}
+                                {% if project.testimonial.rating %}
+                                    <div class="testimonial-rating" aria-label="{{ project.testimonial.rating }} out of 5 stars">
+                                        {% for i in 1..5 %}
+                                            <span class="star {% if i <= project.testimonial.rating %}star--filled{% endif %}">★</span>
+                                        {% endfor %}
+                                    </div>
+                                {% endif %}
+                            </div>
+                        </footer>
+                    </blockquote>
+                </div>
+            {% endif %}
+
+            {# Related Projects #}
+            {% if related_projects %}
+                <div class="related-projects section">
+                    <h2>Related Projects</h2>
+                    {% include '@hc/components/cards.twig' with {
+                        'section_class': 'cards-outer',
+                        'cards': related_projects
+                    } %}
+                </div>
+            {% endif %}
+
+        </div>
+    {% endblock main_content %}
+
+{% endembed %}

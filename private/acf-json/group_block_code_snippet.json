@@ -1,0 +1,162 @@
+{
+    "key": "group_block_code_snippet",
+    "title": "Block: Code Snippet",
+    "fields": [
+        {
+            "key": "field_code_snippet_title",
+            "label": "Title",
+            "name": "title",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Optional label for the code snippet",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "e.g. Custom WP_Query Example",
+            "maxlength": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_code_snippet_language",
+            "label": "Language",
+            "name": "language",
+            "aria-label": "",
+            "type": "select",
+            "instructions": "Programming language for syntax highlighting",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "25",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "php": "PHP",
+                "javascript": "JavaScript",
+                "typescript": "TypeScript",
+                "html": "HTML",
+                "css": "CSS",
+                "scss": "SCSS",
+                "twig": "Twig",
+                "python": "Python",
+                "sql": "SQL",
+                "bash": "Bash",
+                "json": "JSON",
+                "yaml": "YAML",
+                "xml": "XML"
+            },
+            "default_value": "php",
+            "return_format": "value",
+            "allow_null": 0,
+            "multiple": 0,
+            "ui": 0,
+            "ajax": 0,
+            "placeholder": ""
+        },
+        {
+            "key": "field_code_snippet_show_line_numbers",
+            "label": "Show Line Numbers",
+            "name": "show_line_numbers",
+            "aria-label": "",
+            "type": "true_false",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "25",
+                "class": "",
+                "id": ""
+            },
+            "default_value": 1,
+            "ui": 1,
+            "message": "",
+            "ui_on_text": "",
+            "ui_off_text": ""
+        },
+        {
+            "key": "field_code_snippet_code",
+            "label": "Code",
+            "name": "code",
+            "aria-label": "",
+            "type": "textarea",
+            "instructions": "Paste your code here",
+            "required": 1,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "rows": 15,
+            "maxlength": "",
+            "new_lines": "",
+            "placeholder": ""
+        },
+        {
+            "key": "field_code_snippet_highlight_lines",
+            "label": "Highlight Lines",
+            "name": "highlight_lines",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Comma-separated line numbers to highlight (e.g. 1,3,5-7)",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "1,3,5-7",
+            "maxlength": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_code_snippet_filename",
+            "label": "Filename",
+            "name": "filename",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Optional filename to display above the snippet",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "e.g. functions.php",
+            "maxlength": "",
+            "prepend": "",
+            "append": ""
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "block",
+                "operator": "==",
+                "value": "acf\/code-snippet"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "",
+    "show_in_rest": 0,
+    "modified": 1772654619
+}

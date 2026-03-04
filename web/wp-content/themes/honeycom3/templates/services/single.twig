@@ -1,0 +1,82 @@
+{% embed '@hc/page-builder.twig' %}
+
+    {% block hero_component %}
+        {% include '@hc/components/hero.twig' with {
+            'section_class': 'hero-outer',
+            'hero_title': post.title|e('esc_html'),
+        } %}
+    {% endblock hero_component %}
+
+    {% block breadcrumb %}
+        {% include '@wp/partials/cpt-breadcrumbs.twig' with {
+            'subnav': subnav
+        } %}
+    {% endblock breadcrumb %}
+
+    {% block main_content %}
+        <div class="main-section single service-single" id="content">
+
+            {# Service icon and category #}
+            <div class="service-header">
+                {% if service.icon %}
+                    <div class="service-icon-large">
+                        <img src="{{ service.icon.url }}" alt="{{ service.icon.alt }}" />
+                    </div>
+                {% endif %}
+                {% if service.categories %}
+                    <div class="service-categories">
+                        {% for cat in service.categories %}
+                            <span class="tag">{{ cat.name }}</span>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </div>
+
+            {# Service description #}
+            {% if service.service_description %}
+                {% include '@hc/components/wysiwyg.twig' with {
+                    'section_class': 'wysiwyg-outer',
+                    'wysiwyg_content': service.service_description,
+                } %}
+            {% endif %}
+
+            {# Features list #}
+            {% if service.features %}
+                <div class="service-features-section section">
+                    <h2>What's Included</h2>
+                    <ul class="features-list">
+                        {% for feature in service.features %}
+                            <li class="feature-item">
+                                <span class="feature-check">✓</span>
+                                {{ feature.feature|e('esc_html') }}
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            {% endif %}
+
+            {# Gutenberg content blocks #}
+            {{ post.content }}
+
+            {# CTA #}
+            {% if service.cta_text and service.cta_link %}
+                <div class="service-cta-section section">
+                    <a href="{{ service.cta_link }}" class="button button--primary">{{ service.cta_text }}</a>
+                </div>
+            {% endif %}
+
+            {# Sidebar #}
+            {% if service_sidebar.cats %}
+                {% include '@hc/components/wysiwyg.twig' with {
+                    'section_class': 'wysiwyg-outer with-sidebar',
+                    'metadata': 'true',
+                    'share_title': 'Share',
+                    'postshares': postshares,
+                    'cats': service_sidebar.cats,
+                } %}
+            {% endif %}
+
+        </div>
+    {% endblock main_content %}
+
+{% endembed %}

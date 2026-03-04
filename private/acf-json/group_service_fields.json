@@ -1,0 +1,169 @@
+{
+    "key": "group_service_fields",
+    "title": "Service Details",
+    "fields": [
+        {
+            "key": "field_service_description",
+            "label": "Service Description",
+            "name": "service_description",
+            "aria-label": "",
+            "type": "wysiwyg",
+            "instructions": "Detailed description of the service offering",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "tabs": "all",
+            "toolbar": "full",
+            "media_upload": 1,
+            "delay": 0
+        },
+        {
+            "key": "field_service_features",
+            "label": "Features",
+            "name": "features",
+            "aria-label": "",
+            "type": "repeater",
+            "instructions": "Key features or capabilities included",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "layout": "table",
+            "pagination": 0,
+            "min": 0,
+            "max": 20,
+            "collapsed": "",
+            "button_label": "Add Feature",
+            "rows_per_page": 20,
+            "sub_fields": [
+                {
+                    "key": "field_feature_title",
+                    "label": "Feature",
+                    "name": "feature_title",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "placeholder": "e.g. Responsive Design",
+                    "default_value": "",
+                    "maxlength": "",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_service_features"
+                }
+            ]
+        },
+        {
+            "key": "field_service_icon",
+            "label": "Icon",
+            "name": "icon",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Icon class or SVG reference (e.g. dashicons-desktop, or a custom SVG name)",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "33",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "dashicons-admin-generic",
+            "maxlength": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_service_cta_text",
+            "label": "CTA Text",
+            "name": "cta_text",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Call to action button text",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "33",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Learn More",
+            "placeholder": "Learn More",
+            "maxlength": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_service_cta_link",
+            "label": "CTA Link",
+            "name": "cta_link",
+            "aria-label": "",
+            "type": "url",
+            "instructions": "Custom CTA destination (defaults to service single page)",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "34",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": ""
+        },
+        {
+            "key": "field_service_display_order",
+            "label": "Display Order",
+            "name": "display_order",
+            "aria-label": "",
+            "type": "number",
+            "instructions": "Order in which services appear (lower = first)",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "20",
+                "class": "",
+                "id": ""
+            },
+            "default_value": 0,
+            "min": 0,
+            "max": 100,
+            "step": 1,
+            "placeholder": 0,
+            "prepend": "",
+            "append": ""
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "service"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "Fields for service post type",
+    "show_in_rest": 0,
+    "modified": 1772654619
+}

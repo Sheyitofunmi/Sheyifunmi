@@ -1,0 +1,212 @@
+{
+    "key": "group_block_project_timeline",
+    "title": "Block: Project Timeline",
+    "fields": [
+        {
+            "key": "field_timeline_title",
+            "label": "Title",
+            "name": "title",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Section heading",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Project Timeline",
+            "placeholder": "",
+            "maxlength": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_timeline_items",
+            "label": "Timeline Items",
+            "name": "timeline_items",
+            "aria-label": "",
+            "type": "repeater",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "layout": "block",
+            "pagination": 0,
+            "min": 0,
+            "max": 20,
+            "collapsed": "field_timeline_item_title",
+            "button_label": "Add Milestone",
+            "rows_per_page": 20,
+            "sub_fields": [
+                {
+                    "key": "field_timeline_item_date",
+                    "label": "Date",
+                    "name": "date",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "Date or period (e.g. 'Jan 2024' or '2023 - Present')",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "25",
+                        "class": "",
+                        "id": ""
+                    },
+                    "placeholder": "Jan 2024",
+                    "default_value": "",
+                    "maxlength": "",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_timeline_items"
+                },
+                {
+                    "key": "field_timeline_item_title",
+                    "label": "Title",
+                    "name": "title",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "35",
+                        "class": "",
+                        "id": ""
+                    },
+                    "placeholder": "e.g. Project Kickoff",
+                    "default_value": "",
+                    "maxlength": "",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_timeline_items"
+                },
+                {
+                    "key": "field_timeline_item_description",
+                    "label": "Description",
+                    "name": "description",
+                    "aria-label": "",
+                    "type": "textarea",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "40",
+                        "class": "",
+                        "id": ""
+                    },
+                    "rows": 3,
+                    "new_lines": "br",
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "parent_repeater": "field_timeline_items"
+                },
+                {
+                    "key": "field_timeline_item_icon",
+                    "label": "Icon",
+                    "name": "icon",
+                    "aria-label": "",
+                    "type": "select",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "25",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "rocket": "Launch",
+                        "code": "Development",
+                        "design": "Design",
+                        "planning": "Planning",
+                        "testing": "Testing",
+                        "deploy": "Deployment",
+                        "milestone": "Milestone"
+                    },
+                    "default_value": "milestone",
+                    "return_format": "value",
+                    "multiple": 0,
+                    "allow_null": 0,
+                    "ui": 0,
+                    "ajax": 0,
+                    "placeholder": "",
+                    "parent_repeater": "field_timeline_items"
+                },
+                {
+                    "key": "field_timeline_item_highlight",
+                    "label": "Highlight",
+                    "name": "highlight",
+                    "aria-label": "",
+                    "type": "true_false",
+                    "instructions": "Emphasise this milestone",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "15",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": 0,
+                    "ui": 1,
+                    "message": "",
+                    "ui_on_text": "",
+                    "ui_off_text": "",
+                    "parent_repeater": "field_timeline_items"
+                }
+            ]
+        },
+        {
+            "key": "field_timeline_background",
+            "label": "Background Colour",
+            "name": "background_colour",
+            "aria-label": "",
+            "type": "select",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "": "Default",
+                "light": "Light",
+                "dark": "Dark"
+            },
+            "default_value": false,
+            "return_format": "value",
+            "multiple": 0,
+            "allow_null": 0,
+            "ui": 0,
+            "ajax": 0,
+            "placeholder": ""
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "block",
+                "operator": "==",
+                "value": "acf\/project-timeline"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "",
+    "show_in_rest": 0,
+    "modified": 1772654619
+}

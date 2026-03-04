@@ -1,0 +1,224 @@
+{
+    "key": "group_block_tech_stack_grid",
+    "title": "Block: Tech Stack Grid",
+    "fields": [
+        {
+            "key": "field_tech_stack_title",
+            "label": "Title",
+            "name": "title",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Section heading",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Tech Stack",
+            "placeholder": "",
+            "maxlength": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_tech_stack_summary",
+            "label": "Summary",
+            "name": "summary",
+            "aria-label": "",
+            "type": "textarea",
+            "instructions": "Optional introductory text",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "rows": 2,
+            "new_lines": "br",
+            "maxlength": "",
+            "placeholder": ""
+        },
+        {
+            "key": "field_tech_stack_items",
+            "label": "Technologies",
+            "name": "technologies",
+            "aria-label": "",
+            "type": "repeater",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "layout": "block",
+            "pagination": 0,
+            "min": 0,
+            "max": 30,
+            "collapsed": "field_tech_item_name",
+            "button_label": "Add Technology",
+            "rows_per_page": 20,
+            "sub_fields": [
+                {
+                    "key": "field_tech_item_name",
+                    "label": "Name",
+                    "name": "name",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "30",
+                        "class": "",
+                        "id": ""
+                    },
+                    "placeholder": "e.g. WordPress",
+                    "default_value": "",
+                    "maxlength": "",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_tech_stack_items"
+                },
+                {
+                    "key": "field_tech_item_icon",
+                    "label": "Icon",
+                    "name": "icon",
+                    "aria-label": "",
+                    "type": "image",
+                    "instructions": "Technology logo\/icon",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "20",
+                        "class": "",
+                        "id": ""
+                    },
+                    "return_format": "array",
+                    "library": "all",
+                    "preview_size": "thumbnail",
+                    "mime_types": "jpg, jpeg, png, svg, webp",
+                    "min_width": 0,
+                    "min_height": 0,
+                    "min_size": 0,
+                    "max_width": 0,
+                    "max_height": 0,
+                    "max_size": 0,
+                    "parent_repeater": "field_tech_stack_items"
+                },
+                {
+                    "key": "field_tech_item_proficiency",
+                    "label": "Proficiency",
+                    "name": "proficiency",
+                    "aria-label": "",
+                    "type": "select",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "20",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "expert": "Expert",
+                        "advanced": "Advanced",
+                        "intermediate": "Intermediate",
+                        "beginner": "Beginner"
+                    },
+                    "default_value": "intermediate",
+                    "return_format": "value",
+                    "allow_null": 0,
+                    "multiple": 0,
+                    "ui": 0,
+                    "ajax": 0,
+                    "placeholder": "",
+                    "parent_repeater": "field_tech_stack_items"
+                },
+                {
+                    "key": "field_tech_item_category",
+                    "label": "Category",
+                    "name": "category",
+                    "aria-label": "",
+                    "type": "select",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "30",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "frontend": "Frontend",
+                        "backend": "Backend",
+                        "cms": "CMS",
+                        "devops": "DevOps",
+                        "design": "Design",
+                        "tools": "Tools"
+                    },
+                    "default_value": false,
+                    "return_format": "value",
+                    "allow_null": 1,
+                    "multiple": 0,
+                    "ui": 0,
+                    "ajax": 0,
+                    "placeholder": "",
+                    "parent_repeater": "field_tech_stack_items"
+                }
+            ]
+        },
+        {
+            "key": "field_tech_stack_background",
+            "label": "Background Colour",
+            "name": "background_colour",
+            "aria-label": "",
+            "type": "select",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "": "Default",
+                "light": "Light",
+                "dark": "Dark",
+                "accent": "Accent"
+            },
+            "default_value": false,
+            "return_format": "value",
+            "multiple": 0,
+            "allow_null": 0,
+            "ui": 0,
+            "ajax": 0,
+            "placeholder": ""
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "block",
+                "operator": "==",
+                "value": "acf\/tech-stack-grid"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "",
+    "show_in_rest": 0,
+    "modified": 1772654619
+}

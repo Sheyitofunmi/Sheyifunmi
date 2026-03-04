@@ -1,0 +1,99 @@
+{
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
+        "This file is @generated automatically"
+    ],
+    "content-hash": "0d1f931239fe261a6e7f6057b2dcc3ba",
+    "packages": [
+        {
+            "name": "fatbeehive/wp-acf-sync",
+            "version": "v2.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://bitbucket.org/fatbeehive/wp-acf-sync.git",
+                "reference": "6289ee9a7d6652438953218825ea4215f95e85a6"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://bitbucket.org/fatbeehive/wp-acf-sync/get/6289ee9a7d6652438953218825ea4215f95e85a6.zip",
+                "reference": "6289ee9a7d6652438953218825ea4215f95e85a6",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.0"
+            },
+            "type": "wordpress-plugin",
+            "autoload": {
+                "files": [
+                    "wp-acf-sync.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "authors": [
+                {
+                    "name": "Fat Beehive",
+                    "email": "hello@fatbeehive.com"
+                }
+            ],
+            "description": "WP CLI sync for ACF fields from local JSON",
+            "homepage": "https://bitbucket.org/fatbeehive/wp-acf-sync",
+            "support": {
+                "source": "https://bitbucket.org/fatbeehive/wp-acf-sync/src/6289ee9a7d6652438953218825ea4215f95e85a6/?at=v2.0.1"
+            },
+            "time": "2021-05-25T12:59:38+00:00"
+        },
+        {
+            "name": "platformsh/config-reader",
+            "version": "2.4.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/platformsh/config-reader-php.git",
+                "reference": "dc08f50f5a40a767457668ad154116c8ea89cfc6"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/platformsh/config-reader-php/zipball/dc08f50f5a40a767457668ad154116c8ea89cfc6",
+                "reference": "dc08f50f5a40a767457668ad154116c8ea89cfc6",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.2"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^8.5"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Platformsh\\ConfigReader\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Larry Garfield",
+                    "email": "larry@platform.sh"
+                }
+            ],
+            "description": "Small helper to access Platform.sh environment variables",
+            "support": {
+                "issues": "https://github.com/platformsh/config-reader-php/issues",
+                "source": "https://github.com/platformsh/config-reader-php/tree/2.4.1"
+            },
+            "time": "2023-09-14T17:07:00+00:00"
+        }
+    ],
+    "packages-dev": [],
+    "aliases": [],
+    "minimum-stability": "stable",
+    "stability-flags": {},
+    "prefer-stable": false,
+    "prefer-lowest": false,
+    "platform": {},
+    "platform-dev": {},
+    "plugin-api-version": "2.9.0"
+}

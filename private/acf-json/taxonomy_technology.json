@@ -1,0 +1,51 @@
+{
+    "key": "taxonomy_technology",
+    "title": "Technologies",
+    "menu_order": 0,
+    "active": true,
+    "taxonomy": "technology",
+    "object_type": [
+        "portfolio_project",
+        "post"
+    ],
+    "advanced_configuration": true,
+    "import_source": "",
+    "import_date": "",
+    "labels": {
+        "name": "Technologies",
+        "singular_name": "Technology",
+        "menu_name": "Technologies",
+        "all_items": "All Technologies",
+        "edit_item": "Edit Technology",
+        "view_item": "View Technology",
+        "update_item": "Update Technology",
+        "add_new_item": "Add New Technology",
+        "new_item_name": "New Technology Name",
+        "search_items": "Search Technologies",
+        "popular_items": "Popular Technologies",
+        "not_found": "No technologies found"
+    },
+    "description": "Technology stack used in projects",
+    "public": true,
+    "publicly_queryable": true,
+    "hierarchical": true,
+    "show_ui": true,
+    "show_in_menu": true,
+    "show_in_nav_menus": true,
+    "show_in_rest": true,
+    "rest_base": "",
+    "rest_namespace": "wp\/v2",
+    "rest_controller_class": "WP_REST_Terms_Controller",
+    "show_tagcloud": false,
+    "show_in_quick_edit": true,
+    "show_admin_column": true,
+    "rewrite": {
+        "permalink_rewrite": "custom_permalink",
+        "slug": "technology",
+        "with_front": "1"
+    },
+    "query_var": "taxonomy",
+    "default_term": "",
+    "sort": false,
+    "modified": 1709568000
+}

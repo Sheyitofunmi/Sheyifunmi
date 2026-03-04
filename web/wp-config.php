@@ -140,10 +140,15 @@ ini_set( 'pcre.backtrack_limit', 200000 );
 ini_set( 'pcre.recursion_limit', 200000 );
 
 
-// IDs for listing pages
-define( 'UPDATES_LISTING_PAGE', 435 );
-define( 'LIBRARY_ITEMS_LISTING_PAGE', 800 );
-define( 'EVENTS_LISTING_PAGE', 778 );
+// IDs for listing pages (portfolio)
+define( 'PROJECTS_LISTING_PAGE', 1268 );
+define( 'SERVICES_LISTING_PAGE', 1269 );
+define( 'BLOG_LISTING_PAGE', 1270 );
+
+// Legacy HC3 starter listing page IDs (disabled)
+// define( 'UPDATES_LISTING_PAGE', 435 );
+// define( 'LIBRARY_ITEMS_LISTING_PAGE', 800 );
+// define( 'EVENTS_LISTING_PAGE', 778 );
 
 // Capability for SEO Framework settings.
 define( 'THE_SEO_FRAMEWORK_SETTINGS_CAP', 'publish_pages' );

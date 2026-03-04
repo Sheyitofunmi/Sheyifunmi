@@ -1,0 +1,112 @@
+{# Client Logo Carousel Block #}
+{% set bg_class = fields.background_colour ? 'portfolio-bg-' ~ fields.background_colour : '' %}
+
+<section class="portfolio-block client-logo-carousel {{ bg_class }}" {% if fields.anchor_id %}id="{{ fields.anchor_id }}"{% endif %}
+		 {% if fields.autoplay %}data-autoplay="true"{% endif %}
+		 {% if fields.speed %}data-speed="{{ fields.speed }}"{% endif %}>
+	<div class="client-logo-carousel__inner">
+		{% if fields.title %}
+			<h2 class="client-logo-carousel__title">{{ fields.title }}</h2>
+		{% endif %}
+
+		{% if fields.summary %}
+			<p class="client-logo-carousel__summary">{{ fields.summary|nl2br }}</p>
+		{% endif %}
+
+		{% if fields.logos %}
+			<div class="client-logo-carousel__track-wrapper">
+				<button class="client-logo-carousel__nav client-logo-carousel__nav--prev" type="button" aria-label="Previous logos">
+					<svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+						<path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/>
+					</svg>
+				</button>
+
+				<div class="client-logo-carousel__track">
+					{% for logo in fields.logos %}
+						<div class="client-logo-carousel__slide">
+							{% if logo.url %}
+								<a href="{{ logo.url }}" class="client-logo-carousel__link" target="_blank" rel="noopener noreferrer" title="{{ logo.client_name }}">
+							{% endif %}
+
+							{% if logo.logo %}
+								<img class="client-logo-carousel__logo"
+									 src="{{ logo.logo.url }}"
+									 alt="{{ logo.client_name }}"
+									 loading="lazy"
+									 width="{{ logo.logo.width }}"
+									 height="{{ logo.logo.height }}">
+							{% endif %}
+
+							{% if logo.url %}
+								</a>
+							{% endif %}
+						</div>
+					{% endfor %}
+				</div>
+
+				<button class="client-logo-carousel__nav client-logo-carousel__nav--next" type="button" aria-label="Next logos">
+					<svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+						<path d="M8.59 16.59L10 18l6-6-6-6-1.41 1.41L13.17 12z"/>
+					</svg>
+				</button>
+			</div>
+
+			<div class="client-logo-carousel__dots" role="tablist" aria-label="Carousel navigation">
+				{% for logo in fields.logos %}
+					<button class="client-logo-carousel__dot {{ loop.first ? 'client-logo-carousel__dot--active' : '' }}"
+							type="button"
+							role="tab"
+							aria-label="Go to slide {{ loop.index }}"
+							data-slide="{{ loop.index0 }}"></button>
+				{% endfor %}
+			</div>
+		{% else %}
+			{% if is_preview %}
+				<p class="portfolio-block__placeholder">Add client logos to display the carousel.</p>
+			{% endif %}
+		{% endif %}
+	</div>
+</section>
+
+{% if not is_preview %}
+<script>
+(function() {
+	var section = document.querySelector('.client-logo-carousel[data-autoplay]');
+	if (!section) return;
+
+	var track = section.querySelector('.client-logo-carousel__track');
+	var slides = track ? track.querySelectorAll('.client-logo-carousel__slide') : [];
+	var dots = section.querySelectorAll('.client-logo-carousel__dot');
+	var prevBtn = section.querySelector('.client-logo-carousel__nav--prev');
+	var nextBtn = section.querySelector('.client-logo-carousel__nav--next');
+
+	if (slides.length < 2) return;
+
+	var current = 0;
+	var speed = parseInt(section.dataset.speed || '3', 10) * 1000;
+	var timer;
+
+	function goTo(index) {
+		current = ((index % slides.length) + slides.length) % slides.length;
+		track.style.transform = 'translateX(-' + (current * 100 / slides.length) + '%)';
+		dots.forEach(function(d, i) {
+			d.classList.toggle('client-logo-carousel__dot--active', i === current);
+		});
+	}
+
+	if (prevBtn) prevBtn.addEventListener('click', function() { goTo(current - 1); resetTimer(); });
+	if (nextBtn) nextBtn.addEventListener('click', function() { goTo(current + 1); resetTimer(); });
+	dots.forEach(function(dot) {
+		dot.addEventListener('click', function() { goTo(parseInt(this.dataset.slide, 10)); resetTimer(); });
+	});
+
+	function resetTimer() {
+		clearInterval(timer);
+		if (section.dataset.autoplay === 'true') {
+			timer = setInterval(function() { goTo(current + 1); }, speed);
+		}
+	}
+	resetTimer();
+})();
+</script>
+{% endif %}
